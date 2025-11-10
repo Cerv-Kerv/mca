@@ -1,0 +1,158 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Check your details – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: "Book and manage an oral exam",
+  navigation: [   
+],
+    slots: {
+      navigationEnd: '<div class="service-menu-signout-wrapper"><a class="govuk-link govuk-link--no-visited-state service-menu-signout" href="signed-out?sign-out">Sign out</a></div>'
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds-from-desktop">
+
+      <h1 class="govuk-heading-l">
+        Check your details
+      </h1>
+
+    {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+    {{ govukInsetText({
+      text: "All times are shown in British Summer Time (BST) timezone."
+    }) }}
+
+      <h2 class="govuk-heading-m">Personal details</h2>
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: "Ali*** ****wal"
+            }
+          },
+          {
+            key: {
+              text: "SDS number"
+            },
+            value: {
+              text: data['sdsNumber']
+            }
+          },
+          {
+            key: {
+              text: "Email address"
+            },
+            value: {
+              text: "**wally5**@g****.com"
+            }
+          }
+        ]
+      }) }}
+
+      <h3 class="govuk-heading-m">Exam details</h3>
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      {{ govukSummaryList({
+        rows: [
+  
+          {
+            key: {
+              text: "Oral exam type"
+            },
+            value: {
+              text: "Marine Engine Operator Licence (MEOL) and Senior MEOL"
+            }
+          },
+          {
+            key: {
+              text: "Previous exam time and date"
+            },
+            value: {
+              text: "12:30 (BST), 24 October 2025"
+            }
+          },
+          {
+            key: {
+              text: "New Exam time and date"
+            },
+            value: {
+              text: "16:00 (GMT), 15 January 2026"
+            },
+            actions: {
+              items: [
+                {
+                  href: "reschedule-enter-a-date-for-a-slot",
+                  text: "Change",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      <form action="reschedule-booking-confirmation" method="post" novalidate>
+
+        {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+        
+        {{ govukCheckboxes({
+          idPrefix: "privacy",
+          name: "privacy-notice",
+          errorMessage: data['privacy-error'] == 'true' and {
+            text: "You must confirm that you have read and understood MCA's Code of conduct"
+          },
+          items: [
+            {
+              value: "confirmed",
+              html: 'I have read and understood the <a href="https://www.gov.uk/government/publications/min-690-guidance-on-the-mca-oral-examination-booking-the-issue-of-notices-of-eligibility-noes-and-the-online-oral-examination-processes/min-690-guidance-on-the-mca-oral-examination-booking-the-issue-of-notices-of-eligibility-noes-and-the-online-oral-examination-processes#codeofconduct" target="_blank" class="govuk-link">Code of conduct (opens in a new tab)</a>.',
+              checked: data['privacy-notice'] == 'confirmed'
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Submit and book"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

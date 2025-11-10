@@ -1,0 +1,260 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['enter-a-date-for-a-slot-error'] == 'true' %}Error: {% endif %}
+  Enter a date to check for available slots – {{ serviceName }} – GOV.UK Prototype Kit
+  
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: "Book and manage an oral exam",
+  navigation: [   
+],
+    slots: {
+      navigationEnd: '<div class="service-menu-signout-wrapper"><a class="govuk-link govuk-link--no-visited-state service-menu-signout" href="signed-out?sign-out">Sign out</a></div>'
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+        {# Error summary appears at top of form if flag set #}
+    {% if data['enter-a-date-for-a-slot-error'] == 'true' %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: "Date cannot be in the past",
+            href: "#date-picker-textbox"
+          }
+        ]
+      }) }}
+    {% endif %}
+
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">MEOL and Senior MEOL exam</span>
+        Enter a date to check for available slots
+      </h1>
+<div class="govuk-inset-text govuk-inset-text--custom">
+       <p>You are changing your current exam slot of 12:30 (BST), 24 October 2025 
+       </p>
+      </div>
+      
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-visually-hidden">Warning</span>
+          You can change your booking up to 21 days before the exam date.
+        </strong>
+      </div>
+
+      <p>If no exam slots are available on this date, this service will help you find one on another day.</p>
+
+      <form class="form" action="reschedule-choose-a-slot" method="post" novalidate>
+  <fieldset class="govuk-fieldset">
+
+    <div class="govuk-form-group {% if data and data['enter-a-date-for-a-slot-error'] == 'true' %}govuk-form-group--error{% endif %}">
+      <label class="govuk-heading-m govuk-label--m" for="date-picker-textbox">
+        Enter a date for a slot
+      </label>
+
+      <div id="date-hint" class="govuk-hint">
+        For example, 12/08/2025
+      </div>
+
+      {% if data and data['enter-a-date-for-a-slot-error'] == 'true' %}
+        <span id="date-error" class="govuk-error-message" role="alert">
+          <span class="govuk-visually-hidden">Error:</span> Date cannot be in the past
+        </span>
+      {% endif %}
+
+              <div id="date-picker" class="datepicker">
+                  <div class="date">
+                      <div class="govuk-form-group">
+                          <div class="date-picker-group">
+                              <input type="text" class="govuk-input govuk-!-width-one-third" placeholder="" id="date-picker-textbox" aria-label="Enter or Choose date">
+                              <button class="datepicker__toggle" type="button" aria-haspopup="dialog" aria-controls="datepicker-date" aria-expanded="false">
+                                  <span class="govuk-visually-hidden">Choose a date</span>
+                                  <svg width="32" height="24" focusable="false" class=" " aria-hidden="true" role="img" viewBox="0 0 22 22">
+                                      <path fill="currentColor" fill-rule="evenodd" clip-rule="evenodd" d="M16.1333 2.93333H5.86668V4.4C5.86668 5.21002 5.21003 5.86667 4.40002 5.86667C3.59 5.86667 2.93335 5.21002 2.93335 4.4V2.93333H2C0.895431 2.93333 0 3.82877 0 4.93334V19.2667C0 20.3712 0.89543 21.2667 2 21.2667H20C21.1046 21.2667 22 20.3712 22 19.2667V4.93333C22 3.82876 21.1046 2.93333 20 2.93333H19.0667V4.4C19.0667 5.21002 18.41 5.86667 17.6 5.86667C16.79 5.86667 16.1333 5.21002 16.1333 4.4V2.93333ZM20.5333 8.06667H1.46665V18.8C1.46665 19.3523 1.91436 19.8 2.46665 19.8H19.5333C20.0856 19.8 20.5333 19.3523 20.5333 18.8V8.06667Z"></path>
+                                      <rect x="3.66669" width="1.46667" height="5.13333" rx="0.733333" fill="currentColor"></rect>
+                                      <rect x="16.8667" width="1.46667" height="5.13333" rx="0.733333" fill="currentColor"></rect>
+                                  </svg>
+                              </button>
+                          </div>
+                      </div>
+                  </div>
+
+                  <div id="id-for-datepicker" class="datepicker-dialog" role="dialog" aria-modal="true" aria-label="Choose Date">
+                      <div class="header">
+                          <button type="button" class="prev-year datepicker__button datepicker-prev-year" aria-label="previous year">
+                              <span class="govuk-visually-hidden next-prev">Previous year</span>
+                              <svg width="44" height="40" viewBox="0 0 44 40" fill="none" focusable="false" aria-hidden="true" role="img">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M23.1643 20L28.9572 14.2071L27.5429 12.7929L20.3358 20L27.5429 27.2071L28.9572 25.7929L23.1643 20Z" fill="currentColor"></path>
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M17.1643 20L22.9572 14.2071L21.5429 12.7929L14.3358 20L21.5429 27.2071L22.9572 25.7929L17.1643 20Z" fill="currentColor"></path>
+                              </svg>
+                          </button>
+
+                          <button type="button" class="prev-month datepicker__button datepicker-prev-year" aria-label="previous month">
+                              <span class="govuk-visually-hidden next-prev">Previous month</span>
+                              <svg width="44" height="40" viewBox="0 0 44 40" fill="none" focusable="false" aria-hidden="true" role="img">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M20.5729 20L25.7865 14.2071L24.5137 12.7929L18.0273 20L24.5137 27.2071L25.7865 25.7929L20.5729 20Z" fill="currentColor"></path>
+                              </svg>
+                          </button>
+
+                          <h2 id="id-grid-label" class="month-year" aria-live="polite">February 2025</h2>
+
+                          <button type="button" class="next-month datepicker__button datepicker-prev-year" aria-label="next month">
+                              <span class="govuk-visually-hidden next-prev">Next month</span>
+                              <svg width="44" height="40" viewBox="0 0 44 40" fill="none" focusable="false" aria-hidden="true" role="img">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M23.4271 20L18.2135 14.2071L19.4863 12.7929L25.9727 20L19.4863 27.2071L18.2135 25.7929L23.4271 20Z" fill="currentColor"></path>
+                              </svg>
+                          </button>
+
+                          <button type="button" class="next-year datepicker__button datepicker-prev-year" aria-label="next year">
+                              <span class="govuk-visually-hidden next-prev">Next year</span>
+                              <svg width="44" height="40" viewBox="0 0 44 40" fill="none" focusable="false" aria-hidden="true" role="img">
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M20.8357 20L15.0428 14.2071L16.4571 12.7929L23.6642 20L16.4571 27.2071L15.0428 25.7929L20.8357 20Z" fill="currentColor"></path>
+                                  <path fill-rule="evenodd" clip-rule="evenodd" d="M26.8357 20L21.0428 14.2071L22.4571 12.7929L29.6642 20L22.4571 27.2071L21.0428 25.7929L26.8357 20Z" fill="currentColor"></path>
+                              </svg>
+                          </button>
+                      </div>
+
+                      <div class="table-wrap datepicker__calendar datepicker-grid">
+                          <table class="dates" role="grid" aria-labelledby="id-grid-label">
+                              <thead>
+                                  <tr>
+                                      <th scope="col" abbr="Sunday">Su</th>
+                                      <th scope="col" abbr="Monday">Mo</th>
+                                      <th scope="col" abbr="Tuesday">Tu</th>
+                                      <th scope="col" abbr="Wednesday">We</th>
+                                      <th scope="col" abbr="Thursday">Th</th>
+                                      <th scope="col" abbr="Friday">Fr</th>
+                                      <th scope="col" abbr="Saturday">Sa</th>
+                                  </tr>
+                              </thead>
+
+                              <tbody>
+                                  <tr>
+                                      <td class="disabled" tabindex="-1"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date"><span class="govuk-visually-hidden">Day DD MM YYY</span><span aria-hidden="true">DD</span></button></td>
+                                      <td class="disabled" tabindex="-1"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date"><span class="govuk-visually-hidden">Day DD MM YYY</span><span aria-hidden="true">DD</span></button></td>
+                                      <td class="disabled" tabindex="-1"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date"><span class="govuk-visually-hidden">Day DD MM YYY</span><span aria-hidden="true">DD</span></button></td>
+                                      <td class="disabled" tabindex="-1"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date"><span class="govuk-visually-hidden">Day DD MM YYY</span><span aria-hidden="true">DD</span></button></td>
+                                      <td class="disabled" tabindex="-1"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date"><span class="govuk-visually-hidden">Day DD MM YYY</span><span aria-hidden="true">DD</span></button></td>
+                                      <td class="disabled" tabindex="-1"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date"><span class="govuk-visually-hidden">Day DD MM YYY</span><span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-01"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">1<span aria-hidden="true">DD</span></button></td>
+                                  </tr>
+                                  <tr>
+                                      <td tabindex="-1" data-date="2025-02-02"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">2<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-03"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">3<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-04"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">4<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-05"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">5<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-06"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">6<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-07"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">7<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-08"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">8<span aria-hidden="true">DD</span></button></td>
+                                  </tr>
+                                  <tr>
+                                      <td tabindex="-1" data-date="2025-02-09"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">9<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-10"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">10<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-11"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">11<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-12"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">12<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-13"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">13<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-14"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">14<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-15"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">15<span aria-hidden="true">DD</span></button></td>
+                                  </tr>
+                                  <tr>
+                                      <td tabindex="-1" data-date="2025-02-16"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">16<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-17"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">17<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-18"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">18<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-19"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">19<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-20"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">20<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-21"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">21<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-22"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">22<span aria-hidden="true">DD</span></button></td>
+                                  </tr>
+                                  <tr>
+                                      <td tabindex="-1" data-date="2025-02-23"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">23<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-24"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">24<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-25"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">25<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-26"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">26<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-27"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">27<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-28"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">28<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-29"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">29<span aria-hidden="true">DD</span></button></td>
+                                  </tr>
+                                  <tr>
+                                      <td tabindex="-1" data-date="2025-02-30"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">30<span aria-hidden="true">DD</span></button></td>
+                                      <td tabindex="-1" data-date="2025-02-31"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date">31<span aria-hidden="true">DD</span></button></td>
+                                      <td class="disabled" tabindex="-1"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date"><span class="govuk-visually-hidden">Day DD MM YYY</span><span aria-hidden="true">DD</span></button></td>
+                                      <td class="disabled" tabindex="-1"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date"><span class="govuk-visually-hidden">Day DD MM YYY</span><span aria-hidden="true">DD</span></button></td>
+                                      <td class="disabled" tabindex="-1"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date"><span class="govuk-visually-hidden">Day DD MM YYY</span><span aria-hidden="true">DD</span></button></td>
+                                      <td class="disabled" tabindex="-1"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date"><span class="govuk-visually-hidden">Day DD MM YYY</span><span aria-hidden="true">DD</span></button></td>
+                                      <td class="disabled" tabindex="-1"><button type="button" data-testid="DD/MM/YYYY" tabindex="0" aria-current="date"><span class="govuk-visually-hidden">Day DD MM YYY</span><span aria-hidden="true">DD</span></button></td>
+                                  </tr>
+                              </tbody>
+                          </table>
+                      </div>
+
+                      <div class="govuk-button-group">
+                          <button type="submit" class="govuk-button" data-module="govuk-button" value="ok">
+                              Select date
+                          </button>
+                          <a class="govuk-link" href="#" id="btnCancel" value="cancel">Cancel</a>
+                      </div>
+
+                  </div>
+              </div>
+          </div>
+      </fieldset>
+
+<div class="govuk-button-group">
+        <a class="govuk-link govuk-link--no-visited-state" href="reschedule-choose-a-slot">Show earliest available date
+        </a>
+</div>
+      <div class="govuk-button-group govuk-!-margin-top-7">
+        {{ govukButton({
+          text: "Continue",
+          href: "reschedule-choose-a-slot"
+        }) }}
+        </div>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
+
+<script>
+  // Store selected date in localStorage as YYYY-MM-DD for easier comparison
+let yyyy = d.getFullYear();
+let mm = (d.getMonth() + 1).toString().padStart(2, '0');
+let dd = d.getDate().toString().padStart(2, '0');
+let dateKey = `${yyyy}-${mm}-${dd}`;
+localStorage.setItem("selectedAppointmentDate", dateKey);
+</script>

@@ -1,0 +1,135 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['sds-error'] == 'true' %}Error: {% endif %}Enter your Seafarer Documentation System (SDS) number – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: "Book and manage an oral exam",
+  navigation: [
+    
+  ]
+}) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "date-of-birth"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data['sds-error'] == 'true' %}
+        <div class="govuk-error-summary" data-module="govuk-error-summary">
+          <div role="alert">
+            <h2 class="govuk-error-summary__title">
+              There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+              <ul class="govuk-list govuk-error-summary__list">
+                <li>
+                  <a href="#sds-number">{{ data['sds-error-message'] }}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      <h1 class="govuk-heading-l">
+        Enter your SDS number
+      </h1>
+
+          <p class="govuk-body">
+            You can find SDS number in the email about your NOE (Notice of Eligibility).
+            <br>It is 10 digits long and starts with a '0'.<br>
+          </p>
+          <p class="govuk-hint" id="sds-number-hint">
+            For example, 0000123456
+          </p>
+
+      <form class="form" action="sds-number" method="post" novalidate>
+
+        <div class="govuk-form-group {% if data['sds-error'] == 'true' %}govuk-form-group--error{% endif %}">
+          
+          
+             <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+      SDS number
+    </legend>
+          {% if data['sds-error'] == 'true' %}
+            <p id="sds-number-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> {{ data['sds-error-message'] }}
+            </p>
+          {% endif %}
+          
+          <input 
+            class="govuk-input govuk-input--width-10 {% if data['sds-error'] == 'true' %}govuk-input--error{% endif %}" 
+            id="sds-number" 
+            name="sdsNumber" 
+            type="text"
+            value="{{ data['sdsNumber'] }}"
+            spellcheck="false"
+            autocomplete="off"
+            inputmode="numeric"
+            aria-describedby="sds-number-hint {% if data['sds-error'] == 'true' %}sds-number-error{% endif %}"
+          >
+        </div>
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              I can't find my SDS number
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p class="govuk-body">
+              If you can't find your SDS number you can request it by:
+            </p>
+            <h2 class="govuk-heading-s">
+        Email
+      </h2>
+         <ul class="govuk-list govuk-list--bullet">
+         <li><a href="mailto:example@email.com" class="govuk-link">deck@mcga.gov.uk</a> for deck officers</li>
+        <li><a href="mailto:example@email.com" class="govuk-link">engineering@mcga.gov.uk</a> for engineer officers
+        </li>
+      </ul>
+      <h2 class="govuk-heading-s">
+        Phone
+      </h2>
+      <p>
+       +44 (0)20 3817 2200
+        </p>
+          </div>
+        </details>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,143 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  No exams – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: "Book and manage an oral exam",
+  navigation: [
+    {
+      href: "/",
+      text: "Dashboard"
+    },
+    {
+      href: "/",
+text: "Exams",
+      active: true
+    }
+  ],
+    slots: {
+      navigationEnd: '<a class="gov-link govuk-link--no-visited-state service-menu-signout" href="/">Sign out</a>'
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Exams
+      </h1>
+
+
+      <h2 class="govuk-heading-m">Oral exams</h2>
+
+   
+      {% set completedStatus = {
+        tag: {
+          text: "Exam booked",
+          classes: "govuk-tag--blue"
+        }
+      } %}
+
+      {% set incompleteStatus = {
+        tag: {
+          text: "Failed",
+          classes: "govuk-tag--red"
+        }
+      } %}
+
+      {# To switch between the completed and incomplete statues, use some inline logic within the component below, like this: "status: (completedStatus if ... else incompleteStatus)" #}
+
+      {{ govukTaskList({
+        idPrefix: "first-section",
+        items: [
+          {
+            title: {
+              text: "You cannot book any oral exams at this time."
+            }
+          }
+        ]
+      }) }}
+
+      <details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Why can't I book an exam?
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    <p>We cannot show any exams for you to book right now. This may be because you:</p>
+    <h2 class="govuk-heading-s">
+        Need to arrange a resit
+      </h2>
+      <p>If you:</p>
+      <ul class="govuk-list govuk-list--bullet">
+         <li>failed your last exam or,</li>
+        <li>cancelled within 21 days of the booked date
+        </li>
+        </ul>
+      <p>you will need to apply for a resit. </p>
+      <p>Check your inbox for your result or cancellation confirmation email. It will have instuctions on how you can apply and pay for a resit.
+      </p>
+      <h2 class="govuk-heading-s">
+        Need to do the Part A exam
+      </h2>
+      <p>Some MCA qualifications require passing the online proctored Part A exam before the Part B oral exam can be booked.
+      </p>
+      <p>If you need to take the Part A exam you would have recieved instuctions with login details in your NOE email.</p> 
+      <p>When you have passed Part A you will be sent a link to book your Part B oral exam. You must pass the Part B oral exam within 1 year of passing Part A. </p>
+      <h2 class="govuk-heading-s">
+       Have an expired NOE
+      </h2>
+      <p>An NOE is valid for 5 years. If yours has expired, you need to get a new NOE by reapplying for a <a href="https://www.gov.uk/guidance/apply-for-a-uk-seafarer-coc-deck-and-engineer-officers" target="_blank" class="govuk-link">certificate of competency</a> before you can book an exam.
+      </p>
+
+    <br>
+    <h2 class="govuk-heading-m">
+        Getting help
+      </h2> 
+      <p>If you need help, you can contact us by:
+    </p>
+      <h3 class="govuk-heading-s">
+        Email
+      </h3>
+         <ul class="govuk-list govuk-list--bullet">
+         <li><a href="mailto:example@email.com" class="govuk-link">deck@mcga.gov.uk</a> for deck officers</li>
+        <li><a href="mailto:example@email.com" class="govuk-link">engineering@mcga.gov.uk</a> for engineer officers
+        </li>
+      </ul>
+       <h3 class="govuk-heading-s">
+        Phone
+      </h3>
+      <p>
+       +44 (0)20 3817 2200
+        </p>
+  </div>
+</details>
+
+    </div>
+  </div>
+{% endblock %}

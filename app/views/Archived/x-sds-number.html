@@ -1,0 +1,81 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['sds-error'] == 'true' %}Error: {% endif %}Enter your Seafarer Documentation System (SDS) number – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "/date-of-birth"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data['sds-error'] == 'true' %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [{
+            text: data['sds-error-message'],
+            href: "#sds-number"
+          }]
+        }) }}
+      {% endif %}
+
+      <form class="form" action="/sds-number" method="post" novalidate>
+
+        {% from "govuk/components/input/macro.njk" import govukInput %}
+
+        {{ govukInput({
+          label: {
+            text: "Enter your Seafarer Documentation System (SDS) number",
+            classes: "govuk-label--l",
+            isPageHeading: true
+          },
+          hint: {
+            text: "Your SDS number is a 6-digit number that can be found in the email you received to confirm your NOE."
+          },
+          id: "sds-number",
+          name: "sdsNumber",
+          value: data['sdsNumber'],
+          classes: "govuk-input--width-10",
+          spellcheck: false,
+          autocomplete: "off",
+          inputmode: "numeric",
+          errorMessage: data['sds-error'] == 'true' and {
+            text: data['sds-error-message']
+          }
+        }) }}
+
+        <details class="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              I can't find my SDS number
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            Some support content and route goes here.
+          </div>
+        </details>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

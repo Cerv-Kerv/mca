@@ -1,0 +1,134 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Cancelled – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: "Book and manage an oral exam",
+  navigation: [
+    {
+      href: "/",
+      text: "Dashboard"
+    },
+    {
+      href: "/",
+text: "Exams",
+      active: true
+    }
+  ],
+    slots: {
+      navigationEnd: '<a class="gov-link govuk-link--no-visited-state service-menu-signout" href="/">Sign out</a>'
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Exams
+      </h1>
+
+
+      <h2 class="govuk-heading-m">Oral exams</h2>
+
+      <!-- <div class="govuk-inset-text">
+        Expired message
+      </div> INSET OR WARNING COMPONENT -->
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-visually-hidden">Cancelled</span>
+          You cancelled your exam within 21 days of the booked date. You need to apply for a resit.
+        </strong>
+      </div>
+
+   
+      {% set completedStatus = {
+        tag: {
+          text: "Exam booked",
+          classes: "govuk-tag--blue"
+        }
+      } %}
+
+      {% set incompleteStatus = {
+        tag: {
+          text: "Cancelled",
+          classes: "govuk-tag--red"
+        }
+      } %}
+
+      {# To switch between the completed and incomplete statues, use some inline logic within the component below, like this: "status: (completedStatus if ... else incompleteStatus)" #}
+
+      {{ govukTaskList({
+        idPrefix: "first-section",
+        items: [
+          {
+            title: {
+              text: "Marine Engine Operator Licence (MEOL) and Senior MEOL"
+            },
+            status: incompleteStatus
+          }
+        ]
+      }) }}
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      How to apply for a resit
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    <p>To apply for an oral exam resit you will need to:</p>
+     <ol class="govuk-list govuk-list--number">
+      <li>check your email inbox for the cancellation confirmation email we sent you</li>
+         <li>follow the instructions in the email on how to pay for a resit.</li>
+      </ol>
+    <br>
+    <h2 class="govuk-heading-m">
+        Getting help
+      </h2>
+    <p>If you need help, you can contact us by:
+    </p>
+      <h3 class="govuk-heading-s">
+        Email
+      </h3>
+         <ul class="govuk-list govuk-list--bullet">
+         <li><a href="mailto:example@email.com" class="govuk-link">deck@mcga.gov.uk</a> for deck officers</li>
+        <li><a href="mailto:example@email.com" class="govuk-link">engineering@mcga.gov.uk</a> for engineer officers
+        </li>
+      </ul>
+       <h3 class="govuk-heading-s">
+        Phone
+      </h3>
+      <p>
+       +44 (0)20 3817 2200
+        </p>
+  </div>
+</details>
+
+    </div>
+  </div>
+{% endblock %}

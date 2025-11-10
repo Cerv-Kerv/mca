@@ -1,0 +1,94 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Failed – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ govukHeader({
+  classes: "govuk-header--full-width-border"
+}) }}
+{{ govukServiceNavigation({
+  navigation: [
+    {
+      href: "dashboard",
+      text: "Dashboard"
+    },
+    {
+      href: "exams",
+text: "Exams"
+    }
+  ],
+    slots: {
+      navigationEnd: '<a class="gov-link govuk-link--no-visited-state service-menu-signout" href="/signed-out?sign-out">Sign out</a>'
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Exams
+      </h1>
+<h1 class="govuk-heading-l">{{ serviceName }}</h1>
+
+      <h2 class="govuk-heading-m">Oral exams</h2>
+
+   
+      {% set completedStatus = {
+        tag: {
+          text: "Exam booked",
+          classes: "govuk-tag--blue"
+        }
+      } %}
+
+      {% set incompleteStatus = {
+        tag: {
+          text: "Failed",
+          classes: "govuk-tag--red"
+        }
+      } %}
+
+      {# To switch between the completed and incomplete statues, use some inline logic within the component below, like this: "status: (completedStatus if ... else incompleteStatus)" #}
+
+      {{ govukTaskList({
+        idPrefix: "first-section",
+        items: [
+          {
+            title: {
+              text: "Marine Engine Operator Licence (MEOL) and Senior MEOL"
+            },
+            href: "enter-a-date-for-a-slot",
+            status: incompleteStatus
+          }
+        ]
+      }) }}
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-visually-hidden">Warning</span>
+          You will receive an email on next steps available to you about retaking this exam.
+        </strong>
+      </div>
+
+    </div>
+  </div>
+{% endblock %}

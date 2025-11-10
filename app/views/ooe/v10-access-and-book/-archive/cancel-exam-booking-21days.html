@@ -1,0 +1,192 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Cancel your exam booking – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: "Book and manage an oral exam",
+  navigation: [   
+],
+    slots: {
+      navigationEnd: '<div class="service-menu-signout-wrapper"><a class="govuk-link govuk-link--no-visited-state service-menu-signout" href="/signed-out?sign-out">Sign out</a></div>'
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "/manage-booking-21days"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+      {% from "govuk/components/input/macro.njk" import govukInput %}
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+      {# Error Summary #}
+      {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}
+        {% set errorList = [] %}
+        
+        {% if data['confirm-error'] == 'true' %}
+          {% set errorList = (errorList.push({
+            text: "Select an option",
+            href: "#confirm-record"
+          }), errorList) %}
+        {% endif %}
+        
+        {% if data['other-reason-error'] == 'true' %}
+          {% set errorList = (errorList.push({
+            text: "Enter the reason you need to cancel",
+            href: "#other-reason"
+          }), errorList) %}
+        {% endif %}
+
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: errorList
+        }) }}
+      {% endif %}
+
+
+        <span class="govuk-caption-l">MEOL and Senior MEOL exam</span>
+      <h1 class="govuk-heading-l">
+        Cancel your exam booking
+      </h1>
+
+      <table class="govuk-table">
+        <tbody class="govuk-table__body">
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Exam</th>
+            <td class="govuk-table__cell">Marine Engine Operator Licence (MEOL) and Senior MEOL</td>
+          </tr>
+          <tr class="govuk-table__row">
+            <th scope="row" class="govuk-table__header">Time and date</th>
+            <td class="govuk-table__cell">13:30 (BST), 16 September 2025</td>
+          </tr>
+        </tbody>
+      </table>
+
+      <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-visually-hidden">Warning</span>
+            Your booking is less than 21 days away. 
+          </strong>
+        </div>
+       <p class="govuk-body ">Cancelling your booking now means: 
+         </p>
+            <ul class="govuk-list govuk-list--bullet govuk-!-margin-bottom-6">
+         <li>your cancelled booking counts as a failed exam</li>
+         <li>you will not get a refund</li>
+        <li>you'll need to apply and pay for resit before you can make a new booking
+        </li>
+        </ul>
+
+
+      <form class="form" action="/cancel-exam-booking-21days" method="post" novalidate>
+
+        {{ govukRadios({
+          idPrefix: "confirm-record",
+          name: "confirmRecord",
+          fieldset: {
+            legend: {
+              text: "Why do you need to cancel?",
+              classes: "govuk-fieldset__legend--m"
+            }
+          },
+          hint: {
+            text: "Select an option"
+          },
+          errorMessage: data['confirm-error'] == 'true' and {
+            text: "Select an option"
+          },
+          items: [
+            {
+              value: "Need more time to prepare",
+              text: "Need more time to prepare",
+              checked: data['confirmRecord'] == 'Need more time to prepare'
+            },
+            {
+              value: "My company has asked me to return to sea",
+              text: "My company has asked me to return to sea",
+              checked: data['confirmRecord'] == 'My company has asked me to return to sea'
+            },
+            {
+              value: "I'm being held on a ship and cannot leave",
+              text: "I'm being held on a ship and cannot leave",
+              checked: data['confirmRecord'] == 'Im being held on a ship and cannot leave'
+            },
+            {
+              value: "Medical emergency",
+              text: "Medical emergency",
+              hint: {
+                text: "For you or your immediate family"
+              },
+              checked: data['confirmRecord'] == 'Medical emergency'
+            },
+            {
+              value: "Compassionate reasons",
+              text: "Compassionate reasons",
+              checked: data['confirmRecord'] == 'Compassionate reasons'
+            },
+            {
+              value: "other",
+              text: "Other",
+              checked: data['confirmRecord'] == 'other',
+              conditional: {
+                html: govukInput({
+                  id: "other-reason",
+                  name: "otherReason",
+                  label: {
+                    text: "Provide details",
+                    classes: "govuk-label--s"
+                  },
+                  hint: {
+                    text: "Tell us why you need to cancel"
+                  },
+                  value: data['otherReason'],
+                  errorMessage: data['other-reason-error'] == 'true' and {
+                    text: "Enter the reason you need to cancel"
+                  }
+                })
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+<p class="govuk-body">
+        <a href="/manage-booking-21days" class="govuk-link">Return to manage booking</a>
+      </p>
+    </div>
+  </div>
+{% endblock %}

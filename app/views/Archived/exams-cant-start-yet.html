@@ -1,0 +1,144 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Can't start yet – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ govukHeader({
+  classes: "govuk-header--full-width-border"
+}) }}
+{{ govukServiceNavigation({
+  navigation: [
+    {
+      href: "dashboard",
+      text: "Dashboard"
+    },
+    {
+      href: "exams",
+text: "Exams"
+    }
+  ],
+    slots: {
+      navigationEnd: '<a class="gov-link govuk-link--no-visited-state service-menu-signout" href="/signed-out?sign-out">Sign out</a>'
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Exams
+      </h1>
+<h1 class="govuk-heading-l">{{ serviceName }}</h1>
+
+      <h2 class="govuk-heading-m">Oral exams</h2>
+
+      <!-- <div class="govuk-inset-text">
+        You need to pass the <a href="#">A: online computer based proctored examination before you can book your oral exam.</a>
+      </div> INSET OR WARNING COMPONENT -->
+
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-visually-hidden">Can't start yet</span>
+          You need to have passed the <a href="#">Part A: online computer-based proctored examination within the last 12 months.</a>
+        </strong>
+      </div>
+
+   
+      {% set completedStatus = {
+        tag: {
+          text: "Exam booked",
+          classes: "govuk-tag--blue"
+        }
+      } %}
+
+      {% set incompleteStatus = {
+        tag: {
+          text: "Can't start yet",
+          classes: "govuk-tag--grey"
+        }
+      } %}
+
+      {# To switch between the completed and incomplete statues, use some inline logic within the component below, like this: "status: (completedStatus if ... else incompleteStatus)" #}
+
+      {{ govukTaskList({
+        idPrefix: "first-section",
+        items: [
+          {
+            title: {
+              text: "Marine Engine Operator Licence (MEOL) and Senior MEOL"
+            },
+            href: "enter-a-date-for-a-slot",
+            status: incompleteStatus
+          }
+        ]
+      }) }}
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Why can't I start?
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    <p>TBC There might be tasks you have to complete before you can book an exam.</p>
+    <h2 class="govuk-heading-s">
+        Resitting an exam
+      </h2>
+      <p>TBC Some content about how the process of paying and booking a resit and next steps.
+      </p>
+      <h2 class="govuk-heading-s">
+        Need to do part A
+      </h2>
+      <p>TBC Some content about who needs part A, how long it is valid, and next steps.
+      </p>
+      <h2 class="govuk-heading-s">
+        NOE has expired
+      </h2>
+      <p>TBC Some content about how long a valid is and next steps.
+      </p>
+
+    <br>
+    <h2 class="govuk-heading-m">
+        Getting help
+      </h2>
+    <p>TBC Some content about how to get help.
+    </p>
+      <h3 class="govuk-heading-s">
+        Email
+      </h3>
+         <ul class="govuk-list govuk-list--bullet">
+         <li><a href="mailto:example@email.com" class="govuk-link">deck@mcga.gov.uk</a> for deck officers</li>
+        <li><a href="mailto:example@email.com" class="govuk-link">engineering@mcga.gov.uk</a> for engineer officers
+        </li>
+      </ul>
+       <h3 class="govuk-heading-s">
+        Phone
+      </h3>
+      <p>
+       +44 (0)20 3817 2200
+        </p>
+  </div>
+</details>
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,73 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Privacy notice declaration – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "/start-page"
+  }) }}
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      
+      
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [
+            {
+              text: "You must confirm that you have read and understood the privacy notice",
+              href: "#privacy-notice"
+            }
+          ]
+        }) }}
+
+      <h1 class="govuk-heading-l">
+        Privacy notice declaration
+      </h1>
+
+      <form class="form" action="/privacy-notice-check" method="post">
+        
+        {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+        
+        {{ govukCheckboxes({
+          idPrefix: "privacy",
+          name: "privacy-notice",
+          errorMessage:  {
+            text: "You must confirm that you have read and understood the privacy notice"
+          },
+          fieldset: {
+            legend: {
+              text: "By continuing I confirm that:",
+              classes: "govuk-fieldset__legend"
+            }
+          },
+          items: [
+            {
+              value: "confirmed",
+              html: 'I have read and understood the <a href="https://www.gov.uk/government/publications/maritime-and-coastguard-agency-privacy-notices/seafarer-training-and-certification-privacy-information-notice" target="_blank" class="govuk-link">Seafarer training and certification privacy information notice (opens in new tab)</a>, which explains how the MCA will process my personal data when I book an exam online.',
+              checked: data['privacy-notice'] == 'confirmed'
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+{% endblock %}

@@ -1,20 +1,118 @@
 {% extends "layouts/main.html" %}
 
-{% set pageName="Home" %}
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+
+{% endblock %}
+
+
 
 {% block content %}
 
-<div class="govuk-grid-row">
-  <div class="govuk-grid-column-two-thirds">
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        MCA Prototypes
+      </h1>
 
-    {% include "govuk-prototype-kit/includes/homepage-top.njk" %}
-
-    <h1 class="govuk-heading-xl">
-      {{ serviceName }}
-    </h1>
-
-    {% include "govuk-prototype-kit/includes/homepage-bottom.njk" %}
+      <ol class="govuk-prototype-kit-task-list">
+       <li>
+          <h2 class="govuk-prototype-kit-task-list__section"> Certificate of Competency (CoC)
+          </h2>
+          <ul class="govuk-prototype-kit-task-list__items">
+            <li class="govuk-prototype-kit-task-list__item">
+              <span class="govuk-prototype-kit-task-list__task-name">
+                <a href="/" aria-describedby="contact-details-status">
+                  v1.0 Applications
+                </a>
+              </span>
+              <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="submit-pay-status">Not started yet</strong>
+            </li>
+          </ul>
+        </li>
+      </ol>
+    </div>
   </div>
-</div>
+
+
+
+        <li>
+          <h2 class="govuk-prototype-kit-task-list__section">
+            Online oral exam
+          </h2>
+          <ul class="govuk-prototype-kit-task-list__items">
+            <li class="govuk-prototype-kit-task-list__item">
+              <span class="govuk-prototype-kit-task-list__task-name">
+                <a href="/ooe/v10-access-and-book/maritime-and-coastguard-agency" aria-describedby="Book an exam">
+                  v10.X Book an exam
+                </a>
+              </span>
+              <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="Book an exam">Completed</strong>
+            </li>
+            <li class="govuk-prototype-kit-task-list__item">
+              <span class="govuk-prototype-kit-task-list__task-name">
+                <a href="/ooe/v10-manage-exam/maritime-and-coastguard-agency" aria-describedby="reschedule or cancel">
+                  v10.X Manage a booking (reschedule or cancel)
+                </a>
+              </span>
+              <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="reschedule or cancel">Completed</strong>
+            </li>
+            <li class="govuk-prototype-kit-task-list__item">
+              <span class="govuk-prototype-kit-task-list__task-name">
+                <a href="/ooe/v10-21days-manage-exam/maritime-and-coastguard-agency" aria-describedby="less than 21 days' noticel">
+                  v10.X Manage a booking (less than 21 days' notice)
+                </a>
+              </span>
+              <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="less than 21 days' notice">Completed</strong>
+            </li>
+                        <li class="govuk-prototype-kit-task-list__item">
+              <span class="govuk-prototype-kit-task-list__task-name">
+                <a href="/ooe/v2-less21days-manage-exam/manage-booking-21days" aria-describedby="less than 21 days' noticel">
+                  v2.0 Manage a booking (less than 21 days' notice)
+                </a>
+              </span>
+              <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="less than 21 days' notice">Completed</strong>
+            </li>
+             <li class="govuk-prototype-kit-task-list__item">
+              <span class="govuk-heading-s govuk-!-margin-top-5">
+                Oral exam page statuses
+            </li>
+             <li class="govuk-prototype-kit-task-list__item">
+              <span class="govuk-prototype-kit-task-list__task-name">
+                <a href="/ooe/v10-access-and-book/exams-not-booked" aria-describedby="company-information-status">
+                  Not booked
+                </a>
+              </span>
+              <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="company-information-status">Completed</strong>
+            </li>
+            <li class="govuk-prototype-kit-task-list__item">
+              <span class="govuk-prototype-kit-task-list__task-name">
+                <a href="/ooe/v10-access-and-book/exams-booked" aria-describedby="contact-details-status">
+                  Booked
+                </a>
+              </span>
+              <strong class="govuk-tag govuk-tag--blue govuk-prototype-kit-task-list__tag" id="contact-details-status">Completed</strong>
+            </li>
+            <li class="govuk-prototype-kit-task-list__item">
+              <span class="govuk-prototype-kit-task-list__task-name">
+                <a href="/ooe/v10-access-and-book/exams-cancelled" aria-describedby="list-convictions-status">
+                  Cancelled
+                </a>
+              </span>
+              <strong class="govuk-tag govuk-tag--blue govuk-prototype-kit-task-list__tag" id="list-convictions-status">Completed</strong>
+            </li>
+            <li class="govuk-prototype-kit-task-list__item">
+              <span class="govuk-prototype-kit-task-list__task-name">
+                <a href="/ooe/v10-access-and-book/exams-no-exams" aria-describedby="contact-details-status">
+                  No Exams
+                </a>
+              </span>
+              <strong class="govuk-tag govuk-tag--blue govuk-prototype-kit-task-list__tag" id="contact-details-status">Completed</strong>
+            </li>
+          </ul>
+        </li>
 
 {% endblock %}

@@ -1,0 +1,119 @@
+
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Dashboard – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+  {% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+  {{ hmrcHeader({
+    serviceUrl : "/",
+    signOutHref : "/signed-out?sign-out",
+    useTudorCrown: "true"
+  }) }}
+  
+  {{ govukServiceNavigation({
+    serviceName: "Book and manage an oral exam",
+    navigation: [
+      {
+        href: "dashboard",
+        text: "Dashboard",
+        active: true
+      },
+      {
+        href: "exams",
+        text: "Exams"
+      }
+    ],
+    slots: {
+      navigationEnd: '<a class="gov-link govuk-link--no-visited-state service-menu-signout" href="/signed-out?sign-out">Sign out</a>'
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Dashboard
+      </h1>
+
+      <div class="govuk-grid-row govuk-!-padding-bottom-6">
+        <div class="mca-card-container">
+          <div class="govuk-grid-column-one-half mcga-card-group__item">
+            <a class="mcga-link govuk-link--no-visited-state" href="/exams">
+              <div class="mcga-card--clickable">
+                <div class="mcga-card__content">
+                  <h3 class="govuk-heading-m">Exams</h3>
+                  <p class="govuk-body-m govuk-!-margin-bottom-0 content-spaces">Book or manage exams &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</p>
+                </div>
+              </div>
+            </a>
+          </div>
+          <!-- PROFILE CARD REMOVED (commented out) Mon 8 Sep
+          <div class="govuk-grid-column-one-half mcga-card-group__item">
+            <a class="mcga-link govuk-link--no-visited-state" href="/profile">
+              <div class="mcga-card--clickable">
+                <div class="mcga-card__content">
+                  <h3 class="govuk-heading-m">Profile</h3>
+                  <p class="govuk-!-margin-bottom-0">Manage your personal details and account settings</p>
+                </div>
+              </div>
+            </a>
+          </div>
+        </div>
+        </div>
+
+        </div> ENDS PROFILE CARD REMOVAL -->
+        </div>
+      </div>
+
+    </div>
+
+    <!-- RELATED LINKS ASIDE
+    <div class="govuk-grid-column-one-third">
+      <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">
+          Related content
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <a href="#">
+                Related link
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Related link
+              </a>
+            </li>
+            <li>
+              <a href="#" class="govuk-!-font-weight-bold">
+                More <span class="govuk-visually-hidden">in Subsection</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+    </div> ENDS RELATED LINKS ASIDE -->
+
+  </div>
+
+{% endblock %}

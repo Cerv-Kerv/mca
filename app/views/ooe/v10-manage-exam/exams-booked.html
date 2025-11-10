@@ -1,0 +1,113 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Exam booked – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: "Book and manage an oral exam",
+  navigation: [
+    {
+      href: "dashboard",
+      text: "Dashboard"
+    },
+    {
+      href: "exams",
+text: "Exams",
+      active: true
+    }
+  ],
+    slots: {
+      navigationEnd: '<a class="gov-link govuk-link--no-visited-state service-menu-signout" href="signed-out?sign-out">Sign out</a>'
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+{% endblock %}
+
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Exams
+      </h1>
+
+
+      <h2 class="govuk-heading-m">Oral exams</h2>
+
+   
+      {% set completedStatus = {
+        tag: {
+          text: "Booked",
+          classes: "govuk-tag--blue"
+        }
+      } %}
+
+      {% set incompleteStatus = {
+        tag: {
+          text: "Not booked",
+          classes: "govuk-tag--light-blue"
+        }
+      } %}
+
+      {# To switch between the completed and incomplete statues, use some inline logic within the component below, like this: "status: (completedStatus if ... else incompleteStatus)" #}
+
+      {{ govukTaskList({
+        idPrefix: "first-section",
+        items: [
+          {
+            title: {
+              text: "Marine Engine Operator Licence (MEOL) and Senior MEOL"
+            },
+            href: "manage-booking",
+            status: completedStatus
+          }
+        ]
+      }) }}
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Get help using this service
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+    <p>If you need help using this service, contact us by:</p>
+      <h3 class="govuk-heading-s">
+        Email
+      </h3>
+         <ul class="govuk-list govuk-list--bullet">
+         <li><a href="mailto:example@email.com" class="govuk-link">deck@mcga.gov.uk</a> for deck officers</li>
+        <li><a href="mailto:example@email.com" class="govuk-link">engineering@mcga.gov.uk</a> for engineer officers
+        </li>
+      </ul>
+       <h3 class="govuk-heading-s">
+        Phone
+      </h3>
+      <p>
+       +44 (0)20 3817 2200
+        </p>
+  </div>
+</details>
+
+    </div>
+  </div>
+{% endblock %}

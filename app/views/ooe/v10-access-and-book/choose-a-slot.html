@@ -1,0 +1,366 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Choose a time for the exam – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: "Book and manage an oral exam",
+  navigation: [   
+],
+    slots: {
+      navigationEnd: '<div class="service-menu-signout-wrapper"><a class="govuk-link govuk-link--no-visited-state service-menu-signout" href="/ooe/v10-access-and-book/signed-out?sign-out">Sign out</a></div>'
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service – your <a class="govuk-link" href="#">feedback</a> will help us to improve it.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-full">
+
+      <h1 class="govuk-heading-l">
+        <span class="govuk-caption-l">MEOL and Senior MEOL exam</span>
+        Choose a time for the exam
+      </h1>
+
+      <div class="govuk-grid-row" id="pageContent">
+        <div class="govuk-grid-column-full">
+            <ol class="appointment-tabs"></ol>
+<nav role="navigation">
+    <ul class="weekly-navigation only-desktop">
+        <li class="govuk-body">
+            <a class="govuk-link" id="lastWeek-desktop" href="#">&lt; Previous week</a>
+        </li>
+        <li class="govuk-body nav-next">
+            <a class="govuk-link" id="nextWeek-desktop" href="#">Next week &gt;</a>
+        </li>
+    </ul>
+    <ul class="weekly-navigation only-mobile">
+        <li class="govuk-body">
+            <a class="govuk-link" id="lastWeek-mobile" href="#">&lt; Previous</a>
+        </li>
+        <li class="govuk-body nav-next">
+            <a class="govuk-link" id="nextWeek-mobile" href="#">Next &gt;</a>
+        </li>
+    </ul>
+</nav>
+<script>
+// OPTIMIZED VERSION - Pre-compile templates and use efficient DOM manipulation
+document.addEventListener("DOMContentLoaded", function () {
+  const appointmentTabs = document.querySelector('.appointment-tabs');
+  if (!appointmentTabs) return;
+
+  const weekdays = ['Monday','Tuesday','Wednesday','Thursday','Friday'];
+  const months   = [
+    'January','February','March','April','May','June','July',
+    'August','September','October','November','December'
+  ];
+  
+  // Pre-compiled slot templates
+  const slotTemplates = {
+    "appointmentDate-1": {
+      date: "Monday 13 October 2025",
+      slots: [
+        {time: "08:00", id: "2025-10-13T08:00:00.000Z", period: "morning"},
+        {time: "10:00", id: "2025-10-13T10:00:00.000Z", period: "morning"},
+        {time: "11:30", id: "2025-10-13T11:30:00.000Z", period: "morning"},
+        {time: "12:30", id: "2025-10-13T12:30:00.000Z", period: "afternoon"},
+        {time: "14:00", id: "2025-10-13T14:00:00.000Z", period: "afternoon"},
+        {time: "16:00", id: "2025-10-13T16:00:00.000Z", period: "afternoon"}
+      ]
+    },
+    "appointmentDate-2": {
+      date: "Tuesday 14 October 2025",
+      slots: [
+        {time: "08:00", id: "2025-10-14T08:00:00.000Z", period: "morning"},
+        {time: "10:00", id: "2025-10-14T10:00:00.000Z", period: "morning"},
+        {time: "12:30", id: "2025-10-14T12:30:00.000Z", period: "afternoon"},
+        {time: "14:00", id: "2025-10-14T14:00:00.000Z", period: "afternoon"},
+        {time: "16:00", id: "2025-10-14T16:00:00.000Z", period: "afternoon"}
+      ]
+    },
+    "appointmentDate-3": {
+      date: "Wednesday 15 October 2025",
+      slots: [
+        {time: "08:00", id: "2025-10-15T08:00:00.000Z", period: "morning"},
+        {time: "11:30", id: "2025-10-15T11:30:00.000Z", period: "morning"},
+        {time: "12:30", id: "2025-10-15T12:30:00.000Z", period: "afternoon"},
+        {time: "14:00", id: "2025-10-15T14:00:00.000Z", period: "afternoon"}
+      ]
+    },
+    "appointmentDate-4": {
+      date: "Thursday 16 October 2025",
+      slots: [
+        {time: "10:00", id: "2025-10-16T10:00:00.000Z", period: "morning"},
+        {time: "14:00", id: "2025-10-16T14:00:00.000Z", period: "afternoon"},
+        {time: "16:00", id: "2025-10-16T16:00:00.000Z", period: "afternoon"}
+      ]
+    },
+    "appointmentDate-5": {
+      date: "Friday 17 October 2025",
+      slots: [
+        {time: "12:30", id: "2025-10-17T12:30:00.000Z", period: "afternoon"},
+        {time: "14:00", id: "2025-10-17T14:00:00.000Z", period: "afternoon"}
+      ]
+    }
+  };
+
+  // Cache for DOM elements
+  const slotsContainer = document.getElementById('slots');
+  const dummySlots = document.getElementById('dummy-slots');
+  
+  // Pre-create DOM elements for slots (not strings)
+  const slotElements = {};
+  
+  function createSlotElement(slot) {
+    const form = document.createElement('form');
+    form.method = 'post';
+    form.action = 'check-your-answers';
+    
+    const timeInput = document.createElement('input');
+    timeInput.type = 'hidden';
+    timeInput.name = 'appointmentTime';
+    timeInput.value = slot.time;
+    
+    const idInput = document.createElement('input');
+    idInput.type = 'hidden';
+    idInput.name = 'slotId';
+    idInput.value = slot.id;
+    
+    const button = document.createElement('button');
+    button.type = 'submit';
+    button.className = 'govuk-button govuk-button--secondary';
+    button.setAttribute('data-module', 'govuk-button');
+    button.textContent = slot.time;
+    
+    form.appendChild(timeInput);
+    form.appendChild(idInput);
+    form.appendChild(button);
+    
+    return form;
+  }
+  
+  function buildSlotContent(templateKey) {
+    const template = slotTemplates[templateKey];
+    if (!template) return null;
+    
+    const container = document.createElement('div');
+    
+    // Header
+    const h2 = document.createElement('h2');
+    h2.className = 'govuk-heading-l';
+    h2.textContent = 'Available slots';
+    container.appendChild(h2);
+    
+    // Timezone notice
+    const insetDiv = document.createElement('div');
+    insetDiv.className = 'govuk-inset-text';
+    insetDiv.textContent = 'All times are shown in British Summer Time (BST) timezone.';
+    container.appendChild(insetDiv);
+    
+    // Hidden date text
+    const hiddenP = document.createElement('p');
+    hiddenP.className = 'govuk-visually-hidden';
+    hiddenP.textContent = template.date;
+    container.appendChild(hiddenP);
+    
+    // Morning slots
+    const morningDiv = document.createElement('div');
+    morningDiv.className = 'morning-slots';
+    
+    // Afternoon slots
+    const afternoonDiv = document.createElement('div');
+    afternoonDiv.className = 'afternoon-slots';
+    
+    // Add slots to appropriate containers
+    template.slots.forEach(slot => {
+      const form = createSlotElement(slot);
+      if (slot.period === 'morning') {
+        morningDiv.appendChild(form);
+      } else {
+        afternoonDiv.appendChild(form);
+      }
+    });
+    
+    container.appendChild(morningDiv);
+    container.appendChild(afternoonDiv);
+    
+    return container;
+  }
+
+  // Pre-build all slot elements
+  Object.keys(slotTemplates).forEach(key => {
+    slotElements[key] = buildSlotContent(key);
+  });
+
+  // Optimized tab rendering
+  function renderTabs(mondayDate) {
+    const fragment = document.createDocumentFragment();
+    const selectedISO = localStorage.getItem('chosenAppointmentDate');
+    const selectedDate = selectedISO ? new Date(selectedISO) : null;
+
+    for (let i = 0; i < 5; i++) {
+      let currentDate = new Date(mondayDate);
+      currentDate.setDate(mondayDate.getDate() + i);
+      
+      const li = document.createElement('li');
+      const a = document.createElement('a');
+      a.href = '#';
+      a.id = `appointmentDate-${i+1}`;
+      
+      const daySpan = document.createElement('span');
+      daySpan.className = 'tab-day';
+      daySpan.textContent = weekdays[i];
+      
+      const dateSpan = document.createElement('span');
+      dateSpan.className = 'tab-date';
+      dateSpan.textContent = `${currentDate.getDate()} ${months[currentDate.getMonth()]}`;
+      
+      const slotSpan = document.createElement('span');
+      slotSpan.className = 'tab-slots-available govuk-body-s';
+      slotSpan.textContent = `${6 - i*1} slots`;
+      slotSpan.id = `slotsText-${i+1}`;
+      
+      a.appendChild(daySpan);
+      a.appendChild(dateSpan);
+      a.appendChild(slotSpan);
+      li.appendChild(a);
+      
+      // Check if this should be active
+      if (selectedDate &&
+          currentDate.getDate() === selectedDate.getDate() &&
+          currentDate.getMonth() === selectedDate.getMonth() &&
+          currentDate.getFullYear() === selectedDate.getFullYear()) {
+        li.className = 'tab-0';
+      }
+      
+      if (i >= 3) {
+        li.className += (li.className ? ' ' : '') + 'mobile-hidden';
+      }
+      
+      fragment.appendChild(li);
+    }
+    
+    appointmentTabs.innerHTML = '';
+    appointmentTabs.appendChild(fragment);
+  }
+
+  function getMonday(date) {
+    let d = new Date(date);
+    let dow = d.getDay();
+    let diffToMonday = (dow === 0) ? -6 : (1 - dow);
+    d.setDate(d.getDate() + diffToMonday);
+    d.setHours(0,0,0,0);
+    return d;
+  }
+
+  let selectedISO = localStorage.getItem('chosenAppointmentDate');
+  let baseDate = selectedISO ? new Date(selectedISO) : new Date();
+  let currentMonday = getMonday(baseDate);
+
+  // Optimized tab click handlers
+  function attachTabClickHandlers() {
+    appointmentTabs.addEventListener('click', function(e) {
+      if (e.target.tagName === 'A' || e.target.parentElement.tagName === 'A') {
+        e.preventDefault();
+        
+        const anchor = e.target.tagName === 'A' ? e.target : e.target.parentElement;
+        const key = anchor.id;
+        
+        // Update active tab
+        appointmentTabs.querySelectorAll('li').forEach(li => li.classList.remove('tab-0'));
+        anchor.parentElement.classList.add('tab-0');
+        
+        // Remove dummy slots if present
+        if (dummySlots) {
+          dummySlots.remove();
+        }
+        
+        // Update slots using cloned pre-built elements
+        slotsContainer.innerHTML = '';
+        if (slotElements[key]) {
+          slotsContainer.appendChild(slotElements[key].cloneNode(true));
+        }
+      }
+    });
+  }
+
+  function rerenderTabs() {
+    renderTabs(currentMonday);
+    
+    // Show initial slots
+    const activeTab = appointmentTabs.querySelector('.tab-0 a') || appointmentTabs.querySelector('li a');
+    if (activeTab && slotElements[activeTab.id]) {
+      slotsContainer.innerHTML = '';
+      slotsContainer.appendChild(slotElements[activeTab.id].cloneNode(true));
+    }
+  }
+
+  // Navigation listeners
+  ['lastWeek-desktop','nextWeek-desktop','lastWeek-mobile','nextWeek-mobile'].forEach(id => {
+    let el = document.getElementById(id);
+    if (!el) return;
+    el.addEventListener("click", function(e){
+      e.preventDefault();
+      if (id.includes('lastWeek')) {
+        currentMonday.setDate(currentMonday.getDate() - 7);
+      } else {
+        currentMonday.setDate(currentMonday.getDate() + 7);
+      }
+      rerenderTabs();
+    });
+  });
+
+  // Storage event listener
+  window.addEventListener('storage', (event) => {
+    if (event.key === 'chosenAppointmentDate') {
+      let pickedDate = event.newValue ? new Date(event.newValue) : null;
+      if (pickedDate) {
+        currentMonday = getMonday(pickedDate);
+        rerenderTabs();
+      }
+    }
+  });
+
+  // Initialize
+  rerenderTabs();
+  attachTabClickHandlers();
+});
+</script>
+
+            <div class="appointment-slots" id="slots">
+                <!-- Tab data written by optimized JavaScript -->
+            </div>
+          </div>
+        </div>
+      </div>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,93 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['dob-error'] == 'true' %}Error: {% endif %}What is your date of birth? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "/privacy-notice"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data['dob-error'] == 'true' %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: data['dob-error-list']
+        }) }}
+      {% endif %}
+
+      <form class="form" action="/date-of-birth" method="post" novalidate>
+
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "dob",
+          namePrefix: "dob",
+          fieldset: {
+            legend: {
+              text: "What is your date of birth?",
+              isPageHeading: true,
+              classes: "govuk-fieldset__legend--l"
+            }
+          },
+          hint: {
+            text: "For example, 31 3 1980"
+          },
+          errorMessage: data['dob-error'] == 'true' and {
+            text: data['dob-error-message']
+          },
+          items: [
+            {
+              name: "day",
+              classes: "govuk-input--width-2" + (" govuk-input--error" if data['dob-day-error']),
+              value: data['dob-day'],
+              autocomplete: "bday-day",
+              attributes: {
+                inputmode: "numeric"
+              }
+            },
+            {
+              name: "month",
+              classes: "govuk-input--width-2" + (" govuk-input--error" if data['dob-month-error']),
+              value: data['dob-month'],
+              autocomplete: "bday-month",
+              attributes: {
+                inputmode: "numeric"
+              }
+            },
+            {
+              name: "year",
+              classes: "govuk-input--width-4" + (" govuk-input--error" if data['dob-year-error']),
+              value: data['dob-year'],
+              autocomplete: "bday-year",
+              attributes: {
+                inputmode: "numeric"
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

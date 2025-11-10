@@ -3,14 +3,21 @@ For guidance on how to use layouts see:
 https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 #}
 
-{% extends "govuk-prototype-kit/layouts/govuk-branded.njk" %}
-{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+{% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}
 
-{% block header %}
-
-    {{ govukHeader() }}
-    {{ govukServiceNavigation({
-        serviceName: serviceName
-    })}}
-
-{% endblock %}
+    {% block footer %}
+      {{ govukFooter({
+        meta: {
+          items: [
+                      { href: "/manage-prototype/clear-data", text: "Clear session data" },
+            { href: "https://www.gov.uk/help", text: "Help" },
+            { href: "https://www.gov.uk/help/privacy-notice", text: "Privacy" },
+            { href: "https://www.gov.uk/help/cookies", text: "Cookies" },
+            { href: "https://www.gov.uk/help/accessibility-statement", text: "Accessibility statement" },
+            { href: "https://www.gov.uk/contact", text: "Contact" },
+            { href: "https://www.gov.uk/help/terms-conditions", text: "Terms and conditions" }
+          ],
+          visuallyHiddenTitle: "Footer links"
+        }
+      }) }}
+    {% endblock %}

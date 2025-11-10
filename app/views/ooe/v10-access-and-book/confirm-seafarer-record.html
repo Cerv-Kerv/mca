@@ -1,0 +1,113 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' %}Error: {% endif %}We have found the following seafarer record – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: "Book and manage an oral exam",
+  navigation: [
+    
+  ]
+}) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "sds-number"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data['confirm-error'] == 'true' %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: [{
+            text: "Select an option",
+            href: "#confirm-record"
+          }]
+        }) }}
+      {% endif %}
+
+      <h1 class="govuk-heading-l">
+        The following seafarer record was found
+      </h1>
+
+      <p class="govuk-body">
+        <span class="govuk-!-font-weight-bold">Name: </span> Ali*** ****wal
+      </p>
+      <p class="govuk-body">
+        <span class="govuk-!-font-weight-bold">Date of birth: </span> {{ data['dob-day'] }}/{{ data['dob-month'] }}/{{ data['dob-year'] }}
+      </p>
+      <p class="govuk-body">
+        <span class="govuk-!-font-weight-bold">SDS number: </span> {{ data['sdsNumber'] }}
+      </p><br>
+
+      <form class="form" action="confirm-seafarer-record" method="post" novalidate>
+
+        {% from "govuk/components/radios/macro.njk" import govukRadios %}
+
+        {{ govukRadios({
+          idPrefix: "confirm-record",
+          name: "confirmRecord",
+          fieldset: {
+            legend: {
+              text: "Is this the correct record?"
+            }
+          },
+          errorMessage: data['confirm-error'] == 'true' and {
+            text: "Select an option"
+          },
+          items: [
+            {
+              value: "yes",
+              text: "Yes",
+              checked: data['confirmRecord'] == 'yes'
+            },
+            {
+              value: "no",
+              text: "No",
+              checked: data['confirmRecord'] == 'no'
+            }
+          ]
+        }) }}
+
+        <div class="govuk-warning-text">
+          <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+          <strong class="govuk-warning-text__text">
+            <span class="govuk-visually-hidden">Warning</span>
+            By pressing continue you confirm this is the correct seafarer record and you have read and understood <a href="https://www.gov.uk/government/publications/min-690-guidance-on-the-mca-oral-examination-booking-the-issue-of-notices-of-eligibility-noes-and-the-online-oral-examination-processes/min-690-guidance-on-the-mca-oral-examination-booking-the-issue-of-notices-of-eligibility-noes-and-the-online-oral-examination-processes#codeofconduct" target="_blank" class="govuk-link">Code of conduct (opens in new tab)</a>.
+          </strong>
+        </div>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,164 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Book and manage an oral exam – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Book and manage an oral exam
+      </h1>
+
+      <p>Use this service to:</p>
+
+      <ul class="govuk-list govuk-list--bullet">
+        <li>book an oral exam</li>
+        <li>change your exam date</li>
+        <li>cancel your exam</li>
+      </ul>
+
+      <p>Booking an oral exam takes around 5 minutes.</p>
+
+      <h2 class="govuk-heading-m">
+         Before you start
+      </h2>
+
+      <p>
+         You will need your:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+         <li>date of birth</li>
+        <li>Seafarer Documentation System (SDS) number </li>
+      </ul>
+      <p>You can find SDS number in the email about your NOE (Notice of Eligibility). 
+      </p>
+      <div class="govuk-inset-text">
+  You will need to have a valid NOE. NOE's are valid for 5 years from the date of issue.
+</div>
+
+ <p>If you do not have a valid NOE you will have to submit the <a href="https://www.gov.uk/government/publications/min-690-guidance-on-the-mca-oral-examination-booking-the-issue-of-notices-of-eligibility-noes-and-the-online-oral-examination-processes/min-690-guidance-on-the-mca-oral-examination-booking-the-issue-of-notices-of-eligibility-noes-and-the-online-oral-examination-processes#the-notice-of-eligibility-noenotice-of-assessment-noa-process" class="govuk-link" target="_self">required documents and application form</a>.
+        </p>
+
+<h2 class="govuk-heading-m">
+        Who can use this service
+      </h2>
+
+      <p>
+         This service is for seafarers who are ready to take an oral examination towards obtaining a Certificate of Competency.
+      </p> 
+      <p>This includes:
+      </p>
+
+      <ul class="govuk-list govuk-list--bullet">
+         <li>Officers</li>
+        <li>Masters</li> 
+        <li>Engineers</li>
+        <li>Cadets</li>     
+      </ul>
+
+        <h3 class="govuk-heading-s">
+        If you are a Deck Officer
+      </h3>
+      <p>
+       To book an oral exam for:
+      </p>
+      <ul class="govuk-list govuk-list--bullet">
+         <li>Officer of the Watch (OOW) unlimited or,</li>
+        <li>Master (under 200GT) / Officer of the Watch (yachts under 500GT)</li>  
+      </ul>
+      <p>
+       You need to have passed the <a href="https://www.gov.uk/government/publications/min-690-guidance-on-the-mca-oral-examination-booking-the-issue-of-notices-of-eligibility-noes-and-the-online-oral-examination-processes/min-690-guidance-on-the-mca-oral-examination-booking-the-issue-of-notices-of-eligibility-noes-and-the-online-oral-examination-processes#the-online-oral-examination-booking-process-for-officer-of-the-watch-oow-unlimited-ii1-and-master-code-vessels-less-than-200-gtofficer-of-the-watch-yachts-less-than-500-gt-candidates" target="_self" class="govuk-link" >Part A: online computer-based proctored examination</a> within the last 12 months.
+      </p>
+
+      
+      
+      {{ govukButton({
+        text: "Start now",
+        href: "privacy-notice.html",
+        isStartButton: true
+      }) }}
+
+<h2 class="govuk-heading-m">
+        Get help with your SDS number
+      </h2>
+
+      <p>
+         If you can't find your SDS number you can request it by:
+         <h2 class="govuk-heading-s">
+        Email
+      </h2>
+         <ul class="govuk-list govuk-list--bullet">
+         <li><a href="mailto:example@email.com" class="govuk-link">deck@mcga.gov.uk</a> for deck officers</li>
+        <li><a href="mailto:example@email.com" class="govuk-link">engineering@mcga.gov.uk</a> for engineer officers
+        </li>
+      </ul>
+      <h2 class="govuk-heading-s">
+        Phone
+      </h2>
+      <p>
+       +44 (0)20 3817 2200
+        </p>
+      <h2 class="govuk-heading-m">
+        Other ways to book
+      </h2>
+
+      <p>
+       You can request a form to book an oral exam by calling the MCA on +44 (0)20 3817 2200
+      </p>
+
+
+       
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+
+      <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">
+          Subsection
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <a href="#">
+                Related link
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Related link
+              </a>
+            </li>
+            <li>
+              <a href="#" class="govuk-!-font-weight-bold">
+                More <span class="govuk-visually-hidden">in Subsection</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+
+    </div>
+  </div>
+
+{% endblock %}

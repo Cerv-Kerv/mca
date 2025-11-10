@@ -1,0 +1,101 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Check your answers before cancelling – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: "Book and manage an oral exam",
+  navigation: [   
+],
+    slots: {
+      navigationEnd: '<div class="service-menu-signout-wrapper"><a class="govuk-link govuk-link--no-visited-state service-menu-signout" href="signed-out?sign-out">Sign out</a></div>'
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Check your answers before cancelling</h1>
+      
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+      
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Exam"
+            },
+            value: {
+              text: data['examType']
+            }
+          },
+          {
+            key: {
+              text: "Time and date"
+            },
+            value: {
+              text: data['examDateTime']
+            }
+          },
+          {
+            key: {
+              text: "Reason for cancellation"
+            },
+            value: {
+              text: data['cancellationReason']
+            },
+            actions: {
+              items: [
+                {
+                  href: "/cancel-exam-booking-21days",
+                  text: "Change",
+                  visuallyHiddenText: "reason for cancellation"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      
+      <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-visually-hidden">Warning</span>
+          If you cancel this booking, you'll need to apply and pay for a resit before you can make a new booking.
+        </strong>
+      </div>
+      
+      <form action="cancellation-confirmation-21days" method="post">
+        {{ govukButton({
+          text: "Confirm cancellation",
+          classes: "govuk-button--warning"
+        }) }}
+      </form>
+      
+      <p class="govuk-body">
+        <a href="manage-booking-21days" class="govuk-link">Return to manage booking</a>
+      </p>
+      
+    </div>
+  </div>
+{% endblock %}

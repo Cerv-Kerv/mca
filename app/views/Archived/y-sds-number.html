@@ -1,0 +1,110 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['sds-error'] == 'true' %}Error: {% endif %}Enter your Seafarer Documentation System (SDS) number – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "/date-of-birth"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data['sds-error'] == 'true' %}
+        <div class="govuk-error-summary" data-module="govuk-error-summary">
+          <div role="alert">
+            <h2 class="govuk-error-summary__title">
+              There is a problem
+            </h2>
+            <div class="govuk-error-summary__body">
+              <ul class="govuk-list govuk-error-summary__list">
+                <li>
+                  <a href="#sds-number">{{ data['sds-error-message'] }}</a>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      {% endif %}
+
+      <h1 class="govuk-heading-l">
+        Enter your Seafarer Documentation System (SDS) number
+      </h1>
+
+          <p class="govuk-body">
+            Your SDS number can be found in the email you received to confirm your NOE and will be up to 6 digits long.<br>
+          </p>
+           <p class="govuk-body">
+            If your SDS number has fewer than 6 digits you will need to add zeros at the start.          
+           </p>
+           <p class="govuk-body">
+            For exmaple, if your SDS number is 123 enter 000123.          
+           </p>
+
+      <form class="form" action="/sds-number" method="post" novalidate>
+
+        <div class="govuk-form-group {% if data['sds-error'] == 'true' %}govuk-form-group--error{% endif %}">
+          
+          
+             <legend class="govuk-fieldset__legend govuk-fieldset__legend--s">
+      Enter your SDS number
+    </legend>
+          {% if data['sds-error'] == 'true' %}
+            <p id="sds-number-error" class="govuk-error-message">
+              <span class="govuk-visually-hidden">Error:</span> {{ data['sds-error-message'] }}
+            </p>
+          {% endif %}
+          
+          <input 
+            class="govuk-input govuk-input--width-10 {% if data['sds-error'] == 'true' %}govuk-input--error{% endif %}" 
+            id="sds-number" 
+            name="sdsNumber" 
+            type="text"
+            value="{{ data['sdsNumber'] }}"
+            spellcheck="false"
+            autocomplete="off"
+            inputmode="numeric"
+            aria-describedby="sds-number-hint {% if data['sds-error'] == 'true' %}sds-number-error{% endif %}"
+          >
+        </div>
+
+        <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              I can't find my SDS number
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p class="govuk-body">
+              Your SDS number can be found in the email you received for your NOE. If you can't find your SDS number you can email to request it is resent to you.
+            </p>
+            <ul class="govuk-list govuk-list--bullet">
+              <li><a href="mailto:deck@mca.gov.uk" class="govuk-link">deck@mca.gov.uk</a> for deck officers</li>
+              <li><a href="mailto:engineering@mca.gov.uk" class="govuk-link">engineering@mca.gov.uk</a> for engineer officers</li>
+            </ul>
+          </div>
+        </details>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

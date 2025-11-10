@@ -1,0 +1,62 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data.errors %}Error: {% endif %}Your question - Your service name
+{% endblock %}
+
+{% block content %}
+<div class="govuk-grid-row">
+  <div class="govuk-grid-column-two-thirds">
+
+    {% if data.errors %}
+      {{ govukErrorSummary({
+        titleText: "There is a problem",
+        errorList: [
+          {
+            text: data.errors['your-question-name'].text,
+            href: "#your-question-name"
+          }
+        ]
+      }) }}
+    {% endif %}
+
+    <form class="form" action="/your-question" method="post">
+
+      {% set errorMessage = false %}
+      {% if data.errors and data.errors['your-question-name'] %}
+        {% set errorMessage = data.errors['your-question-name'] %}
+      {% endif %}
+
+      {{ govukRadios({
+        name: "your-question-name",
+        errorMessage: errorMessage,
+        fieldset: {
+          legend: {
+            text: "What is your answer?",
+            isPageHeading: true,
+            classes: "govuk-fieldset__legend--l"
+          }
+        },
+        items: [
+          {
+            value: "yes",
+            text: "Yes",
+            checked: checked("your-question-name", "yes")
+          },
+          {
+            value: "no", 
+            text: "No",
+            checked: checked("your-question-name", "no")
+          }
+        ]
+      }) }}
+
+      {{ govukButton({
+        text: "Continue"
+      }) }}
+
+    </form>
+
+  </div>
+</div>
+{% endblock %}

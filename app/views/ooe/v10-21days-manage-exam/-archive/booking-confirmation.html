@@ -1,0 +1,116 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Booking confirmation – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: "Book and manage an oral exam",
+  navigation: [   
+],
+    slots: {
+      navigationEnd: '<div class="service-menu-signout-wrapper"><a class="govuk-link govuk-link--no-visited-state service-menu-signout" href="signed-out?sign-out">Sign out</a></div>'
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukPanel({
+        titleText: "Oral exam booking confirmation",
+        html: "Your reference number<br><strong>HDJ2123F</strong>"
+            }) }}
+
+      <p>
+        We have sent you a confirmation email.
+      </p>
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Oral exam type"
+            },
+            value: {
+              text: "Marine Engine Operator Licence (MOEL) and Senior MOEL"
+            }
+          },
+          {
+            key: {
+              text: "Exam time and date"
+            },
+            value: {
+              text: data['appointmentTime24'] + " (BST), " + data['appointmentDateFormatted']
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "",
+                  visuallyHiddenText: "name"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+
+      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+      {{ govukInsetText({
+        text: "All times are shown in British Summer Time (BST) timezone."
+      }) }}
+
+      <h2 class="govuk-heading-m">
+        What happens next
+      </h2>
+
+      <p>
+        You will receive an email confirming your exam booking with a link to your exam.
+      </p>
+
+      <h3 class="govuk-heading-m">
+        Prepare for the exam
+      </h3>
+      <p>
+        We recommend you read the <a href="https://www.gov.uk/government/publications/min-690-guidance-on-the-mca-oral-examination-booking-the-issue-of-notices-of-eligibility-noes-and-the-online-oral-examination-processes/min-690-guidance-on-the-mca-oral-examination-booking-the-issue-of-notices-of-eligibility-noes-and-the-online-oral-examination-processes#codeofconduct" target="_self" class="govuk-link">Code of conduct</a>. This has important information about your oral exam. A link to it will be sent in the confirmation email.
+      </p>
+      <p class="govuk-body">
+        <a href="manage-booking" class="govuk-!-font-weight-bold govuk-link govuk-link--no-visited-state ">Manage your exam booking</a>
+      </p>
+      <p>
+        <a href="#">
+          What did you think of this service?
+        </a> (takes 30 seconds)
+      </p>
+
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,81 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['email-error'] == 'true' %}Error: {% endif %}Update your email address – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "/contact-email"
+  }) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% if data['email-error'] == 'true' %}
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: data['email-error-list']
+        }) }}
+      {% endif %}
+
+      <h1 class="govuk-heading-l">
+        Update your email address
+      </h1>
+
+      <form class="form" action="/update-email" method="post" novalidate>
+
+        {{ govukInput({
+          label: {
+            text: "Email address"
+          },
+          hint: {
+            text: "We'll only use this to contact you about your exam"
+          },
+          id: "email",
+          name: "email",
+          type: "email",
+          value: data['email'],
+          autocomplete: "email",
+          spellcheck: false,
+          errorMessage: data['email-field-error'] and {
+            text: data['email-field-error']
+          }
+        }) }}
+
+        {{ govukInput({
+          label: {
+            text: "Confirm email address"
+          },
+          id: "email-confirm",
+          name: "emailConfirm",
+          type: "email",
+          value: data['emailConfirm'],
+          autocomplete: "email",
+          spellcheck: false,
+          errorMessage: data['email-confirm-error'] and {
+            text: data['email-confirm-error']
+          }
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

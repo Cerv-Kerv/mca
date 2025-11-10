@@ -1,0 +1,93 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Booking confirmation – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: "Book and manage an oral exam",
+  navigation: [
+    {
+      href: "dashboard",
+      text: "Dashboard"
+    },
+    {
+      href: "exams-booked",
+text: "Exams"
+    }
+  ],
+    slots: {
+      navigationEnd: '<a class="gov-link govuk-link--no-visited-state service-menu-signout" href="signed-out?sign-out">Sign out</a>'
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+     <span class="govuk-caption-l">MEOL and Senior MEOL</span>
+      <h1 class="govuk-heading-l">
+        Manage your exam booking
+      </h1>
+
+ <div class="govuk-warning-text">
+        <span class="govuk-warning-text__icon" aria-hidden="true">!</span>
+        <strong class="govuk-warning-text__text">
+          <span class="govuk-visually-hidden">Warning</span>
+          You cannot change your booking if it's less than 21 days away.
+        </strong>
+      </div>
+     
+      <table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--m">Booking details</caption>
+  <thead class="govuk-table__head">
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Exam</th>
+      <td class="govuk-table__cell">Marine Engine Operator Licence (MOEL) and Senior MOEL</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header">Time and date</th>
+      <td class="govuk-table__cell">13:30 (BST), 16 September 2025</td>
+    </tr>
+  </tbody>
+</table>
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
+
+  {{ govukButton({
+    text: "Cancel exam booking",
+    classes: "govuk-button--secondary",
+    href: "cancel-exam-booking-21days"
+  }) }}
+</div>
+      
+
+
+    </div>
+  </div>
+
+{% endblock %}

@@ -1,0 +1,127 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Dashboard – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {{ govukHeader() }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+        Dashboard
+      </h1>
+
+    <div class="govuk-grid-row govuk-!-padding-bottom-6">
+    <div class="mca-card-container">
+      <div class="govuk-grid-column-one-half">
+        <div class="mca-card">
+        <div class="mca-card-content">
+        <h2 class="govuk-heading-m">Application</h2>
+        <p class="govuk-body">View you COC application steps and progress</p>
+        </div>
+        </div>
+      </div>
+      <div class="govuk-grid-column-one-half">
+        <div class="mca-card">
+        <div class="mca-card-content">
+        <h2 class="govuk-heading-m">Notifications</h2>
+        <a class="govuk-link" href="#">
+        <ul class="govuk-list">
+            <li>
+                <h3 class="govuk-heading-l">2</h3>
+            </li>
+            <li>
+                <p class="govuk-body">unread notifications</p>
+            </li>
+            </ul>
+        </a>
+        <p class="govuk-body">View notifications and messages about your COC from the MCA</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="govuk-grid-row govuk-!-padding-bottom-6">
+    <div class="mca-card-container">
+      <div class="govuk-grid-column-one-half">
+        <div class="mca-card">
+        <div class="mca-card-content">
+        <h2 class="govuk-heading-m">Exams</h2>
+        <p class="govuk-body">Book or manage exams and view your exam result history</p>
+        </div>
+        </div>
+      </div>
+      <div class="govuk-grid-column-one-half">
+        <div class="mca-card">
+        <div class="mca-card-content">
+        <h2 class="govuk-heading-m">Documentation</h2>
+        <p class="govuk-body">Submit required documents and track their progress</p>
+        </div>
+        </div>
+      </div>
+    </div>
+    </div>
+
+    <div class="govuk-grid-row govuk-!-padding-bottom-6">
+    <div class="mca-card-container">
+      <div class="govuk-grid-column-one-half">
+        <div class="mca-card">
+        <div class="mca-card-content">
+        <h2 class="govuk-heading-m">Profile</h2>
+        <p class="govuk-body">Manage your personal details and account settings</p>
+        </div>
+        </div>
+      </div>
+      
+    </div>
+    </div>
+
+    </div>
+
+    <div class="govuk-grid-column-one-third">
+      <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
+        <h2 class="govuk-heading-m" id="subsection-title">
+          Related content
+        </h2>
+        <nav role="navigation" aria-labelledby="subsection-title">
+          <ul class="govuk-list govuk-!-font-size-16">
+            <li>
+              <a href="#">
+                Related link
+              </a>
+            </li>
+            <li>
+              <a href="#">
+                Related link
+              </a>
+            </li>
+            <li>
+              <a href="#" class="govuk-!-font-weight-bold">
+                More <span class="govuk-visually-hidden">in Subsection</span>
+              </a>
+            </li>
+          </ul>
+        </nav>
+      </aside>
+    </div>
+
+  </div>
+
+{% endblock %}
