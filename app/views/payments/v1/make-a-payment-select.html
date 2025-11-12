@@ -43,6 +43,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Make a payment</h1>
 
       {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
@@ -73,6 +74,34 @@
         }) }}
       {% endif %}
 
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Application"
+            },
+            value: {
+              text: "Officer of the Watch (unlimited tonnage, unlimited area)"
+            }
+          },
+          {
+            key: {
+              text: "Reference"
+            },
+            value: {
+              text: "12568912XXX2203r3"
+            }
+          },
+          {
+            key: {
+              text: "Cost"
+            },
+            value: {
+              text: "£220.00"
+            }
+          }
+        ]
+      }) }}
 
 <form>
   {{ govukRadios({
@@ -80,9 +109,9 @@
   name: "redirect",
   fieldset: {
     legend: {
-      text: "Pay online",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--l"
+      text: "Select a payment method",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--m"
     }
   },
   items: [
@@ -95,16 +124,12 @@
       text: "Bank transfer"
     },
     {
-      value: "~pay-by-phone.html",
-      text: "Pay via telephone"
-    },
-    {
       value: "~pay-by-invoice.html",
       text: "Request an invoice"
     },
         {
       value: "~pre-payment.html",
-      text: "Payment already made"
+      text: "Corporate payment"
     }
   ]
 }) }}

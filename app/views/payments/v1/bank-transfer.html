@@ -1,0 +1,109 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Pay online – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: "Application for certificate of competency",
+  navigation: [   
+],
+    slots: {
+      navigationEnd: '<div class="service-menu-signout-wrapper"><a class="govuk-link govuk-link--no-visited-state service-menu-signout" href="signed-out?sign-out">Sign out</a></div>'
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Pay by bank transfer</h1>
+      
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+      
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Application"
+            },
+            value: {
+              text: "Officer of the Watch (unlimited tonnage, unlimited area)"
+            }
+          },
+                    {
+            key: {
+              text: "Reference"
+            },
+            value: {
+              text: "12568912XXX"
+            }
+          },
+          {
+            key: {
+              text: "Cost"
+            },
+            value: {
+              text: "£220.00"
+            }
+          }
+        ]
+      }) }}
+      
+      <p class="govuk-body">If you pay by CHAPS (Clearing House Automated Payment System) or Faster Payments, you can submit your payment on the same or next day.</p>
+
+<p class="govuk-body">If you pay by Bacs (Bankers Automated Clearing System), allow 3 working days for the payment to reach MCA.</p>
+
+<p class="govuk-body">We recommend you check your bank’s processing times and maximum transaction limits before you pay.</p>
+      
+
+<p class="govuk-heading-m">Account details to use if your account is in the UK</p>
+
+<p class="govuk-body">Use the following details to make a payment if your account is in the UK:</p>
+
+<ul class="govuk-list">
+<li>sort code — XX XX XX</li>
+</li>account number — XXXXXXXX</li>
+<li>account name — XXX</li>
+</ul>
+
+<p class="govuk-heading-m">Account details to use if your account is overseas</p>
+
+<p class="govuk-body">Use the following details to make a payment if your account is overseas:</p>
+<ul class="govuk-list">
+<li>account number (IBAN) — XXXX XXXX XXXX XXXX XXXX XX</li>
+<li>Business Identifier Code (BIC) — XXXXXXXX</li>
+<li>account name — XXX</li>
+</ul>
+<p class="govuk-body">You should make overseas payments in sterling (GBP). Your bank may charge you if use any other currency.</p>
+
+<p class="govuk-body">If needed, you can provide your bank with the following MCA banking address:</p>
+
+<p class="govuk-body">XXXXX</p>
+      
+
+<button type="submit" class="govuk-button" data-module="govuk-button">
+  Continue
+</button>
+
+    </div>
+  </div>
+{% endblock %}
