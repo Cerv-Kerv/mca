@@ -11,6 +11,7 @@ Pay online – {{ serviceName }} – GOV.UK Prototype Kit
 
 {{ hmrcHeader({
   serviceUrl : "/",
+  signOutHref : "?sign-out",
   useTudorCrown: "true"
 }) }}
 {{ govukServiceNavigation({
@@ -18,7 +19,6 @@ Pay online – {{ serviceName }} – GOV.UK Prototype Kit
   navigation: [   
 ],
     slots: {
-      navigationEnd: '<div class="service-menu-signout-wrapper"><a class="govuk-link govuk-link--no-visited-state service-menu-signout" href="signed-out?sign-out">Sign out</a></div>'
     },
     classes: "govuk-header--full-width-border"
   }) }}
@@ -38,6 +38,7 @@ Pay online – {{ serviceName }} – GOV.UK Prototype Kit
       <h1 class="govuk-heading-l">Pay online</h1>
       
       {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+       {% from "govuk/components/radios/macro.njk" import govukRadios %}
       
       {{ govukSummaryList({
         rows: [
@@ -54,7 +55,7 @@ Pay online – {{ serviceName }} – GOV.UK Prototype Kit
               text: "Reference"
             },
             value: {
-              text: "12568912XXX"
+              text: "12568912XXX220"
             }
           },
           {
@@ -134,8 +135,127 @@ Pay online – {{ serviceName }} – GOV.UK Prototype Kit
     autocomplete: "address-level2"
   }) }}
 
-{% endcall %}
+  {{ govukRadios({
+  name: "3rd party",
+  fieldset: {
+    legend: {
+      text: "Are you making the payment?",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [
+    {
+      value: "Yes",
+      text: "Yes"
+    },
+        {
+              value: "No",
+              text: "No",
+              checked: data['confirmRecord'] == 'other',
+              conditional: {
+                html: govukCharacterCount({
+                    name: "otherReason",
+  id: "other-reason",
+  maxlength: 90,
+  label: {
+    text: "Who is making this payment? For example, your partner, employer, a friend",
+    classes: "govuk-label--s"
+  }
+                })
+              }
+            }
+  ]
+}) }}
 
+
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+
+{% set billingaddressnoHtml %}
+{% call govukFieldset({
+  legend: {
+    text: "What is the billing address?",
+    classes: "govuk-fieldset__legend--s"
+  }
+}) %}
+
+  {{ govukInput({
+    label: {
+      text: "Address line 1"
+    },
+    id: "address-line-1",
+    name: "addressLine1",
+    autocomplete: "address-line1"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Address line 2 (optional)"
+    },
+    id: "address-line-2",
+    name: "addressLine2",
+    autocomplete: "address-line2"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Town or city"
+    },
+    classes: "govuk-!-width-two-thirds",
+    id: "address-town",
+    name: "addressTown",
+    autocomplete: "address-level2"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "County (optional)"
+    },
+    classes: "govuk-!-width-two-thirds",
+    id: "address-county",
+    name: "addressCounty"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Postcode"
+    },
+    classes: "govuk-input--width-10",
+    id: "address-postcode",
+    name: "addressPostcode",
+    autocomplete: "postal-code"
+  }) }}
+
+{% endcall %}
+{% endset -%}
+
+{{ govukRadios({
+  name: "contact",
+  fieldset: {
+    legend: {
+      text: "Is your billing address the same as your home address?",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [
+    {
+      value: "billingaddress-yes",
+      text: "Yes"
+    },
+    {
+      value: "billingaddress-no",
+      text: "No",
+      conditional: {
+        html: billingaddressnoHtml
+      }
+    
+    }
+  ]
+}) }}
+
+          
+{% endcall %}
 
         {{ govukButton({
           text: "Make payment",

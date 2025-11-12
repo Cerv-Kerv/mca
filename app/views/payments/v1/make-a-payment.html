@@ -12,14 +12,14 @@
 
 {{ hmrcHeader({
   serviceUrl : "/",
+  signOutHref : "?sign-out",
   useTudorCrown: "true"
 }) }}
 {{ govukServiceNavigation({
-    serviceName: "Hello",
+    serviceName: "Application for certificate of competency",
   navigation: [   
 ],
     slots: {
-      navigationEnd: '<div class="service-menu-signout-wrapper"><a class="govuk-link govuk-link--no-visited-state service-menu-signout" href="signed-out?sign-out">Sign out</a></div>'
     },
     classes: "govuk-header--full-width-border"
   }) }}
@@ -89,7 +89,7 @@
               text: "Reference"
             },
             value: {
-              text: "12568912XXX2203r3"
+              text: "12568912XXX220"
             }
           },
           {
@@ -124,11 +124,11 @@
       text: "Bank transfer"
     },
     {
-      value: "~pay-by-invoice.html",
+      value: "~request-an-invoice.html",
       text: "Request an invoice"
     },
         {
-      value: "~pre-payment.html",
+      value: "~corporate-payment.html",
       text: "Corporate payment"
     }
   ]
