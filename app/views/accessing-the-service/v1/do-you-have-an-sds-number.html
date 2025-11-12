@@ -1,0 +1,106 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Make a payment – {{ serviceName2 }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: "Application for certificate of competency",
+  navigation: [   
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+      {% from "govuk/components/input/macro.njk" import govukInput %}
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+      {# Error Summary #}
+      {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}
+        {% set errorList = [] %}
+        
+        {% if data['confirm-error'] == 'true' %}
+          {% set errorList = (errorList.push({
+            text: "Select an option",
+            href: "#confirm-record"
+          }), errorList) %}
+        {% endif %}
+        
+        {% if data['other-reason-error'] == 'true' %}
+          {% set errorList = (errorList.push({
+            text: "Enter the reason you need to cancel",
+            href: "#other-reason"
+          }), errorList) %}
+        {% endif %}
+
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: errorList
+        }) }}
+      {% endif %}
+
+<form>
+  {{ govukRadios({
+  idPrefix: "Pay online",
+  name: "redirect",
+  fieldset: {
+    legend: {
+      text: "Do you have a SDS number?",
+      isPageHeading: true,
+      classes: "govuk-fieldset__legend--l"
+    }
+  },
+  items: [
+    {
+      value: "~what-is-your-sds-number.html",
+      text: "Yes"
+    },
+    {
+      value: "~what-is-your-email-address.html",
+      text: "No"
+    }
+  ]
+}) }}
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+</form>
+
+
+{% endblock %}
+
