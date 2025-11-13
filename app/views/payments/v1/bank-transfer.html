@@ -1,7 +1,8 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-Pay online – {{ serviceName }} – GOV.UK Prototype Kit
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Make a payment – {{ serviceName2 }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -25,6 +26,13 @@ Pay online – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
   {{ govukBackLink({
     text: "Back",
     href: "javascript:window.history.back()"
@@ -107,9 +115,9 @@ London<br>
 EC2M 4RB</p>
       
 
-<button type="submit" class="govuk-button" data-module="govuk-button">
+<a class="govuk-button" data-module="govuk-button" href="check-bank-transfer.html">
   Continue
-</button>
+</a>
 
     </div>
   </div>

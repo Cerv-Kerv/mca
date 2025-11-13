@@ -43,13 +43,20 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Request an invoice</h1>
+      <h1 class="govuk-heading-l">Check payment method</h1>
       
-
       {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
       
       {{ govukSummaryList({
         rows: [
+        {
+            key: {
+              text: "Payment method"
+            },
+            value: {
+              text: "Bank transfer"
+            }
+          },
           {
             key: {
               text: "Application"
@@ -76,15 +83,16 @@
           }
         ]
       }) }}
-
-      <p class="govuk-body">content here</p>
-      
-      
       
 
-<button type="submit" class="govuk-button" data-module="govuk-button">
-  Continue
-</button>
+      {{ govukWarningText({
+  text: "Include your application reference when making payment.",
+  iconFallbackText: "Warning"
+}) }}
+      
+
+<a class="govuk-button" data-module="govuk-button" href="bank-transfer-confirmation.html">
+   Submit application </a>
 
     </div>
   </div>

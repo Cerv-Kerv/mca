@@ -1,7 +1,8 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-Pay online – {{ serviceName }} – GOV.UK Prototype Kit
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Make a payment – {{ serviceName2 }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -25,6 +26,13 @@ Pay online – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
   {{ govukBackLink({
     text: "Back",
     href: "javascript:window.history.back()"
@@ -69,7 +77,7 @@ Pay online – {{ serviceName }} – GOV.UK Prototype Kit
         ]
       }) }}
       
-      <form action="payment-confirmation-online.html" method="post">
+      <form action="pay-online-confirmation.html">
 {% call govukFieldset({
   legend: {
     text: "Enter card details",
@@ -135,42 +143,63 @@ Pay online – {{ serviceName }} – GOV.UK Prototype Kit
     autocomplete: "address-level2"
   }) }}
 
-  {{ govukRadios({
-  name: "3rd party",
+
+{% set textHtml %}
+{{ govukInput({
+  id: "textHtml",
+  name: "no",
+  classes: "govuk-!-width-one-third",
+  label: {
+    text: "Who is making this payment? For example, your partner, employer, a friend"
+  }
+}) }}
+{% endset -%}
+
+{% set 3rdpartypaymentnoHtml %}
+{% call govukFieldset({
+}) %}
+
+
+  {{ govukInput({
+    label: {
+      text: "Tell us how you know the person making payment. "
+    },
+    hint: {
+      text: "For example, your partner, employer or a friend"
+    },
+    id: "address-line-2",
+    name: "addressLine2",
+    autocomplete: "address-line2"
+  }) }}
+
+
+
+{% endcall %}
+{% endset -%}
+
+{{ govukRadios({
+  name: "3rdpartypayment",
   fieldset: {
     legend: {
-      text: "Are you making the payment?",
+      text: "Are you, as the applicant, making the payment?",
       classes: "govuk-fieldset__legend--s"
     }
   },
   items: [
     {
-      value: "Yes",
+      value: "3rdpartypayment-yes",
       text: "Yes"
     },
-        {
-              value: "No",
-              text: "No",
-              checked: data['confirmRecord'] == 'other',
-              conditional: {
-                html: govukCharacterCount({
-                    name: "otherReason",
-  id: "other-reason",
-  maxlength: 90,
-  label: {
-    text: "Who is making this payment? For example, your partner, employer, a friend",
-    classes: "govuk-label--s"
-  }
-                })
-              }
-            }
+    {
+      value: "b3rdpartypayment-no",
+      text: "No",
+      conditional: {
+        html: 3rdpartypaymentnoHtml
+      }
+    }
   ]
 }) }}
-
-
-{% from "govuk/components/radios/macro.njk" import govukRadios %}
-{% from "govuk/components/input/macro.njk" import govukInput %}
-
+          
 
 {% set billingaddressnoHtml %}
 {% call govukFieldset({

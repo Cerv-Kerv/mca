@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-  Make a payment – {{ serviceName2 }} – GOV.UK Prototype Kit
+  Payment confirmation – {{ serviceName2 }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -33,59 +33,41 @@
     html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
   }) }}
   
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
 
 {% endblock %}
 
 {% block content %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Request an invoice</h1>
-      
 
-      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
-      
-      {{ govukSummaryList({
-        rows: [
-          {
-            key: {
-              text: "Application"
-            },
-            value: {
-              text: "Officer of the Watch (unlimited tonnage, unlimited area)"
-            }
-          },
-                    {
-            key: {
-              text: "Reference"
-            },
-            value: {
-              text: "12568912XXX220"
-            }
-          },
-          {
-            key: {
-              text: "Cost"
-            },
-            value: {
-              text: "£220.00"
-            }
-          }
-        ]
+      {{ govukPanel({
+        titleText: "Application submitted",
+        html: "Your reference number<br><strong>12568912XXX220</strong>"
       }) }}
 
-      <p class="govuk-body">content here</p>
-      
-      
-      
+      <p>
+        We have sent you a confirmation email.
+      </p>
 
-<button type="submit" class="govuk-button" data-module="govuk-button">
-  Continue
-</button>
+      <h2 class="govuk-heading-m">
+        What happens next
+      </h2>
+
+      <p>
+        We've sent your Officer of the Watch (unlimited tonnage, unlimited area) application to the Maritime and Coastguard Agency (MCA).
+      </p>
+      <p>
+        The MCA may contact you for more information.
+      </p>
+      <p>
+        <a href="#">
+          What did you think of this service?
+        </a> (takes 30 seconds)
+      </p>
+
 
     </div>
   </div>
+
 {% endblock %}
