@@ -77,14 +77,122 @@
         ]
       }) }}
 
-      <p class="govuk-body">content here</p>
-      
-      
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+<h1 class="govuk-heading-m">Provide information to create an invoice</h1>
+
+{{ govukInput({
+  label: {
+    text: "Name",
+    classes: "govuk-label--s"
+  },
+  hint: {
+    text: "Provide the full name of the individual or organisation"
+  },
+  id: "event-name",
+  name: "eventName"
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Email (optional)",
+    classes: "govuk-label--s"
+  },
+  id: "invoiceemail",
+  name: "invoiceEmail"
+}) }}
+
+{% call govukFieldset({
+  legend: {
+    text: "Address",
+    classes: "govuk-fieldset__legend--s"
+  }
+}) %}
+
+  {{ govukInput({
+    label: {
+      text: "Address line 1"
+    },
+    id: "address-line-1",
+    name: "addressLine1",
+    autocomplete: "address-line1"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Address line 2 (optional)"
+    },
+    id: "address-line-2",
+    name: "addressLine2",
+    autocomplete: "address-line2"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Town or city"
+    },
+    classes: "govuk-!-width-two-thirds",
+    id: "address-town",
+    name: "addressTown",
+    autocomplete: "address-level2"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "County (optional)"
+    },
+    classes: "govuk-!-width-two-thirds",
+    id: "address-county",
+    name: "addressCounty"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Postcode"
+    },
+    classes: "govuk-input--width-10",
+    id: "address-postcode",
+    name: "addressPostcode",
+    autocomplete: "postal-code"
+  }) }}
+
+{% endcall %}
+
+{{ govukInput({
+  label: {
+    text: "Purchase Order Number (optional)",
+    classes: "govuk-label--s"
+  },
+
+      classes: "govuk-input--width-10",
+  id: "po-number",
+  name: "poNumber"
+}) }}
+
+{% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
+
+{{ govukCharacterCount({
+  name: "withHint",
+  id: "with-hint",
+  maxlength: 500,
+  label: {
+    text: "Additional information (optional)",
+    classes: "govuk-label--s"
+  },
+  hint: {
+    text: "Do not include personal or financial information like your National Insurance number or credit card details"
+  }
+}) }}
       
 
-<button type="submit" class="govuk-button" data-module="govuk-button">
+<a class="govuk-button" data-module="govuk-button" href="check-invoice-request.html">
   Continue
-</button>
+</a>
+
+
+
+
 
     </div>
   </div>
