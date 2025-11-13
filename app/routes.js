@@ -1280,3 +1280,813 @@ router.get('*', function(req, res, next) {
 module.exports = router
 
 
+// Helper function to get OOW type label
+function getOowTypeLabel(code) {
+  switch (code) {
+    case 'II3_D': return 'II/3 OOW — Less than 500GT, Category "D" Waters'
+    case 'II3_NC': return 'II/3 OOW — Less than 500GT, Near Coastal Waters'
+    case 'II1_UL': return 'II/1 OOW — Unlimited Tonnage, Unlimited Area'
+    default: return 'Not selected'
+  }
+}
+
+// Helper function to get certificate label for application-oow journey
+function getCertificateLabel(code) {
+  switch (code) {
+    case 'II1-UL': return 'II/1 OOW, Unlimited Tonnage, Unlimited Area'
+    case 'II3-D': return 'II/3 – OOW (Less than 500GT, Category "D" Waters)'
+    case 'II3-NC': return 'II/3 – OOW (Less than 500GT, Near Coastal Waters)'
+    default: return 'Not selected'
+  }
+}
+
+// Helper function to get certificate subtitle for task list
+function getCertificateSubtitle(code) {
+  switch (code) {
+    case 'II1-UL': return 'Unlimited Tonnage, Unlimited Area'
+    case 'II3-D': return 'Less than 500GT, Category "D" Waters'
+    case 'II3-NC': return 'Less than 500GT, Near Coastal Waters'
+    default: return ''
+  }
+}
+
+// Add your routes here
+
+
+router.get('/oow', (req, res) => {
+  res.render('oow/index')
+})
+
+router.get('/oow/task-list', (req, res) => {
+  const oowType = req.session.data.oowType
+  const oowTypeLabel = getOowTypeLabel(oowType)
+
+  // Example: you can change which tasks display based on type
+  const requiresCompanyNumber = (oowType === 'II1_UL') // demo rule
+  const requiresSeaService = true                      // all types for now
+
+  res.render('oow/task-list', {
+    oowType,
+    oowTypeLabel,
+    requiresCompanyNumber,
+    requiresSeaService
+  })
+})
+
+router.get('/oow/start', (req, res) => {
+  res.render('oow/start')
+})
+
+router.post('/oow/start', (req, res) => {
+  res.redirect('/oow/which-coc')
+})
+
+router.get('/oow/which-coc', (req, res) => {
+  res.render('oow/which-coc')
+})
+
+router.post('/oow/which-coc', (req, res) => {
+  const choice = req.body.whichCoc || 'OOW'
+  req.session.data.whichCoc = choice
+
+  if (choice === 'OOW') {
+    return res.redirect('/oow/goc-hold')
+  }
+
+  res.redirect('/oow/not-eligible')
+})
+
+router.get('/oow/not-eligible', (req, res) => {
+  res.render('oow/not-eligible')
+})
+
+router.post('/oow/not-eligible', (req, res) => {
+  res.redirect('/oow/start')
+})
+
+router.get('/oow/goc-hold', (req, res) => {
+  if (!req.session.data.whichCoc) {
+    return res.redirect('/oow/which-coc')
+  }
+
+  res.render('oow/goc-hold')
+})
+
+router.post('/oow/goc-hold', (req, res) => {
+  const answer = req.body.gocHold
+  req.session.data.gocHold = answer
+
+  if (answer === 'Yes') {
+    delete req.session.data.gocNeedUk
+    return res.redirect('/oow/which-route')
+  }
+
+  res.redirect('/oow/goc-need-uk')
+})
+
+router.get('/oow/goc-need-uk', (req, res) => {
+  if (!req.session.data.gocHold || req.session.data.gocHold !== 'No') {
+    return res.redirect('/oow/goc-hold')
+  }
+
+  res.render('oow/goc-need-uk')
+})
+
+router.post('/oow/goc-need-uk', (req, res) => {
+  const answer = req.body.gocNeedUk
+  req.session.data.gocNeedUk = answer
+
+  res.redirect('/oow/which-route')
+})
+
+router.get('/oow/which-route', (req, res) => {
+  if (!req.session.data.gocHold) {
+    return res.redirect('/oow/goc-hold')
+  }
+
+  res.render('oow/which-route')
+})
+
+router.post('/oow/which-route', (req, res) => {
+  const route = req.body.oowRoute
+  req.session.data.oowRoute = route
+
+  if (route !== 'Experienced seafarer') {
+    delete req.session.data.seaService36Months
+  }
+
+  res.redirect('/oow/choose-application')
+})
+
+// Choose OOW application (3 radios) — NEW
+router.get('/oow/choose-application', (req, res) => {
+  // Guard: must have come via which-route
+  if (!req.session.data.whichCoc && !req.session.data.gocHold) {
+    return res.redirect('/oow/start')
+  }
+  res.render('oow/choose-application')
+})
+
+router.post('/oow/choose-application', (req, res) => {
+  const choice = req.body.oowType
+  if (!choice) {
+    // Re-render with an error (simple server-side validation)
+    req.session.data.validationError = 'Select an OOW application type'
+    return res.render('oow/choose-application', {
+      errorList: [{ text: 'Select an OOW application type' }]
+    })
+  }
+  req.session.data.oowType = choice
+  // After choosing the application, go to Task list
+  res.redirect('/oow/task-list')
+})
+
+router.get('/oow/company-number', (req, res) => {
+  if (!req.session.data.oowRoute) {
+    return res.redirect('/oow/which-route')
+  }
+
+  res.render('oow/company-number')
+})
+
+router.post('/oow/company-number', (req, res) => {
+  const value = (req.body.companyNumber || '').trim()
+
+  if (value) {
+    req.session.data.companyNumber = value
+  } else {
+    delete req.session.data.companyNumber
+  }
+
+  res.redirect('/oow/sea-service')
+})
+
+router.get('/oow/sea-service', (req, res) => {
+  if (!req.session.data.oowRoute) {
+    return res.redirect('/oow/which-route')
+  }
+
+  res.render('oow/sea-service')
+})
+
+router.post('/oow/sea-service', (req, res) => {
+  const experienced = req.session.data.oowRoute === 'Experienced seafarer'
+
+  if (experienced) {
+    const answer = req.body.seaService36Months
+    if (answer) {
+      req.session.data.seaService36Months = answer
+    }
+  } else {
+    delete req.session.data.seaService36Months
+  }
+
+  res.redirect('/oow/uploads')
+})
+
+router.get('/oow/uploads', (req, res) => {
+  if (!req.session.data.oowRoute) {
+    return res.redirect('/oow/which-route')
+  }
+
+  res.render('oow/uploads')
+})
+
+router.post('/oow/uploads', (req, res) => {
+  res.redirect('/oow/check-answers')
+})
+
+router.get('/oow/check-answers', (req, res) => {
+  const data = req.session.data
+  const oowTypeLabel = getOowTypeLabel(data.oowType)
+  const rows = []
+
+  rows.push({
+    key: { text: 'OOW application' },
+    value: { text: oowTypeLabel },
+    actions: {
+      items: [
+        {
+          href: '/oow/choose-application',
+          text: 'Change',
+          visuallyHiddenText: 'OOW application'
+        }
+      ]
+    }
+  })
+
+  rows.push({
+    key: { text: 'Certificate' },
+    value: { text: data.whichCoc || 'Officer of the Watch (OOW)' },
+    actions: {
+      items: [
+        {
+          href: '/oow/which-coc',
+          text: 'Change',
+          visuallyHiddenText: 'certificate'
+        }
+      ]
+    }
+  })
+
+  rows.push({
+    key: { text: 'GMDSS GOC held' },
+    value: { text: data.gocHold || 'Not answered' },
+    actions: {
+      items: [
+        {
+          href: '/oow/goc-hold',
+          text: 'Change',
+          visuallyHiddenText: 'GMDSS GOC'
+        }
+      ]
+    }
+  })
+
+  if (data.gocHold === 'No') {
+    rows.push({
+      key: { text: 'Needs new UK GOC' },
+      value: { text: data.gocNeedUk || 'Not answered' },
+      actions: {
+        items: [
+          {
+            href: '/oow/goc-need-uk',
+            text: 'Change',
+            visuallyHiddenText: 'need for a UK GOC'
+          }
+        ]
+      }
+    })
+  }
+
+  rows.push({
+    key: { text: 'Route' },
+    value: { text: data.oowRoute || 'Not answered' },
+    actions: {
+      items: [
+        {
+          href: '/oow/which-route',
+          text: 'Change',
+          visuallyHiddenText: 'route'
+        }
+      ]
+    }
+  })
+
+  if (data.oowRoute === 'Experienced seafarer' && data.seaService36Months) {
+    rows.push({
+      key: { text: '36 months qualifying sea service' },
+      value: { text: data.seaService36Months },
+      actions: {
+        items: [
+          {
+            href: '/oow/sea-service',
+            text: 'Change',
+            visuallyHiddenText: 'sea service evidence'
+          }
+        ]
+      }
+    })
+  }
+
+  if (data.companyNumber) {
+    rows.push({
+      key: { text: 'Sponsoring company number' },
+      value: { text: data.companyNumber },
+      actions: {
+        items: [
+          {
+            href: '/oow/company-number',
+            text: 'Change',
+            visuallyHiddenText: 'company number'
+          }
+        ]
+      }
+    })
+  }
+
+  res.render('oow/check-answers', { rows })
+})
+
+router.post('/oow/check-answers', (req, res) => {
+  res.redirect('/oow/confirmation')
+})
+
+router.get('/oow/confirmation', (req, res) => {
+  const reference = `OOW-${Math.round(Date.now() / 1000)}`
+  res.render('oow/confirmation', { reference })
+})
+
+router.post('/oow/confirmation', (req, res) => {
+  res.redirect('/oow/start')
+})
+
+router.get('/oow/save', (req, res) => {
+  res.render('oow/save')
+})
+
+// Application OOW journey routes (Frame 68)
+router.get('/application-oow/start', (req, res) => {
+  res.render('application-oow/start')
+})
+
+router.get('/application-oow/which-certificate', (req, res) => {
+  res.render('application-oow/which-certificate')
+})
+
+router.post('/application-oow/which-certificate', (req, res) => {
+  const certificate = req.body.certificate
+  req.session.data.certificate = certificate
+  
+  if (certificate === 'II1-UL') {
+    return res.redirect('/application-oow/coc-details')
+  }
+  
+  // For other certificate types, you can add different routing logic here
+  // For now, redirect to coc-details for all
+  res.redirect('/application-oow/coc-details')
+})
+
+router.get('/application-oow/coc-details', (req, res) => {
+  res.render('application-oow/coc-details')
+})
+
+router.post('/application-oow/coc-details', (req, res) => {
+  const firstCoc = req.body.firstCoc
+  req.session.data.firstCoc = firstCoc
+  res.redirect('/application-oow/goc-details')
+})
+
+router.get('/application-oow/goc-details', (req, res) => {
+  res.render('application-oow/goc-details')
+})
+
+router.post('/application-oow/goc-details', (req, res) => {
+  const gocHold = req.body.gocHold
+  req.session.data.gocHold = gocHold
+
+  if (gocHold === 'Yes') {
+    return res.redirect('/application-oow/training-route')
+  }
+
+  res.redirect('/application-oow/need-goc')
+})
+
+router.get('/application-oow/need-goc', (req, res) => {
+  if (!req.session.data.gocHold || req.session.data.gocHold !== 'No') {
+    return res.redirect('/application-oow/goc-details')
+  }
+  res.render('application-oow/need-goc')
+})
+
+router.post('/application-oow/need-goc', (req, res) => {
+  const gocNeedUk = req.body.gocNeedUk
+  req.session.data.gocNeedUk = gocNeedUk
+  res.redirect('/application-oow/training-route')
+})
+
+router.get('/application-oow/training-route', (req, res) => {
+  if (!req.session.data.gocHold) {
+    return res.redirect('/application-oow/goc-details')
+  }
+  res.render('application-oow/training-route')
+})
+
+router.post('/application-oow/training-route', (req, res) => {
+  const route = req.body.trainingRoute
+  req.session.data.trainingRoute = route
+  res.redirect('/application-oow/sea-service')
+})
+
+router.get('/application-oow/task-list', (req, res) => {
+  const certificate = req.session.data.certificate
+  const certificateLabel = getCertificateLabel(certificate)
+  const certificateSubtitle = getCertificateSubtitle(certificate)
+  
+  res.render('application-oow/task-list', {
+    certificate,
+    certificateLabel,
+    certificateSubtitle
+  })
+})
+
+router.get('/application-oow/save', (req, res) => {
+  res.render('application-oow/save')
+})
+
+router.get('/application-oow/sea-service', (req, res) => {
+  res.render('application-oow/sea-service')
+})
+
+router.post('/application-oow/sea-service', (req, res) => {
+  const seaService36Months = req.body.seaService36Months
+  req.session.data.seaService36Months = seaService36Months
+  res.redirect('/application-oow/upload-documents')
+})
+
+router.get('/application-oow/upload-documents', (req, res) => {
+  res.render('application-oow/upload-documents')
+})
+
+router.post('/application-oow/upload-documents', (req, res) => {
+  // Store uploaded file information in session (in a real app, you'd handle file uploads properly)
+  // For prototype purposes, we'll just mark that documents were uploaded
+  req.session.data.documentsUploaded = true
+  res.redirect('/application-oow/cya')
+})
+
+router.get('/application-oow/cya', (req, res) => {
+  const data = req.session.data
+  
+  // Build summary rows for the CYA page
+  const applicationRows = []
+  const certificatesRows = []
+  
+  // Application section
+  const certificateLabel = getCertificateLabel(data.certificate || 'II1-UL')
+  applicationRows.push({
+    key: { text: 'Which certificate are you applying for?' },
+    value: { text: certificateLabel },
+    actions: {
+      items: [{
+        href: '/application-oow/which-certificate',
+        text: 'Change',
+        visuallyHiddenText: 'certificate'
+      }]
+    }
+  })
+  
+  // Certificates you already hold section
+  certificatesRows.push({
+    key: { text: 'Do you hold a GMDSS General Operator\'s Certificate (GOC)?' },
+    value: { text: data.gocHold || 'Not answered' },
+    actions: {
+      items: [{
+        href: '/application-oow/goc-details',
+        text: 'Change',
+        visuallyHiddenText: 'GMDSS GOC'
+      }]
+    }
+  })
+  
+  if (data.gocHold === 'No') {
+    certificatesRows.push({
+      key: { text: 'Do you require a new UK GMDSS certificate?' },
+      value: { text: data.gocNeedUk || 'Not answered' },
+      actions: {
+        items: [{
+          href: '/application-oow/need-goc',
+          text: 'Change',
+          visuallyHiddenText: 'UK GMDSS certificate requirement'
+        }]
+      }
+    })
+  }
+  
+  certificatesRows.push({
+    key: { text: 'Are you a UK SMarT Funded Cadet?' },
+    value: { text: data.smartFunded || 'No' },
+    actions: {
+      items: [{
+        href: '/application-oow/training-route',
+        text: 'Change',
+        visuallyHiddenText: 'UK SMarT funding status'
+      }]
+    }
+  })
+  
+  // Format route display - add "(non-approved route)" only for EXAM Route Experienced Seafarer
+  let routeDisplay = 'Not answered'
+  if (data.trainingRoute) {
+    routeDisplay = data.trainingRoute === 'EXAM Route Experienced Seafarer' 
+      ? `${data.trainingRoute} (non-approved route)`
+      : data.trainingRoute
+  }
+  
+  certificatesRows.push({
+    key: { text: 'Which route are you following for your sea service?' },
+    value: { text: routeDisplay },
+    actions: {
+      items: [{
+        href: '/application-oow/training-route',
+        text: 'Change',
+        visuallyHiddenText: 'sea service route'
+      }]
+    }
+  })
+  
+  // Only show sea service question for EXAM Route Experienced Seafarer route
+  if (data.trainingRoute === 'EXAM Route Experienced Seafarer') {
+    certificatesRows.push({
+      key: { text: 'Do you have at least 36 months qualifying sea service with company letters?' },
+      value: { text: data.seaService36Months || 'Not answered' },
+      actions: {
+        items: [{
+          href: '/application-oow/sea-service',
+          text: 'Change',
+          visuallyHiddenText: 'sea service evidence'
+        }]
+      }
+    })
+  }
+  
+  // Documents uploaded section organized by category
+  const documentCategories = []
+  
+  // Identity and Medical
+  const identityMedicalRows = [
+    {
+      key: { text: 'Passport (photo page)' },
+      value: { text: 'ABC.pdf' },
+      actions: {
+        items: [{
+          href: '/application-oow/upload-documents',
+          text: 'Change',
+          visuallyHiddenText: 'passport photo page'
+        }]
+      }
+    },
+    {
+      key: { text: 'Passport-style photograph' },
+      value: { text: 'ABC.pdf' },
+      actions: {
+        items: [{
+          href: '/application-oow/upload-documents',
+          text: 'Change',
+          visuallyHiddenText: 'passport-style photograph'
+        }]
+      }
+    },
+    {
+      key: { text: 'ENG 1 or equivalent medical certificate' },
+      value: { text: 'ABC.pdf' },
+      actions: {
+        items: [{
+          href: '/application-oow/upload-documents',
+          text: 'Change',
+          visuallyHiddenText: 'ENG 1 or equivalent medical certificate'
+        }]
+      }
+    }
+  ]
+  documentCategories.push({
+    title: 'Identity and Medical',
+    rows: identityMedicalRows
+  })
+  
+  // Sea Service Evidence
+  const seaServiceRows = [
+    {
+      key: { text: 'Discharge book or certificates of discharge' },
+      value: { text: 'ABC.pdf' },
+      actions: {
+        items: [{
+          href: '/application-oow/upload-documents',
+          text: 'Change',
+          visuallyHiddenText: 'discharge book or certificates of discharge'
+        }]
+      }
+    },
+    {
+      key: { text: 'Sea-service record (showing at least 36 months\' sea service, including at least 6 months bridge watchkeeping)' },
+      value: { text: 'ABC.pdf' },
+      actions: {
+        items: [{
+          href: '/application-oow/upload-documents',
+          text: 'Change',
+          visuallyHiddenText: 'sea-service record'
+        }]
+      }
+    },
+    {
+      key: { text: 'Company service letter confirming rank, dates and nature of duties' },
+      value: { text: 'ABC.pdf' },
+      actions: {
+        items: [{
+          href: '/application-oow/upload-documents',
+          text: 'Change',
+          visuallyHiddenText: 'company service letter'
+        }]
+      }
+    }
+  ]
+  documentCategories.push({
+    title: 'Sea Service Evidence',
+    rows: seaServiceRows
+  })
+  
+  // STCW Basic Safety Training
+  const stcwRows = [
+    {
+      key: { text: 'Personal Survival Techniques' },
+      value: { text: 'ABC.pdf' },
+      actions: {
+        items: [{
+          href: '/application-oow/upload-documents',
+          text: 'Change',
+          visuallyHiddenText: 'personal survival techniques'
+        }]
+      }
+    },
+    {
+      key: { text: 'Fire Prevention and Fire Fighting' },
+      value: { text: 'ABC.pdf' },
+      actions: {
+        items: [{
+          href: '/application-oow/upload-documents',
+          text: 'Change',
+          visuallyHiddenText: 'fire prevention and fire fighting'
+        }]
+      }
+    },
+    {
+      key: { text: 'Elementary First Aid' },
+      value: { text: 'ABC.pdf' },
+      actions: {
+        items: [{
+          href: '/application-oow/upload-documents',
+          text: 'Change',
+          visuallyHiddenText: 'elementary first aid'
+        }]
+      }
+    },
+    {
+      key: { text: 'Personal Safety and Social Responsibilities' },
+      value: { text: 'ABC.pdf' },
+      actions: {
+        items: [{
+          href: '/application-oow/upload-documents',
+          text: 'Change',
+          visuallyHiddenText: 'personal safety and social responsibilities'
+        }]
+      }
+    }
+  ]
+  documentCategories.push({
+    title: 'STCW Basic Safety Training (A-VI/1)',
+    rows: stcwRows
+  })
+  
+  // Operational-level and survival certificates
+  const operationalRows = [
+    {
+      key: { text: 'Proficiency in Survival Craft and Rescue Boats' },
+      value: { text: 'ABC.pdf' },
+      actions: {
+        items: [{
+          href: '/application-oow/upload-documents',
+          text: 'Change',
+          visuallyHiddenText: 'proficiency in survival craft and rescue boats'
+        }]
+      }
+    },
+    {
+      key: { text: 'Advanced Fire Fighting' },
+      value: { text: 'ABC.pdf' },
+      actions: {
+        items: [{
+          href: '/application-oow/upload-documents',
+          text: 'Change',
+          visuallyHiddenText: 'advanced fire fighting'
+        }]
+      }
+    },
+    {
+      key: { text: 'Medical First Aid' },
+      value: { text: 'ABC.pdf' },
+      actions: {
+        items: [{
+          href: '/application-oow/upload-documents',
+          text: 'Change',
+          visuallyHiddenText: 'medical first aid'
+        }]
+      }
+    },
+    {
+      key: { text: 'Efficient Deck Hand (EDH)' },
+      value: { text: 'ABC.pdf' },
+      actions: {
+        items: [{
+          href: '/application-oow/upload-documents',
+          text: 'Change',
+          visuallyHiddenText: 'efficient deck hand'
+        }]
+      }
+    },
+    {
+      key: { text: 'Navigation Aids and Equipment Simulator / NAEST (Operational)' },
+      value: { text: 'ABC.pdf' },
+      actions: {
+        items: [{
+          href: '/application-oow/upload-documents',
+          text: 'Change',
+          visuallyHiddenText: 'navigation aids and equipment simulator'
+        }]
+      }
+    },
+    {
+      key: { text: 'Human Element Leadership and Management / HELM (Operational)' },
+      value: { text: 'ABC.pdf' },
+      actions: {
+        items: [{
+          href: '/application-oow/upload-documents',
+          text: 'Change',
+          visuallyHiddenText: 'human element leadership and management'
+        }]
+      }
+    },
+    {
+      key: { text: 'United Kingdom Signals Certificate (valid within the last 3 years)' },
+      value: { text: 'ABC.pdf' },
+      actions: {
+        items: [{
+          href: '/application-oow/upload-documents',
+          text: 'Change',
+          visuallyHiddenText: 'united kingdom signals certificate'
+        }]
+      }
+    },
+    {
+      key: { text: 'GMDSS General Operator\'s Certificate (GOC)' },
+      value: { text: 'ABC.pdf' },
+      actions: {
+        items: [{
+          href: '/application-oow/upload-documents',
+          text: 'Change',
+          visuallyHiddenText: 'GMDSS general operator\'s certificate'
+        }]
+      }
+    }
+  ]
+  documentCategories.push({
+    title: 'Operational-level and survival certificates',
+    rows: operationalRows
+  })
+  
+  // Determine GMDSS status message
+  let gmdssStatus = ''
+  let gmdssStatusHtml = ''
+  if (data.gocHold === 'No' && data.gocNeedUk === 'Yes') {
+    gmdssStatus = 'Does not hold a GOC — intends to obtain a UK GOC'
+    gmdssStatusHtml = '<strong>GMDSS status:</strong> Does not hold a GOC — intends to obtain a UK GOC'
+  } else if (data.gocHold === 'Yes') {
+    gmdssStatus = 'Holds a GOC'
+    gmdssStatusHtml = '<strong>GMDSS status:</strong> Holds a GOC'
+  } else if (data.gocHold === 'No') {
+    gmdssStatus = 'Does not hold a GOC'
+    gmdssStatusHtml = '<strong>GMDSS status:</strong> Does not hold a GOC'
+  }
+  
+  res.render('application-oow/cya', {
+    applicationRows,
+    certificatesRows,
+    documentCategories,
+    gmdssStatus,
+    gmdssStatusHtml
+  })
+})
+
+router.post('/application-oow/cya', (req, res) => {
+  // After confirming, redirect to confirmation or next step
+  res.redirect('/application-oow/confirmation')
+})
