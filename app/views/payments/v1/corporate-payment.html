@@ -68,13 +68,131 @@ Pay online – {{ serviceName }} – GOV.UK Prototype Kit
         ]
       }) }}
 
-      <p class="govuk-body">content here</p>
-      
+<h2 class="govuk-heading-m">Who will be paying for this application?</h2>
+
+{{ govukInput({
+  label: {
+    text: "Name of payee",
+    classes: "govuk-label--s"
+  },
+  hint: {
+    text: "Provide the full name of the organisation"
+  },
+  id: "event-name",
+  name: "eventName"
+}) }}
+
+{% set invoiceNumber %}
+{% call govukFieldset({
+}) %}
+
+
+  {{ govukInput({
+    label: {
+      text: "Provide invoice number"
+    },
+    id: "invoiceNumber",
+    name: "invoiceNumber"
+  }) }}
+
+{% endcall %}
+{% endset -%}
+
+{{ govukRadios({
+  name: "contact",
+  fieldset: {
+    legend: {
+      text: "Do you have an invoice number?",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [
+    {
+      value: "invoicenumber-yes",
+      text: "Yes",
+      conditional: {
+        html: invoiceNumber
+      }
+    },
+    {
+      value: "invoicenumber-no",
+      text: "No"
+    
+    }
+  ]
+}) }}
+
+{% set rollingaccNumberHtml %}
+{% call govukFieldset({
+}) %}
+
+
+  {{ govukInput({
+    label: {
+      text: "Rolling account number"
+    },
+    id: "rollingaccNumberHtml",
+    name: "rollingaccNumberHtml"
+  }) }}
+
+{% endcall %}
+{% endset -%}
+
+{{ govukRadios({
+  name: "rollingaccNumber",
+  fieldset: {
+    legend: {
+      text: "Do you have a rolling account number?",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [
+    {
+      value: "rollingaccnumber-yes",
+      text: "Yes",
+      conditional: {
+        html: rollingaccNumberHtml
+      }
+    },
+    {
+      value: "rollingaccnumber-no",
+      text: "No"
+    
+    }
+  ]
+}) }}
+
+      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+        
+        {{ govukCheckboxes({
+          idPrefix: "privacy",
+          name: "privacy-notice",
+          errorMessage: data['privacy-error'] == 'true' and {
+            text: "You must confirm that you have authorisation from the payee to use this payment method"
+          },
+          fieldset: {
+            legend: {
+              text: "By continuing I confirm that:",
+              classes: "govuk-fieldset__legend"
+            }
+          },
+          items: [
+            {
+              value: "confirmed",
+              html: 'I have authorisation from the payee to use their account to pay for this application.',
+              checked: data['privacy-notice'] == 'confirmed'
+            }
+          ]
+        }) }}
       
 
-<button type="submit" class="govuk-button" data-module="govuk-button">
+<a class="govuk-button" data-module="govuk-button" href="check-corporate-payment.html">
   Continue
-</button>
+</a>
+
+
+
+
 
     </div>
   </div>

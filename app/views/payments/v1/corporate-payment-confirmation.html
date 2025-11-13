@@ -1,0 +1,74 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Make a payment – {{ serviceName2 }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: "Application for certificate of competency",
+  navigation: [   
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukPanel({
+        titleText: "Application submitted",
+        html: "Your reference number<br><strong>12568912XXX220</strong>"
+      }) }}
+
+      <p>
+        We have sent you a confirmation email.
+      </p>
+
+      <h2 class="govuk-heading-m">
+        What happens next
+      </h2>
+
+      <p>
+        We've sent your Officer of the Watch (unlimited tonnage, unlimited area) application to the Maritime and Coastguard Agency (MCA).
+      </p>
+      <p>We will notify the payee about your application.</p>
+      <p>
+        The MCA may contact you for more information.
+      </p>
+      <p>
+        <a href="#">
+          What did you think of this service?
+        </a> (takes 30 seconds)
+      </p>
+
+
+    </div>
+  </div>
+
+{% endblock %}
