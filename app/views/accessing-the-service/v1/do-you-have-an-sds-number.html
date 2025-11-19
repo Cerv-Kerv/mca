@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-  Make a payment – {{ serviceName2 }} – GOV.UK Prototype Kit
+  Do you have an SDS number? – {{ serviceName2 }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -12,7 +12,6 @@
 
 {{ hmrcHeader({
   serviceUrl : "/",
-  signOutHref : "?sign-out",
   useTudorCrown: "true"
 }) }}
 {{ govukServiceNavigation({
@@ -43,6 +42,8 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Do you have an SDS number?</h1>
+      <p class="govuk-body">Your SDS number is in the email about your Notice of Eligibility (NOE). You may know your SDS number as your Seafarer Reference Number (SRN)</p>
 
       {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
@@ -77,16 +78,10 @@
   {{ govukRadios({
   idPrefix: "Pay online",
   name: "redirect",
-  fieldset: {
-    legend: {
-      text: "Do you have a SDS number?",
-      isPageHeading: true,
-      classes: "govuk-fieldset__legend--l"
-    }
-  },
+  
   items: [
     {
-      value: "~what-is-your-sds-number.html",
+      value: "~sds-number.html",
       text: "Yes"
     },
     {
