@@ -16,6 +16,7 @@ const VERSIONS = [
   'ooe/v10',
   'ooe/v10_1',
   'ooe/v10_2',
+   'ooe/v2',
   'coc/v1'
 ]
 
@@ -124,7 +125,9 @@ createVersionedRoutes('/copied-page', function (req, res, version) {
 const maritimePaths = [
   '/ooe/v10-access-and-book/maritime-and-coastguard-agency',
   '/ooe/v10-manage-exam/maritime-and-coastguard-agency',
-  '/ooe/v10-21days-manage-exam/maritime-and-coastguard-agency'
+  '/ooe/v10-21days-manage-exam/maritime-and-coastguard-agency',
+    '/ooe/v2-less21days-manage-exam/maritime-and-coastguard-agency'
+
 ]
 
 // Register GET handler that clears session data
@@ -981,7 +984,9 @@ checkYourAnswersPaths.forEach(path => {
 const rescheduleCheckYourAnswersPaths = [
   '/ooe/v10-access-and-book/reschedule-check-your-answers',
   '/ooe/v10-manage-exam/reschedule-check-your-answers',
-  '/ooe/v10-21days-manage-exam/reschedule-check-your-answers'
+  '/ooe/v10-21days-manage-exam/reschedule-check-your-answers',
+'/ooe/v2-less21days-manage-exam/reschedule-check-your-answers'
+
 ]
 
 // POST handler for when a time slot button is clicked in reschedule flow
@@ -1061,14 +1066,17 @@ createVersionedRoutes('/reschedule-choose-a-slot', function (req, res, version) 
 const cancelExamPaths = [
   '/ooe/v10-access-and-book/cancel-exam-booking',
   '/ooe/v10-manage-exam/cancel-exam-booking',
-  '/ooe/v10-21days-manage-exam/cancel-exam-booking'
+  '/ooe/v10-21days-manage-exam/cancel-exam-booking',
+  '/ooe/v2-less21days-manage-exam/cancel-exam-booking'
 ]
 
 // Array of paths for cancellation-check-your-answers GET
 const cancellationCheckPaths = [
   '/ooe/v10-access-and-book/cancellation-check-your-answers',
   '/ooe/v10-manage-exam/cancellation-check-your-answers',
-  '/ooe/v10-21days-manage-exam/cancellation-check-your-answers'
+  '/ooe/v10-21days-manage-exam/cancellation-check-your-answers',
+    '/ooe/v2-less21days-manage-exam/cancellation-check-your-answers'
+
 ]
 
 // Register GET handlers for cancellation-check-your-answers
@@ -1137,14 +1145,18 @@ cancelExamPaths.forEach(path => {
 const cancelExam21DaysPaths = [
   '/ooe/v10-access-and-book/cancel-exam-booking-21days',
   '/ooe/v10-manage-exam/cancel-exam-booking-21days',
-  '/ooe/v10-21days-manage-exam/cancel-exam-booking-21days'
+  '/ooe/v10-21days-manage-exam/cancel-exam-booking-21days',
+    '/ooe/v2-less21days-manage-exam/cancel-exam-booking-21days'
+
 ]
 
 // Array of paths for cancellation-check-your-answers-21days GET
 const cancellationCheck21DaysPaths = [
   '/ooe/v10-access-and-book/cancellation-check-your-answers-21days',
   '/ooe/v10-manage-exam/cancellation-check-your-answers-21days',
-  '/ooe/v10-21days-manage-exam/cancellation-check-your-answers-21days'
+  '/ooe/v10-21days-manage-exam/cancellation-check-your-answers-21days',
+      '/ooe/v2-less21days-manage-exam/cancellation-check-your-answers-21days'
+
 ]
 
 // Register GET handlers for cancellation-check-your-answers-21days
@@ -1266,3 +1278,36 @@ router.get('*', function(req, res, next) {
 })
 
 module.exports = router
+
+
+// Helper function to get OOW type label
+function getOowTypeLabel(code) {
+  switch (code) {
+    case 'II3_D': return 'II/3 OOW — Less than 500GT, Category "D" Waters'
+    case 'II3_NC': return 'II/3 OOW — Less than 500GT, Near Coastal Waters'
+    case 'II1_UL': return 'II/1 OOW — Unlimited Tonnage, Unlimited Area'
+    default: return 'Not selected'
+  }
+}
+
+// Helper function to get certificate label for application-oow journey
+function getCertificateLabel(code) {
+  switch (code) {
+    case 'II1-UL': return 'II/1 OOW, Unlimited Tonnage, Unlimited Area'
+    case 'II3-D': return 'II/3 – OOW (Less than 500GT, Category "D" Waters)'
+    case 'II3-NC': return 'II/3 – OOW (Less than 500GT, Near Coastal Waters)'
+    default: return 'Not selected'
+  }
+}
+
+// Helper function to get certificate subtitle for task list
+function getCertificateSubtitle(code) {
+  switch (code) {
+    case 'II1-UL': return 'Unlimited Tonnage, Unlimited Area'
+    case 'II3-D': return 'Less than 500GT, Category "D" Waters'
+    case 'II3-NC': return 'Less than 500GT, Near Coastal Waters'
+    default: return ''
+  }
+}
+
+// Add your routes here
