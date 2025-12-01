@@ -1,0 +1,78 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+   Proof of identification – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Personal details</span>
+      <h1 class="govuk-heading-l">
+        Proof of identification
+      </h1>
+
+<p class="govuk">
+Providing an attested image of your valid passport is required to verify your identification. 
+
+The Maritime and Coastal Agency (MCA) may request additional documentation if required.</p>
+
+
+<p class="govuk"><strong>
+You have uploaded this image</strong></p>
+
+<img src="/public/images/passport.png" />
+
+
+<div class="govuk-button-group">
+  <a href="check-personaldetails"><button class="govuk-button" data-module="govuk-button">
+    Continue
+  </button></a>
+  <a href="proof-of-identification">
+  <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+    Upload new image
+  </button>
+  </a>
+</div>
+        
+    </div>
+  </div>
+
+{% endblock %}

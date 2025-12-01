@@ -1,0 +1,75 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+   Your telephone number – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Personal details</span>
+      <h1 class="govuk-heading-l">
+        Your telephone number
+      </h1>
+
+          <p class="govuk">
+We may use this email address to contact you about your application.
+</p>
+      <form class="form" action="your-date-of-birth" method="post" novalidate>
+
+        <div class="govuk-form-group">
+  <label class="govuk-label" for="phone-number">
+    Telephone number
+  </label>
+  <div id="phone-number-hint" class="govuk-hint">
+For international numbers include the country code, for example 00447421344900  </div>
+  <input class="govuk-input govuk-input--width-20" id="phone-number" name="phoneNumber" type="tel" aria-describedby="phone-number-hint" autocomplete="tel">
+</div>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
+        
+    </div>
+  </div>
+
+{% endblock %}
