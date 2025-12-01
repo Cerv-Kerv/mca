@@ -86,7 +86,7 @@
           </tr>
           <tr class="govuk-table__row">
             <th scope="row" class="govuk-table__header">Time and date</th>
-            <td class="govuk-table__cell">9:30pm (BST), 24 October 2025</td>
+            <td class="govuk-table__cell">12:30 (BST), 24 October 2025</td>
           </tr>
         </tbody>
       </table>
@@ -142,14 +142,20 @@
               text: "Other",
               checked: data['confirmRecord'] == 'other',
               conditional: {
-                html: govukCharacterCount({
-                    name: "otherReason",
-  id: "other-reason",
-  maxlength: 110,
-  label: {
-    text: "Tell us why you need to cancel",
-    classes: "govuk-label--s"
-  }
+                html: govukInput({
+                  id: "other-reason",
+                  name: "otherReason",
+                  label: {
+                    text: "Provide details",
+                    classes: "govuk-label--s"
+                  },
+                  hint: {
+                    text: "Tell us why you need to cancel"
+                  },
+                  value: data['otherReason'],
+                  errorMessage: data['other-reason-error'] == 'true' and {
+                    text: "Enter the reason you need to cancel"
+                  }
                 })
               }
             }

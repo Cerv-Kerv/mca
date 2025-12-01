@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-  Your date of birth – {{ serviceName2 }} – GOV.UK Prototype Kit
+  Your date of birth – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -15,8 +15,7 @@
   useTudorCrown: "true"
 }) }}
 {{ govukServiceNavigation({
-    serviceName: "Application for certificate of competency",
-  navigation: [   
+    serviceName: serviceName,  navigation: [   
 ],
     slots: {
     },

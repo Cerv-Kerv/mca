@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-  Provide your SDS number – {{ serviceName2 }} – GOV.UK Prototype Kit
+  Provide your SDS number – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -15,8 +15,8 @@
   useTudorCrown: "true"
 }) }}
 {{ govukServiceNavigation({
-    serviceName: "Application for certificate of competency",
-  navigation: [   
+    serviceName: serviceName,
+      navigation: [   
 ],
     slots: {
     },

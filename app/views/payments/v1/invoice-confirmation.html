@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-  Make a payment – {{ serviceName2 }} – GOV.UK Prototype Kit
+  Make a payment – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -16,7 +16,7 @@
   useTudorCrown: "true"
 }) }}
 {{ govukServiceNavigation({
-    serviceName: "Application for certificate of competency",
+    serviceName: serviceName,
   navigation: [   
 ],
     slots: {
@@ -55,13 +55,15 @@
       </h2>
 
       <p>
-        We've sent your Officer of the Watch (unlimited tonnage, unlimited area) application to the Maritime and Coastguard Agency (MCA).
+        We've sent your application for Notice of Eligibility to the Maritime and Coastguard Agency (MCA).
       </p>
       <p>An invoice for this application will be generated and sent to payee. For your application to be processed, the invoice will need to be paid in full.</p>
 
       <p>
         The MCA may contact you for more information.
       </p>
+                  <p>Refer to your <a href="">application overview</a> for what you need to do next.</p>
+
       <p>
         <a href="#">
           What did you think of this service?
