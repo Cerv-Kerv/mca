@@ -1,0 +1,44 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  Question page template – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+  text: "Back",
+  href: "javascript:window.history.back()"
+}) }}
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+            <span class="govuk-caption-l">Application for Certificate of Competency</span>
+      <h1 class="govuk-heading-l">
+        Declaration
+      </h1>
+
+      <form class="form" action="" method="post">
+
+        <p>
+          By sending the application you agree that the information you have given is complete and correct. If you deliberately give the wrong or incomplete information, or you do not report any changes, you may:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+<li>be prosecuted</li>
+<li>need to pay a financial penalty</li>
+
+        </ul>
+
+        {{ govukButton({
+          text: "Agree and submit application"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}

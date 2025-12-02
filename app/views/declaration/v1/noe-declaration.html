@@ -1,0 +1,73 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Officer of the Watch Training Routes – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+  navigation: [   
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+            <span class="govuk-caption-l">Apply for Notice of Eligibility</span>
+      <h1 class="govuk-heading-l">
+        Declaration
+      </h1>
+
+      <form class="form" action="" method="post">
+
+        <p>
+          By sending the application you agree that the information you have given is complete and correct. If you deliberately give the wrong or incomplete information, or you do not report any changes, you may:
+        </p>
+        <ul class="govuk-list govuk-list--bullet">
+<li>be prosecuted</li>
+<li>need to pay a financial penalty</li>
+
+        </ul>
+
+        {{ govukButton({
+          text: "Agree and submit application"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
