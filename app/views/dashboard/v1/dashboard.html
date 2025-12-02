@@ -19,7 +19,7 @@
       navigation: [   
       {
       href: "#",
-      text: "Dashboards",
+      text: "Dashboard",
       active: true
     },
     {
@@ -49,82 +49,138 @@
 {% endblock %}
 
 {% block content %}
+<style>
 
-  <div class="govuk-grid-row">
-    <div class="govuk-grid-column-two-thirds">
+    .card {
+      margin-bottom: 40px;
+      background: #fff;
+      border: 1px solid #d9dadb;
+      position: relative;
+      width: 100%;
+      padding: 25px
+    }
+    
+    .card__heading {
+      margin-top: 0;
+      margin-bottom: 15px
+    }
+    
+    .card__description {
+      margin-bottom: 0
+    }
+    
+    .card--clickable {
+      border-bottom-width: 5px
+    }
+    
+    .card--clickable:hover,.card--clickable:active {
+      cursor: pointer
+    }
+    
+    .card--clickable:hover .card__heading a,.card--clickable:hover .card__link,.card--clickable:active .card__heading a,.card--clickable:active .card__link {
+      color: #003078;
+      text-decoration: none
+    }
+    
+    .card--clickable:hover .card__heading a:focus,.card--clickable:hover .card__link:focus,.card--clickable:active .card__heading a:focus,.card--clickable:active .card__link:focus {
+      outline: 3px solid transparent;
+      color: #0b0c0c;
+      background-color: #fd0;
+      box-shadow: 0 -2px #fd0,0 4px #0b0c0c;
+      text-decoration: none
+    }
+    
+    .card--clickable:hover {
+      border-color: #b1b4b6
+    }
+    
+    .card--clickable:active {
+      border-color: #b1b4b6;
+      bottom: -1px
+    }
+    
+    .card-group {
+      display: flex;
+      flex-wrap: wrap;
+      margin-bottom: 15px;
+      padding: 0
+    }
+    
+    @media(max-width: 48.0525em) {
+      .card-group {
+        margin-bottom:30px
+      }
+    }
+    
+    .card-group__item {
+      display: flex;
+      list-style-type: none;
+      margin-bottom: 0
+    }
+    
+    @media(max-width: 48.0525em) {
+      .card-group__item {
+        flex:0 0 100%
+      }
+    }
+    
+    .card-group__item .card {
+      margin-bottom: 25px
+    }
+    
+    @media(max-width: 48.0525em) {
+      .card-group__item .card {
+        margin-bottom:15px
+      }
+    
+      .card-group__item:last-child .card {
+        margin-bottom: 0
+      }
+    }
+    
+    
+</style>
+
+
+    <div class="govuk-width-container">
 
       <h1 class="govuk-heading-l">
         Dashboard
       </h1>
-
-      <div class="govuk-grid-row govuk-!-padding-bottom-6">
-     <div class="mca-card-container">
-<div class="govuk-grid-column-one-half mcga-card-group__item">
-        <a class="mcga-link govuk-link--no-visited-state" href="/ooe/v10-access-and-book/exams">
-          <div class="mcga-card--clickable">
-            <div class="mcga-card__content">
-              <h3 class="govuk-heading-m">Applications</h3>
-              <p class="govuk-body-m govuk-!-margin-bottom-0 content-spaces">Something here</p>
-            </div>
-          </div>
-        </a>
-      </div>
-
-    <div class="govuk-grid-row govuk-!-padding-bottom-6">
-     <div class="mca-card-container">
-<div class="govuk-grid-column-one-half mcga-card-group__item">
-        <a class="mcga-link govuk-link--no-visited-state" href="/ooe/v10-access-and-book/exams">
-          <div class="mcga-card--clickable">
-            <div class="mcga-card__content">
-              <h3 class="govuk-heading-m">Exams</h3>
-              <p class="govuk-body-m govuk-!-margin-bottom-0 content-spaces">Book or manage exams</p>
-            </div>
-          </div>
-        </a>
-      </div>
-
-      <div class="govuk-grid-column-one-half mcga-card-group__item">
-        <a class="mcga-link govuk-link--no-visited-state" href="/profile">
-          <div class="mcga-card--clickable">
-            <div class="mcga-card__content">
-              <h3 class="govuk-heading-m">Profile</h3>
-              <p class="govuk-!-margin-bottom-0">Manage your personal details and account settings</p>
-            </div>
-          </div>
-        </a>
-      </div>
+        <ul class="govuk-grid-row card-group">
+            <li class="govuk-grid-column-one-third card-group__item">
+                <div class="card card--clickable" data-test="global-search">
+                    <h2 class="govuk-heading-m card__heading">
+                        <a class="govuk-link card__link govuk-link--no-visited-state" href="#" onclick="showAlert()">Applications</a>
+                    </h2>
+                    <p class="govuk-body card__description">View all your applications</p>
+                </div>
+            </li>
+            <li class="govuk-grid-column-one-third card-group__item">
+                <div class="card card--clickable" data-test="manage-prisoner-whereabouts">
+                    <h2 class="govuk-heading-m card__heading">
+                        <a class="govuk-link card__link govuk-link--no-visited-state" href="#" onclick="showAlert()">Exams</a>
+                    </h2>
+                    <p class="govuk-body card__description">Manage your exams</p>
+                </div>
+            </li>
+            <!--li class="govuk-grid-column-one-third card-group__item">
+                <div class="card card--clickable" data-test="use-of-force">
+                    <h2 class="govuk-heading-m card__heading">
+                        <a class="govuk-link card__link govuk-link--no-visited-state" href="#" onclick="showAlert()">Use of force incidents</a>
+                    </h2>
+                    <p class="govuk-body card__description">Manage and view incident reports and statements.</p>
+                </div>
+            </li-->
+        </ul>
     </div>
-    </div>
+    
+    
+
+      
 
     </div> 
 
-   <!-- RELATED LINKS ASIDE
-     <div class="govuk-grid-column-one-third">
-      <aside class="govuk-prototype-kit-common-templates-related-items" role="complementary">
-        <h2 class="govuk-heading-m" id="subsection-title">
-          Related content
-        </h2>
-        <nav role="navigation" aria-labelledby="subsection-title">
-          <ul class="govuk-list govuk-!-font-size-16">
-            <li>
-              <a href="#">
-                Related link
-              </a>
-            </li>
-            <li>
-              <a href="#">
-                Related link
-              </a>
-            </li>
-            <li>
-              <a href="#" class="govuk-!-font-weight-bold">
-                More <span class="govuk-visually-hidden">in Subsection</span>
-              </a>
-            </li>
-          </ul>
-        </nav>
-      </aside>
-    </div> ENDS RELATED LINKS ASIDE -->
 
   </div>
 
