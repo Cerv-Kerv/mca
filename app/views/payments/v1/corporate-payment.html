@@ -16,7 +16,20 @@ Pay online – {{ serviceName }} – GOV.UK Prototype Kit
 }) }}
 {{ govukServiceNavigation({
     serviceName: serviceName,
-  navigation: [   
+      navigation: [   
+      {
+      href: "/dashboard/v1/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "#",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Exams"
+    }
 ],
     slots: {
     },
