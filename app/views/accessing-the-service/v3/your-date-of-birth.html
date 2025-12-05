@@ -1,0 +1,110 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Your date of birth – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,  navigation: [   
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}     
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+            <span class="govuk-caption-l">Personal details</span>
+      <h1 class="govuk-heading-l">
+        Your date of birth
+      </h1>
+
+          <p class="govuk">
+            Your date of birth is used as part of verification when you return to this service and to ensure you meet the requirements for applications.
+</p>
+
+      <form class="form" action="your-home-address" method="post" novalidate>
+
+        {% from "govuk/components/date-input/macro.njk" import govukDateInput %}
+
+        {{ govukDateInput({
+          id: "dob",
+          namePrefix: "dob",
+          fieldset: {
+          },
+          hint: {
+            text: "For example, 31 3 1980"
+          },
+          errorMessage: data['dob-error'] == 'true' and {
+            text: data['dob-error-message']
+          },
+          items: [
+            {
+              name: "day",
+              classes: "govuk-input--width-2" + (" govuk-input--error" if data['dob-day-error']),
+              value: data['dob-day'],
+              autocomplete: "bday-day",
+              attributes: {
+                inputmode: "numeric"
+              }
+            },
+            {
+              name: "month",
+              classes: "govuk-input--width-2" + (" govuk-input--error" if data['dob-month-error']),
+              value: data['dob-month'],
+              autocomplete: "bday-month",
+              attributes: {
+                inputmode: "numeric"
+              }
+            },
+            {
+              name: "year",
+              classes: "govuk-input--width-4" + (" govuk-input--error" if data['dob-year-error']),
+              value: data['dob-year'],
+              autocomplete: "bday-year",
+              attributes: {
+                inputmode: "numeric"
+              }
+            }
+          ]
+        }) }}
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
