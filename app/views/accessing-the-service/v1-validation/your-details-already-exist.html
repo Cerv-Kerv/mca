@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-   Check your personal details – {{ serviceName }} – GOV.UK Prototype Kit
+   You already exist – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -46,14 +46,12 @@
 
       <span class="govuk-caption-l">Personal details</span>
       <h1 class="govuk-heading-l">
-        You are already known to the Maritime and Coastal Agency (MCA)
-      </h1>
+We have matched your credentials to an existing Maritime and Coastal Agency (MCA) record      </h1>
 
-          <p class="govuk-body">Use your seafarer reference number to access this service</p>
+          <p class="govuk-body">Use your seafarer reference number (SRN) or seafarer documentation system (SDS) number to access this service.</p>
 
-      <form action="/v3/seafarer-reference-number" method="post" novalidate>
+      <form action="/accessing-the-service/v3/seafarer-reference-number" method="" novalidate>
 
-        <input type="hidden" name="answers-checked" value="true">
 
         {{ govukButton({
           text: "Continue"
