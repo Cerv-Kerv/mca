@@ -1,0 +1,212 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+Pay online – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v1/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "#",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Corporate payment</h1>
+      
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+      
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Application"
+            },
+            value: {
+              text: "Application title eg Application for Notice of Eligibility (OOW Unlimited II/1)"
+            }
+          },
+                    {
+            key: {
+              text: "Application reference"
+            },
+            value: {
+              text: "12568912XXX220"
+            }
+          },
+          {
+            key: {
+              text: "Cost"
+            },
+            value: {
+              text: "£220.00"
+            }
+          }
+        ]
+      }) }}
+
+<h2 class="govuk-heading-m">Who is paying?</h2>
+
+{{ govukInput({
+  label: {
+    text: "Paying organisation",
+    classes: "govuk-label--s"
+  },
+  hint: {
+    text: "Provide the full name of the organisation"
+  },
+  id: "event-name",
+  name: "eventName"
+}) }}
+
+{% set invoiceNumber %}
+{% call govukFieldset({
+}) %}
+
+
+  {{ govukInput({
+    label: {
+      text: "Provide invoice number"
+    },
+    id: "invoiceNumber",
+    name: "invoiceNumber"
+  }) }}
+
+{% endcall %}
+{% endset -%}
+
+{{ govukRadios({
+  name: "contact",
+  fieldset: {
+    legend: {
+      text: "Do you have an invoice number?",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [
+    {
+      value: "invoicenumber-yes",
+      text: "Yes",
+      conditional: {
+        html: invoiceNumber
+      }
+    },
+    {
+      value: "invoicenumber-no",
+      text: "No"
+    
+    }
+  ]
+}) }}
+
+{% set rollingaccNumberHtml %}
+{% call govukFieldset({
+}) %}
+
+
+  {{ govukInput({
+    label: {
+      text: "Rolling account number"
+    },
+    id: "rollingaccNumberHtml",
+    name: "rollingaccNumberHtml"
+  }) }}
+
+{% endcall %}
+{% endset -%}
+
+{{ govukRadios({
+  name: "rollingaccNumber",
+  fieldset: {
+    legend: {
+      text: "Do you have a rolling account number?",
+      classes: "govuk-fieldset__legend--s"
+    }
+  },
+  items: [
+    {
+      value: "rollingaccnumber-yes",
+      text: "Yes",
+      conditional: {
+        html: rollingaccNumberHtml
+      }
+    },
+    {
+      value: "rollingaccnumber-no",
+      text: "No"
+    
+    }
+  ]
+}) }}
+
+      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+        
+        {{ govukCheckboxes({
+          idPrefix: "privacy",
+          name: "privacy-notice",
+          errorMessage: data['privacy-error'] == 'true' and {
+            text: "You must confirm that you have authorisation from the payee to use this payment method"
+          },
+          fieldset: {
+            legend: {
+              text: "By selecting continue, I confirm that:",
+              classes: "govuk-fieldset__legend"
+            }
+          },
+          items: [
+            {
+              value: "confirmed",
+              html: 'The paying organisation has given me authority to use their account to pay for this application.',
+              checked: data['privacy-notice'] == 'confirmed'
+            }
+          ]
+        }) }}
+      
+
+<a class="govuk-button" data-module="govuk-button" href="check-corporate-payment.html">
+  Continue
+</a>
+
+
+
+
+
+    </div>
+  </div>
+{% endblock %}

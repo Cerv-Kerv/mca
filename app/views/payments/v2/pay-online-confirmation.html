@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-   Your nationality – {{ serviceName }} – GOV.UK Prototype Kit
+  Payment confirmation – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -12,11 +12,25 @@
 
 {{ hmrcHeader({
   serviceUrl : "/",
+  signOutHref : "?sign-out",
   useTudorCrown: "true"
 }) }}
 {{ govukServiceNavigation({
     serviceName: serviceName,
       navigation: [   
+      {
+      href: "/dashboard/v1/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "#",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Exams"
+    }
 ],
     slots: {
     },
@@ -32,10 +46,6 @@
     html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
   }) }}
   
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
 
 {% endblock %}
 
@@ -44,27 +54,33 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Personal details</span>
-      <h1 class="govuk-heading-l">
-       Tell us which country issued the passport that you are using for your application
-      </h1>
+      {{ govukPanel({
+        titleText: "Application submitted",
+        html: "Your reference number<br><strong>12568912XXX220</strong>"
+      }) }}
 
-          
+      <p>
+        We have sent you a confirmation email.
+      </p>
 
-<form class="form" action="country-of-birth" method="post" novalidate>
+      <h2 class="govuk-heading-m">
+        What happens next
+      </h2>
 
-<div class="govuk-form-group">
-  <label class="govuk-label" for="passport-country">
-    Which country issued your passport?
-  </label>
-  <input class="govuk-input govuk-!-width-two-thirds" id="passport-country" name="passport-country" type="text" spellcheck="false" autocomplete="country">
-</div>
-        <button type="submit" class="govuk-button" data-module="govuk-button">
-          Continue
-        </button>
+      <p>
+We have sent your application for a Notice of Eligibility (NoE) to the Maritime and Coastguard Agency (MCA)</p>
+      <p>
+        The MCA may contact you for more information.
+      </p>
+                  <p>Refer to your <a href="">application overview</a> for what you need to do next.</p>
 
-      </form>
-        
+      <p>
+        <a href="#">
+          What did you think of this service?
+        </a> (takes 30 seconds)
+      </p>
+
+
     </div>
   </div>
 

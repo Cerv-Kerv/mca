@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-  Do you have a seafarer reference number? – {{ serviceName }} – GOV.UK Prototype Kit
+  Make a payment – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -12,11 +12,25 @@
 
 {{ hmrcHeader({
   serviceUrl : "/",
+  signOutHref : "?sign-out",
   useTudorCrown: "true"
 }) }}
 {{ govukServiceNavigation({
     serviceName: serviceName,
-  navigation: [   
+      navigation: [   
+      {
+      href: "/dashboard/v1/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "#",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Exams"
+    }
 ],
     slots: {
     },
@@ -42,8 +56,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Do you have a Seafarer Reference Number (SRN)?</h1>
-      <p class="govuk-body">Your seafarer reference number may also be known to you as a seafarer documentation system (SDS) number. This reference number is usually found in your Notice of Eligibility (NOE) email or other related documentation. </p>
+      <h1 class="govuk-heading-l">Make a payment</h1>
 
       {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
@@ -56,15 +69,8 @@
         
         {% if data['confirm-error'] == 'true' %}
           {% set errorList = (errorList.push({
-            text: "Select an option",
-            href: "#confirm-record"
-          }), errorList) %}
-        {% endif %}
-        
-        {% if data['other-reason-error'] == 'true' %}
-          {% set errorList = (errorList.push({
-            text: "Enter the reason you need to cancel",
-            href: "#other-reason"
+            text: "Select a payment method",
+            href: "#payonline"
           }), errorList) %}
         {% endif %}
 
@@ -74,19 +80,65 @@
         }) }}
       {% endif %}
 
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Application"
+            },
+            value: {
+              text: "Application title eg Application for Notice of Eligibility (OOW Unlimited II/1)"
+            }
+          },
+          {
+            key: {
+              text: "Application reference"
+            },
+            value: {
+              text: "12568912XXX220"
+            }
+          },
+          {
+            key: {
+              text: "Cost"
+            },
+            value: {
+              text: "£220.00"
+            }
+          }
+        ]
+      }) }}
+
 <form>
   {{ govukRadios({
-  idPrefix: "Pay online",
+  idPrefix: "payonline",
   name: "redirect",
-  
+  fieldset: {
+    legend: {
+      text: "Select a payment method",
+      isPageHeading: false,
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+            errorMessage: data['confirm-error'] == 'true' and {
+            text: "Select a payment method"
+          },
   items: [
     {
-      value: "~seafarer-reference-number.html",
-      text: "Yes"
+      value: "~pay-online.html",
+      text: "Online payment"
     },
     {
-      value: "~your-name.html",
-      text: "No"
+      value: "~bank-transfer.html",
+      text: "Bank transfer"
+    },
+    {
+      value: "~request-an-invoice.html",
+      text: "Request an invoice"
+    },
+        {
+      value: "~corporate-payment.html",
+      text: "Corporate payment"
     }
   ]
 }) }}
@@ -95,31 +147,7 @@
   text: "Continue"
 }) }}
 </form>
-              <details class="govuk-details" data-module="govuk-details">
-          <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">
-              Cannot find your SRN or SDS number
-            </span>
-          </summary>
-          <div class="govuk-details__text">
-            <p class="govuk-body">
-              If you cannot find your SRN or SDS number you can request it by:
-            </p>
-            <h2 class="govuk-heading-s">
-        Email
-      </h2>
-         <ul class="govuk-list govuk-list--bullet">
-         <li><a href="mailto:example@email.com" class="govuk-link">deck@mcga.gov.uk</a> (for deck officers)</li>
-        <li><a href="mailto:example@email.com" class="govuk-link">engineering@mcga.gov.uk</a> (for engineer officers)</li>
-      </ul>
-      <h2 class="govuk-heading-s">
-        Phone
-      </h2>
-      <p>
-       +44 (0)20 3817 2200
-        </p>
-          </div>
-        </details>
+
 
 {% endblock %}
 
