@@ -49,14 +49,14 @@
         You are already known to the Maritime and Coastal Agency (MCA)
       </h1>
 
-          <p class="govuk-body">Your supplied information appears to match </p>
+          <p class="govuk-body">Please use your seafarer reference number to access this service</p>
 
-      <form action="/dashboard/v1/dashboard" method="post" novalidate>
+      <form action="/v3/seafarer-reference-number" method="post" novalidate>
 
         <input type="hidden" name="answers-checked" value="true">
 
         {{ govukButton({
-          text: "Save and continue"
+          text: "Continue"
         }) }}
 
       </form>
