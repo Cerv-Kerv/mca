@@ -46,19 +46,43 @@
 
       <span class="govuk-caption-l">Personal details</span>
       <h1 class="govuk-heading-l">
-We have matched your credentials to an existing Maritime and Coastal Agency (MCA) record      </h1>
+We cannot match your credentials to an existing Maritime and Coastal Agency (MCA) record</h1>
 
-          <p class="govuk-body">Use your seafarer reference number (SRN) or seafarer documentation system (SDS) number to access this service.</p>
+<p class="govuk-body">You can try entering your information again.</p>
+
 
       <form action="/accessing-the-service/v3/seafarer-reference-number" method="" novalidate>
 
 
         {{ govukButton({
-          text: "Continue"
+          text: "Try again"
         }) }}
 
       </form>
-
+ <details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+              Get help
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p class="govuk-body">
+              If you need help to access this service:
+            </p>
+            <h2 class="govuk-heading-s">
+        Email
+      </h2>
+         <ul class="govuk-list govuk-list--bullet">
+         <li><a href="mailto:example@email.com" class="govuk-link">seafareroperations@mcga.gov.uk</a></li>
+      </ul>
+      <h2 class="govuk-heading-s">
+        Phone
+      </h2>
+      <p>
+       +44 (0)33 3399 0040
+        </p>
+          </div>
+        </details>
         
     </div>
   </div>
