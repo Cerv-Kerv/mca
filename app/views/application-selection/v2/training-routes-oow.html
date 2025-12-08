@@ -1,0 +1,100 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Officer of the Watch Training Routes – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v1/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "#",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+            <span class="govuk-caption-l">Application selection</span>
+
+      <h1 class="govuk-heading-l">Select the training route you are following</h1>
+
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+      {% from "govuk/components/input/macro.njk" import govukInput %}
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+
+<form>
+  {{ govukRadios({
+  idPrefix: "OOWtraining",
+  name: "redirect",
+  
+  items: [
+    {
+      value: "~check-application-selection.html",
+      text: "Foundation Degree / MCA-approved Honours Degree / Scottish Professional Diploma"
+    },
+    {
+      value: "",
+      text: "HNC / HND / Advanced Diploma (UK cadet route)"
+    },
+    {
+      value: "",
+      text: "Overseas Collaborative Programme (1+1)"
+    },
+    {
+      value: "",
+      text: "Experienced Seafarer Route"
+    }
+  ]
+}) }}
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+</form>
+              
+
+{% endblock %}
+

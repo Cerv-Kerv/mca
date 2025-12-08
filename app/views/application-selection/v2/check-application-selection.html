@@ -1,0 +1,124 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Check your application selection – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v1/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "#",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Check application selection</h1>
+      
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+      
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Capacity"
+            },
+            value: {
+              text: "Officer of the Watch"
+            },
+            actions: {
+              items: [
+                {
+                  href: "capacity.html",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Limitation"
+            },
+            value: {
+              text: "OOW Unlimited II/1"
+            },
+            actions: {
+              items: [
+                {
+                  href: "limitation.html",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Training route"
+            },
+            value: {
+              html: "Foundation Degree / MCA-approved Honours Degree / Scottish Professional Diploma"
+            },
+            actions: {
+              items: [
+                {
+                  href: "training-routes-oow.html",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      
+
+<a class="govuk-button" data-module="govuk-button" href="invoice-confirmation.html">
+   Start application </a>
+
+    </div>
+  </div>
+{% endblock %}
