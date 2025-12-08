@@ -1,5 +1,5 @@
 {
-  "serviceName": "Application for certificate of competency",
+  "serviceName": "Service name",
   "plugins": {
     "govuk-frontend": {
       "rebrand": true
