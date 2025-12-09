@@ -45,6 +45,9 @@
       <h1 class="govuk-heading-l">Do you have a Seafarer Reference Number (SRN)?</h1>
       <p class="govuk-body">Your seafarer reference number may also be known to you as a seafarer documentation system (SDS) number. This reference number is usually found in your Notice of Eligibility (NOE) email or other related documentation. </p>
 
+      <p class="govuk-body">If you know that you have a seafarer reference number, but do not know what it is, select 'Yes'.</p>
+      <p class="govuk-body">We will match your credentials to your existing Maritime and Coastal Agency (MCA) record.</p>
+
       {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
       {% from "govuk/components/input/macro.njk" import govukInput %}
@@ -95,30 +98,6 @@
   text: "Continue"
 }) }}
 </form>
-              <details class="govuk-details" data-module="govuk-details">
-          <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">
-              Cannot find your SRN or SDS number
-            </span>
-          </summary>
-          <div class="govuk-details__text">
-            <p class="govuk-body">
-              If you cannot find your SRN or SDS number you can request it by:
-            </p>
-            <h2 class="govuk-heading-s">
-        Email
-      </h2>
-         <ul class="govuk-list govuk-list--bullet">
-         <li><a href="mailto:example@email.com" class="govuk-link">seafareroperations@mcga.gov.uk</a></li>
-      </ul>
-      <h2 class="govuk-heading-s">
-        Phone
-      </h2>
-      <p>
-       +44 (0)33 3399 0040
-        </p>
-          </div>
-        </details>
 
 {% endblock %}
 
