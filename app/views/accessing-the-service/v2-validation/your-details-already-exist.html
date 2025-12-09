@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-  Your name – {{ serviceName }} – GOV.UK Prototype Kit
+   You already exist – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -44,35 +44,21 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-
       <span class="govuk-caption-l">Personal details</span>
       <h1 class="govuk-heading-l">
-        Tell us your name
-      </h1>
+We have matched your credentials to an existing Maritime and Coastal Agency (MCA) record</h1>
 
-          <p class="govuk" >
-Provide your names as they appear on your passport. If you do not have a last name, provide a first name only.
-</p>
-      <form class="form" action="your-email" method="post" novalidate>
+          <p class="govuk-body">Use your seafarer reference number (SRN) or seafarer documentation system (SDS) number to access this service.</p>
 
-        <div class="govuk-form-group">
-  <label class="govuk-label" for="full-name">
-    First names
-  </label>
-  <input class="govuk-input" id="full-name" name="fullName" type="text" spellcheck="false" autocomplete="name">
-</div>
-<div class="govuk-form-group">
-  <label class="govuk-label" for="full-name">
-    Last name
-  </label>
-  <input class="govuk-input" id="full-name" name="fullName" type="text" spellcheck="false" autocomplete="name">
-</div>
+      <form action="/accessing-the-service/v3/seafarer-reference-number" method="" novalidate>
 
-        <button type="submit" class="govuk-button" data-module="govuk-button">
-          Continue
-        </button>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
 
       </form>
+
         
     </div>
   </div>

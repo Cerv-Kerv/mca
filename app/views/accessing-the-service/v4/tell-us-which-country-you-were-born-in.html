@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-  Your name – {{ serviceName }} – GOV.UK Prototype Kit
+   Your country of birth – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -44,30 +44,17 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-
       <span class="govuk-caption-l">Personal details</span>
       <h1 class="govuk-heading-l">
-        Tell us your name
+        Tell us which country you were born in
       </h1>
 
-          <p class="govuk" >
-Provide your names as they appear on your passport. If you do not have a last name, provide a first name only.
-</p>
-      <form class="form" action="your-email" method="post" novalidate>
+          <form class="form" action="tell-us-your-place-of-birth" method="post" novalidate>
 
-        <div class="govuk-form-group">
-  <label class="govuk-label" for="full-name">
-    First names
-  </label>
-  <input class="govuk-input" id="full-name" name="fullName" type="text" spellcheck="false" autocomplete="name">
-</div>
 <div class="govuk-form-group">
-  <label class="govuk-label" for="full-name">
-    Last name
-  </label>
-  <input class="govuk-input" id="full-name" name="fullName" type="text" spellcheck="false" autocomplete="name">
+  <!--label class="govuk-label" for="countryofbirth">Which country were you born in?</label-->
+  <input class="govuk-input govuk-!-width-two-thirds" id="passport-country" name="passport-country" type="text" spellcheck="false" autocomplete="country">
 </div>
-
         <button type="submit" class="govuk-button" data-module="govuk-button">
           Continue
         </button>

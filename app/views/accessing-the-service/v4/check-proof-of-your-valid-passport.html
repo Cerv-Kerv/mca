@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-  Your name – {{ serviceName }} – GOV.UK Prototype Kit
+   Proof of identification – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -44,35 +44,31 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-
-      <span class="govuk-caption-l">Personal details</span>
       <h1 class="govuk-heading-l">
-        Tell us your name
+        Provide proof of your valid passport
       </h1>
 
-          <p class="govuk" >
-Provide your names as they appear on your passport. If you do not have a last name, provide a first name only.
-</p>
-      <form class="form" action="your-email" method="post" novalidate>
+<p class="govuk">We require an image of your valid passport to verify your identity.</p>
 
-        <div class="govuk-form-group">
-  <label class="govuk-label" for="full-name">
-    First names
-  </label>
-  <input class="govuk-input" id="full-name" name="fullName" type="text" spellcheck="false" autocomplete="name">
+<p class="govuk">The Maritime and Coastal Agency (MCA) may request additional documentation if required.</p>
+
+
+<p class="govuk"><strong>
+You have uploaded this image</strong></p>
+
+<img src="/public/images/passport.png" />
+
+
+<div class="govuk-button-group">
+  <a href="check-the-personal-details-you-provided"><button class="govuk-button" data-module="govuk-button">
+    Continue
+  </button></a>
+  <a href="provide-proof-of-your-valid-passport.html">
+  <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+    Upload a new image
+  </button>
+  </a>
 </div>
-<div class="govuk-form-group">
-  <label class="govuk-label" for="full-name">
-    Last name
-  </label>
-  <input class="govuk-input" id="full-name" name="fullName" type="text" spellcheck="false" autocomplete="name">
-</div>
-
-        <button type="submit" class="govuk-button" data-module="govuk-button">
-          Continue
-        </button>
-
-      </form>
         
     </div>
   </div>
