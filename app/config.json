@@ -1,5 +1,5 @@
 {
-  "serviceName": "Apply for or manage seafarer certification",
+  "serviceName": "Apply for and manage seafarer certificates",
   "plugins": {
     "govuk-frontend": {
       "rebrand": true
