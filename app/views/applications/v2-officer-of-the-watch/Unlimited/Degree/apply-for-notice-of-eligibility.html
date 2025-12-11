@@ -1,0 +1,272 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Apply for Notice of Eligibility – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v1/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "#",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">OOW Unlimited II/1</span>
+      <h1 class="govuk-heading-l">
+        Apply for Notification of Eligibility
+      </h1>
+
+      <p class="govuk-body-s govuk-!-margin-bottom-7">Last update 13 October 2025</p>
+
+
+<h2 class="govuk-heading-m">Identity and medical</h2>
+
+      {{ govukTaskList({
+        idPrefix: "id-medical",
+        items: [
+        {
+            title: {
+              text: "Passport style photo"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Signature"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Medical certificate"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          }
+
+        ]
+      }) }}
+
+<h2 class="govuk-heading-m">Training and education</h2>
+
+      {{ govukTaskList({
+        idPrefix: "training",
+        items: [
+          {
+            title: {
+              text: "College education and training enrolment letter"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "STCW A-VI/1-1 Personal Survival Techniques"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "STCW A-VI/1-2 Fire Prevention & Fire Fighting"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "STCW A-VI/1-3 Elementary First Aid"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "STCW A-VI/1-4 Personal Safety & Social Responsibility"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          }
+
+        ]
+      }) }}
+
+<h2 class="govuk-heading-m">Seagoing service evidence</h2>
+
+      {{ govukTaskList({
+        idPrefix: "training",
+        items: [
+          {
+            title: {
+              text: "Training Book Record"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Discharge book"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Seagoing Service Record"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          }
+
+        ]
+      }) }}
+
+<h2 class="govuk-heading-m">Submission</h2>
+
+      {{ govukTaskList({
+        idPrefix: "submission",
+        items: [
+          {
+            title: {
+              text: "SMarT Funded status"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Return address"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Declaration"
+            }
+          },
+          {
+            title: {
+              text: "Make a payment"
+            }
+          }
+        ]
+      }) }}
+
+    </div>
+  </div>
+
+{% endblock %}

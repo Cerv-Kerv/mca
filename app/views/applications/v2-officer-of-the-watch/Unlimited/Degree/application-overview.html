@@ -46,10 +46,6 @@
     html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
   }) }}
   
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
 
 {% endblock %}
 
@@ -61,138 +57,86 @@
         Officer of the Watch
       </h1>
 
-      <p class="govuk-body govuk-!-margin-bottom-7">Last update 13 October 2025</p>
+      <p class="govuk-body-s govuk-!-margin-bottom-7">Last update 13 October 2025</p>
 
 
-      {% from "govuk/components/table/macro.njk" import govukTable %}
-
-{{ govukTable({
-    firstCellIsHeader: false,
-  head: [
-    {
-      text: ""
-    },
-    {
-      text: ""
-    }
-  ],
-  rows: [
-    [
-      {
-        text: "Limitation"
-      },
-      {
-        text: "OOW Unlimited II/1"
-      }
-    ],
-    [
-      {
-        text: "Training route"
-      },
-      {
-        text: "Foundation Degree / MCA-approved Honours Degree / Scottish Professional Diploma"
-      }
-    ],
-    [
-      {
-        text: "Application reference"
-      },
-      {
-        text: "APP1234678"
-      }
-    ],
-    [
-      {
-        text: "Cost"
-      },
-      {
-        text: "£220"
-      }
-    ]
-  ]
-}) }}
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+      
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Limitation"
+            },
+            value: {
+              text: "OOW Unlimited II/1"
+            }
+          },
+           {
+            key: {
+              text: "Training route"
+            },
+            value: {
+              text: "Foundation Degree / MCA-approved Honours Degree / Scottish Professional Diploma"
+            }
+          },
+                    {
+            key: {
+              text: "Application reference"
+            },
+            value: {
+              text: "APP12345678"
+            }
+          },
+          {
+            key: {
+              text: "Cost"
+            },
+            value: {
+              text: "£220.00"
+            }
+          }
+        ]
+      }) }}
 
 
-      <ol class="govuk-prototype-kit-task-list">
-        <li>
-          <ul class="govuk-prototype-kit-task-list__items">
-            <li class="govuk-prototype-kit-task-list__item">
-              <span class="govuk-prototype-kit-task-list__task-name">
-                <a href="#" aria-describedby="eligibility-status">
-                  Check eligibility
-                </a>
-              </span>
-              <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="eligibility-status">Completed</strong>
-            </li>
-            <li class="govuk-prototype-kit-task-list__item">
-              <span class="govuk-prototype-kit-task-list__task-name">
-                <a href="#" aria-describedby="read-declaration-status">
-                  Read declaration
-                </a>
-              </span>
-              <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="read-declaration-status">Completed</strong>
-            </li>
-          </ul>
-        </li>
+      <h2 class="govuk-heading-m">Your application</h2>
 
-        <li>
-          <h2 class="govuk-prototype-kit-task-list__section">
-            <span class="govuk-prototype-kit-task-list__section-number">2. </span> Prepare application
-          </h2>
-          <ul class="govuk-prototype-kit-task-list__items">
-            <li class="govuk-prototype-kit-task-list__item">
-              <span class="govuk-prototype-kit-task-list__task-name">
-                <a href="#" aria-describedby="company-information-status">
-                  Company information
-                </a>
-              </span>
-              <strong class="govuk-tag govuk-prototype-kit-task-list__tag" id="company-information-status">Completed</strong>
-            </li>
-            <li class="govuk-prototype-kit-task-list__item">
-              <span class="govuk-prototype-kit-task-list__task-name">
-                <a href="#" aria-describedby="contact-details-status">
-                  Your contact details
-                </a>
-              </span>
-              <strong class="govuk-tag govuk-tag--blue govuk-prototype-kit-task-list__tag" id="contact-details-status">In progress</strong>
-            </li>
-            <li class="govuk-prototype-kit-task-list__item">
-              <span class="govuk-prototype-kit-task-list__task-name">
-                <a href="#" aria-describedby="list-convictions-status">
-                  List convictions
-                </a>
-              </span>
-              <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="list-convictions-status">Not started</strong>
-            </li>
-            <li class="govuk-prototype-kit-task-list__item">
-              <span class="govuk-prototype-kit-task-list__task-name">
-                Provide financial evidence
-              </span>
-              <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="financial-evidence-status">Cannot start yet</strong>
-            </li>
-            <li class="govuk-prototype-kit-task-list__item">
-              <span class="govuk-prototype-kit-task-list__task-name">
-                Give medical information
-              </span>
-              <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="medical-information-status">Cannot start yet</strong>
-            </li>
-          </ul>
-        </li>
+      {{ govukTaskList({
+        idPrefix: "before-you-start",
+        items: [
+          {
+            title: {
+              text: "Apply for Notice of Eligibility (NoE)"
+            },
+            href: "#",
+            status: {
+              text: "not started yet"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part A exam "
+            }
+          },
+          {
+            title: {
+              text: "Pass Part B exam "
+            }
+          },
+          {
+            title: {
+              text: "Add supporting documents and evidence"
+            },
+            href: "#",
+            status: {
+              text: "not started yet"
+            }
+          }
+        ]
+      }) }}
+      
 
-        <li>
-          <h2 class="govuk-prototype-kit-task-list__section">
-            <span class="govuk-prototype-kit-task-list__section-number">3. </span> Apply
-          </h2>
-          <ul class="govuk-prototype-kit-task-list__items">
-            <li class="govuk-prototype-kit-task-list__item">
-              <span class="govuk-prototype-kit-task-list__task-name">
-                Submit and pay
-              </span>
-              <strong class="govuk-tag govuk-tag--grey govuk-prototype-kit-task-list__tag" id="submit-pay-status">Cannot start yet</strong>
-            </li>
-          </ul>
-        </li>
-      </ol>
     </div>
   </div>
 
