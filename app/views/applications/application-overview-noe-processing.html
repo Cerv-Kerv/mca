@@ -90,7 +90,7 @@
           },
           {
             key: {
-              text: "Cost"
+              text: "Amount paid"
             },
             value: {
               text: "£[220.00]"
@@ -105,13 +105,15 @@
       {{ govukTaskList({
         idPrefix: "before-you-start",
         items: [
-          {
+   {
             title: {
               text: "Apply for Notice of Eligibility (NoE)"
             },
-            href: "apply-for-notice-of-eligibility",
             status: {
-              text: "not started yet"
+              tag: {
+              text: "processing",
+              classes: "govuk-tag--yellow"
+            }
             }
           },
           {

@@ -59,44 +59,20 @@
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">[Limitation]</span>
       <h1 class="govuk-heading-l">
-        Apply for Notification of Eligibility
+        Supporting evidence
       </h1>
 
       <p class="govuk-body-s govuk-!-margin-bottom-7">Last update [13 October 2025]</p>
 
 
-<h2 class="govuk-heading-m">Identity and medical</h2>
+<h2 class="govuk-heading-m">Training and education</h2>
 
       {{ govukTaskList({
         idPrefix: "id-medical",
         items: [
         {
             title: {
-              text: "Passport style photo"
-            },
-            href: "#",
-            status: {
-              tag: {
-                text: "Incomplete",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-          {
-            title: {
-              text: "Signature"
-            },
-            href: "#",
-            status: {
-              tag: {
-                text: "Incomplete",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-          {
-            title: {
-              text: "Medical certificate"
+              text: "College education and training completion letter"
             },
             href: "#",
             status: {
@@ -110,14 +86,14 @@
         ]
       }) }}
 
-<h2 class="govuk-heading-m">Training and education</h2>
+<h2 class="govuk-heading-m">Advanced STCW safety training</h2>
 
       {{ govukTaskList({
         idPrefix: "training",
         items: [
           {
             title: {
-              text: "College education and training enrolment letter"
+              text: "STCW Code A-VI/4-1 Medical First Aid"
             },
             href: "#",
             status: {
@@ -129,7 +105,7 @@
           },
           {
             title: {
-              text: "STCW A-VI/1-1 Personal Survival Techniques"
+              text: "STCW A-V1/3 Advanced Fire Fighting"
             },
             href: "#",
             status: {
@@ -141,31 +117,7 @@
           },
           {
             title: {
-              text: "STCW A-VI/1-2 Fire Prevention & Fire Fighting"
-            },
-            href: "#",
-            status: {
-              tag: {
-                text: "Incomplete",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-          {
-            title: {
-              text: "STCW A-VI/1-3 Elementary First Aid"
-            },
-            href: "#",
-            status: {
-              tag: {
-                text: "Incomplete",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-          {
-            title: {
-              text: "STCW A-VI/1-4 Personal Safety & Social Responsibility"
+              text: "STCW Code A-VI/2-1  Proficiency in Survival Craft and Rescue Boats"
             },
             href: "#",
             status: {
@@ -179,14 +131,14 @@
         ]
       }) }}
 
-<h2 class="govuk-heading-m">Seagoing service evidence</h2>
+<h2 class="govuk-heading-m">Ancillary certificates</h2>
 
       {{ govukTaskList({
         idPrefix: "training",
         items: [
           {
             title: {
-              text: "Training Book Record"
+              text: "Signals"
             },
             href: "#",
             status: {
@@ -198,7 +150,7 @@
           },
           {
             title: {
-              text: "Discharge book"
+              text: "NARAS/ NAEST Operational"
             },
             href: "#",
             status: {
@@ -210,7 +162,19 @@
           },
           {
             title: {
-              text: "Seagoing Service Record"
+              text: "Efficient Deck Hand"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Medical Fitness Certificate"
             },
             href: "#",
             status: {
@@ -224,49 +188,9 @@
         ]
       }) }}
 
-<h2 class="govuk-heading-m">Submission</h2>
-
-      {{ govukTaskList({
-        idPrefix: "submission",
-        items: [
-          {
-            title: {
-              text: "SMarT Funded status"
-            },
-            href: "#",
-            status: {
-              tag: {
-                text: "Incomplete",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-          {
-            title: {
-              text: "Return address"
-            },
-            href: "#",
-            status: {
-              tag: {
-                text: "Incomplete",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-          {
-            title: {
-              text: "Declaration"
-            }
-          },
-          {
-            title: {
-              text: "Make a payment"
-            }
-          }
-        ]
-      }) }}
 
 <p class="govuk-body"><a href="application-overview.html">Back to application overview</a></p>
+
 
     </div>
   </div>
