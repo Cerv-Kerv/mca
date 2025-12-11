@@ -1,0 +1,143 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Application overview – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v1/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "#",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-xl">
+        [Capacity]
+      </h1>
+
+      <p class="govuk-body-s govuk-!-margin-bottom-7">Last update [13 October 2025]</p>
+
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+      
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Limitation"
+            },
+            value: {
+              text: "[Limitation]"
+            }
+          },
+           {
+            key: {
+              text: "Training route"
+            },
+            value: {
+              text: "[training route]"
+            }
+          },
+                    {
+            key: {
+              text: "Application reference"
+            },
+            value: {
+              text: "[APP12345678]"
+            }
+          },
+          {
+            key: {
+              text: "Cost"
+            },
+            value: {
+              text: "£[220.00]"
+            }
+          }
+        ]
+      }) }}
+
+
+      <h2 class="govuk-heading-m">Your application</h2>
+
+      {{ govukTaskList({
+        idPrefix: "before-you-start",
+        items: [
+          {
+            title: {
+              text: "Apply for Notice of Eligibility (NoE)"
+            },
+            href: "#",
+            status: {
+              text: "not started yet"
+            }
+          },
+          {
+            title: {
+              text: "[Pass Part A exam]"
+            }
+          },
+          {
+            title: {
+              text: "[Pass Part B exam]"
+            }
+          },
+          {
+            title: {
+              text: "Add supporting documents and evidence"
+            },
+            href: "#",
+            status: {
+              text: "not started yet"
+            }
+          }
+        ]
+      }) }}
+      
+
+    </div>
+  </div>
+
+{% endblock %}
