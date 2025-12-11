@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-  Tell us your sex and gender identity – {{ serviceName }} – GOV.UK Prototype Kit
+  Tell us your registered sex at birth and your chosen gender identity – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -47,8 +47,11 @@
 
       <span class="govuk-caption-l">Personal details</span>
       <h1 class="govuk-heading-l">
-        Tell us your sex and gender identity
+Tell us your registered sex at birth and your chosen gender identity
       </h1>
+
+      <p class="govuk-body">Telling us your registered sex at birth and chosen gender identity helps us to ensure accurate identity verification.
+      </p>
 
 {% from "govuk/components/input/macro.njk" import govukInput %}
       <form class="form" action="which-country-issued-your-passport" method="post" novalidate>
@@ -73,7 +76,7 @@
   name: "sex",
   fieldset: {
     legend: {
-      text: "What is your sex?",
+      text: "What was your registered sex at birth?",
       classes: "govuk-fieldset__legend--m"
     }
   },
@@ -87,9 +90,12 @@
       text: "Male"
     },
     {
-      value: "skip",
-      text: "Prefer not to say"
-    }
+      value: "indeterminate",
+      text: "Indeterminate",
+      hint: {
+        text: "Only select indeterminate if that was your registered sex at birth and appears on your birth certificate."
+      }
+      }
   ]
 }) }}
 
@@ -97,7 +103,7 @@
   name: "genderIdentity",
   fieldset: {
     legend: {
-      text: "Is the gender you identify with the same as your sex registered at birth?",
+      text: "Is the gender you identify as, the same as your registered sex at birth?",
       classes: "govuk-fieldset__legend--m"
     }
   },
@@ -112,12 +118,14 @@
       conditional: {
         html: genderHtml
       }
-    },
-    {
-      value: "skip",
-      text: "Prefer not to say"
     }
   ]
+}) }}
+
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{{ govukInsetText({
+  text: "The Maritime Coastguard Agency (MCA) can use a Passport, a Gender Recognition Certificate (GRC), or Birth Certificate to confirm the information you provide. "
 }) }}
 
 {{ govukButton({
