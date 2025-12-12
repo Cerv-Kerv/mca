@@ -127,6 +127,18 @@
               }
             }
           },
+                    {
+            title: {
+              text: "Training course letter"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
           {
             title: {
               text: "STCW A-VI/1-1 Personal Survival Techniques"
@@ -186,7 +198,7 @@
         items: [
           {
             title: {
-              text: "Training Book Record"
+              text: "Training Record Book"
             },
             href: "#",
             status: {
@@ -210,7 +222,43 @@
           },
           {
             title: {
-              text: "Seagoing Service Record"
+              text: "Sea Service Evidence: Discharge book & Sea Service Testimonials/ Company Letter/Watchkeeping evidence (multiple uploads)"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Seagoing Service Declaration Table"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Work books"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Confirmation of defined Specified Area"
             },
             href: "#",
             status: {
@@ -224,7 +272,7 @@
         ]
       }) }}
 
-<h2 class="govuk-heading-m">Submission</h2>
+      <h2 class="govuk-heading-m">Additional details</h2>
 
       {{ govukTaskList({
         idPrefix: "submission",
@@ -252,7 +300,15 @@
                 classes: "govuk-tag--blue"
               }
             }
-          },
+          }
+        ]
+      }) }}
+
+<h2 class="govuk-heading-m">Submission</h2>
+
+      {{ govukTaskList({
+        idPrefix: "submission",
+        items: [
           {
             title: {
               text: "Declaration"
