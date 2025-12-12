@@ -262,11 +262,92 @@
         ]
       }) }}
 
+      <h2 class="govuk-heading-m">Updated safety training required if original course is over 5 years old.</h2>
+
+      {{ govukTaskList({
+        idPrefix: "training",
+        items: [
+          {
+            title: {
+              text: "Updated Training in FPFF"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Updated Training in PST"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Updated Training in AFF"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Updated Training in PSCRB"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Updated Training in Medical Care"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          }
+
+        ]
+      }) }}
+
 <h2 class="govuk-heading-m">Ancillary certificates</h2>
 
       {{ govukTaskList({
         idPrefix: "training",
         items: [
+          {
+            title: {
+              text: "GMDSS"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Incomplete",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
           {
             title: {
               text: "Signals"
