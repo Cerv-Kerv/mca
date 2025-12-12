@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-        Provide a passport-syle photo
+        Provide your signature
  – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
@@ -47,30 +47,28 @@
 
       <span class="govuk-caption-l">Apply for Notice of Eligibility</span>
       <h1 class="govuk-heading-l">
-        Provide a passport-syle photo
+        Provide your signature
       </h1>
 
-<p class="govuk">We require a passport-style photo to use for your Notice of Eligibility application. This photo will be used on documents issued to you.</p>
-<p class="govuk">View the <a class="govuk-link" rel="noreferrer noopener" target="_blank" href="https://www.passport.service.gov.uk/help/photo-rules">rules for digital passport photos (opens in a new tab)</a> to ensure you provided photos that meet these requirements.</p>
+<p class="govuk">We require your signature to use for your Notice of Eligibility application. This signature will be used on documents issued to you.</p>
+<p class="govuk">Your signature should be written using a black ballpoint pen on plain white paper.</p>
 
-<div class="govuk-form-group">
-  <label class="govuk-label" for="file-upload-1">
-    <strong>Upload a passport-style photo</strong>
-  </label>
-  <div
-    class="govuk-drop-zone"
-    data-module="govuk-file-upload">
-    <input class="govuk-file-upload" id="file-upload-1" name="fileUpload1" type="file">
-  </div>
+
+<p class="govuk"><strong>
+You have uploaded this image</strong></p>
+<p class="govuk">
+<img style="width: 400px;" src="/public/images/signature.png" /></p>
+
+<div class="govuk-button-group">
+  <a href="/applications/apply-for-notice-of-eligibility"><button class="govuk-button" data-module="govuk-button">
+    Save and continue
+  </button></a>
+  <a href="provide-signature">
+  <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
+    Upload a new image
+  </button>
+  </a>
 </div>
-
-
-          <form class="form" action="check-passport-style-photo" method="post" novalidate>
-        <button type="submit" class="govuk-button" data-module="govuk-button">
-          Continue
-        </button>
-
-      </form>
         
     </div>
   </div>
