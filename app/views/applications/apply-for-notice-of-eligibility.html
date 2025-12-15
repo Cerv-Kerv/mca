@@ -98,7 +98,7 @@
             title: {
               text: "Medical certificate"
             },
-            href: "#",
+            href: "noe/provide-medical-certificate",
             status: {
               tag: {
                 text: "Incomplete",
@@ -314,5 +314,18 @@
 
     </div>
   </div>
+
+  <script>
+    import { MultiFileUpload } from '@ministryofjustice/frontend'
+
+const $multiFileUpload = document.querySelector(
+  '[data-module="moj-multi-file-upload"]'
+)
+
+new MultiFileUpload($multiFileUpload, {
+  uploadUrl: '/ajax-upload-url',
+  deleteUrl: '/ajax-delete-url'
+})
+  </script>
 
 {% endblock %}

@@ -1,0 +1,91 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+        Provide a valid medical certificate
+ – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+<style>
+.moj-multi-file-upload__dropzone {
+display: flex;
+outline: 3px dashed #0b0c0c;
+padding: 60px 15px;
+text-align: center;
+transition: outline-offset .1s ease-in-out,background-color .1s }
+</style>
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Apply for Notice of Eligibility</span>
+      <h1 class="govuk-heading-l">
+        Provide a valid medical certificate
+      </h1>
+
+<p class="govuk">We require your ENG 1 or equivalent medical certificate for your Notice of Eligibility application.</p>
+<p class="govuk">If you have a DG Shipping India medical certificate, include the ‘Annexure IV – Medical Certificate for Service at Sea’ page.</p>
+
+<p class="govuk">Upload your documents as scanned copies or photos of the original.</p>
+
+<form action="/components/multi-file-upload/examples/default" method="post" enctype="multipart/form-data">
+      <div class="moj-multi-file-upload" data-module="moj-multi-file-upload">
+        <div class="moj-multi-file__uploaded-files ">
+          <h2 class="govuk-heading-m">Files added</h2>
+          <div class="govuk-summary-list moj-multi-file-upload__list">
+          </div>
+        </div>
+        <div class="moj-multi-file-upload__upload">
+          <div class="govuk-form-group">
+            <label class="govuk-label govuk-label--m" for="documents">
+              Upload valid medical certificate documents
+            </label>
+            <div class="moj-multi-file-upload__dropzone"><input class="govuk-file-upload moj-multi-file-upload__input" id="documents" name="documents" type="file" multiple=""><p class="govuk-body">Drag and drop files here or</p><label for="documents" class="govuk-button govuk-button--secondary">Choose files</label><div class="govuk-visually-hidden" aria-live="polite" role="status"></div></div>
+        </div>
+      </div>
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+        
+    </div>
+  </div>
+
+
+{% endblock %}

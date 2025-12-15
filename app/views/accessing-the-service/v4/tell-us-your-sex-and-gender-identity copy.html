@@ -47,7 +47,11 @@
 
       <span class="govuk-caption-l">Personal details</span>
       <h1 class="govuk-heading-l">
-Tell us your sex as it appears on your passport      </h1>
+Tell us your registered sex at birth and your chosen gender identity
+      </h1>
+
+      <p class="govuk-body">Telling us your registered sex at birth and chosen gender identity helps us to ensure accurate identity verification.
+      </p>
 
 {% from "govuk/components/input/macro.njk" import govukInput %}
       <form class="form" action="which-country-issued-your-passport" method="post" novalidate>
@@ -56,9 +60,26 @@ Tell us your sex as it appears on your passport      </h1>
 {% from "govuk/components/radios/macro.njk" import govukRadios %}
 {% from "govuk/components/input/macro.njk" import govukInput %}
 
+{% set genderHtml %}
+  {{ govukInput({
+    id: "gender-description",
+    name: "genderDescription",
+    type: "text",
+    classes: "govuk-!-width-one-half",
+    label: {
+      text: "What is your gender identity? (optional)"
+    }
+  }) }}
+{% endset -%}
 
 {{ govukRadios({
   name: "sex",
+  fieldset: {
+    legend: {
+      text: "What was your registered sex at birth?",
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
   items: [
     {
       value: "female",
@@ -70,24 +91,42 @@ Tell us your sex as it appears on your passport      </h1>
     },
     {
       value: "indeterminate",
-      text: "X or other"
+      text: "Indeterminate",
+      hint: {
+        text: "Only select indeterminate if that was your registered sex at birth and appears on your birth certificate."
+      }
       }
   ]
 }) }}
 
+{{ govukRadios({
+  name: "genderIdentity",
+  fieldset: {
+    legend: {
+      text: "Is the gender you identify as, the same as your registered sex at birth?",
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: "yes",
+      text: "Yes"
+    },
+    {
+      value: "no",
+      text: "No",
+      conditional: {
+        html: genderHtml
+      }
+    }
+  ]
+}) }}
 
-<details class="govuk-details" data-module="govuk-details">
-          <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">
-Why we ask this question            </span>
-          </summary>
-          <div class="govuk-details__text">
-            <p class="govuk-body">
-We need this information to check that your identity matches the details on the documents you have provided.
-            </p>
-          </div>
-        </details>
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
+{{ govukInsetText({
+  text: "The Maritime Coastguard Agency (MCA) can use a Passport, a Gender Recognition Certificate (GRC), or Birth Certificate to confirm the information you provide. "
+}) }}
 
 {{ govukButton({
   text: "Continue"
