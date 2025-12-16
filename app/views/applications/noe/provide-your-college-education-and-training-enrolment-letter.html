@@ -2,8 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-        Provide a valid medical certificate
- – {{ serviceName }} – GOV.UK Prototype Kit
+Provide your college education and training enrolment letter – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -46,39 +45,38 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Identity and medical</span>
+      <span class="govuk-caption-l">Training and education</span>
       <h1 class="govuk-heading-l">
-        Provide a valid medical certificate
-      </h1>
+Provide your college education and training enrolment letter      </h1>
 
-<p class="govuk">We require your ENG 1 or equivalent medical certificate for your Notice of Eligibility application.</p>
-<p class="govuk">If you have a DG Shipping India medical certificate, include the ‘Annexure IV – Medical Certificate for Service at Sea’ page.</p>
+<p class="govuk">We require your college education and training enrolement letter as evidence that supports your Notice of  Elegibility (NoE) application.</p>
 
 <p class="govuk">Upload your documents as scanned copies or photos of the original.</p>
 
 
-<form action="provide-medical-certificate-2" method="" enctype="multipart/form-data">
+
 <div class="govuk-form-group">
   <label class="govuk-label govuk-label--m" for="file-upload-1" id="file-upload-1-label">
   Upload valid medical certificate documents
   </label>
-  <div class="govuk-drop-zone"type="file">
-    <button class="govuk-file-upload-button govuk-file-upload-button--empty" type="file" id="" aria-labelledby="">
-        <span class="govuk-body govuk-file-upload-button__status" aria-live="polite">No files chosen</span>
-        <span class="govuk-visually-hidden" id="file-upload-1-comma">, </span><span class="govuk-file-upload-button__pseudo-button-container">
-        <span class="govuk-button govuk-button--secondary govuk-file-upload-button__pseudo-button">Choose files</span> 
-        <span class="govuk-body govuk-file-upload-button__instruction">or drop files here</span></span>
-    </button>
+  <div class="govuk-drop-zone" data-module="govuk-file-upload" data-govuk-file-upload-init="" type="file">
+    <button class="govuk-file-upload-button govuk-file-upload-button--empty" type="file" id="file-upload-1" aria-labelledby="file-upload-1-label file-upload-1-comma file-upload-1">
+    <span class="govuk-body govuk-file-upload-button__status" aria-live="polite">No files chosen</span>
+    <span class="govuk-visually-hidden" id="file-upload-1-comma">, </span><span class="govuk-file-upload-button__pseudo-button-container">
+    <span class="govuk-button govuk-button--secondary govuk-file-upload-button__pseudo-button">Choose files</span> <span class="govuk-body govuk-file-upload-button__instruction">or drop files here</span></span></button>
+      <input type="file" id="myFile" name="filename">
+
     <input class="govuk-file-upload" id="file-upload-1-input" name="fileUpload1" type="file" hidden="true" tabindex="-1" aria-hidden="true">
   </div><span class="govuk-file-upload-announcements govuk-visually-hidden" aria-live="assertive"></span>
 </div>
-</form>
 
 
 
+<form action="/components/multi-file-upload/examples/default" method="post" enctype="multipart/form-data">
       <button type="submit" class="govuk-button" data-module="govuk-button">
         Continue
       </button>
+    </form>
         
     </div>
   </div>
