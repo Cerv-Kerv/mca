@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-  Are you SMarT funded? – {{ serviceName }} – GOV.UK Prototype Kit
+ Is your training SMarT Funded? – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -43,7 +43,10 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
           <span class="govuk-caption-l">Additional details</span>
-      <h1 class="govuk-heading-l">Are you SMarT funded?</h1>
+      <h1 class="govuk-heading-l">Is your training SMarT Funded?</h1>
+
+      <p class="govuk">Being SMarT funded means that the UK government provides financial support to shipping companies and training organisations, covering up to 50% of seafarer costs.</p>
+
 
       {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
@@ -72,6 +75,19 @@
   text: "Continue"
 }) }}
 </form>
+
+
+<details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+             Unsure if your training is SMarT Funded?
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p class="govuk-body">
+SMarT Funding is recorded in your Training Record Book (TRB). Check your TRB to learn if your training is SMarT Funded.        </p>
+          </div>
+        </details>
 
 {% endblock %}
 
