@@ -191,11 +191,35 @@
         ]
       }) }}
 
-<h2 class="govuk-heading-m">Seagoing service evidence</h2>
+<h2 class="govuk-heading-m">Information logs</h2>
 
       {{ govukTaskList({
         idPrefix: "training",
         items: [
+          {
+            title: {
+              text: "Information-gathering table"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Core evidence"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
           {
             title: {
               text: "Training Record Book"
@@ -210,31 +234,7 @@
           },
           {
             title: {
-              text: "Sea Service Evidence"
-            },
-            href: "#",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-          {
-            title: {
-              text: "Seagoing Declaration Table"
-            },
-            href: "#",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-          {
-            title: {
-              text: "Work books"
+              text: "Task-detail workbook"
             },
             href: "#",
             status: {
@@ -260,7 +260,7 @@
         ]
       }) }}
 
-      <h2 class="govuk-heading-m">Additional details</h2>
+      <h2 class="govuk-heading-m">Additional information</h2>
 
       {{ govukTaskList({
         idPrefix: "submission",
