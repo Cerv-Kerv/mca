@@ -1,0 +1,88 @@
+{% extends "layouts/pattern.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+         Upload single file pattern
+ – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Multiple files</span>
+      <h1 class="govuk-heading-l">
+File upload pattern      </h1>
+
+<p class="govuk">Users will interact with this pattern to upload files to the service.</p>
+
+<p class="govuk">The pattern allows users to upload a single file and provides the option to add additional files, if required.</p>
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+<p class="govuk-label--m">File upload interface</p>
+
+<div id="file-upload-1-hint" class="govuk-hint">
+If the user is required to upload more than one file, the interface will provide a call to action to upload another file.
+</div>
+
+<p class="govuk-body govuk-!-display-none" id="refreshPageProgress"><a href="#" class="govuk-link">Refresh page to update file upload progress</a></p>
+          <form class="form" action="upload-2-4" method="post" novalidate>
+
+    <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+      Upload another file
+    </button>
+</form>
+<p class="govuk-label--s">2 files added</p>
+
+    <dl class="govuk-summary-list govuk-summary-list--long-key">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          second-file-non-image.doc
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <strong class="govuk-tag govuk-tag--yellow">
+  Uploading
+</strong>
+
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="#">Delete<span class="govuk-visually-hidden"> filename</span></a>
+        </dd>
+      </div>
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          first-file-image.jpg
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <strong class="govuk-tag govuk-tag--green">
+  Uploaded
+</strong>
+
+        </dd>
+        <dd class="govuk-summary-list__actions">
+          <a class="govuk-link" href="check-upload">Check<span class="govuk-visually-hidden"> receipt1.jpg</span></a> | 
+          <a class="govuk-link" href="upload-deleted">Delete<span class="govuk-visually-hidden"> receipt1.jpg</span></a>
+        </dd>
+      </div>
+    </dl>
+
+
+          <form class="form" action="upload-2-4" method="post" novalidate>
+        {{ govukButton({
+  text: "Continue"
+}) }}
+
+      </form>
+
+        
+    </div>
+  </div>
+
+{% endblock %}
