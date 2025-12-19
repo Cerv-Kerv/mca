@@ -1,0 +1,57 @@
+{% extends "layouts/pattern.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+         Upload single file pattern
+ – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Single file</span>
+      <h1 class="govuk-heading-l">
+File upload pattern      </h1>
+
+<p class="govuk">Users will interact with this pattern to upload files to the service.</p>
+
+<p class="govuk">The pattern allows users to upload a single file and provides the option to add additional files, if required.</p>
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+<div class="govuk-form-group">
+  {{ govukFileUpload({
+    id: "file-upload-1",
+    name: "file-upload-1",
+    hint: {
+      text: "If the user is required to upload more than one file, the interface will provide a call to action to upload another file."
+    },
+    label: {
+      text: "File upload interface",
+      classes: "govuk-label--m"
+    },
+    javascript: true
+  }) }}
+</div>
+
+
+
+
+          <form class="form" action="upload-2" method="post" novalidate>
+        {{ govukButton({
+  text: "Continue"
+}) }}
+
+      </form>
+        
+    </div>
+  </div>
+
+{% endblock %}
