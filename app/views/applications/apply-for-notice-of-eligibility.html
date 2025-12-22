@@ -84,18 +84,6 @@ Apply for a Notification of Eligibility (NoE)
           },
           {
             title: {
-              text: "Signature"
-            },
-            href: "noe/provide-signature",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-          {
-            title: {
               text: "Medical certificate"
             },
             href: "noe/provide-medical-certificate",
@@ -305,7 +293,10 @@ Apply for a Notification of Eligibility (NoE)
           {
             title: {
               text: "Make a payment"
-            }
+            },
+                  hint: {
+        text: "The cost of this application is £220.00"
+      }
           }
         ]
       }) }}
@@ -314,18 +305,5 @@ Apply for a Notification of Eligibility (NoE)
 
     </div>
   </div>
-
-  <script>
-    import { MultiFileUpload } from '@ministryofjustice/frontend'
-
-const $multiFileUpload = document.querySelector(
-  '[data-module="moj-multi-file-upload"]'
-)
-
-new MultiFileUpload($multiFileUpload, {
-  uploadUrl: '/ajax-upload-url',
-  deleteUrl: '/ajax-delete-url'
-})
-  </script>
 
 {% endblock %}

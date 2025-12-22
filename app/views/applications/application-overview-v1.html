@@ -56,7 +56,51 @@
       <h1 class="govuk-heading-xl">
         [Capacity]
       </h1>
-      <p class="govuk-body govuk-!-margin-bottom-7">You have completed 0 of 4 parts of this appplication.</p>
+
+      <p class="govuk-body-s govuk-!-margin-bottom-7">Last update [13 October 2025]</p>
+
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+      
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Limitation"
+            },
+            value: {
+              text: "[Limitation]"
+            }
+          },
+           {
+            key: {
+              text: "Training route"
+            },
+            value: {
+              text: "[training route]"
+            }
+          },
+                    {
+            key: {
+              text: "Application reference"
+            },
+            value: {
+              text: "[APP12345678]"
+            }
+          },
+          {
+            key: {
+              text: "Cost"
+            },
+            value: {
+              text: "£[220.00]"
+            }
+          }
+        ]
+      }) }}
+
+
+      <h2 class="govuk-heading-m">Your application</h2>
 
       {{ govukTaskList({
         idPrefix: "before-you-start",
@@ -94,41 +138,9 @@
                 classes: "govuk-tag--blue"
               }
             }
-          },
-          {
-            title: {
-              text: "Request Certificate of Competency"
-            }
           }
         ]
       }) }}
-
-      <h2 class="govuk-heading-m">Information</h2>
-
-      <table class="govuk-table">
-  <tbody class="govuk-table__body">
-    <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Limitation</th>
-      <td class="govuk-table__cell">[Limitation]</td>
-    </tr>
-    <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Training route</th>
-      <td class="govuk-table__cell">[Training route]</td>
-    </tr>
-        <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Application type</th>
-      <td class="govuk-table__cell">4274</td>
-    </tr>
-    <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Application reference</th>
-      <td class="govuk-table__cell">APP123456789</td>
-    </tr>
-        <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Amount to pay</th>
-      <td class="govuk-table__cell">£[220.00]</td>
-    </tr>
-  </tbody>
-</table>
       
 
     </div>
