@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-Pay online – {{ serviceName }} – GOV.UK Prototype Kit
+Corporate payment – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -72,7 +72,7 @@ Pay online – {{ serviceName }} – GOV.UK Prototype Kit
           },
           {
             key: {
-              text: "Cost"
+              text: "Amount to pay"
             },
             value: {
               text: "£220.00"
@@ -175,28 +175,22 @@ Pay online – {{ serviceName }} – GOV.UK Prototype Kit
   ]
 }) }}
 
-      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
-        
-        {{ govukCheckboxes({
-          idPrefix: "privacy",
-          name: "privacy-notice",
-          errorMessage: data['privacy-error'] == 'true' and {
-            text: "You must confirm that you have authorisation from the payee to use this payment method"
-          },
-          fieldset: {
-            legend: {
-              text: "By selecting continue, I confirm that:",
-              classes: "govuk-fieldset__legend"
-            }
-          },
-          items: [
-            {
-              value: "confirmed",
-              html: 'The paying organisation has given me authority to use their account to pay for this application.',
-              checked: data['privacy-notice'] == 'confirmed'
-            }
-          ]
-        }) }}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+<div class="govuk-form-group">
+  {{ govukFileUpload({
+    id: "file-upload-1",
+    name: "file-upload-1",
+    hint: {
+      text: "This document should clearly show who the paying company is, and that they are covering the cost fo your application."
+    },
+    label: {
+      text: "Upload proof of authorisation",
+      classes: "govuk-label--s"
+    },
+    javascript: true
+  }) }}
+</div>
       
 
 <a class="govuk-button" data-module="govuk-button" href="check-corporate-payment.html">

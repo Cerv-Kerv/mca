@@ -1,0 +1,82 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+ Tell us about your Global Maritime Distress and Safety System (GMDSS) certificate  – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+  navigation: [   
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+          <span class="govuk-caption-l">Ancillary certificates</span>
+      <h1 class="govuk-heading-l">Tell us about your Global Maritime Distress and Safety System (GMDSS) certificate</h1>
+
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+      {% from "govuk/components/input/macro.njk" import govukInput %}
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+
+<form>
+  {{ govukRadios({
+  idPrefix: "SmarT",
+  name: "redirect",
+  
+  items: [
+    {
+      value: "~have-a-uk-gmdss.html",
+      text: "I have a UK GMDSS certificate"
+    },
+        {
+      value: "~have-a-non-uk-gmdss.html",
+      text: "I have a non-UK GMDSS certificate"
+    },
+    {
+      value: "~need-a-gmdss.html",
+      text: "I need a GMDSS certificate"
+    }
+  ]
+}) }}
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+</form>
+
+
+{% endblock %}
+

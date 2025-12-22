@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-  Make a payment – {{ serviceName }} – GOV.UK Prototype Kit
+  Corporate payment – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -88,7 +88,7 @@
           },
           {
             key: {
-              text: "Cost"
+              text: "Amount to pay"
             },
             value: {
               text: "£220.00"
@@ -134,6 +134,23 @@
             },
             value: {
               html: "1234567ROLLIN3245677"
+            },
+            actions: {
+              items: [
+                {
+                  href: "corporate-payment-confirmation.html",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Proof of authorisation"
+            },
+            value: {
+              html: "proof-document.jpg"
             },
             actions: {
               items: [
