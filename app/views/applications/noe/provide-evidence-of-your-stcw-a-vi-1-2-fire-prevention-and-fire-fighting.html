@@ -2,8 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-        Provide a valid medical fitness certificate
- – {{ serviceName }} – GOV.UK Prototype Kit
+Provide evidence of your STCW A-VI/1-2 Fire Prevention & Fire Fighting – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -46,24 +45,16 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Identity and medical</span>
+      <span class="govuk-caption-l">Training and education</span>
       <h1 class="govuk-heading-l">
-        Provide a valid medical fitness certificate
-      </h1>
+Provide evidence of your STCW A-VI/1-2 Fire Prevention & Fire Fighting</h1>
 
-<p class="govuk">We require your ENG 1 or equivalent medical fitness certificate to support your application.</p>
-<p class="govuk">You can view the list of countries whose seafarer medical fitness certificates are accepted as equivalent to the UK ENG 1 in <a href="https://www.gov.uk/government/publications/msn-1815-amendment-6-equivalent-medical-certificates" target="_blank">MSN 1815 (opens in a new window)</a>.
-</p>
+<p class="govuk">We require evidence of your STCW A-VI/1-2 Fire Prevention & Fire Fighting training to support your application.</p>
 
-<p class="govuk">If you have a DG Shipping India medical fitness certificate, include the ‘Annexure IV – Medical Certificate for Service at Sea’ page.</p>
+<p class="govuk">If your certificate evidence is more than 5 years old, provide the original certificate along with your current, in date, refresher certificate.</p>
 
-<p class="govuk"></p>
-
-
-<form action="check-medical-fitness-certificate" method="" enctype="multipart/form-data">
-
-
-<div class="govuk-form-group">
+<form action="check-stcw-a-vi-1-2-fire-prevention-and-fire-fighting" method="post" enctype="multipart/form-data">
+  <div class="govuk-form-group">
   {{ govukFileUpload({
     id: "file-upload-1",
     name: "file-upload-1",
@@ -71,19 +62,17 @@
       text: "Upload your documents as scanned copies or photos of the original."
     },
     label: {
-      text: " Upload your valid ENG1 or equivalent medical fitness certificate ",
+      text: "Upload evidence of your STCW A-VI/1-2 Fire Prevention & Fire Fighting",
       classes: "govuk-label--m"
     },
     javascript: true
   }) }}
 </div>
-
-
-
       <button type="submit" class="govuk-button" data-module="govuk-button">
         Continue
       </button>
-       </form> 
+    </form>
+        
     </div>
   </div>
 
