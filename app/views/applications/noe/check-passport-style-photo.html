@@ -2,8 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-        Provide a passport-syle photo
- – {{ serviceName }} – GOV.UK Prototype Kit
+          Check your passport-style photo– {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -13,11 +12,25 @@
 
 {{ hmrcHeader({
   serviceUrl : "/",
+  signOutHref : "?sign-out",
   useTudorCrown: "true"
 }) }}
 {{ govukServiceNavigation({
     serviceName: serviceName,
       navigation: [   
+      {
+      href: "/dashboard/v1/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "#",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Exams"
+    }
 ],
     slots: {
     },
@@ -41,36 +54,46 @@
 {% endblock %}
 
 {% block content %}
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-      <span class="govuk-caption-l">Identity and medical</span>
+          <span class="govuk-caption-l">Identity and medical</span>
       <h1 class="govuk-heading-l">
-        Provide a passport-syle photo
+        Check your passport-style photo
       </h1>
 
-<p class="govuk">We require a passport-style photo to use for your Notice of Eligibility application. This photo will be used on documents issued to you.</p>
-<p class="govuk">View the <a class="govuk-link" rel="noreferrer noopener" target="_blank" href="https://www.passport.service.gov.uk/help/photo-rules">rules for digital passport photos (opens in a new tab)</a> to ensure you provided photos that meet these requirements.</p>
+          {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-9",
+        rows: [
+          {
+            key: {
+              text: "Passport-style photo upload"
+            },
+            value: {
+              html: "Filename1.jpg"
+            },
+            actions: {
+              items: [
+                {
+                  href: "provide-passport-style-photo",
+                  text: "Change",
+                  visuallyHiddenText: "photo"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
 
+      <form action="/applications/apply-for-notice-of-eligibility" method="post" novalidate>
 
-<p class="govuk"><strong>
-You have uploaded this image</strong></p>
-<p class="govuk">
-<img src="/public/images/adult-photo-expression-plain-face-full.jpg" /></p>
+        <input type="hidden" name="answers-checked" value="true">
 
-<div class="govuk-button-group">
-  <a href="/applications/apply-for-notice-of-eligibility"><button class="govuk-button" data-module="govuk-button">
-    Save and continue
-  </button></a>
-  <a href="provide-passport-style-photo.html">
-  <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
-    Upload a new image
-  </button>
-  </a>
-</div>
-        
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
     </div>
   </div>
-
 {% endblock %}
