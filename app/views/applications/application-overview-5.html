@@ -88,7 +88,7 @@
 
       <h2 class="govuk-heading-m">Progress</h2>
 
-      <p class="govuk-body govuk-!-margin-bottom-7">You have completed 0 of 5 parts of this appplication.</p>
+      <p class="govuk-body govuk-!-margin-bottom-7">You have completed 4 of 5 parts of this appplication.</p>
 
       {{ govukTaskList({
         idPrefix: "coc-parts",
@@ -97,39 +97,56 @@
             title: {
               text: "Apply for Notice of Eligibility (NoE)"
             },
-            href: "apply-for-notice-of-eligibility",
             status: {
               tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
+                text: "Complete",
+                classes: "govuk-tag--green"
               }
             }
           },
           {
             title: {
               text: "[Pass Part A exam]"
+            },
+                        status: {
+              tag: {
+                text: "Complete",
+                classes: "govuk-tag--green"
+              }
             }
           },
           {
             title: {
               text: "[Pass Part B exam]"
+            },
+                        status: {
+              tag: {
+                text: "Complete",
+                classes: "govuk-tag--green"
+              }
             }
           },
           {
             title: {
               text: "Add supporting documents"
             },
-            href: "supporting-evidence",
                         status: {
               tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
+                text: "Complete",
+                classes: "govuk-tag--green"
               }
             }
           },
           {
             title: {
               text: "Request Certificate of Competency"
+            },
+            href: "#",
+                        status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
             }
           }
         ]
