@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-  Application overview – {{ serviceName }} – GOV.UK Prototype Kit
+   Cancel application – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -12,25 +12,11 @@
 
 {{ hmrcHeader({
   serviceUrl : "/",
-  signOutHref : "?sign-out",
   useTudorCrown: "true"
 }) }}
 {{ govukServiceNavigation({
     serviceName: serviceName,
       navigation: [   
-      {
-      href: "/dashboard/v1/dashboard.html",
-      text: "Dashboard"
-    },
-    {
-      href: "/applications/applications",
-      text: "Applications",
-      active: true
-    },
-    {
-      href: "#",
-      text: "Exams"
-    }
 ],
     slots: {
     },
@@ -46,6 +32,10 @@
     html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
   }) }}
   
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
 
 {% endblock %}
 
@@ -53,11 +43,11 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">
-        Application overview
-      </h1>
 
-      <h2 class="govuk-heading-m">Information</h2>
+      <h1 class="govuk-heading-l">
+Cancel application</h1>
+
+ <h2 class="govuk-heading-m">Information</h2>
 
       <table class="govuk-table">
       <tbody class="govuk-table__body">
@@ -86,58 +76,62 @@
   </tbody>
 </table>
 
-      <h2 class="govuk-heading-m">Progress</h2>
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
-      <p class="govuk-body govuk-!-margin-bottom-7">You have completed 0 of 5 parts of this appplication.</p>
+{{ govukWarningText({
+  text: "You will need to start a new application if you cancel.",
+  iconFallbackText: "Warning"
+}) }}
 
-      {{ govukTaskList({
-        idPrefix: "coc-parts",
-        items: [
-          {
-            title: {
-              text: "Apply for Notice of Eligibility (NoE)"
-            },
-            href: "apply-for-notice-of-eligibility",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-          {
-            title: {
-              text: "[Pass Part A exam]"
-            }
-          },
-          {
-            title: {
-              text: "[Pass Part B exam]"
-            }
-          },
-          {
-            title: {
-              text: "Add supporting documents"
-            },
-            href: "supporting-evidence",
-                        status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-          {
-            title: {
-              text: "Request Certificate of Competency"
-            }
-          }
-        ]
-      }) }}
-      
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
 
-      <p class="govuk"><a href="cancel/cancel-application">Cancel application</a></p>
+{% set emailHtml %}
+<form action="application-cancel-confirmation" method="" novalidate>
+<br>
+        {{ govukButton({
+          text: "Cancel application"
+        }) }}
 
+      </form>
+{% endset -%}
+
+{% set phoneHtml %}
+<form action="/applications/application-overview" method="" novalidate>
+<br>
+        {{ govukButton({
+          text: "Back to application"
+        }) }}
+
+      </form>
+{% endset -%}
+
+{{ govukRadios({
+  name: "cancel",
+  fieldset: {
+    legend: {
+      text: "Do you want to cancel this application?",
+      classes: "govuk-fieldset__legend--m"
+    }
+  },
+  items: [
+    {
+      value: "yes-cancel",
+      text: "Yes",
+      conditional: {
+        html: emailHtml
+      }
+    },
+    {
+      value: "no-do-not-cancel",
+      text: "No",
+      conditional: {
+        html: phoneHtml
+      }
+    }
+  ]
+}) }}
+        
     </div>
   </div>
 

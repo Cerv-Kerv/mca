@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-          Check your SMarT status – {{ serviceName }} – GOV.UK Prototype Kit
+  Applications – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -46,54 +46,70 @@
     html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
   }) }}
   
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
 
 {% endblock %}
 
 {% block content %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-          <span class="govuk-caption-l">Additional details</span>
-      <h1 class="govuk-heading-l">
-        Check your SMarT funding status
+      <h1 class="govuk-heading-xl">
+        Applications
       </h1>
+   
 
-          {{ govukSummaryList({
-        classes: "govuk-!-margin-bottom-9",
-        rows: [
+      {{ govukTaskList({
+        idPrefix: "applications",
+        items: [
           {
-            key: {
-              text: "SMarT funded"
+            title: {
+              text: "Officer of the Watch"
             },
-            value: {
-              text: "No"
+                  hint: {
+        text: "Unlimited II/1"
+      },
+            href: "application-overview",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Second Engineer"
             },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "name"
-                }
-              ]
+                  hint: {
+        text: "Less than 3000 - Near Coastal - III/3"
+      },
+            href: "application-overview",
+            status: {
+              tag: {
+                text: "Complete",
+                classes: "govuk-tag--green"
+              }
+            }
+          },
+          {
+            title: {
+              text: "[Capacity]"
+            },
+                  hint: {
+        text: "[Limitation]"
+      },
+            href: "application-overview",
+            status: {
+              tag: {
+                text: "In progress",
+                classes: "govuk-tag--yellow"
+              }
             }
           }
         ]
       }) }}
 
-      <form action="/applications/apply-for-notice-of-eligibility" method="post" novalidate>
-
-        <input type="hidden" name="answers-checked" value="true">
-
-        {{ govukButton({
-          text: "Save and continue"
-        }) }}
-
-      </form>
-
     </div>
   </div>
+
 {% endblock %}

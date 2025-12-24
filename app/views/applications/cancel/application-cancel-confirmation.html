@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-          Check your SMarT status – {{ serviceName }} – GOV.UK Prototype Kit
+  Application cancelled confirmation – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -46,54 +46,36 @@
     html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
   }) }}
   
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
 
 {% endblock %}
 
 {% block content %}
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-          <span class="govuk-caption-l">Additional details</span>
-      <h1 class="govuk-heading-l">
-        Check your SMarT funding status
-      </h1>
 
-          {{ govukSummaryList({
-        classes: "govuk-!-margin-bottom-9",
-        rows: [
-          {
-            key: {
-              text: "SMarT funded"
-            },
-            value: {
-              text: "No"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "name"
-                }
-              ]
-            }
-          }
-        ]
+      {{ govukPanel({
+        titleText: "Application cancelled",
+        html: "Your reference number<br><strong>APP12345678</strong>"
       }) }}
 
-      <form action="/applications/apply-for-notice-of-eligibility" method="post" novalidate>
+      <p>
+        We have sent you a confirmation email.
+      </p>
 
-        <input type="hidden" name="answers-checked" value="true">
+      <h2 class="govuk-heading-m">
+        What happens next
+      </h2>
 
-        {{ govukButton({
-          text: "Save and continue"
-        }) }}
+      <p>
+We have sent your application cancellation request to the Maritime and Coastguard Agency (MCA).</p>
+      <p>
+        If you are eligble for a refund, the MCA will contact you.
+      </p>
 
-      </form>
+
 
     </div>
   </div>
+
 {% endblock %}
