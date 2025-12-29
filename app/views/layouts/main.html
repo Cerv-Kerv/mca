@@ -9,6 +9,13 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 {% block stylesheets %}
   {{ super() }}
   <link href="/public/css/moj.css" rel="stylesheet" type="text/css" />
+
+  <style>
+  .govuk-template--rebranded .hmrc-header.hmrc-header--with-additional-navigation .hmrc-sign-out-nav {
+    margin-bottom: 0px !important;
+    padding-top: 28px !important;
+}
+</style>
 {% endblock %}
 
     {% block footer %}
