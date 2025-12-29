@@ -45,6 +45,13 @@ Provide evidence of your STCW A-VI/1-4 Personal Safety & Social Responsibility â
     },
     html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
   }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
 
 {% endblock %}
 

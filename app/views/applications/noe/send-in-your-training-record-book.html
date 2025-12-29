@@ -45,6 +45,13 @@ Send your Training Record Book (TRB) to the Maritime and Coast Guard Agency (MCA
     },
     html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
   }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
 
 {% endblock %}
 
