@@ -12,11 +12,25 @@ Provide evidence of your STCW A-VI/1-4 Personal Safety & Social Responsibility â
 
 {{ hmrcHeader({
   serviceUrl : "/",
+  signOutHref : "?sign-out",
   useTudorCrown: "true"
 }) }}
 {{ govukServiceNavigation({
     serviceName: serviceName,
       navigation: [   
+      {
+      href: "/dashboard/v1/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Exams"
+    }
 ],
     slots: {
     },
@@ -30,11 +44,6 @@ Provide evidence of your STCW A-VI/1-4 Personal Safety & Social Responsibility â
       text: "Beta"
     },
     html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
-  }) }}
-  
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
   }) }}
 
 {% endblock %}
