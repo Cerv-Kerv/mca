@@ -69,13 +69,15 @@ Your workbook is the book you use to note the detail of the tasks in your Traini
 </p>
 
       <h2 class="govuk-heading-m">
-Sending in your work books      
+Sending in your workbooks      
 </h2>
 
 <p class="govuk">
-Add your Seafarer Reference Number to a piece of paper and attach it to your workbooks before posting to us.  We will pair it with the correct application you have submitted. </p>
+Write your Seafarer Reference Number (SRN) to a piece of paper and attach it to your workbooks before posting them to us. We will pair them with the related application you have submitted.
+</p>
 <p class="govuk">
-Your original, hard copy workbooks must be sent to our office. You cannot upload this document.</p>
+Your original workbooks must be sent to our office. You cannot upload this document and you must send us a hard copy.
+</p>
 
 <p class="govuk">
 Send your workbooks to:</p>
@@ -91,18 +93,18 @@ Commercial Road<br> Southampton<br> SO15 1EG<br> United Kingdom"
           idPrefix: "privacy",
           name: "privacy-notice",
           errorMessage: data['privacy-error'] == 'true' and {
-            text: "You must confirm that you have authorisation from the payee to use this payment method"
+            text: "x"
           },
           fieldset: {
             legend: {
-              text: "By selecting continue, I confirm that:",
+              text: "By selecting 'Save and continue', I confirm that:",
               classes: "govuk-fieldset__legend"
             }
           },
           items: [
             {
               value: "confirmed",
-              html: 'I will be sending my workbooks to the MCA.',
+              html: 'I will send my workbooks to the MCA.',
               checked: data['privacy-notice'] == 'confirmed'
             }
           ]
