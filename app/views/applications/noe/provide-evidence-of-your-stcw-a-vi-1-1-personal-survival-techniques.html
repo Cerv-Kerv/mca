@@ -67,6 +67,12 @@ Provide evidence of your STCW A-VI/1-1 Personal Survival Techniques</h1>
 
 <p class="govuk">If your certificate is more than 5 years old, provide the original certificate along with your current, in date, refresher certificate.</p>
 
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{{ govukInsetText({
+  text: "It can take up to 8 weeks to register a lasting power of attorney if there are no mistakes in the application."
+}) }}
+
 <form action="check-stcw-a-vi-1-1-personal-survival-techniques" method="post" enctype="multipart/form-data">
   <div class="govuk-form-group">
   {{ govukFileUpload({
