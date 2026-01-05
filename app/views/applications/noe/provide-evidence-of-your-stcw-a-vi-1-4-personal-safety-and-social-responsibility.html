@@ -67,6 +67,14 @@ Provide evidence of your STCW A-VI/1-4 Personal Safety & Social Responsibility</
 
 <p class="govuk">If your certificate is more than 5 years old, provide the original certificate along with your current, in date, refresher certificate.</p>
 
+
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{{ govukInsetText({
+  text: "If your certificate covers all Standards of Training, Certification and Watchkeeping (STCW), upload your certificate each time you are asked to provide evidence of a particular STCW"
+}) }}
+
+
 <form action="check-stcw-a-vi-1-4-personal-safety-and-social-responsibility" method="post" enctype="multipart/form-data">
   <div class="govuk-form-group">
   {{ govukFileUpload({
