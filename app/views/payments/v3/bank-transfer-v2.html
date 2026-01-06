@@ -70,14 +70,6 @@
               text: "[Limitation]"
             }
           },
-                    {
-            key: {
-              text: "Application reference"
-            },
-            value: {
-              text: "APP12345678"
-            }
-          },
           {
             key: {
               text: "Amount to pay"
@@ -89,6 +81,14 @@
         ]
       }) }}
 
+
+
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{{ govukInsetText({
+  html: "Your bank transfer reference number is:<br> <strong>APP1234567-080394</strong>
+"
+}) }}
 
       <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-with-summary-sections">
   <div class="govuk-accordion__section">
@@ -154,7 +154,7 @@ EC2M 4RB</p>
       
 
       {{ govukWarningText({
-  text: "When making a payment, include your name and date of birth as a reference",
+  text: "When making a payment, include your bank transfer reference number",
   iconFallbackText: "Warning"
 }) }}  
 
