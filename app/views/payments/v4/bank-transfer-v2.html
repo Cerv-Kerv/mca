@@ -1,0 +1,167 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Pay by bank transfer – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v1/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Pay by bank transfer</h1>
+      
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+      
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Application"
+            },
+            value: {
+              text: "[Limitation]"
+            }
+          },
+                    {
+            key: {
+              text: "Application reference"
+            },
+            value: {
+              text: "APP12345678"
+            }
+          },
+          {
+            key: {
+              text: "Amount to pay"
+            },
+            value: {
+              text: "£220.00"
+            }
+          }
+        ]
+      }) }}
+
+
+      <div class="govuk-accordion" data-module="govuk-accordion" id="accordion-with-summary-sections">
+  <div class="govuk-accordion__section">
+    <div class="govuk-accordion__section-header">
+      <h2 class="govuk-accordion__section-heading">
+        <span class="govuk-accordion__section-button" id="accordion-with-summary-sections-heading-1">
+Account details to use if your account is in the UK
+        </span>
+      </h2>
+    </div>
+    <div id="accordion-with-summary-sections-content-1" class="govuk-accordion__section-content">
+      <ul class="govuk-list">
+<li>Sort code — 60 70 80</li>
+<li>Account number — 10013164</li>
+<li>Account name — Maritime & Coastguard Agency</li>
+</ul>
+    </div>
+  </div>
+  <div class="govuk-accordion__section">
+    <div class="govuk-accordion__section-header">
+      <h2 class="govuk-accordion__section-heading">
+        <span class="govuk-accordion__section-button" id="accordion-with-summary-sections-heading-2">
+Account details to use if your account is overseas
+        </span>
+      </h2>
+    <div id="accordion-with-summary-sections-content-2" class="govuk-accordion__section-content">
+     <ul class="govuk-list">
+<li>Account number (IBAN) — GB33NWBK60708010012164</li>
+<li>Business Identifier Code (BIC) — NWBKGB2L</li>
+<li>Account name — Maritime & Coastguard Agency</li>
+</ul>
+<p class="govuk-body">You should make overseas payments in sterling (GBP). Your bank may charge you if use any other currency.</p>
+
+    </div>
+  </div>
+</div>
+</div>
+      
+<h2 class="govuk-heading-s">Banking address</h2>
+<p class="govuk-body">If needed, you can provide your bank with the following MCA banking address:</p>
+
+<p class="govuk-body">NatWest<br>
+2nd Floor<br>
+280 Bishopsgate<br>
+London<br>
+EC2M 4RB</p>
+
+<details class="govuk-details">
+  <summary class="govuk-details__summary">
+    <span class="govuk-details__summary-text">
+      Payment times can vary
+    </span>
+  </summary>
+  <div class="govuk-details__text">
+<p class="govuk-body">If you pay by CHAPS (Clearing House Automated Payment System) or Faster Payments, you can submit your payment on the same or next day.</p>
+
+<p class="govuk-body">If you pay by Bacs (Bankers Automated Clearing System), allow 3 working days for the payment to reach MCA.</p>
+
+<p class="govuk-body">We recommend you check your bank’s processing times and maximum transaction limits before you pay.</p>
+  </div>
+</details>
+
+      
+
+      {{ govukWarningText({
+  text: "When making a payment, include your name and date of birth as a reference",
+  iconFallbackText: "Warning"
+}) }}  
+
+<a class="govuk-button" data-module="govuk-button" href="check-bank-transfer.html">
+  Continue
+</a>
+
+    </div>
+  </div>
+{% endblock %}

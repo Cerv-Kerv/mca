@@ -1,7 +1,7 @@
 {% extends "layouts/main.html" %}
 
 {% block pageTitle %}
-Corporate payment – {{ serviceName }} – GOV.UK Prototype Kit
+Organisation is paying for me – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -48,7 +48,7 @@ Corporate payment – {{ serviceName }} – GOV.UK Prototype Kit
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Corporate payment</h1>
+      <h1 class="govuk-heading-l">Organisation is paying for me</h1>
       
       {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
       
@@ -59,15 +59,7 @@ Corporate payment – {{ serviceName }} – GOV.UK Prototype Kit
               text: "Application"
             },
             value: {
-              text: "Application title eg Application for Notice of Eligibility (OOW Unlimited II/1)"
-            }
-          },
-                    {
-            key: {
-              text: "Application reference"
-            },
-            value: {
-              text: "APP12345678"
+              text: "[Limitation]"
             }
           },
           {

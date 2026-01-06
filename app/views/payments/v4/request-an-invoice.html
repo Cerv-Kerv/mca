@@ -1,0 +1,226 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Request an invoice – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v1/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Provide us with information we need to create your invoice</h1>
+      
+
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+      
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Application"
+            },
+            value: {
+              text: "[Limitation]"
+            }
+          },
+          {
+            key: {
+              text: "Amount to pay"
+            },
+            value: {
+              text: "£220.00"
+            }
+          }
+        ]
+      }) }}
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+
+<h2 class="govuk-heading-m">Provide us with information we need to create your invoice</h2>
+
+{{ govukInput({
+  label: {
+    text: "Name",
+    classes: "govuk-label--s"
+  },
+  hint: {
+    text: "the full name of the individual or organisation, for example Shipping Ltd."
+  },
+  id: "event-name",
+  name: "eventName"
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Email",
+    classes: "govuk-label--s"
+  },
+  id: "invoiceemail",
+  name: "invoiceEmail"
+}) }}
+
+{{ govukInput({
+  label: {
+    text: "Telephone number"},
+    classes: "govuk-input--width-10",
+  hint: {
+    text: "The telephone number must include the country code, for example '+44' or '+1'. You should remove the first '0' in your telephone number, for example, +44 7421 344900 or +1 7421 344900."
+  },
+  id: "account-number",
+  name: "accountNumber",
+  inputmode: "numeric",
+  spellcheck: false
+}) }}
+
+{% call govukFieldset({
+  legend: {
+    text: "Address",
+    classes: "govuk-fieldset__legend--s"
+  }
+}) %}
+
+  {{ govukInput({
+    label: {
+      text: "Address line 1"
+    },
+    id: "address-line-1",
+    name: "addressLine1",
+    autocomplete: "address-line1"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Address line 2"
+    },
+    id: "address-line-2",
+    name: "addressLine2",
+    autocomplete: "address-line2"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Town or city"
+    },
+    classes: "govuk-!-width-two-thirds",
+    id: "address-town",
+    name: "addressTown",
+    autocomplete: "address-level2"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "County, state, region or province"
+    },
+    classes: "govuk-!-width-two-thirds",
+    id: "address-county",
+    name: "addressCounty"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Postcode, zip or pin"
+    },
+    classes: "govuk-input--width-10",
+    id: "address-postcode",
+    name: "addressPostcode",
+    autocomplete: "postal-code"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Country"
+    },
+    classes: "govuk-!-width-two-thirds",
+    id: "address-country",
+    name: "addressCountry"
+  }) }}
+
+{% endcall %}
+
+{{ govukInput({
+  label: {
+    text: "Purchase Order number (optional)",
+    classes: "govuk-label--s"
+  },
+
+      classes: "govuk-input--width-12",
+  id: "po-number",
+  name: "poNumber"
+}) }}
+
+{% from "govuk/components/character-count/macro.njk" import govukCharacterCount %}
+
+{{ govukCharacterCount({
+  name: "withHint",
+  id: "with-hint",
+  maxlength: 500,
+  label: {
+    text: "Additional information (optional)",
+    classes: "govuk-label--s"
+  },
+  hint: {
+    text: "Do not include personal or financial information like your National Insurance number or credit card details"
+  }
+}) }}
+      
+
+<a class="govuk-button" data-module="govuk-button" href="check-invoice-request.html">
+  Continue
+</a>
+
+
+
+
+
+    </div>
+  </div>
+{% endblock %}

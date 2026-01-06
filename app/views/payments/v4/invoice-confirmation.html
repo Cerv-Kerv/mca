@@ -1,0 +1,85 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Request an invoice confirmation – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v1/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      {{ govukPanel({
+        titleText: "Application submitted",
+        html: "Your reference number<br><strong>APP12345678</strong>"
+      }) }}
+
+      <p>
+        We have sent you a confirmation email.
+      </p>
+
+      <h2 class="govuk-heading-m">
+        What happens next
+      </h2>
+
+      <p>
+We have sent your application for a Notice of Eligibility (NoA) to the Maritime and Coastguard Agency (MCA)</p>
+      <p>Your invoice for this application will be generated and sent to the payee. Once the invoice has been paid in full, we will start processing your application.</p>
+
+      <p>
+        The MCA may contact you for more information.
+      </p>
+                  <p>Refer to your <a href="/applications/application-overview-1">application overview</a> for what you need to do next.</p>
+
+
+
+
+    </div>
+  </div>
+
+{% endblock %}
