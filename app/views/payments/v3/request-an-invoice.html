@@ -109,8 +109,9 @@
 }) }}
 
 {{ govukInput({
+
   label: {
-    text: "Telephone number"},
+    html: "<strong>Telephone number</strong>"},
     classes: "govuk-input--width-10",
   hint: {
     text: "The telephone number must include the country code, for example '+44' or '+1'. You should remove the first '0' in your telephone number, for example, +44 7421 344900 or +1 7421 344900."
@@ -122,11 +123,18 @@
 }) }}
 
 {% call govukFieldset({
+
   legend: {
     text: "Address",
     classes: "govuk-fieldset__legend--s"
-  }
+
+  
+}
 }) %}
+
+                <div class="govuk-hint" >
+If your address does not easily fit in the suggested format, provide your full address details in 'Address line 1'.
+                </div>
 
   {{ govukInput({
     label: {
