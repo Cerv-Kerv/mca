@@ -2,8 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-        Provide your signature
- – {{ serviceName }} – GOV.UK Prototype Kit
+Provide evidence of your non UK Global Maritime Distress and Safety System (GMDSS) certificate – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -46,40 +45,35 @@
     },
     html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
   }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
 
 {% endblock %}
 
 {% block content %}
 
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Identity</span>
+          <span class="govuk-caption-l">Ancillary certificates</span>
       <h1 class="govuk-heading-l">
-        Provide your signature
-      </h1>
+Request for a UK Global Maritime Distress and Safety System (GMDSS) certificate</h1>
 
-<p class="govuk">We require your signature to use for your Notice of Eligibility application. This signature will be used on documents issued to you.</p>
-<p class="govuk">Your signature should be written using a black ballpoint pen on plain white paper.</p>
+<p class="govuk">As part of your Certificate of Competency request, the MCA will provide you with a UK GMDSS certificate.</p>
 
 
-<p class="govuk"><strong>
-You have uploaded this image</strong></p>
-<p class="govuk">
-<img style="width: 400px;" src="/public/images/signature.png" /></p>
-
-<div class="govuk-button-group">
-  <a href="/applications/apply-for-notice-of-eligibility"><button class="govuk-button" data-module="govuk-button">
-    Save and continue
-  </button></a>
-  <a href="provide-signature">
-  <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
-    Upload a new image
-  </button>
-  </a>
-</div>
+<form action="check-gmdss" method="post" enctype="multipart/form-data">
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
         
     </div>
   </div>
+
 
 {% endblock %}
