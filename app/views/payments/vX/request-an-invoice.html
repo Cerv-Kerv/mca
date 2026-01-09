@@ -56,7 +56,7 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Request an invoice</h1>
+      <h1 class="govuk-heading-l">Provide us with information we need to create your invoice</h1>
       
 
       {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
@@ -93,7 +93,7 @@
     classes: "govuk-label--s"
   },
   hint: {
-    text: "The full name of the individual or organisation, for example Shipping Ltd."
+    text: "the full name of the individual or organisation, for example Shipping Ltd."
   },
   id: "event-name",
   name: "eventName"
@@ -109,9 +109,8 @@
 }) }}
 
 {{ govukInput({
-
   label: {
-    html: "<strong>Telephone number</strong>"},
+    text: "Telephone number"},
     classes: "govuk-input--width-10",
   hint: {
     text: "The telephone number must include the country code, for example '+44' or '+1'. You should remove the first '0' in your telephone number, for example, +44 7421 344900 or +1 7421 344900."
@@ -123,18 +122,11 @@
 }) }}
 
 {% call govukFieldset({
-
   legend: {
     text: "Address",
     classes: "govuk-fieldset__legend--s"
-
-  
-}
+  }
 }) %}
-
-                <div class="govuk-hint" >
-If your address does not easily fit in the suggested format, provide the full address details in 'Address line 1'.
-                </div>
 
   {{ govukInput({
     label: {

@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-  Bank transfer – {{ serviceName }} – GOV.UK Prototype Kit
+  Corporate payment – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -67,7 +67,7 @@
               text: "Payment method"
             },
             value: {
-              text: "Bank transfer"
+              text: "Request an invoice"
             }
           },
           {
@@ -78,15 +78,6 @@
               text: "[Limitation]"
             }
           },
-                    {
-            key: {
-              text: "Bank transfer reference number"
-            },
-            value: {
-              text: "APP1234567-080394
-"
-            }
-          },
           {
             key: {
               text: "Amount to pay"
@@ -94,20 +85,82 @@
             value: {
               text: "£220.00"
             }
+          },
+          {
+            key: {
+              text: "Paying organisation"
+            },
+            value: {
+              text: "Sea Company X"
+            },
+            actions: {
+              items: [
+                {
+                  href: "corporate-payment-confirmation.html",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Invoice number"
+            },
+            value: {
+              html: "OOWapp33"
+            },
+            actions: {
+              items: [
+                {
+                  href: "corporate-payment-confirmation.html",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Rolling account number"
+            },
+            value: {
+              html: "1234567ROLLIN3245677"
+            },
+            actions: {
+              items: [
+                {
+                  href: "corporate-payment-confirmation.html",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Proof of authorisation"
+            },
+            value: {
+              html: "proof-document.jpg"
+            },
+            actions: {
+              items: [
+                {
+                  href: "corporate-payment-confirmation.html",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
           }
         ]
       }) }}
       
 
-      {{ govukWarningText({
-  text: "When making a payment, include your bank transfer reference number",
-  iconFallbackText: "Warning"
-}) }} 
-      
-
-<a class="govuk-button" data-module="govuk-button" href="bank-transfer-confirmation.html">
-  Confirm payment method and submit application
-</a>
+<a class="govuk-button" data-module="govuk-button" href="corporate-payment-confirmation.html">
+Confirm payment method and submit application
+  </a>
 
     </div>
   </div>

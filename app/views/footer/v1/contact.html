@@ -2,7 +2,8 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-Provide evidence of your UK Global Maritime Distress and Safety System (GMDSS) certificate – {{ serviceName }} – GOV.UK Prototype Kit
+          Contact
+ – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -46,34 +47,24 @@ Provide evidence of your UK Global Maritime Distress and Safety System (GMDSS) c
     html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
   }) }}
   
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
 
 {% endblock %}
 
 {% block content %}
 
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-          <span class="govuk-caption-l">Ancillary certificates</span>
       <h1 class="govuk-heading-l">
-Request for a UK Global Maritime Distress and Safety System (GMDSS) certificate</h1>
+          Contact
+      </h1>
 
-<p class="govuk">As part of your Certificate of Competency request, the MCA will provide you with a UK GMDSS certificate.</p>
+      <p>
+        This is a paragraph of text. It explains in more detail what has happened and wraps across several lines.
+      </p>
 
 
-<form action="check-gmdss" method="post" enctype="multipart/form-data">
-      <button type="submit" class="govuk-button" data-module="govuk-button">
-        Continue
-      </button>
-    </form>
-        
     </div>
   </div>
-
 
 {% endblock %}

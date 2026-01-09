@@ -1,0 +1,204 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Request an invoice – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v1/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Check payment method</h1>
+      
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+      
+      {{ govukSummaryList({
+        rows: [
+        {
+            key: {
+              text: "Payment method"
+            },
+            value: {
+              text: "Request an invoice"
+            }
+          },
+          {
+            key: {
+              text: "Application"
+            },
+            value: {
+              text: "[Limitation]"
+            }
+          },
+          {
+            key: {
+              text: "Amount to pay"
+            },
+            value: {
+              text: "£220.00"
+            }
+          },
+          {
+            key: {
+              text: "Name"
+            },
+            value: {
+              text: "Sea Company X"
+            },
+            actions: {
+              items: [
+                {
+                  href: "request-an-invoice.html",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Email"
+            },
+            value: {
+              text: "accounts@seacompanyx.com"
+            },
+            actions: {
+              items: [
+                {
+                  href: "request-an-invoice.html",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Telephone number"
+            },
+            value: {
+              text: "0044123456789"
+            },
+            actions: {
+              items: [
+                {
+                  href: "request-an-invoice.html",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Address"
+            },
+            value: {
+              html: "2nd Floor<br>
+280 Bishopsgate<br>
+London<br>
+EC2M 4RB"
+            },
+            actions: {
+              items: [
+                {
+                  href: "request-an-invoice.html",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Purchase Order number"
+            },
+            value: {
+              html: "OOWapp33"
+            },
+            actions: {
+              items: [
+                {
+                  href: "request-an-invoice.html",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Additional information"
+            },
+            value: {
+              html: "Lorem ipsum dolor sit amet, consectetur adipiscing elit. Donec varius in mi pulvinar tincidunt. Cras id suscipit velit. Sed auctor dui nec dui sodales porttitor. Aliquam eu volutpat odio. Maecenas mauris eros, ultrices eu urna a, elementum dictum nibh. Suspendisse dapibus libero eu scelerisque cursus."
+            },
+            actions: {
+              items: [
+                {
+                  href: "request-an-invoice.html",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
+      
+
+<a class="govuk-button" data-module="govuk-button" href="invoice-confirmation.html">
+Confirm payment method and submit application
+  </a>
+
+    </div>
+  </div>
+{% endblock %}

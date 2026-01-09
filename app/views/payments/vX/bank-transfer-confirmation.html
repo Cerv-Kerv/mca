@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-Provide evidence of your UK Global Maritime Distress and Safety System (GMDSS) certificate – {{ serviceName }} – GOV.UK Prototype Kit
+  Pay by bank transfer confirmation – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -46,34 +46,39 @@ Provide evidence of your UK Global Maritime Distress and Safety System (GMDSS) c
     html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
   }) }}
   
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
 
 {% endblock %}
 
 {% block content %}
 
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-          <span class="govuk-caption-l">Ancillary certificates</span>
-      <h1 class="govuk-heading-l">
-Request for a UK Global Maritime Distress and Safety System (GMDSS) certificate</h1>
+      {{ govukPanel({
+        titleText: "Application submitted",
+        html: "Your reference number<br><strong>APP12345678</strong>"
+      }) }}
 
-<p class="govuk">As part of your Certificate of Competency request, the MCA will provide you with a UK GMDSS certificate.</p>
+      <p>
+        We have sent you a confirmation email.
+      </p>
+
+      <h2 class="govuk-heading-m">
+        What happens next
+      </h2>
+
+      <p>
+We have sent your application for a Notice of Eligibility (NoE) to the Maritime and Coastguard Agency (MCA).      </p>
+      <p>You must pay the required fees through bank transfer. For your application to be processed, include your name and date of birth as a reference when making payment.</p>
+      <p>
+        The MCA may contact you for more information.
+      </p>
+      <p>Refer to your <a href="/applications/application-overview-1">application overview</a> for what you need to do next.</p>
 
 
-<form action="check-gmdss" method="post" enctype="multipart/form-data">
-      <button type="submit" class="govuk-button" data-module="govuk-button">
-        Continue
-      </button>
-    </form>
-        
+
+
     </div>
   </div>
-
 
 {% endblock %}

@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-Provide evidence of your UK Global Maritime Distress and Safety System (GMDSS) certificate – {{ serviceName }} – GOV.UK Prototype Kit
+  Payment by someone else – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -54,26 +54,60 @@ Provide evidence of your UK Global Maritime Distress and Safety System (GMDSS) c
 {% endblock %}
 
 {% block content %}
-
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Check payment method</h1>
+      
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+      
+      {{ govukSummaryList({
+        rows: [
+        {
+            key: {
+              text: "Payment method"
+            },
+            value: {
+              text: "Bank transfer"
+            }
+          },
+          {
+            key: {
+              text: "Application"
+            },
+            value: {
+              text: "[Limitation]"
+            }
+          },
+          {
+            key: {
+              text: "Amount to pay"
+            },
+            value: {
+              text: "£220.00"
+            }
+          },
+          {
+            key: {
+              text: "Payment link"
+            },
+            value: {
+              text: "[gov pay URL]"
+            }
+          }
+        ]
+      }) }}
+      
 
-          <span class="govuk-caption-l">Ancillary certificates</span>
-      <h1 class="govuk-heading-l">
-Request for a UK Global Maritime Distress and Safety System (GMDSS) certificate</h1>
+      {{ govukWarningText({
+  text: "Include the application reference when making payment.",
+  iconFallbackText: "Warning"
+}) }}
+      
 
-<p class="govuk">As part of your Certificate of Competency request, the MCA will provide you with a UK GMDSS certificate.</p>
+<a class="govuk-button" data-module="govuk-button" href="payment-by-someone-else-confirmation.html">
+Confirm payment method and submit application
+  </a>
 
-
-<form action="check-gmdss" method="post" enctype="multipart/form-data">
-      <button type="submit" class="govuk-button" data-module="govuk-button">
-        Continue
-      </button>
-    </form>
-        
     </div>
   </div>
-
-
 {% endblock %}

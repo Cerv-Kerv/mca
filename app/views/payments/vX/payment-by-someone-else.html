@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-Provide evidence of your UK Global Maritime Distress and Safety System (GMDSS) certificate – {{ serviceName }} – GOV.UK Prototype Kit
+  Payment by someone else – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -54,26 +54,50 @@ Provide evidence of your UK Global Maritime Distress and Safety System (GMDSS) c
 {% endblock %}
 
 {% block content %}
-
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Payment by someone else</h1>
+      
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+      
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Application"
+            },
+            value: {
+              text: "[Limitation]"
+            }
+          },
+          {
+            key: {
+              text: "Amount to pay"
+            },
+            value: {
+              text: "£220.00"
+            }
+          }
+        ]
+      }) }}
+      
+    
 
-          <span class="govuk-caption-l">Ancillary certificates</span>
-      <h1 class="govuk-heading-l">
-Request for a UK Global Maritime Distress and Safety System (GMDSS) certificate</h1>
+<p class="govuk-body">Provide the following details to the person making the payment on your behalf:</p>
 
-<p class="govuk">As part of your Certificate of Competency request, the MCA will provide you with a UK GMDSS certificate.</p>
+<ul class="govuk-list govuk-list--bullet">
+<li>Payment link — [gov pay url]</li>
+</ul>
 
+<p class="govuk-body">Ensure the person making the payment includes your application reference number as the payment reference.</p>
+ 
 
-<form action="check-gmdss" method="post" enctype="multipart/form-data">
-      <button type="submit" class="govuk-button" data-module="govuk-button">
-        Continue
-      </button>
-    </form>
-        
+      
+
+<a class="govuk-button" data-module="govuk-button" href="check-payment-by-someone-else.html">
+  Continue
+</a>
+
     </div>
   </div>
-
-
 {% endblock %}
