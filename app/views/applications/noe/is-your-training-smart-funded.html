@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
- Is your training SMarT Funded? – {{ serviceName }} – GOV.UK Prototype Kit
+          Check your medicial certificate– {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -12,11 +12,25 @@
 
 {{ hmrcHeader({
   serviceUrl : "/",
+  signOutHref : "?sign-out",
   useTudorCrown: "true"
 }) }}
 {{ govukServiceNavigation({
     serviceName: serviceName,
-  navigation: [   
+      navigation: [   
+      {
+      href: "/dashboard/v1/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Exams"
+    }
 ],
     slots: {
     },
