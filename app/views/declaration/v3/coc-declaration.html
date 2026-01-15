@@ -1,0 +1,92 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Request Certificate of Competency declaration – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v1/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+            <span class="govuk-caption-l">Request Certificate of Competency</span>
+      <h1 class="govuk-heading-l">
+        Declaration
+      </h1>
+
+      <form class="form" action="/applications/coc-application-confirmation" method="post">
+
+<p class="govuk-body">
+I declare that the data contained in this application is, to the best of my knowledge, true and complete.  </p>
+
+<p class="govuk-body">
+  I also declare that the documents are: 
+</p>
+
+<ul class="govuk govuk-list--bullet">
+  <li>genuine</li>
+  <li>given and signed by the persons whose names appear on them </li>
+</ul>
+
+<p class="govuk-body">
+  I consent to any processing of the data contained in this application by the MCA (including any processing necessary to establish the authenticity and validity of the issued certificate). 
+</p>
+
+        {{ govukButton({
+          text: "Agree and request Certficate of Competency"
+        }) }}
+
+      </form>
+
+    </div>
+  </div>
+
+{% endblock %}
