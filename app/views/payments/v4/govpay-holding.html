@@ -82,7 +82,7 @@
         ]
       }) }}
       
-      <form action="pay-online-confirmation.html">
+      
 {% call govukFieldset({
   legend: {
     text: "Enter card details",
@@ -290,7 +290,7 @@
 
           
 {% endcall %}
-
+<form action="govpay-redirect">
         {{ govukButton({
           text: "Make payment and submit application",
           classes: "govuk-button"
