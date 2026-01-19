@@ -80,6 +80,13 @@ I declare that the data contained in this application is, to the best of my know
   I consent to any processing of the data contained in this application by the MCA (including any processing necessary to establish the authenticity and validity of the issued certificate). 
 </p>
 
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{{ govukWarningText({
+  text: "You can be fined up to £5,000 for a false declaration",
+  iconFallbackText: "Warning"
+}) }}
+
         {{ govukButton({
           text: "Agree and request Certficate of Competency"
         }) }}
