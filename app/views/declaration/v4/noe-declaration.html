@@ -12,19 +12,20 @@
 
 {{ hmrcHeader({
   serviceUrl : "/",
+  signOutHref : "?sign-out",
   useTudorCrown: "true"
 }) }}
 {{ govukServiceNavigation({
     serviceName: serviceName,
       navigation: [   
       {
-      href: "/dashboard/v1/dashboard.html",
+      href: "#",
       text: "Dashboard"
     },
     {
-      href: "/applications/applications",
+      href: "#",
       text: "Applications",
-      active: true
+      active: true      
     },
     {
       href: "#",
@@ -37,19 +38,14 @@
   }) }}
 {% endblock %}
 
-{% block beforeContent %}
-  {{ govukPhaseBanner({
-    tag: {
-      text: "Beta"
-    },
-    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
-  }) }}
-  
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
 
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Beta"
+  },
+  html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+}) }}
 {% endblock %}
 
 
