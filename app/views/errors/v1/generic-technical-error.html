@@ -12,42 +12,18 @@
 {% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
 
 {{ hmrcHeader({
-  serviceUrl : "/",
-  signOutHref : "?sign-out",
-  useTudorCrown: "true"
+  serviceUrl : "/"
 }) }}
 {{ govukServiceNavigation({
     serviceName: serviceName,
       navigation: [   
-      {
-      href: "/dashboard/v2/dashboard.html",
-      text: "Dashboard"
-    },
-    {
-      href: "/applications/applications",
-      text: "Applications"
-    },
-    {
-      href: "#",
-      text: "Oral exams"
-    }
 ],
     slots: {
     },
     classes: "govuk-header--full-width-border"
   }) }}
 {% endblock %}
-
-{% block beforeContent %}
-  {{ govukPhaseBanner({
-    tag: {
-      text: "Beta"
-    },
-    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
-  }) }}
   
-
-{% endblock %}
 
 {% block content %}
 
@@ -58,9 +34,9 @@
           Sorry, there is a problem with the service
       </h1>
 
-      <p class="govuk">Try again later</p> 
+      <p class="govuk">Try again later.</p> 
 
-      <p>Contact <a href="https://www.gov.uk/guidance/seafarer-training-and-certification-contact-details">Seafarers Operations</a> if you have any questions</p> 
+      <p>Contact <a href="https://www.gov.uk/guidance/seafarer-training-and-certification-contact-details">Seafarers Operations</a> if you have any questions.</p> 
 
 <p class="govuk">
 Phone:<br><strong>+44 333 399 0040</strong></p> 
