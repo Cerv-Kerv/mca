@@ -1,0 +1,106 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+          Check your medicial certificate– {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v2/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Oral exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+tag: {
+    text: "Prototype"
+  },
+  html: 'No data is collected or saved.'
+}) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+          <span class="govuk-caption-l">Additional details</span>
+      <h1 class="govuk-heading-l">Is your training SMarT funded?</h1>
+
+      <p class="govuk">Being SMarT funded means that the UK government provides financial support to shipping companies and training organisations, covering up to 50% of seafarer costs.</p>
+
+
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+      {% from "govuk/components/input/macro.njk" import govukInput %}
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+
+<form>
+  {{ govukRadios({
+  idPrefix: "SmarT",
+  name: "redirect",
+  
+  items: [
+    {
+      value: "~tell-us-which-is-your-sponsoring-company.html",
+      text: "Yes"
+    },
+    {
+      value: "~check-smart-funded-status.html",
+      text: "No"
+    }
+  ]
+}) }}
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+</form>
+
+
+<details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+             Unsure if your training is SMarT funded?
+            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p class="govuk-body">
+SMarT Funding is recorded in your Training Record Book (TRB). Check your TRB to learn if your training is SMarT Funded.        </p>
+          </div>
+        </details>
+
+{% endblock %}
+

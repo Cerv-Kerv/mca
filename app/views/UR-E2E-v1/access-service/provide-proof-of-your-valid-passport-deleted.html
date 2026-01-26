@@ -1,0 +1,94 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+         Provide proof of your valid passport
+ – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+tag: {
+    text: "Prototype"
+  },
+  html: 'No data is collected or saved.'
+}) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <div class="moj-banner moj-banner--success" role="region" aria-label="Success">
+  <svg class="moj-banner__icon" fill="currentColor" role="presentation" focusable="false" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 25 25" height="25" width="25">
+    <path d="M25,6.2L8.7,23.2L0,14.1l4-4.2l4.7,4.9L21,2L25,6.2z" />
+  </svg>
+  <div class="moj-banner__message">File named abc.jpg has been deleted</div>
+</div>
+
+      <span class="govuk-caption-l">Personal details</span>
+      <h1 class="govuk-heading-l">
+        Provide proof of your valid passport
+      </h1>
+
+<p class="govuk">We require an image of your valid passport to verify your identity.</p>
+
+<p class="govuk">The Maritime and Coastguard Agency (MCA) may request additional documentation if required.</p>
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+<div class="govuk-form-group">
+  {{ govukFileUpload({
+    id: "file-upload-1",
+    name: "file-upload-1",
+    hint: {
+      text: "A valid passport is one that is not expired and is recognised by the issuing country. Ensure all passport details are clearly visible in the image before uploading it. The selected file must be smaller than 25MB."
+    },
+    label: {
+      text: "Upload an image of your valid passport",
+      classes: "govuk-label--m"
+    },
+    javascript: true
+  }) }}
+</div>
+
+
+
+
+          <form class="form" action="provide-proof-of-your-valid-passport-2" method="post" novalidate>
+        {{ govukButton({
+  text: "Continue"
+}) }}
+
+      </form>
+        
+    </div>
+  </div>
+
+{% endblock %}

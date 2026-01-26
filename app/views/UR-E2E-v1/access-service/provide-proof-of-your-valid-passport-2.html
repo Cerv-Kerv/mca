@@ -1,0 +1,94 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+         Provide proof of your valid passport
+ – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+tag: {
+    text: "Prototype"
+  },
+  html: 'No data is collected or saved.'
+}) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Personal details</span>
+      <h1 class="govuk-heading-l">
+        Provide proof of your valid passport
+      </h1>
+
+<p class="govuk">We require an image of your valid passport to verify your identity.</p>
+
+<p class="govuk">The Maritime and Coastguard Agency (MCA) may request additional documentation if required.</p>
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
+
+<p class="govuk-label--m">Upload an image of your valid passport</p>
+
+<div id="file-upload-1-hint" class="govuk-hint">
+A valid passport is one that is not expired and is recognised by the issuing country. Ensure all passport details are clearly visible in the image before uploading it. The selected file must be smaller than 25MB.    </div>
+
+<p class="govuk-body govuk-!-display-none" id="refreshPageProgress"><a href="#" class="govuk-link">Refresh page to update file upload progress</a></p>
+
+<p class="govuk-label--s">File added</p>
+
+    <dl class="govuk-summary-list govuk-summary-list--long-key">
+      <div class="govuk-summary-list__row">
+        <dt class="govuk-summary-list__key">
+          passport-image.jpg
+        </dt>
+        <dd class="govuk-summary-list__value">
+          <strong class="govuk-tag govuk-tag--yellow">
+  Uploading
+</strong>
+
+        </dd>
+      </div>
+    </dl>
+
+
+          <form class="form" action="provide-proof-of-your-valid-passport-3" method="post" novalidate>
+        {{ govukButton({
+  text: "Continue"
+}) }}
+
+      </form>
+
+        
+    </div>
+  </div>
+
+{% endblock %}

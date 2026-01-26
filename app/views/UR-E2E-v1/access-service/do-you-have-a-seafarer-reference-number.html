@@ -1,0 +1,98 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Do you have a Seafarer Reference Number (SRN)? – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+  navigation: [   
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+tag: {
+    text: "Prototype"
+  },
+  html: 'No data is collected or saved.'
+}) }}
+  
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Do you have a Seafarer Reference Number (SRN)?</h1>
+      <p class="govuk-body">Your seafarer reference number may also be known to you as a seafarer documentation system (SDS) number. This reference number is usually found in your Notice of Eligibility (NOE) email or other related documentation. </p>
+
+      <p class="govuk-body">If you know that you have a seafarer reference number, but do not know what it is, select 'No'.</p>
+      <p class="govuk-body">We will match your credentials to your existing Maritime and Coastguard Agency (MCA) record.</p>
+
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+      {% from "govuk/components/input/macro.njk" import govukInput %}
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+      {# Error Summary #}
+      {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}
+        {% set errorList = [] %}
+        
+        {% if data['confirm-error'] == 'true' %}
+          {% set errorList = (errorList.push({
+            text: "Select an option",
+            href: "#confirm-record"
+          }), errorList) %}
+        {% endif %}
+        
+        {% if data['other-reason-error'] == 'true' %}
+          {% set errorList = (errorList.push({
+            text: "Enter the reason you need to cancel",
+            href: "#other-reason"
+          }), errorList) %}
+        {% endif %}
+
+        {{ govukErrorSummary({
+          titleText: "There is a problem",
+          errorList: errorList
+        }) }}
+      {% endif %}
+
+<form>
+  {{ govukRadios({
+  idPrefix: "Pay online",
+  name: "redirect",
+  
+  items: [
+    {
+      value: "~provide-your-seafarer-reference-number.html",
+      text: "Yes"
+    },
+    {
+      value: "~tell-us-your-name.html",
+      text: "No"
+    }
+  ]
+}) }}
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+</form>
+
+{% endblock %}
+

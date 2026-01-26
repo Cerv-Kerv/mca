@@ -1,0 +1,103 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+Provide evidence of your sea service – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v2/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Oral exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+tag: {
+    text: "Prototype"
+  },
+  html: 'No data is collected or saved.'
+}) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Seagoing service</span>
+      <h1 class="govuk-heading-l">
+Provide evidence of your sea service
+</h1>
+
+<p class="govuk">
+You must submit two different types of evidence that support your declared service. These evidence-types will usually be your Discharge Book entries and sea service testimonials.
+</p>
+<p class="govuk">
+If your application requires confirmation of watchkeeping, at least one type of your provided evidence must support this.
+</p>
+<p class="govuk">
+If you do not have a Discharge Book, you can provide Certificates of Discharge instead. Alternative forms of evidence of service can also include a company letter.
+</p>
+<p class="govuk">
+If you have been working on Yachts, you may provide a Service Record Book from an approved organisation. If you are providing this you do not need to also submit a second type of evidence of your service.
+</p>
+
+<form action="check-evidence-of-your-sea-service" method="post" enctype="multipart/form-data">
+  <div class="govuk-form-group">
+  {{ govukFileUpload({
+    id: "file-upload-1",
+    name: "file-upload-1",
+    hint: {
+      text: "For each Discharge Book you upload, upload images of the photo page to include seafarer details, and then each page detailing the voyage."
+    },
+    label: {
+      text: "Upload your evidence of sea service",
+      classes: "govuk-label--m"
+    },
+    javascript: true
+  }) }}
+</div>
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+    </form>
+        
+    </div>
+  </div>
+
+
+{% endblock %}

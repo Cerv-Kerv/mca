@@ -1,0 +1,98 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Tell us your registered sex at birth and your chosen gender identity – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+tag: {
+    text: "Prototype"
+  },
+  html: 'No data is collected or saved.'
+}) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+
+      <span class="govuk-caption-l">Personal details</span>
+      <h1 class="govuk-heading-l">
+Tell us your sex as it appears on your passport</h1>
+
+{% from "govuk/components/input/macro.njk" import govukInput %}
+      <form class="form" action="which-country-issued-your-passport" method="post" novalidate>
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
+{% from "govuk/components/input/macro.njk" import govukInput %}
+
+
+{{ govukRadios({
+  name: "sex",
+  items: [
+    {
+      value: "female",
+      text: "Female"
+    },
+    {
+      value: "male",
+      text: "Male"
+    },
+    {
+      value: "indeterminate",
+      text: "X or other"
+      }
+  ]
+}) }}
+
+
+<details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+Why we ask this question            </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p class="govuk-body">
+We need this information to check that your identity matches the details on the documents you have provided.
+            </p>
+          </div>
+        </details>
+
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+        </form>
+    </div>
+  </div>
+
+{% endblock %}

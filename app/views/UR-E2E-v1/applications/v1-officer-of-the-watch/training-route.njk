@@ -1,0 +1,98 @@
+{% extends "layouts/main.html" %}
+
+{% set pageName = "Application for certificate of competency" %}
+
+{% block pageTitle %}{{ pageName }} – GOV.UK Prototype{% endblock %}
+
+{% block content %}
+ 
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <p class="govuk-body govuk-!-margin-bottom-4 govuk-!-font-size-16" style="color: #6b7280;">
+        Question 4 of 5
+      </p>
+
+      <form method="post" novalidate>
+        <div class="govuk-form-group">
+          <fieldset class="govuk-fieldset">
+            <legend class="govuk-fieldset__legend govuk-fieldset__legend--l">
+              <h1 class="govuk-fieldset__heading">Which route are you following for your sea service?</h1>
+            </legend>
+            <div class="govuk-radios" data-module="govuk-radios">
+              <div class="govuk-radios__item">
+                <input
+                  class="govuk-radios__input"
+                  id="training-route-fd"
+                  name="trainingRoute"
+                  type="radio"
+                  value="FD Route or MCA Approved Honours Degree"
+                  {% if not data.trainingRoute or data.trainingRoute == 'FD Route or MCA Approved Honours Degree' %}checked{% endif %}
+                />
+                <label class="govuk-label govuk-radios__label" for="training-route-fd">
+                  <strong>FD Route or MCA Approved Honours Degree</strong>
+                  <span class="govuk-!-display-block govuk-!-margin-top-1 govuk-!-font-weight-regular">
+                    You completed an MCA-approved university degree in a maritime subject.
+                  </span>
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input
+                  class="govuk-radios__input"
+                  id="training-route-hnc"
+                  name="trainingRoute"
+                  type="radio"
+                  value="HNC/HNDA/Advance Diploma Route (UK Cadets)"
+                  {% if data.trainingRoute == 'HNC/HNDA/Advance Diploma Route (UK Cadets)' %}checked{% endif %}
+                />
+                <label class="govuk-label govuk-radios__label" for="training-route-hnc">
+                  <strong>HNC/HNDA/Advance Diploma Route (UK Cadets)</strong>
+                  <span class="govuk-!-display-block govuk-!-margin-top-1 govuk-!-font-weight-regular">
+                    You completed an approved UK cadet training programme at college level.
+                  </span>
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input
+                  class="govuk-radios__input"
+                  id="training-route-alternate"
+                  name="trainingRoute"
+                  type="radio"
+                  value="Alternate Route (1+1)"
+                  {% if data.trainingRoute == 'Alternate Route (1+1)' %}checked{% endif %}
+                />
+                <label class="govuk-label govuk-radios__label" for="training-route-alternate">
+                  <strong>Alternate Route (1+1)</strong>
+                  <span class="govuk-!-display-block govuk-!-margin-top-1 govuk-!-font-weight-regular">
+                    You completed 1 year at sea followed by 1 year of study at an approved college.
+                  </span>
+                </label>
+              </div>
+              <div class="govuk-radios__item">
+                <input
+                  class="govuk-radios__input"
+                  id="training-route-exam"
+                  name="trainingRoute"
+                  type="radio"
+                  value="EXAM Route Experienced Seafarer"
+                  {% if data.trainingRoute == 'EXAM Route Experienced Seafarer' %}checked{% endif %}
+                />
+                <label class="govuk-label govuk-radios__label" for="training-route-exam">
+                  <strong>EXAM Route Experienced Seafarer</strong>
+                  <span class="govuk-!-display-block govuk-!-margin-top-1 govuk-!-font-weight-regular">
+                    You gained your experience through sea service rather than a formal cadet programme.
+                  </span>
+                </label>
+              </div>
+            </div>
+          </fieldset>
+        </div>
+
+        {{ govukButton({
+          text: "Continue"
+        }) }}
+      </form>
+    </div>
+  </div>
+{% endblock %}
+

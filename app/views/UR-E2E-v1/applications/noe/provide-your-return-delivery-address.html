@@ -1,0 +1,144 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+          Provide your home address
+ – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v2/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Oral exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+tag: {
+    text: "Prototype"
+  },
+  html: 'No data is collected or saved.'
+}) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+       <span class="govuk-caption-l">Additional details</span>
+      <h1 class="govuk-heading-l">
+        Provide your return-delivery address
+      </h1>
+
+          <p class="govuk" >
+We use this address to return any documentation you supplied for this application. This address will also be used to send you your Certificate of Compentency (CoC) documentation. 
+      </p>
+
+                <p class="govuk" >
+If your address does not easily fit in the suggested format, provide your full address details in 'Address line 1'.
+</p>
+{% from "govuk/components/input/macro.njk" import govukInput %}
+{% from "govuk/components/fieldset/macro.njk" import govukFieldset %}
+      <form class="form" action="check-return-delivery-address" method="post" novalidate>
+
+{% call govukFieldset({
+}) %}
+
+  {{ govukInput({
+    label: {
+      text: "Address line 1"
+    },
+    id: "address-line-1",
+    name: "addressLine1",
+    autocomplete: "address-line1"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Address line 2"
+    },
+    id: "address-line-2",
+    name: "addressLine2",
+    autocomplete: "address-line2"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Town or city"
+    },
+    classes: "govuk-!-width-two-thirds",
+    id: "address-town",
+    name: "addressTown",
+    autocomplete: "address-level2"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "County, state, region or province"
+    },
+    classes: "govuk-!-width-two-thirds",
+    id: "address-county",
+    name: "addressCounty"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Postcode, zip or pin"
+    },
+    classes: "govuk-input--width-10",
+    id: "address-postcode",
+    name: "addressPostcode",
+    autocomplete: "postal-code"
+  }) }}
+
+  {{ govukInput({
+    label: {
+      text: "Country"
+    },
+    classes: "govuk-!-width-two-thirds",
+    id: "address-country",
+    name: "addressCountry"
+  }) }}
+
+          {{ govukButton({
+          text: "Continue"
+        }) }}
+
+{% endcall %}
+        </form>
+    </div>
+  </div>
+
+{% endblock %}
