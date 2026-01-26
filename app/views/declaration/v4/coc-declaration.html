@@ -61,25 +61,26 @@
       <form class="form" action="/applications/coc-application-confirmation" method="post">
 
 <p class="govuk-body">
-I declare that the data contained in this application is, to the best of my knowledge, true and complete.  </p>
+I declare that the data contained in this application is, to the best of my knowledge and belief, true and complete.  
+</p>
 
 <p class="govuk-body">
-  I also declare that the documents are: 
+I also declare that the documents are: 
 </p>
 
 <ul class="govuk-list govuk-list--bullet">
   <li>genuine</li>
-  <li>given and signed by the persons whose names appear on them </li>
+  <li>given and signed by the persons whose names appear on them</li>
 </ul>
 
 <p class="govuk-body">
-  I consent to any processing of the data contained in this application by the MCA (including any processing necessary to establish the authenticity and validity of the issued certificate). 
+I consent to any processing of the data contained in this application by the MCA (including any processing necessary to establish the authenticity and validity of the issued certificate). 
 </p>
 
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
 {{ govukWarningText({
-  text: "You can be fined up to £5,000 for a false declaration",
+  text: "You can be fined up to £5000 for a false declaration",
   iconFallbackText: "Warning"
 }) }}
 
