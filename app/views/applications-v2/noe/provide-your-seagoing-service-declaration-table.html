@@ -1,0 +1,111 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+        Provide your seagoing service declaration table
+ – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v2/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Oral exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Seagoing service</span>
+      <h1 class="govuk-heading-l">
+Provide evidence of your seagoing service using the declaration table
+      </h1>
+
+<p class="govuk">Download and use the following templates to record your seagoing service: </p>
+<ul class="govuk-list govuk-list--bullet">
+  <li><a href="#">General seagoing service</a></li>
+  <li><a href="#">Yacht seagoing service</a></li>
+</ul>
+
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{{ govukWarningText({
+  text: "Your total seagoing service time must be no less than [application specific time frame]",
+  iconFallbackText: "Warning"
+}) }}
+
+
+
+<form action="check-your-seagoing-service-declaration-table" method="" enctype="multipart/form-data">
+
+
+<div class="govuk-form-group">
+  {{ govukFileUpload({
+    id: "file-upload-1",
+    name: "file-upload-1",
+    hint: {
+      text: "Upload your documents as scanned copies or photos of the original."
+    },
+    label: {
+      text: "Upload your completed seagoing service declaration table",
+      classes: "govuk-label--m"
+    },
+    javascript: true
+  }) }}
+</div>
+
+
+
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+       </form> 
+    </div>
+  </div>
+
+
+{% endblock %}
