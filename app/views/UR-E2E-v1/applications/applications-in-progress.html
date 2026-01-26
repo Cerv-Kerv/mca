@@ -19,13 +19,17 @@
     serviceName: serviceName,
       navigation: [   
       {
-      href: "/UR-E2E-v1/dashboard",
+      href: "/dashboard/v2/dashboard.html",
       text: "Dashboard"
     },
     {
-      href: "/UR-E2E-v1/applications/applications",
+      href: "/applications/applications",
       text: "Applications",
       active: true
+    },
+    {
+      href: "#",
+      text: "Oral exams"
     }
 ],
     slots: {
@@ -54,6 +58,47 @@
       </h1>
    
 
+      {{ govukTaskList({
+        idPrefix: "applications",
+        items: [
+          {
+            title: {
+              text: "OOW unlimited II/1"
+            },
+            href: "application-overview",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "[Limitation]"
+            },
+            href: "application-overview",
+            status: {
+              tag: {
+                text: "Complete",
+                classes: "govuk-tag--green"
+              }
+            }
+          },
+          {
+            title: {
+              text: "[Limitation]"
+            },
+            href: "application-overview",
+            status: {
+              tag: {
+                text: "In progress",
+                classes: "govuk-tag--yellow"
+              }
+            }
+          }
+        ]
+      }) }}
 
 <form action="/application-selection/v2/capacity" method="" novalidate>
 
