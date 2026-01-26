@@ -39,10 +39,11 @@ Send us your supporting workbooks – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block beforeContent %}
-tag: {
+{{ govukPhaseBanner({
+  tag: {
     text: "Prototype"
   },
-  html: 'No data is collected or saved.'
+  html: 'This is a prototype of a new service. No data is collected or saved.'
 }) }}
   
   {{ govukBackLink({

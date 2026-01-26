@@ -39,10 +39,11 @@ Provide evidence of your STCW A-VI/1-4 Personal Safety & Social Responsibility â
 {% endblock %}
 
 {% block beforeContent %}
-tag: {
+{{ govukPhaseBanner({
+  tag: {
     text: "Prototype"
   },
-  html: 'No data is collected or saved.'
+  html: 'This is a prototype of a new service. No data is collected or saved.'
 }) }}
   
   {{ govukBackLink({
