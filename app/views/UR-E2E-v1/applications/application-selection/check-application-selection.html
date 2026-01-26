@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-          Check your Global Maritime Distress and Safety System (GMDSS) status– {{ serviceName }} – GOV.UK Prototype Kit
+  Check your application selection – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -35,12 +35,12 @@
 {% endblock %}
 
 {% block beforeContent %}
-{{ govukPhaseBanner({
-  tag: {
-    text: "Prototype"
-  },
-  html: 'This is a prototype of a new service. No data is collected or saved.'
-}) }}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
   
   {{ govukBackLink({
     text: "Back",
@@ -52,25 +52,23 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-          <span class="govuk-caption-l">Ancillary certificates</span>
-      <h1 class="govuk-heading-l">
-Check your Global Maritime Distress and Safety System (GMDSS) status
-      </h1>
-
-          {{ govukSummaryList({
-        classes: "govuk-!-margin-bottom-9",
+      <h1 class="govuk-heading-l">Check application selection</h1>
+      
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+      
+      {{ govukSummaryList({
         rows: [
           {
             key: {
-              text: "UK GMDSS evidence uploads"
+              text: "Capacity"
             },
             value: {
-              html: "Filename1.ext"
+              text: "Officer of the Watch"
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "capacity.html",
                   text: "Change",
                   visuallyHiddenText: "address"
                 }
@@ -79,15 +77,15 @@ Check your Global Maritime Distress and Safety System (GMDSS) status
           },
           {
             key: {
-              text: "Non-UK GMDSS evidence uploads"
+              text: "Limitation"
             },
             value: {
-              html: "Filename1.ext"
+              text: "OOW Unlimited II/1"
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "limitation-officer-of-the-watch.html",
                   text: "Change",
                   visuallyHiddenText: "address"
                 }
@@ -96,15 +94,15 @@ Check your Global Maritime Distress and Safety System (GMDSS) status
           },
           {
             key: {
-              text: "UK GMDSS requested"
+              text: "Training route"
             },
             value: {
-              html: "Yes"
+              html: "Foundation Degree / MCA-approved Honours Degree / Scottish Professional Diploma"
             },
             actions: {
               items: [
                 {
-                  href: "#",
+                  href: "training-routes-oow.html",
                   text: "Change",
                   visuallyHiddenText: "address"
                 }
@@ -113,16 +111,10 @@ Check your Global Maritime Distress and Safety System (GMDSS) status
           }
         ]
       }) }}
+      
 
-      <form action="/applications/supporting-evidence" method="post" novalidate>
-
-        <input type="hidden" name="answers-checked" value="true">
-
-        {{ govukButton({
-          text: "Save and continue"
-        }) }}
-
-      </form>
+<a class="govuk-button" data-module="govuk-button" href="/UR-E2E-v1/applications/application-overview">
+   Start application </a>
 
     </div>
   </div>

@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-          Check your medicial certificate– {{ serviceName }} – GOV.UK Prototype Kit
+  Limitation – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -35,12 +35,12 @@
 {% endblock %}
 
 {% block beforeContent %}
-{{ govukPhaseBanner({
-  tag: {
-    text: "Prototype"
-  },
-  html: 'This is a prototype of a new service. No data is collected or saved.'
-}) }}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
   
   {{ govukBackLink({
     text: "Back",
@@ -52,11 +52,9 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-          <span class="govuk-caption-l">Additional details</span>
-      <h1 class="govuk-heading-l">Is your training SMarT funded?</h1>
+            <span class="govuk-caption-l">Application selection</span>
 
-      <p class="govuk">Being SMarT funded means that the UK government provides financial support to shipping companies and training organisations, covering up to 50% of seafarer costs.</p>
-
+      <h1 class="govuk-heading-l">Tell us your training route</h1>
 
       {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
       {% from "govuk/components/radios/macro.njk" import govukRadios %}
@@ -66,17 +64,25 @@
 
 <form>
   {{ govukRadios({
-  idPrefix: "SmarT",
+  idPrefix: "OOWtraining",
   name: "redirect",
   
   items: [
     {
-      value: "~tell-us-which-is-your-sponsoring-company.html",
-      text: "Yes"
+      value: "~check-application-selection",
+      text: "Foundation Degree / MCA-approved Honours Degree / Scottish Professional Diploma"
     },
     {
-      value: "~check-smart-funded-status.html",
-      text: "No"
+      value: "",
+      text: "HNC / HND / Advanced Diploma (UK cadet route)"
+    },
+    {
+      value: "",
+      text: "Overseas Collaborative Programme (1+1)"
+    },
+    {
+      value: "",
+      text: "Experienced Seafarer Route"
     }
   ]
 }) }}
@@ -85,19 +91,7 @@
   text: "Continue"
 }) }}
 </form>
-
-
-<details class="govuk-details" data-module="govuk-details">
-          <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">
-             Unsure if your training is SMarT funded?
-            </span>
-          </summary>
-          <div class="govuk-details__text">
-            <p class="govuk-body">
-SMarT Funding is recorded in your Training Record Book (TRB). Check your TRB to learn if your training is SMarT Funded.        </p>
-          </div>
-        </details>
+              
 
 {% endblock %}
 

@@ -19,17 +19,13 @@
     serviceName: serviceName,
       navigation: [   
       {
-      href: "/dashboard/v2/dashboard.html",
+      href: "/UR-E2E-v1/dashboard.html",
       text: "Dashboard"
     },
     {
-      href: "/applications/applications",
+      href: "/UR-E2E-v1/applications/applications",
       text: "Applications",
       active: true
-    },
-    {
-      href: "#",
-      text: "Oral exams"
     }
 ],
     slots: {
@@ -53,6 +49,8 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+            <span class="govuk-caption-l">OOW Unlimited II/1</span>
+
       <h1 class="govuk-heading-xl">
         Application overview
       </h1>
@@ -61,30 +59,6 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-      <h2 class="govuk-heading-m">Information</h2>
-
-      <table class="govuk-table">
-      <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Capacity</th>
-      <td class="govuk-table__cell">[Capacity]</td>
-    </tr>
-      <th scope="row" class="govuk-table__header">Limitation</th>
-      <td class="govuk-table__cell">[Limitation]</td>
-    </tr>
-    <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Training route</th>
-      <td class="govuk-table__cell">[Training route]</td>
-    </tr>
-            <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Amount to pay</th>
-      <td class="govuk-table__cell">£[220.00]</td>
-    </tr>
-
-
-  </tbody>
-</table>
 
       <h2 class="govuk-heading-m">Progress</h2>
 
@@ -107,12 +81,12 @@
           },
           {
             title: {
-              text: "[Pass Part A exam]"
+              text: "Pass Part A exam"
             }
           },
           {
             title: {
-              text: "[Pass Part B exam]"
+              text: "Pass Part B exam"
             }
           },
           {
@@ -135,7 +109,36 @@
         ]
       }) }}
       
+<br>
+<br>
+<br>
+      <h2 class="govuk-heading-m">Information</h2>
 
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row"></tr>
+        </thead>
+      <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Amount to pay</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">£220.00</td>
+    </tr>
+            <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Capacity</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">Officer of the Watch</td>
+    </tr>
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Limitation</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">OOW Unlimited II/1</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Training route</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">Foundation Degree / MCA-approved Honours Degree / Scottish Professional Diploma</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
       <p class="govuk"><a href="cancel/cancel-application">Cancel application</a></p>
 
     </div>
