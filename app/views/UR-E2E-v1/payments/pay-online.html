@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-          Check your return-delivery address – {{ serviceName }} – GOV.UK Prototype Kit
+  Online payment – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -19,11 +19,11 @@
     serviceName: serviceName,
       navigation: [   
       {
-      href: "/UR-E2E-v1/dashboard.html",
+      href: "/dashboard/v2/dashboard.html",
       text: "Dashboard"
     },
     {
-      href: "/UR-E2E-v1/applications/applications",
+      href: "/applications/applications",
       text: "Applications",
       active: true
     }
@@ -52,44 +52,57 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-          <span class="govuk-caption-l">Additional details</span>
-      <h1 class="govuk-heading-l">
-        Check your supplied return-delivery address
-      </h1>
-
-          {{ govukSummaryList({
-        classes: "govuk-!-margin-bottom-9",
+      <h1 class="govuk-heading-l">Pay online</h1>
+      
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+       {% from "govuk/components/radios/macro.njk" import govukRadios %}
+      
+      {{ govukSummaryList({
         rows: [
           {
             key: {
-              text: "Return-delivery address"
+              text: "Application"
             },
             value: {
-              html: "72 Guild Street<br>London<br>SE23 6FH<br>United Kingdom"
+              text: "OOW Unlimited II/1"
+            }
+          },
+          {
+            key: {
+              text: "Amount to pay"
             },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "address"
-                }
-              ]
+            value: {
+              text: "£220.00"
             }
           }
         ]
       }) }}
 
-      <form action="/UR-E2E-v1/applications/apply-for-notice-of-eligibility-3" method="post" novalidate>
+      <!--p class="govuk">You can use the following credit or debit cards to make a online payment:</p>
+      
+<ul class="govuk-list govuk-list--bullet">
+  <li>Visa</li>
+  <li>Mastercard</li>
+  <li>American Express</li>
+<li>Diners Club</li>
+</ul>
 
-        <input type="hidden" name="answers-checked" value="true">
+      <p class="govuk">You can also make an online payment using:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>Apply Pay</li>
+  <li>Google Pay</li>
+</ul-->
+
+      <form action="govpay-holding">
 
         {{ govukButton({
-          text: "Save and continue"
+          text: "Make payment and submit application",
+          classes: "govuk-button"
         }) }}
-
       </form>
-
+      
+      
     </div>
   </div>
 {% endblock %}

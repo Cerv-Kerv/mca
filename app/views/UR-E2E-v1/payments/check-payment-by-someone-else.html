@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-          Check your return-delivery address – {{ serviceName }} – GOV.UK Prototype Kit
+  Payment by someone else – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -19,11 +19,11 @@
     serviceName: serviceName,
       navigation: [   
       {
-      href: "/UR-E2E-v1/dashboard.html",
+      href: "/dashboard/v2/dashboard.html",
       text: "Dashboard"
     },
     {
-      href: "/UR-E2E-v1/applications/applications",
+      href: "/applications/applications",
       text: "Applications",
       active: true
     }
@@ -52,43 +52,57 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-          <span class="govuk-caption-l">Additional details</span>
-      <h1 class="govuk-heading-l">
-        Check your supplied return-delivery address
-      </h1>
-
-          {{ govukSummaryList({
-        classes: "govuk-!-margin-bottom-9",
+      <h1 class="govuk-heading-l">Check payment method</h1>
+      
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+      
+      {{ govukSummaryList({
         rows: [
-          {
+        {
             key: {
-              text: "Return-delivery address"
+              text: "Payment method"
             },
             value: {
-              html: "72 Guild Street<br>London<br>SE23 6FH<br>United Kingdom"
+              text: "Bank transfer"
+            }
+          },
+          {
+            key: {
+              text: "Application"
             },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "address"
-                }
-              ]
+            value: {
+              text: "OOW Unlimited II/1"
+            }
+          },
+          {
+            key: {
+              text: "Amount to pay"
+            },
+            value: {
+              text: "£220.00"
+            }
+          },
+          {
+            key: {
+              text: "Payment link"
+            },
+            value: {
+              text: "[gov pay URL]"
             }
           }
         ]
       }) }}
+      
 
-      <form action="/UR-E2E-v1/applications/apply-for-notice-of-eligibility-3" method="post" novalidate>
+      {{ govukWarningText({
+  text: "Include the application reference when making payment.",
+  iconFallbackText: "Warning"
+}) }}
+      
 
-        <input type="hidden" name="answers-checked" value="true">
-
-        {{ govukButton({
-          text: "Save and continue"
-        }) }}
-
-      </form>
+<a class="govuk-button" data-module="govuk-button" href="payment-by-someone-else-confirmation.html">
+Confirm payment method and submit application
+  </a>
 
     </div>
   </div>

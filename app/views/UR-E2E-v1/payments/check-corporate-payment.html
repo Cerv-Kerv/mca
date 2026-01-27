@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-  Check your application selection – {{ serviceName }} – GOV.UK Prototype Kit
+  Corporate payment – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -19,11 +19,11 @@
     serviceName: serviceName,
       navigation: [   
       {
-      href: "/UR-E2E-v1/dashboard.html",
+      href: "/dashboard/v2/dashboard.html",
       text: "Dashboard"
     },
     {
-      href: "/UR-E2E-v1/applications/applications",
+      href: "/applications/applications",
       text: "Applications",
       active: true
     }
@@ -52,40 +52,47 @@
 {% block content %}
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-l">Check application selection</h1>
+      <h1 class="govuk-heading-l">Check payment method</h1>
       
       {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
       
       {{ govukSummaryList({
         rows: [
-          {
+        {
             key: {
-              text: "Capacity"
+              text: "Payment method"
             },
             value: {
-              text: "Officer of the Watch"
-            },
-            actions: {
-              items: [
-                {
-                  href: "capacity.html",
-                  text: "Change",
-                  visuallyHiddenText: "address"
-                }
-              ]
+              text: "Request an invoice"
             }
           },
           {
             key: {
-              text: "Limitation"
+              text: "Application"
             },
             value: {
               text: "OOW Unlimited II/1"
+            }
+          },
+          {
+            key: {
+              text: "Amount to pay"
+            },
+            value: {
+              text: "£220.00"
+            }
+          },
+          {
+            key: {
+              text: "Paying organisation"
+            },
+            value: {
+              text: "Sea Company X"
             },
             actions: {
               items: [
                 {
-                  href: "limitation-officer-of-the-watch.html",
+                  href: "corporate-payment-confirmation.html",
                   text: "Change",
                   visuallyHiddenText: "address"
                 }
@@ -94,15 +101,49 @@
           },
           {
             key: {
-              text: "Training route"
+              text: "Invoice number"
             },
             value: {
-              html: "Foundation Degree / MCA-approved Honours Degree / Scottish Professional Diploma"
+              html: "OOWapp33"
             },
             actions: {
               items: [
                 {
-                  href: "training-routes-oow.html",
+                  href: "corporate-payment-confirmation.html",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Rolling account number"
+            },
+            value: {
+              html: "1234567ROLLIN3245677"
+            },
+            actions: {
+              items: [
+                {
+                  href: "corporate-payment-confirmation.html",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
+          {
+            key: {
+              text: "Proof of authorisation"
+            },
+            value: {
+              html: "proof-document.jpg"
+            },
+            actions: {
+              items: [
+                {
+                  href: "corporate-payment-confirmation.html",
                   text: "Change",
                   visuallyHiddenText: "address"
                 }
@@ -113,8 +154,9 @@
       }) }}
       
 
-<a class="govuk-button" data-module="govuk-button" href="/UR-E2E-v1/applications/application-overview">
-   Start application </a>
+<a class="govuk-button" data-module="govuk-button" href="corporate-payment-confirmation.html">
+Confirm payment method and submit application
+  </a>
 
     </div>
   </div>
