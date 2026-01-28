@@ -72,19 +72,6 @@
         Application overview
       </h1>
 
-      {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
-
-{% set html %}
-  <p class="govuk-notification-banner__heading">
-   You need to apply for a new Notice of Eligibility (NOE) to resit your oral exam.
-    <a class="govuk-notification-banner__link" href="#">View application</a>.
-  </p>
-{% endset %}
-
-{{ govukNotificationBanner({
-  html: html
-}) }}
-
       <h2 class="govuk-heading-m">Progress</h2>
 
       <p class="govuk-body govuk-!-margin-bottom-7">You have completed 0 of 5 parts of this appplication.</p>
