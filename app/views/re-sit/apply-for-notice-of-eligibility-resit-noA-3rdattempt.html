@@ -64,6 +64,11 @@ Apply for a Notification of Eligibility (NoE)
 
 <p class="govuk-body govuk-!-margin-bottom-7">You have completed 2 of 16 sections.</p>
 
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{{ govukInsetText({
+  text: "Notice of Eligibility (NoE) and Certificate of Competency (CoC) suppporting evidence is required to resit your oral exam."
+}) }}
 
 <h2 class="govuk-heading-m">Identity and medical</h2>
 
@@ -117,6 +122,30 @@ Apply for a Notification of Eligibility (NoE)
           },
           {
             title: {
+              text: "College education and training completion letter"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "MCA written examinations"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
               text: "Personal Survival Techniques (STCW A-VI/1-1)"
             },
             href: "noe/provide-evidence-of-your-stcw-a-vi-1-1-personal-survival-techniques",
@@ -156,6 +185,42 @@ Apply for a Notification of Eligibility (NoE)
               text: "Personal Safety & Social Responsibility (STCW A-VI/1-4)"
             },
             href: "noe/provide-evidence-of-your-stcw-a-vi-1-4-personal-safety-and-social-responsibility",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Medical First Aid (STCW A-VI/4-1)"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Advanced Fire Fighting (STCW A-V1/3)"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Proficiency in Survival Craft and Rescue Boats (STCW A-VI/2-1)"
+            },
+            href: "#",
             status: {
               tag: {
                 text: "Action required",
@@ -224,12 +289,142 @@ Apply for a Notification of Eligibility (NoE)
         ]
       }) }}
 
-      <h2 class="govuk-heading-m">Additional requirements</h2>
+
+<h2 class="govuk-heading-m">Ancillary certificates</h2>
 
       {{ govukTaskList({
-        idPrefix: "submission",
+        idPrefix: "training",
         items: [
           {
+            title: {
+              text: "Signals"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "NARAS/ NAEST Operational"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Efficient Deck Hand"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "HELM Operational"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "NARAS/ NAEST Management"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "HELM Management"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "*CANNOT BE OPTIONAL* ECDIS if NAEST completed before June 2005"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Magnetic compass and navigational aids"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Ship construction and stability"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Shipboard operations"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          }
+        ]
+      }) }}
+
+
+      <h2 class="govuk-heading-m">Additional requirements</h2>
+      
+{{ govukTaskList({
+        idPrefix: "id-medical",
+        items: [
+        {
             title: {
               text: "SMarT funded status"
             },
@@ -250,6 +445,42 @@ Apply for a Notification of Eligibility (NoE)
               tag: {
                 text: "Complete",
                 classes: "govuk-tag--green"
+              }
+            }
+          },
+                 {
+            title: {
+              text: "UK GMDSS"
+            },
+            href: "coc/gmdss/tell-us-about-your-gmdss-certificate",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+        {
+            title: {
+              text: "Signature"
+            },
+            href: "coc/provide-signature",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+                    {
+            title: {
+              text: "*DUPLICATE??* In Date Medical Fitness Certificate"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
               }
             }
           }
@@ -284,7 +515,7 @@ Apply for a Notification of Eligibility (NoE)
 <br>
 <br>
 <br>
-<p class="govuk-body"><a href="/applications-v2/supporting-evidence/application-overview">Back to application overview</a></p>
+<p class="govuk-body"><a href="application-overview-resit-noA-3rdattempt">Back to application overview</a></p>
 
     </div>
   </div>

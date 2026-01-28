@@ -53,10 +53,37 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+      {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+{% set html %}
+  <p class="govuk-notification-banner__heading">
+   You need to apply for a new Notice of Eligibility (NOE) to resit your oral exam.
+    <a class="govuk-notification-banner__link" href="#">View application</a>.
+  </p>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html
+}) }}
+
             <span class="govuk-caption-l">[limitation]</span>
       <h1 class="govuk-heading-xl">
         Application overview
       </h1>
+
+      {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
+
+{% set html %}
+  <p class="govuk-notification-banner__heading">
+   You need to apply for a new Notice of Eligibility (NOE) to resit your oral exam.
+    <a class="govuk-notification-banner__link" href="#">View application</a>.
+  </p>
+{% endset %}
+
+{{ govukNotificationBanner({
+  html: html
+}) }}
 
       <h2 class="govuk-heading-m">Progress</h2>
 
@@ -79,12 +106,12 @@
           },
           {
             title: {
-              text: "[Pass Part A exam]"
+              text: "Pass Part A exam - attempt 2"
             }
           },
           {
             title: {
-              text: "[Pass Part B exam]"
+              text: "Pass Part B exam"
             }
           },
           {
@@ -119,7 +146,7 @@
       <tbody class="govuk-table__body">
                     <tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header govuk-!-width-one-half">Amount to pay</th>
-      <td class="govuk-table__cell govuk-!-width-one-half">£[XXX.XX]</td>
+      <td class="govuk-table__cell govuk-!-width-one-half">£159.00</td>
     </tr>
             <tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header govuk-!-width-one-half">Capacity</th>

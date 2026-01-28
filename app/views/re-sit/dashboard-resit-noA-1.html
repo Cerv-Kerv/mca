@@ -143,8 +143,17 @@
 
 
     <div class="govuk-width-container">
+{% set html %}
+  <p class="govuk-notification-banner__heading">
+   You need to apply for a new Notice of Eligibility (NOE) to resit your oral exam.
+    <a class="govuk-notification-banner__link" href="#">View application</a>.
+  </p>
+{% endset %}
 
-      <h1 class="govuk-heading-lx">
+{{ govukNotificationBanner({
+  html: html
+}) }}
+      <h1 class="govuk-heading-xl">
         Dashboard
       </h1>
         <ul class="govuk-grid-row card-group">
