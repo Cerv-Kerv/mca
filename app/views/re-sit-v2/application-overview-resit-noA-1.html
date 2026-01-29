@@ -59,6 +59,12 @@
         Application overview
       </h1>
 
+      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{{ govukInsetText({
+  text: "This is your 2nd attempt."
+}) }}
+
       <h2 class="govuk-heading-m">Progress</h2>
 
       <p class="govuk-body govuk-!-margin-bottom-7">You have completed 0 of 5 parts of this appplication.</p>

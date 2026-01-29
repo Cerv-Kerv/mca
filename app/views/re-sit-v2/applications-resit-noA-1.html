@@ -58,9 +58,6 @@
         Applications
       </h1>
    
-            <h2 class="govuk-heading-m">
-        Current
-      </h2>
 
       {{ govukTaskList({
         idPrefix: "applications",
@@ -79,9 +76,17 @@
           }
         ]
       }) }}
+<br><br>
+      <form action="/application-selection/v2/capacity" method="" novalidate>
 
-                  <h2 class="govuk-heading-m">
-        Previous
+        {{ govukButton({
+          text: "Start an application"
+        }) }}
+
+      </form>
+<br><br><br><br>
+                  <h2 class="govuk-heading-s">
+        History
       </h2>
 
       {{ govukTaskList({
@@ -93,7 +98,7 @@
             },
             status: {
               tag: {
-                text: "Failed",
+                text: "Closed",
                 classes: "govuk-tag--grey"
               }
             }
@@ -104,7 +109,7 @@
             },
             status: {
               tag: {
-                text: "Failed",
+                text: "Closed",
                 classes: "govuk-tag--grey"
               }
             }
@@ -134,13 +139,7 @@
         ]
       }) }}
 
-<form action="/application-selection/v2/capacity" method="" novalidate>
 
-        {{ govukButton({
-          text: "Start an application"
-        }) }}
-
-      </form>
 
 
     </div>
