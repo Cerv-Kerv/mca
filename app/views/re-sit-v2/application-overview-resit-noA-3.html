@@ -62,7 +62,7 @@
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
 {{ govukInsetText({
-  text: "This is your 2nd attempt. Apply for a new Notice of Eligibility (NOE) to resit your exam."
+  text: "This is your 2nd attempt. You can now book your oral exam."
 }) }}
 
       <h2 class="govuk-heading-m">Progress</h2>
@@ -79,19 +79,34 @@
             href: "apply-for-notice-of-eligibility",
             status: {
               tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
+                text: "Complete",
+                classes: "govuk-tag--green"
               }
             }
           },
           {
             title: {
               text: "Pass Part A exam"
+            },
+            href: "#",
+                        status: {
+              tag: {
+                text: "Complete",
+                classes: "govuk-tag--green"
+              }
+            
             }
           },
           {
             title: {
               text: "Pass Part B exam"
+            },
+            href: "#",
+                        status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
             }
           },
           {

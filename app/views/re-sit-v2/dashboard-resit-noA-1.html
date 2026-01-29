@@ -26,10 +26,6 @@
       href: "#",
       text: "Applications"
       
-    },
-    {
-      href: "#",
-      text: "Oral exams"
     }
 ],
     slots: {
@@ -143,16 +139,7 @@
 
 
     <div class="govuk-width-container">
-{% set html %}
-  <p class="govuk-notification-banner__heading">
-   You need to apply for a new Notice of Eligibility (NOE) to resit your oral exam.
-    <a class="govuk-notification-banner__link" href="#">View application</a>.
-  </p>
-{% endset %}
 
-{{ govukNotificationBanner({
-  html: html
-}) }}
       <h1 class="govuk-heading-xl">
         Dashboard
       </h1>
@@ -160,19 +147,19 @@
             <li class="govuk-grid-column-one-third card-group__item">
                 <div class="card card--clickable" data-test="global-search">
                     <h2 class="govuk-heading-m card__heading">
-                        <a class="govuk-link card__link govuk-link--no-visited-state" href="/applications/applications" onclick="showAlert()">Applications</a>
+                        <a class="govuk-link card__link govuk-link--no-visited-state" href="applications-resit-noA-1" onclick="showAlert()">Applications</a>
                     </h2>
                     <p class="govuk-body card__description">View all your applications</p>
                 </div>
             </li>
-            <li class="govuk-grid-column-one-third card-group__item">
+            <!--li class="govuk-grid-column-one-third card-group__item">
                 <div class="card card--clickable" data-test="manage-prisoner-whereabouts">
                     <h2 class="govuk-heading-m card__heading">
                         <a class="govuk-link card__link govuk-link--no-visited-state" href="#" onclick="showAlert()">Oral exams</a>
                     </h2>
                     <p class="govuk-body card__description">Book and manage oral exams</p>
                 </div>
-            </li>
+            </li-->
             <!--li class="govuk-grid-column-one-third card-group__item">
                 <div class="card card--clickable" data-test="use-of-force">
                     <h2 class="govuk-heading-m card__heading">
