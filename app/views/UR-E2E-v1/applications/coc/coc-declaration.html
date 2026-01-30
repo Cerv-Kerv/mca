@@ -42,9 +42,9 @@
 {% block beforeContent %}
 {{ govukPhaseBanner({
   tag: {
-    text: "Beta"
+    text: "Prototype"
   },
-  html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  html: 'This is a prototype of a new service. No data is collected or saved.'
 }) }}
 {% endblock %}
 
@@ -58,7 +58,7 @@
         Declaration
       </h1>
 
-      <form class="form" action="/applications/coc-application-confirmation" method="post">
+      <form class="form" action="/UR-E2E-v1/applications/coc-application-confirmation" method="post">
 
 <p class="govuk-body">
 I declare that the data contained in this application is, to the best of my knowledge and belief, true and complete.  

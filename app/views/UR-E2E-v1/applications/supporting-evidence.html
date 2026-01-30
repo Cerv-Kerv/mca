@@ -53,12 +53,12 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <span class="govuk-caption-l">[Limitation]</span>
+      <span class="govuk-caption-l">OOW Unlimited II/1</span>
       <h1 class="govuk-heading-xl">
         Supporting evidence
       </h1>
 
-<p class="govuk-body govuk-!-margin-bottom-7">You have completed X of XX sections.</p>
+<p class="govuk-body govuk-!-margin-bottom-7">You have completed 0 of 9 sections.</p>
 
 
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
@@ -86,28 +86,11 @@
           },
           {
             title: {
-              text: "MCA written examinations"
+              text: "Medical First Aid"
             },
-            href: "#",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
-            }
-          }
-        ]
-      }) }}
-
-<h2 class="govuk-heading-m">Advanced STCW safety training</h2>
-
-      {{ govukTaskList({
-        idPrefix: "training",
-        items: [
-          {
-            title: {
-              text: "Medical First Aid (STCW A-VI/4-1)"
-            },
+                                    hint: {
+        text: "STCW A-VI/4-1"
+      },
             href: "#",
             status: {
               tag: {
@@ -118,8 +101,11 @@
           },
           {
             title: {
-              text: "Advanced Fire Fighting (STCW A-V1/3)"
+              text: "Advanced Fire Fighting"
             },
+                                    hint: {
+        text: "STCW A-V1/3"
+      },
             href: "#",
             status: {
               tag: {
@@ -130,8 +116,11 @@
           },
           {
             title: {
-              text: "Proficiency in Survival Craft and Rescue Boats (STCW A-VI/2-1)"
+              text: "Proficiency in Survival Craft and Rescue Boats"
             },
+                                    hint: {
+        text: "STCW A-VI/2-1"
+      },
             href: "#",
             status: {
               tag: {
@@ -185,96 +174,12 @@
                 classes: "govuk-tag--blue"
               }
             }
-          },
-          {
-            title: {
-              text: "HELM Operational"
-            },
-            href: "#",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-          {
-            title: {
-              text: "NARAS/ NAEST Management"
-            },
-            href: "#",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-          {
-            title: {
-              text: "HELM Management"
-            },
-            href: "#",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-          {
-            title: {
-              text: "*CANNOT BE OPTIONAL* ECDIS if NAEST completed before June 2005"
-            },
-            href: "#",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-          {
-            title: {
-              text: "Magnetic compass and navigational aids"
-            },
-            href: "#",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-          {
-            title: {
-              text: "Ship construction and stability"
-            },
-            href: "#",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-          {
-            title: {
-              text: "Shipboard operations"
-            },
-            href: "#",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
-            }
           }
         ]
       }) }}
 
 
-      <h2 class="govuk-heading-m">Additional requirements(section title?)</h2>
+      <h2 class="govuk-heading-m">Additional requirements</h2>
       
 {{ govukTaskList({
         idPrefix: "id-medical",
@@ -294,18 +199,6 @@
         {
             title: {
               text: "Signature"
-            },
-            href: "coc/provide-signature",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-                    {
-            title: {
-              text: "*DUPLICATE??* In Date Medical Fitness Certificate"
             },
             href: "#",
             status: {

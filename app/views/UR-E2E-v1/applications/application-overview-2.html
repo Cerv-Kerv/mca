@@ -23,7 +23,7 @@
       text: "Dashboard"
     },
     {
-      href: "/UR-E2E-v1/applications/applications",
+      href: "/UR-E2E-v1/applications/applications-in-progress",
       text: "Applications",
       active: true
     }
@@ -49,37 +49,20 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+            <span class="govuk-caption-l">OOW Unlimited II/1</span>
+
       <h1 class="govuk-heading-xl">
         Application overview
       </h1>
+      </div>
+      </div>
 
-      <h2 class="govuk-heading-m">Information</h2>
-
-      <table class="govuk-table">
-      <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Capacity</th>
-      <td class="govuk-table__cell">[Capacity]</td>
-    </tr>
-      <th scope="row" class="govuk-table__header">Limitation</th>
-      <td class="govuk-table__cell">[Limitation]</td>
-    </tr>
-    <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Training route</th>
-      <td class="govuk-table__cell">[Training route]</td>
-    </tr>
-            <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Amount paid</th>
-      <td class="govuk-table__cell">£[220.00]</td>
-    </tr>
-
-
-  </tbody>
-</table>
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
 
       <h2 class="govuk-heading-m">Progress</h2>
 
-      <p class="govuk-body govuk-!-margin-bottom-7">You have completed 1 of 5 parts of this appplication.</p>
+      <p class="govuk-body govuk-!-margin-bottom-7">You have completed 4 of 5 parts of this appplication.</p>
 
       {{ govukTaskList({
         idPrefix: "coc-parts",
@@ -87,53 +70,83 @@
           {
             title: {
               text: "Apply for Notice of Eligibility (NoE)"
-            },
-            status: {
-              tag: {
-                text: "Complete",
-                classes: "govuk-tag--green"
-              }
-            }
-          },
-          {
-            title: {
-              text: "[Pass Part A exam]"
-            },
+            }, 
             href: "#",
-                        status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
+                                                status: {
+                text: "Complete"
             }
           },
           {
             title: {
-              text: "[Pass Part B exam]"
+              text: "Pass Part A exam"
+            },
+                        status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part B exam"
+            },
+                        status: {
+                text: "Complete"
             }
           },
           {
             title: {
               text: "Add supporting evidence"
             },
-            href: "supporting-evidence",
+            href: "#",
+                                                status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Request Certificate of Competency"
+            },
+            href: "coc/coc-declaration",
                         status: {
               tag: {
                 text: "Action required",
                 classes: "govuk-tag--blue"
               }
             }
-          },
-          {
-            title: {
-              text: "Request Certificate of Competency"
-            }
           }
         ]
       }) }}
       
+<br>
+<br>
+<br>
+      <h2 class="govuk-heading-m">Information</h2>
 
-            <p class="govuk"><a href="cancel/cancel-application">Cancel application</a></p>
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row"></tr>
+        </thead>
+      <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Amount paid</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">£220.00</td>
+    </tr>
+            <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Capacity</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">Officer of the Watch</td>
+    </tr>
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Limitation</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">OOW Unlimited II/1</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Training route</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">Foundation Degree / MCA-approved Honours Degree / Scottish Professional Diploma</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
+      <p class="govuk"><a href="">Cancel application</a></p>
 
     </div>
   </div>
