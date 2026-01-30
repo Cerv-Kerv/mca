@@ -11,8 +11,8 @@
   {% from "govuk/components/header/macro.njk" import govukHeader %}
 {% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
 
-{{ hmrcHeader({
-  serviceUrl : "/",
+ {{ hmrcHeader({
+  homepageUrl : "/UR-E2E-v1/start",
   useTudorCrown: "true"
 }) }}
 {{ govukServiceNavigation({
@@ -26,10 +26,10 @@
 
 {% block beforeContent %}
 {{ govukPhaseBanner({
-  tag: {
+tag: {
     text: "Prototype"
   },
-  html: 'This is a prototype of a new service. No data is collected or saved.'
+  html: 'No data is collected or saved.'
 }) }}
   
   {{ govukBackLink({

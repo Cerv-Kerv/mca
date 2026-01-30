@@ -7,22 +7,13 @@
 {% endblock %}
 
 {% block header %}
-  <!-- Blank header with no service name for the start page -->
-  {% from "govuk/components/header/macro.njk" import govukHeader %}
+  
 {% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
 
 {{ hmrcHeader({
-  serviceUrl : "/",
+  homepageUrl : "/UR-E2E-v1/start",
   useTudorCrown: "true"
 }) }}
-{{ govukServiceNavigation({
-    serviceName: serviceName,
-      navigation: [   
-],
-    slots: {
-    },
-    classes: "govuk-header--full-width-border"
-  }) }}
 {% endblock %}
 
 {% block beforeContent %}
@@ -30,13 +21,8 @@
   tag: {
     text: "Prototype"
   },
-  html: 'This is a prototype of a new service. No data is collected or saved.'
+  html: 'No data is collected or saved.'
 }) }}
-  
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
 
 {% endblock %}
 

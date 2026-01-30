@@ -6,6 +6,49 @@ https://prototype-kit.service.gov.uk/docs/how-to-use-layouts
 {% extends "govuk-prototype-kit/layouts/govuk-branded.html" %}
 
 
+{% block header %}
+  
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  homepageUrl : "/UR-E2E-v1/start",
+  signOutHref : "/UR-E2E-v1/start",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "#",
+      text: "Dashboard"
+    },
+    {
+      href: "/UR-E2E-v1/applications/applications-in-progress",
+      text: "Applications",
+      active: true
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+{{ govukPhaseBanner({
+  tag: {
+    text: "Prototype"
+  },
+  html: 'This is a prototype of a new service. No data is collected or saved.'
+}) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
 {% block stylesheets %}
   {{ super() }}
   <link href="/public/css/moj.css" rel="stylesheet" type="text/css" />
