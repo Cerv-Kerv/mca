@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/proto-main.html" %}
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
@@ -211,7 +211,7 @@
               text: "Proof of valid passport"
             },
             value: {
-              html: 'passport-image.jpg, 5MB'
+              html: 'passport-image.jpg'
             },
             actions: {
               items: [

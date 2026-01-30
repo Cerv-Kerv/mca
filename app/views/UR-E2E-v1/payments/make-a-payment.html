@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/proto-main.html" %}
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
@@ -11,19 +11,19 @@
 {% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
 
 {{ hmrcHeader({
-  serviceUrl : "/",
-  signOutHref : "?sign-out",
+  serviceUrl : "/UR-E2E-v1/",
+  signOutHref : "/UR-E2E-v1/start",
   useTudorCrown: "true"
 }) }}
 {{ govukServiceNavigation({
     serviceName: serviceName,
       navigation: [   
       {
-      href: "/dashboard/v2/dashboard.html",
+      href: "#",
       text: "Dashboard"
     },
     {
-      href: "/applications/applications",
+      href: "/UR-E2E-v1/applications/applications-in-progress",
       text: "Applications",
       active: true
     }
@@ -59,22 +59,6 @@
       {% from "govuk/components/input/macro.njk" import govukInput %}
       {% from "govuk/components/button/macro.njk" import govukButton %}
 
-      {# Error Summary #}
-      {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}
-        {% set errorList = [] %}
-        
-        {% if data['confirm-error'] == 'true' %}
-          {% set errorList = (errorList.push({
-            text: "Select a payment method",
-            href: "#payonline"
-          }), errorList) %}
-        {% endif %}
-
-        {{ govukErrorSummary({
-          titleText: "There is a problem",
-          errorList: errorList
-        }) }}
-      {% endif %}
 
       {{ govukSummaryList({
         rows: [
@@ -113,7 +97,7 @@
         </label>
       </div>
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="whereDoYouLive-3" name="whereDoYouLive" type="radio" value="~bank-transfer.html">
+        <input class="govuk-radios__input" id="whereDoYouLive-3" name="whereDoYouLive" type="radio" value="#">
         <label class="govuk-label govuk-radios__label" for="whereDoYouLive-3">
           Bank transfer
         </label>
@@ -121,14 +105,14 @@
             <div class="govuk-radios__divider">or</div>
 
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="whereDoYouLive-4" name="whereDoYouLive" type="radio" value="~request-an-invoice.html">
+        <input class="govuk-radios__input" id="whereDoYouLive-4" name="whereDoYouLive" type="radio" value="#">
         <label class="govuk-label govuk-radios__label" for="whereDoYouLive-4">
           Request an invoice
         </label>
       </div>
       <div class="govuk-radios__divider">or</div>
       <div class="govuk-radios__item">
-        <input class="govuk-radios__input" id="whereDoYouLive-6" name="whereDoYouLive" type="radio" value="~corporate-payment.html">
+        <input class="govuk-radios__input" id="whereDoYouLive-6" name="whereDoYouLive" type="radio" value="#">
         <label class="govuk-label govuk-radios__label" for="whereDoYouLive-6">
 My organisation has paid or is paying for me
         </label>

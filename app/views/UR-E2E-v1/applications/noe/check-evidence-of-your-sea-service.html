@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/proto-main.html" %}
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
@@ -11,8 +11,8 @@ Check evidence of your sea service – {{ serviceName }} – GOV.UK Prototype Ki
 {% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
 
 {{ hmrcHeader({
-  serviceUrl : "/",
-  signOutHref : "?sign-out",
+  serviceUrl : "/UR-E2E-v1/start",
+  signOutHref : "/UR-E2E-v1/start,
   useTudorCrown: "true"
 }) }}
 {{ govukServiceNavigation({

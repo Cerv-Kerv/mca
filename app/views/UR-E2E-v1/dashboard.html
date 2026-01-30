@@ -1,4 +1,4 @@
-{% extends "layouts/main.html" %}
+{% extends "layouts/proto-main.html" %}
 
 {% block pageTitle %}
   Dashboard – {{ serviceName }} – GOV.UK Prototype Kit
@@ -10,8 +10,8 @@
 {% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
 
 {{ hmrcHeader({
-  serviceUrl : "/",
-  signOutHref : "?sign-out",
+  serviceUrl : "/UR-E2E-v1/",
+  signOutHref : "/UR-E2E-v1/start",
   useTudorCrown: "true"
 }) }}
 {{ govukServiceNavigation({
@@ -19,13 +19,12 @@
       navigation: [   
       {
       href: "#",
-      text: "Dashboard",
-      active: true
+      text: "Dashboard"
     },
     {
-      href: "applications/applications",
-      text: "Applications"
-      
+      href: "#",
+      text: "Applications",
+      active: true
     }
 ],
     slots: {
