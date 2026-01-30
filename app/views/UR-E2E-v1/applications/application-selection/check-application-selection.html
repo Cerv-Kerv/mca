@@ -5,49 +5,7 @@
   Check your application selection – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
-{% block header %}
-  <!-- Blank header with no service name for the start page -->
-  {% from "govuk/components/header/macro.njk" import govukHeader %}
-{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
-
-{{ hmrcHeader({
-  serviceUrl : "/UR-E2E-v1/start",
-  signOutHref : "/UR-E2E-v1/start",
-  useTudorCrown: "true"
-}) }}
-{{ govukServiceNavigation({
-    serviceName: serviceName,
-      navigation: [   
-      {
-      href: "#",
-      text: "Dashboard"
-    },
-    {
-      href: "/UR-E2E-v1/applications/applications",
-      text: "Applications",
-      active: true
-    }
-],
-    slots: {
-    },
-    classes: "govuk-header--full-width-border"
-  }) }}
-{% endblock %}
-
-{% block beforeContent %}
-{{ govukPhaseBanner({
-  tag: {
-    text: "Prototype"
-  },
-  html: 'No data is collected or saved.'
-}) }}
-  
-  {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
-
-{% endblock %}
+ 
 
 {% block content %}
   <div class="govuk-grid-row">
