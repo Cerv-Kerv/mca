@@ -1,0 +1,156 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Applications – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v2/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications",
+      active: true
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Applications
+      </h1>
+
+      <ul class="govuk-task-list">
+  <li class="govuk-task-list__item govuk-task-list__item" style="padding-top: 20px !important;">
+    <div class="govuk-task-list__name-and-hint">
+            <h3 class="govuk-heading-m" style="margin-bottom: 5px;" >
+
+        OOW unlimited II/1</h3>
+      <div id="company-details-3-hint" class="govuk-task-list__hint" style="margin-bottom: 10px;">
+Re-apply to resit the oral exam
+      </div>
+<div class="govuk-button-group" style="margin-bottom: 5px;">
+  <button type="submit" class="govuk-button govuk-button--secondary" data-module="govuk-button">
+    Re-apply
+  </button>
+  <a class="govuk-link" href="#">Cancel application</a>
+      </div>
+    </div>
+    <div class="govuk-task-list__status" id="company-details-3-status">
+      <strong class="govuk-tag govuk-tag--blue">
+        Action required
+      </strong>
+    </div>
+  </li>
+</ul>
+
+
+      <form action="/application-selection/v2/capacity" method="" novalidate>
+
+        {{ govukButton({
+          text: "Start an application"
+        }) }}
+
+      </form>
+<br><br>
+                  <h2 class="govuk-heading-s">
+        History
+      </h2>
+
+      {{ govukTaskList({
+        idPrefix: "applications",
+        items: [
+          {
+            title: {
+              text: "OOW unlimited II/1"
+            },
+      hint: {
+        text: "Attempt 1 - 24 July 2024"
+      },
+            status: {
+        text: "Closed"
+      }
+    },
+          {
+            title: {
+              text: "OOW unlimited II/1"
+            },
+            hint: {
+        text: "23 May 2024"
+      },
+            status: {
+              tag: {
+                text: "Cancelled",
+                classes: "govuk-tag--grey"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Some other application"
+            },
+            hint: {
+        text: "31 Janaury 2019"
+      },
+            status: {
+              tag: {
+                text: "Complete",
+                classes: "govuk-tag--green"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Some other application"
+            },
+            hint: {
+        text: "Attempt 1 - 23 December 2018"
+      },
+            status: {
+                text: "Closed"              }
+            
+          }
+        ]
+      }) }}
+
+
+
+
+    </div>
+  </div>
+
+{% endblock %}

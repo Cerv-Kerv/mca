@@ -1,0 +1,167 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Application overview – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v2/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Oral exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+            <span class="govuk-caption-l">[limitation]</span>
+      <h1 class="govuk-heading-xl">
+        Application overview
+      </h1>
+
+      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{{ govukInsetText({
+  text: "This is your 2nd attempt. You can now book your oral exam."
+}) }}
+
+      <h2 class="govuk-heading-m">Progress</h2>
+
+      <p class="govuk-body govuk-!-margin-bottom-7">You have completed 0 of 5 parts of this appplication.</p>
+
+      {{ govukTaskList({
+        idPrefix: "coc-parts",
+        items: [
+          {
+            title: {
+              text: "Apply for Notice of Eligibility (NoE)"
+            },
+            href: "apply-for-notice-of-eligibility",
+            status: {
+              tag: {
+                text: "Complete",
+                classes: "govuk-tag--green"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Pass Part A exam"
+            },
+            href: "#",
+                        status: {
+              tag: {
+                text: "Complete",
+                classes: "govuk-tag--green"
+              }
+            
+            }
+          },
+          {
+            title: {
+              text: "Pass Part B exam"
+            },
+            href: "#",
+                        status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Add supporting evidence"
+            },
+            href: "supporting-evidence",
+                        status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Request Certificate of Competency"
+            }
+          }
+        ]
+      }) }}
+      
+<br>
+<br>
+<br>
+      <h2 class="govuk-heading-m">Information</h2>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row"></tr>
+        </thead>
+      <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Amount to pay</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">£159.00</td>
+    </tr>
+            <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Capacity</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">[capacity]</td>
+    </tr>
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Limitation</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">[limitation]</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Training route</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">[training route]</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
+      <p class="govuk"><a href="cancel/cancel-application">Cancel application</a></p>
+
+    </div>
+  </div>
+
+{% endblock %}
