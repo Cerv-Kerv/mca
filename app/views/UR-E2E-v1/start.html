@@ -33,16 +33,61 @@
         {{ serviceName }}
       </h1>
 
-      <p><strong>The following is a PROTOTYPE and not a live service</strong></p>
-      <p>
-No data is stored, saved or collected during the use of this prototype service
-</p>
+      {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
-      <p>Use this prototype service to test:</p>
+{{ govukWarningText({
+  text: "The following is a PROTOTYPE and not a live service. No data is stored, saved or collected during the use of this prototype service.",
+  iconFallbackText: "Warning"
+}) }}
 
-      <ul class="govuk-list govuk-list--bullet">
-        <li>Applying for a Officer of the Watch, Unlimited capacity, following a Degree based training route. </li>
-      </ul>
+<h2 class="govuk govuk-heading-m">Before you start</h2>
+<p>This prototype has been set up to show one specific journey only. Not all links or options will work.</p>
+<p>
+  You are viewing a journey for:</p>
+  
+<ul class="govuk-list govuk-list--bullet">
+    <li>a Deck Officer of the Watch (OOW) – Unlimited certificate,</li> <li>following a foundation degree training route</li> <li>which will be paid for using the online payment method.</li>
+  
+</ul>  
+
+<h2 class="govuk govuk-heading-m">What we’d like you to do</h2>
+<p>You do not need to complete everything you would in a real-world application.</p>
+<p>You will only be able to view a couple of the upload pages.</p>
+<h2 class="govuk govuk-heading-m">What we want to understand</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <li>how the journey feels</li>
+  <li>how clear the steps are</li>
+  </ul>
+<h2 class="govuk govuk-heading-m">Entering information</h2>
+<ul class="govuk-list govuk-list--bullet">
+<li>
+    You can enter anything you like into fields.
+  
+</li>  
+  <li>You won’t be blocked from moving forward based on what you enter.</li>
+  <li>Nothing will be saved.</li>
+</ul>
+
+<h2 class="govuk govuk-heading-m">Payments</h2>
+<ul class="govuk-list govuk-list--bullet">
+  <li>No payment will be taken.</li>
+  <li>This is not a real application.</li>
+  <li>Any payment-related screens are for testing purposes only.</li>
+  <li>No money will be taken at any point.</li>
+</ul>
+
+<h2 class="govuk govuk-heading-m">When is the task complete?</h2>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>You reach the overview page that shows “In progress” next to the CoC application</lie>
+</ul>
+
+<h2 class="govuk govuk-heading-m">After you finish</h2>
+<p>Please answer the questions about your experience.</p>
+<p>
+  Be honest — we’re interested in what felt clear, confusing, easy, or frustrating.
+  
+</p><p>Your feedback helps us improve the service.</p>
 
 
       {{ govukButton({
