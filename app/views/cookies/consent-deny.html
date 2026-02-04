@@ -13,33 +13,21 @@
 
 {% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
 
-{% set html %}
-  <p class="govuk-body">We use some essential cookies to make this service work.</p>
-  <p class="govuk-body">We’d also like to use analytics cookies so we can understand how you use the service and make improvements.</p>
-
+{% set acceptHtml %}
+  <p class="govuk-body">You have not accepted analytics cookies. You can <a class="govuk-link" href="/footer/v2/cookies">change your cookie settings</a> at any time.</p>
 {% endset %}
 
 {{ govukCookieBanner({
   ariaLabel: "Cookies on [name of service]",
   messages: [
     {
-      headingText: "Cookies on Apply for and manage seafarer certificates",
-      html: html,
+      html: acceptHtml,
       actions: [
         {
-          text: "Accept analytics cookies",
-          type: "button",
-          href: "consent-accept"
-        },
-        {
-          text: "Reject analytics cookies",
-          type: "button",
-          href: "consent-deny"
-
-        },
-        {
-          text: "View cookies",
-          href: "/footer/v2/cookies"
+          text: "Hide cookie message",
+          type: "submit",
+          name: "cookies[hide]",
+          value: "yes"
         }
       ]
     }
