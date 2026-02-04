@@ -1,0 +1,260 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Apply for Notice of Eligibility – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v2/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "#",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Oral exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">[Limitation]</span>
+      <h1 class="govuk-heading-l">
+Apply for a Notification of Eligibility (NoE)
+      </h1>
+
+<p class="govuk-body govuk-!-margin-bottom-7">You have completed x of xx sections.</p>
+
+
+<h2 class="govuk-heading-m">Identity and medical</h2>
+
+      {{ govukTaskList({
+        idPrefix: "id-medical",
+        items: [
+        {
+            title: {
+              text: "Passport-style photo"
+            },
+            href: "#",
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Medical fitness certificate"
+            },
+            href: "#",
+            status: {
+                text: "Complete"
+            }
+          }
+
+        ]
+      }) }}
+
+<h2 class="govuk-heading-m">Training and education</h2>
+
+      {{ govukTaskList({
+        idPrefix: "training",
+        items: [
+          {
+            title: {
+              text: "College education and training enrolment letter"
+            },
+            href: "#",
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Personal Survival Techniques"
+            },
+                                                            hint: {
+        text: "STCW A-VI/1-1"
+      },
+            href: "#",
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Fire Prevention & Fire Fighting"
+            },
+                                                                        hint: {
+        text: "STCW A-VI/1-2"
+      },
+
+            href: "#",
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Elementary First Aid"
+            },
+                                                                        hint: {
+        text: "STCW A-VI/1-3"
+      },
+
+            href: "#",
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Personal Safety & Social Responsibility"
+            },
+                                                                        hint: {
+        text: "STCW A-VI/1-4"
+      },
+
+            href: "#",
+            status: {
+                text: "Complete"
+            }
+          }
+
+        ]
+      }) }}
+
+<h2 class="govuk-heading-m">Seagoing service</h2>
+
+      {{ govukTaskList({
+        idPrefix: "training",
+        items: [
+          {
+            title: {
+              text: "Seagoing service declaration table"
+            },
+            href: "#",
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Sea service evidence"
+            },
+            href: "#",
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Training Record Book"
+            },
+            href: "#",
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Workbooks"
+            },
+            href: "#",
+            status: {
+                text: "Complete"
+            }
+          }
+
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Additional requirements</h2>
+
+      {{ govukTaskList({
+        idPrefix: "submission",
+        items: [
+          {
+            title: {
+              text: "SMarT funded status"
+            },
+            href: "#",
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Return-delivery address"
+            },
+            href: "#",
+            status: {
+                text: "Complete"
+            }
+          }
+        ]
+      }) }}
+
+<h2 class="govuk-heading-m">Submission</h2>
+
+      {{ govukTaskList({
+        idPrefix: "submission",
+        items: [
+          {
+            title: {
+              text: "Declaration"
+            },
+            href: "noe-declaration",
+                        status: {
+                text: "Complete"
+            }
+          }
+        
+        ]
+      }) }}
+<br>
+<br>
+<br>
+<p class="govuk-body"><a href="application-overview-resit-noA-2">Back to application overview</a></p>
+
+    </div>
+  </div>
+
+{% endblock %}
