@@ -1,0 +1,187 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+          Help
+ – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v2/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications"
+    },
+    {
+      href: "#",
+      text: "Oral exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+          Help information 
+      </h1>
+
+      <h2 class="govuk-heading-m">
+Seafarer Operations </h2>
+
+      <h3 class="govuk-heading-s">
+Seafarer Operations switchboard </h3>
+
+<p class="govuk">+44 333 399 0040</p> 
+
+<p class="govuk">Contact the Seafarer Operations switchboard for all enquiries relating to training and certification. </p>
+
+<p class="govuk">Phone lines are open 8:30am to 5:00pm, Monday to Friday (closed on UK bank holidays).</p> 
+
+<p class="govuk">If you need to contact Seafarer Operations outside these hours or on a UK bank holiday, please email the relevant team. </p>
+
+      <h2 class="govuk-heading-m">
+Revalidation of certification </h2>
+
+<p class="govuk">Revalidation of a UK deck or engineering Certificates of Competency (CoC) – excludes Flag State Endorsement (FSE) or Certificates of Equivalent Competency (CEC) and stand-alone Global Management Distress Safety System (GMDSS) revalidation . </p>
+
+<p class="govuk">Email: <a href="">revalidation@mcga.gov.uk</a></p> 
+
+      <h2 class="govuk-heading-m">
+Deck certification </h2>
+
+<p class="govuk">Applications for a Notice of Eligibility (NoE), Certificate of Competency (CoC), Rating Certificate, Vessel Traffic Service (VTS) Logbook or MCA-issued Certificates of Proficiency. </p>
+
+<p class="govuk">Email: <a href="">deck@mcga.gov.uk</a>
+
+      <h2 class="govuk-heading-m">
+Engineering certification </h2>
+
+<p class="govuk">Applications for a Notice of Eligibility (NoE) Certificate of Competency (CoC) Rating Certificate or MCA-issued Certificates of Proficiency. 
+</p>
+<p class="govuk">Email: <a href="">engineering@mcga.gov.uk</a> </p>
+
+      <h2 class="govuk-heading-m">
+Flag State Endorsement and Certificates of Equivalent Competency </h2>
+
+<p class="govuk">Applications for, or revalidation of, a Flag State Endorsement (FSE), Certificate of Equivalent Competency (CEC), Authority to Operate Certificate (ATO) or UK Legal and Administrative Processes (UKLAP). 
+</p>
+<p class="govuk">Email: <a href="">fse@mcga.gov.uk</a> </p>
+
+      <h2 class="govuk-heading-m">
+Global Maritime Distress and Safety System </h2>
+
+<p class="govuk">Applications for a UK GMDSS, UK GMDSS STCW Endorsement, UK Long Range Certificate, or the revalidation of a Global Maritime Distress and Safety System (GMDSS) STCW endorsement. 
+</p>
+<p class="govuk">Email: <a href="">GMDSS@mcga.gov.uk</a></p>
+
+      <h2 class="govuk-heading-m">
+Registry of Shipping and Seamen </h2>
+
+<p class="govuk">Email: <a href="">seafarers.registry@mcga.gov.uk</a> </p>
+
+<p class="govuk">Phone: +44 333 399 0039 </p>
+
+<p class="govuk">Phone lines are open 7:30am to 5:30pm, Monday to Friday (closed on Christmas Day, Boxing Day and New Year’s Day). 9am to 4pm, Saturday and Sunday.</p>
+
+<p class="govuk">Contact the Registry of Shipping and Seamen (RSS) to enquire about:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+<li>Seaman’s Discharge Book – applications if you’re a British seafarer or are working on a UK-registered ship or yacht</li>
+<li>British Seaman’s Card – applications for a card if you’re a British citizen</li>
+<li>Ships’ Cook Certificate of Competency – applications for an MCA-issued Ships’ Cook Certificate of Competency</li>
+<li>registering births and deaths in the following circumstances – a person who has given birth or died on board a UK-registered vessel, or a British citizen who has been born or died on board a non-UK-registered vessel</li>
+<li>applying for World War 2 and post-war medals for people who identify as having served as part of the British Merchant Navy during World War 2 and post-war campaigns 
+</li>
+</ul>
+
+        <h2 class="govuk-heading-m">
+Boatmasters’ Licence (BML)</h2>
+
+
+<p class="govuk">To enquire about a boatmaster application contact your Local marine office or RSS directly. </p>
+
+      <h2 class="govuk-heading-m">
+Exams contact details </h2>
+
+      <h3 class="govuk-heading-s">
+Exams team </h3>
+
+<p class="govuk">For all enquiries on certification verification.</p> 
+
+<p class="govuk">Email: <a href="">exams@mcga.gov.uk</a> </p>
+
+      <h2 class="govuk-heading-m">
+Safe Manning </h2>
+
+<p class="govuk">Applications for a Safe Manning Certification or a Safe Manning Exemption. </p>
+
+<p class="govuk">Email: <a href="">safemanning@mcga.gov.uk</a></p>
+
+      <h2 class="govuk-heading-m">
+Boatmaster’ Licence policy </h2>
+
+<p class="govuk">Enquiries about boatmaster’ policy. </p>
+
+<p class="govuk">Email: <a href="">boatmaster@mcga.gov.uk</a></p>
+
+      <h2 class="govuk-heading-m">
+Oral exam booking </h2>
+
+<p class="govuk">For exam bookings and exam issues only.</p> 
+
+<p class="govuk">Email: <a href="">onlineoralexams@mcga.gov.uk</a></p>
+
+      <h2 class="govuk-heading-m">
+Support for Maritime Training </h2>
+
+<p class="govuk">For enquiries about funding for Support for Maritime Training (SMarT).</p>
+
+<p class="govuk">Email: <a href="">smart@mcga.gov.uk</a> </p>
+
+<p class="govuk">Phone: 020 3817 2209 </p>
+
+      <h2 class="govuk-heading-m">
+Training courses </h2>
+
+<p class="govuk">For training providers queries relating to short course approvals. </p>
+
+<p class="govuk">Email: <a href="">stc.courses@mcga.gov.uk</a>      </p>
+
+
+    </div>
+  </div>
+
+{% endblock %}

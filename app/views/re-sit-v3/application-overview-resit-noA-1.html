@@ -67,16 +67,14 @@
 
       <h2 class="govuk-heading-m">Progress</h2>
 
-      <p class="govuk-body govuk-!-margin-bottom-7">You have completed 0 of 5 parts of this appplication.</p>
-
       {{ govukTaskList({
-        idPrefix: "coc-parts",
+        idPrefix: "NOE-parts",
         items: [
           {
             title: {
-              text: "Apply for a Notification of Eligibility (NoE)"
+              text: "Apply for Notice of Eligibility (NoE)"
             },
-            href: "",
+            href: "#",
             status: {
               tag: {
                 text: "Action required",
@@ -84,9 +82,9 @@
               }
             }
           },
-                    {
+          {
             title: {
-              text: "Submit NoE application"
+              text: "Make a payment"
             }
           },
           {
@@ -101,10 +99,10 @@
           },
           {
             title: {
-              text: "Add supporting evidence"
+              text: "Provide supporting evidence"
             },
-            href: "supporting-evidence",
-                        status: {
+            href: "#",
+            status: {
               tag: {
                 text: "Action required",
                 classes: "govuk-tag--blue"
@@ -118,6 +116,8 @@
           }
         ]
       }) }}
+
+    
       
 <br>
 <br>
