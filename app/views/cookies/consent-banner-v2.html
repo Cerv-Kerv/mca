@@ -1,0 +1,100 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+          Cookies
+ – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{% from "govuk/components/cookie-banner/macro.njk" import govukCookieBanner %}
+
+{% set html %}
+  <p class="govuk-body">We use some essential cookies to make this service work.</p>
+  <p class="govuk-body">We’d also like to use:</p>
+<ul class="govuk-list govuk-list--bullet">
+  <li>analytics cookies so we can understand how you use the service and make improvements </li>
+</ul>
+{% endset %}
+
+{{ govukCookieBanner({
+  ariaLabel: "Cookies on [name of service]",
+  messages: [
+    {
+      headingText: "Cookies on apply for and manage seafarer certificates",
+      html: html,
+      actions: [
+        {
+          text: "Accept analytics cookies",
+          type: "button"
+        },
+        {
+          text: "Reject analytics cookies",
+          type: "button"
+        },
+        {
+          text: "View cookies",
+          href: "/footer/v1/cookies"
+        }
+      ]
+    }
+  ]
+}) }}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v2/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications"
+    },
+    {
+      href: "#",
+      text: "Oral exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+
+{% endblock %}
+
+{% block content %}
+
+
+
+  <div class="govuk-grid-row">
+      <div class="govuk-grid-column-two-thirds">
+        <h1 class="govuk-heading-l">Cookies consent banner</h1>
+        <p class="govuk-body">Page content is irrelevant. See cookie consent banner above header.</p>
+        
+
+
+      </div>
+    </div>
+
+{% endblock %}
