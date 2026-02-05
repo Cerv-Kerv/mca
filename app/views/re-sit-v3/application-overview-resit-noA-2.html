@@ -61,7 +61,7 @@
 
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
-{ govukInsetText({
+{{ govukInsetText({
   text: "This is your 2nd attempt."
 }) }}
 
@@ -77,7 +77,7 @@
             href: "apply-for-notice-of-eligibility",
                         status: {
               tag: {
-                text: "Awaiting payment",
+                text: "Payment required",
                 classes: "govuk-tag--orange"
               }
             }
