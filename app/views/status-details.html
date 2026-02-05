@@ -21,7 +21,7 @@
         <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
      <h3 class="govuk-prototype-kit-task-list__section">Screen: Application overview</h3>
-     <p><strong>STATE:</strong> Applicant has started: a new application or reapplied</p>
+     <p><strong>STATE:</strong> Applicant has started: a new application or reapplied (upto 2nd attempt)</p>
 
    {{ govukTaskList({
         idPrefix: "NOE-parts",
@@ -79,6 +79,126 @@
         ]
       }) }}
 
+           <p><strong>STATE:</strong> Applicant is reappling (3rd attempt +)</p>
+
+   {{ govukTaskList({
+        idPrefix: "NOE-parts",
+        items: [
+          {
+            title: {
+              text: "Apply for Notice of Eligibility (NoE)"
+            },
+                       href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Provide supporting evidence"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Make a payment"
+            },
+            status: {
+                text: ""
+            }
+          },
+          {
+            title: {
+              text: "Pass Part A exam"
+            },
+                        status: {
+                text: ""
+            }
+          },
+          {
+            title: {
+              text: "Pass Part B exam"
+            }
+          },
+          {
+            title: {
+              text: "Request Certificate of Competency"
+            }
+          }
+        ]
+      }) }}
+
+                 <p><strong>STATE:</strong> Applicant needs to pay & submit NOE (3rd attempt +)</p>
+
+   {{ govukTaskList({
+        idPrefix: "NOE-parts",
+        items: [
+          {
+            title: {
+              text: "Apply for Notice of Eligibility (NoE)"
+            },
+                         status: {
+              tag: {
+                text: "Awaiting payment",
+                classes: "govuk-tag--red"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Provide supporting evidence"
+            },
+            status: {
+              tag: {
+                text: "Awaiting payment",
+                classes: "govuk-tag--red"
+              }
+            }
+            
+          },
+          {
+            title: {
+              text: "Make a payment"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Pass Part A exam"
+            },
+                        status: {
+                text: ""
+            }
+          },
+          {
+            title: {
+              text: "Pass Part B exam"
+            }
+          },
+          {
+            title: {
+              text: "Request Certificate of Competency"
+            }
+          }
+        ]
+      }) }}
+
+
       <p><strong>STATE:</strong> Applicant needs to pay & submit NOE</p>
 
    {{ govukTaskList({
@@ -110,13 +230,6 @@
           {
             title: {
               text: "Pass Part A exam"
-            },
-                        href: "#",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag"
-              }
             }
           },
           {
@@ -144,7 +257,7 @@
         ]
       }) }}
 
-      <p><strong>STATE:</strong> Applicant has started: a new application or reapplied</p>
+      <p><strong>STATE:</strong> MCA processing the submitted NOE</p>
 
    {{ govukTaskList({
         idPrefix: "NOE-parts",
@@ -171,12 +284,63 @@
           {
             title: {
               text: "Pass Part A exam"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part B exam"
+            }
+          },
+          {
+            title: {
+              text: "Provide supporting evidence"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Request Certificate of Competency"
+            }
+          }
+        ]
+      }) }}
+
+      <p><strong>STATE:</strong> NOE issued</p>
+
+   {{ govukTaskList({
+        idPrefix: "NOE-parts",
+        items: [
+          {
+            title: {
+              text: "Apply for Notice of Eligibility (NoE)"
+            },
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Make a payment"
+            },
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part A exam"
             },
                         href: "#",
             status: {
               tag: {
                 text: "Action required",
-                classes: "govuk-tag"
+                classes: "govuk-tag--blue"
               }
             }
           },
@@ -204,6 +368,364 @@
           }
         ]
       }) }}
+
+           <p><strong>STATE:</strong> Part A exam passed</p>
+
+   {{ govukTaskList({
+        idPrefix: "NOE-parts",
+        items: [
+          {
+            title: {
+              text: "Apply for Notice of Eligibility (NoE)"
+            },
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Make a payment"
+            },
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part A exam"
+            },
+             status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part B exam"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Not booked",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Provide supporting evidence"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Request Certificate of Competency"
+            }
+          }
+        ]
+      }) }}
+
+
+                 <p><strong>STATE:</strong> Part B exam booked</p>
+
+   {{ govukTaskList({
+        idPrefix: "NOE-parts",
+        items: [
+          {
+            title: {
+              text: "Apply for Notice of Eligibility (NoE)"
+            },
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Make a payment"
+            },
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part A exam"
+            },
+             status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part B exam"
+            },
+            href: "#",
+            status: {
+                text: "Booked"
+            }
+          },
+          {
+            title: {
+              text: "Provide supporting evidence"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Request Certificate of Competency"
+            }
+          }
+        ]
+      }) }}
+
+                 <p><strong>STATE:</strong> Part B exam passed</p>
+
+   {{ govukTaskList({
+        idPrefix: "NOE-parts",
+        items: [
+          {
+            title: {
+              text: "Apply for Notice of Eligibility (NoE)"
+            },
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Make a payment"
+            },
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part A exam"
+            },
+             status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part B exam"
+            },
+                         status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Provide supporting evidence"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Request Certificate of Competency"
+            }
+          }
+        ]
+      }) }}
+
+                <p><strong>STATE:</strong> All supporting evidence supplied</p>
+
+   {{ govukTaskList({
+        idPrefix: "NOE-parts",
+        items: [
+          {
+            title: {
+              text: "Apply for Notice of Eligibility (NoE)"
+            },
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Make a payment"
+            },
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part A exam"
+            },
+             status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part B exam"
+            },
+                         status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Provide supporting evidence"
+            },
+                                     status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Request Certificate of Competency"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          }
+        ]
+      }) }}
+
+                      <p><strong>STATE:</strong> MCA are processing the COC request</p>
+
+   {{ govukTaskList({
+        idPrefix: "NOE-parts",
+        items: [
+          {
+            title: {
+              text: "Apply for Notice of Eligibility (NoE)"
+            },
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Make a payment"
+            },
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part A exam"
+            },
+             status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part B exam"
+            },
+                         status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Provide supporting evidence"
+            },
+            
+                                     status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Request Certificate of Competency"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "In progress",
+                classes: "govuk-tag--yellow"
+              }
+            }
+          }
+        ]
+      }) }}
+
+
+                            <p><strong>STATE:</strong> MCA processing COC request</p>
+
+   {{ govukTaskList({
+        idPrefix: "NOE-parts",
+        items: [
+          {
+            title: {
+              text: "Apply for Notice of Eligibility (NoE)"
+            },
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Make a payment"
+            },
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part A exam"
+            },
+             status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part B exam"
+            },
+                         status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Provide supporting evidence"
+            },
+            
+                                     status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Request Certificate of Competency"
+            },
+                                                 status: {
+                text: "Complete"
+            }
+          }
+        ]
+      }) }}
+
+      
 
       </div>
       </div>
