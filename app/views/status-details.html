@@ -311,6 +311,63 @@
         ]
       }) }}
 
+
+            <p><strong>STATE:</strong> MCA need something from the applicant</p>
+
+   {{ govukTaskList({
+        idPrefix: "NOE-parts",
+        items: [
+          {
+            title: {
+              text: "Apply for Notice of Eligibility (NoE)"
+            },
+             href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Make a payment"
+            },
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part A exam"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part B exam"
+            }
+          },
+          {
+            title: {
+              text: "Provide supporting evidence"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Request Certificate of Competency"
+            }
+          }
+        ]
+      }) }}
+
+
       <p><strong>STATE:</strong> NOE issued</p>
 
    {{ govukTaskList({

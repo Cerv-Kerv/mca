@@ -53,34 +53,33 @@
       <h1 class="govuk-heading-xl">
         Applications
       </h1>
-   
 
       {{ govukTaskList({
-        idPrefix: "applications",
+        idPrefix: "NOE-parts",
         items: [
-        {
-      title: {
-        text: "OOW unlimited II/1"
-      },
-      hint: {
-        text: "Attempt 2"
-      },
-      href: "application-overview-resit-noA-1",
-      status: {
-        tag: {
-          text: "Action required",
-          classes: "govuk-tag"
-        }
-      }
-    }
+          {
+            title: {
+              text: "[application name 'limitation']"
+            },
+            hint: {
+              text: "Reapply to re-sit your oral exam"
+            },
+            href: "applications-reapply-3rd",
+            status: {
+              tag: {
+                text: "Reapply",
+                classes: "govuk-tag--blue"
+              }
+            }
+          }
         ]
       }) }}
 
 
-      <form action="/application-selection/v2/capacity" method="" novalidate>
+      <form action="#" method="" novalidate>
 
         {{ govukButton({
-          text: "Start an application"
+          text: "Start a new application"
         }) }}
 
       </form>
@@ -92,16 +91,33 @@
       {{ govukTaskList({
         idPrefix: "applications",
         items: [
+        {
+            title: {
+              text: "OOW unlimited II/1"
+            },
+      hint: {
+        text: "Attempt 2: 13 September 2025"
+      },
+            status: {
+              tag: {
+                text: "Closed",
+                classes: "govuk-tag--grey"
+              }
+            }
+    },
           {
             title: {
               text: "OOW unlimited II/1"
             },
       hint: {
-        text: "Attempt 1 - 24 July 2024"
+        text: "Attempt 1: 24 July 2024"
       },
             status: {
-        text: "Closed"
-      }
+              tag: {
+                text: "Closed",
+                classes: "govuk-tag--grey"
+              }
+            }
     },
           {
             title: {
@@ -122,13 +138,11 @@
               text: "Some other application"
             },
             hint: {
-        text: "31 Janaury 2019"
+        text: "31 January 2019"
       },
+      href: "noe-declaration",
             status: {
-              tag: {
-                text: "Complete",
-                classes: "govuk-tag--green"
-              }
+                text: "Complete"
             }
           },
           {
@@ -136,11 +150,14 @@
               text: "Some other application"
             },
             hint: {
-        text: "Attempt 1 - 23 December 2018"
+        text: "Attempt 1: 23 December 2018"
       },
-            status: {
-                text: "Closed"              }
-            
+          status: {
+              tag: {
+                text: "Closed",
+                classes: "govuk-tag--grey"
+              }
+            }
           }
         ]
       }) }}
