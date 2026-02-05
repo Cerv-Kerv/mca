@@ -20,6 +20,69 @@
       </div>
         <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+
+<table class="govuk-table">
+  <caption class="govuk-table__caption govuk-table__caption--m">Status key</caption>
+  <thead class="govuk-table__head">
+    <tr class="govuk-table__row">
+      <th scope="col" class="govuk-table__header">Details</th>
+      <th scope="col" class="govuk-table__header">Status</th>
+    </tr>
+  </thead>
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell">The task/item/request asked of the user is<br> done and no further action is required.</td>
+      <td class="govuk-table__cell"><strong class="govuk-tag" style="background-color: white;">
+          Complete
+        </strong></td>
+    </tr>
+                    <tr class="govuk-table__row">
+      <td class="govuk-table__cell">User has an exam booked</td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--green">
+          Booked
+        </strong></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell">User is required to do something</td>
+      <td class="govuk-table__cell"> <strong class="govuk-tag">
+          Action required
+        </strong></td>
+    </tr>
+                <tr class="govuk-table__row">
+      <td class="govuk-table__cell">User needs to book an exam</td>
+      <td class="govuk-table__cell"><strong class="govuk-tag">
+          Not booked
+        </strong></td>
+    </tr>
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell">Item requires payment to move to next phase</td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--red">
+          Payment required
+        </strong></td>
+    </tr>
+        <tr class="govuk-table__row">
+      <td class="govuk-table__cell">Item is being worked on by the MCA</td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--yellow">
+          Processing
+        </strong></td>
+    </tr>
+        <tr class="govuk-table__row">
+      <td class="govuk-table__cell">Indicates that an application is no longer <br>active due to an invalid NOE.<br><span class="govuk-hint">(Application history only)</span> </td>
+      <td class="govuk-table__cell"><strong class="govuk-tag" style="background-color: white;">
+          Closed
+        </strong></td>
+    </tr>
+            <tr class="govuk-table__row">
+      <td class="govuk-table__cell">Application has been cancelled by the user<br><span class="govuk-hint">(Application history only)</span></td>
+      <td class="govuk-table__cell"><strong class="govuk-tag govuk-tag--grey">
+          Cancelled
+        </strong></td>
+    </tr>
+
+  </tbody>
+</table>
+
+
      <h3 class="govuk-prototype-kit-task-list__section">Screen: Application overview</h3>
      <p><strong>1. STATE:</strong> Applicant has started: a new application or reapplied (upto 2nd attempt)</p>
 
@@ -268,7 +331,7 @@
             },
                         status: {
               tag: {
-                text: "In progress",
+                text: "Processing",
                 classes: "govuk-tag--yellow"
               }
             }
@@ -523,7 +586,10 @@
             },
             href: "#",
             status: {
-                text: "Booked"
+                              tag: {
+                text: "Booked",
+                classes: "govuk-tag--green"
+              }
             }
           },
           {
@@ -716,7 +782,7 @@
             href: "#",
             status: {
               tag: {
-                text: "In progress",
+                text: "Processing",
                 classes: "govuk-tag--yellow"
               }
             }
