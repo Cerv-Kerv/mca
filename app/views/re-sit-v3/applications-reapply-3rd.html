@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-  Application overview – {{ serviceName }} – GOV.UK Prototype Kit
+  Applications – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -26,10 +26,6 @@
       href: "/applications/applications",
       text: "Applications",
       active: true
-    },
-    {
-      href: "#",
-      text: "Oral exams"
     }
 ],
     slots: {
@@ -54,76 +50,13 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-            <span class="govuk-caption-l">[limitation]</span>
       <h1 class="govuk-heading-xl">
-        Application overview
+        Reapply for [limitation]
       </h1>
 
-      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
-{{ govukInsetText({
-  text: "This is your 2nd attempt."
-}) }}
-
-      <h2 class="govuk-heading-m">Progress</h2>
-
-      {{ govukTaskList({
-        idPrefix: "NOE-parts",
-        items: [
-          {
-            title: {
-              text: "Apply for Notice of Eligibility (NoE)"
-            },
-            href: "apply-for-notice-of-eligibility",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-          {
-            title: {
-              text: "Make a payment"
-            }
-          },
-          {
-            title: {
-              text: "Pass Part A exam"
-            }
-          },
-          {
-            title: {
-              text: "Pass Part B exam"
-            }
-          },
-          {
-            title: {
-              text: "Provide supporting evidence"
-            },
-            href: "supporting-evidence",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-          {
-            title: {
-              text: "Request Certificate of Competency"
-            }
-          }
-        ]
-      }) }}
-
-    
-      
-<br>
-<br>
-<br>
-      <h2 class="govuk-heading-m">Information</h2>
-
+      <p>This is your 3rd attempt. </p>
+      <p>You must apply for a new Notice of Eligibility (NOE) and supply all supporting evidence to resit your exam.</p>
       <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row"></tr>
@@ -146,10 +79,18 @@
     </tr>
   </tbody>
 </table>
-<br>
-<br>
-<br>
-      <p class="govuk"><a href="cancel/cancel-application">Cancel application</a></p>
+
+
+      <form action="application-overview-resit-noA-3rdattempt" method="" novalidate>
+
+        {{ govukButton({
+          text: "Reapply"
+        }) }}
+
+      </form>
+      <p class="govuk"><a href="#">Start a new application</a></p>
+
+
 
     </div>
   </div>

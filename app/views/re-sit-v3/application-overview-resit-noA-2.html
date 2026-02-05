@@ -61,8 +61,8 @@
 
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
-{{ govukInsetText({
-  text: "This is your 2nd attempt. Apply for a new Notice of Eligibility (NOE) to resit your exam."
+{ govukInsetText({
+  text: "This is your 2nd attempt."
 }) }}
 
       <h2 class="govuk-heading-m">Progress</h2>
@@ -108,7 +108,7 @@
             title: {
               text: "Provide supporting evidence"
             },
-            href: "#",
+            href: "supporting-evidence",
             status: {
               tag: {
                 text: "Action required",

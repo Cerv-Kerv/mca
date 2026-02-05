@@ -61,10 +61,6 @@
 
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
-{{ govukInsetText({
-  text: "This is your 3rd attempt. Apply for a new Notice of Eligibility (NOE) and supply all supporting evidence to resit your exam."
-}) }}
-
       <h2 class="govuk-heading-m">Progress</h2>
 
       {{ govukTaskList({
@@ -74,9 +70,12 @@
             title: {
               text: "Apply for Notice of Eligibility (NoE)"
             },
-            href: "apply-for-notice-of-eligibility",
+            href: "#",
             status: {
-                text: "Complete"
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
             }
           },
           {
@@ -94,13 +93,6 @@
           {
             title: {
               text: "Make a payment"
-            },
-            href: "#",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
             }
           },
           {
