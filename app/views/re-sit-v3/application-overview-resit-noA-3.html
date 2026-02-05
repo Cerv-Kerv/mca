@@ -62,59 +62,56 @@
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
 {{ govukInsetText({
-  text: "This is your 2nd attempt. You can now book your oral exam."
+  text: "This is your 2nd attempt. Apply for a new Notice of Eligibility (NOE) to resit your exam."
 }) }}
 
       <h2 class="govuk-heading-m">Progress</h2>
 
-      <p class="govuk-body govuk-!-margin-bottom-7">You have completed 0 of 5 parts of this appplication.</p>
-
       {{ govukTaskList({
-        idPrefix: "coc-parts",
+        idPrefix: "NOE-parts",
         items: [
           {
             title: {
               text: "Apply for Notice of Eligibility (NoE)"
             },
-            href: "apply-for-notice-of-eligibility",
-            status: {
+                        status: {
               tag: {
-                text: "Complete",
-                classes: "govuk-tag--green"
+                text: "In progress",
+                classes: "govuk-tag--yellow"
               }
+            }
+          },
+          {
+            title: {
+              text: "Make a payment"
+            },
+            status: {
+                text: "Complete"
             }
           },
           {
             title: {
               text: "Pass Part A exam"
             },
-            href: "#",
-                        status: {
+                        href: "#",
+            status: {
               tag: {
-                text: "Complete",
-                classes: "govuk-tag--green"
+                text: "Action required",
+                classes: "govuk-tag"
               }
-            
             }
           },
           {
             title: {
               text: "Pass Part B exam"
-            },
-            href: "#",
-                        status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
             }
           },
           {
             title: {
-              text: "Add supporting evidence"
+              text: "Provide supporting evidence"
             },
-            href: "supporting-evidence",
-                        status: {
+            href: "#",
+            status: {
               tag: {
                 text: "Action required",
                 classes: "govuk-tag--blue"
@@ -128,6 +125,8 @@
           }
         ]
       }) }}
+
+    
       
 <br>
 <br>

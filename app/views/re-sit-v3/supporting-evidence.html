@@ -1,0 +1,354 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Apply for Notice of Eligibility – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v2/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Oral exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">[Limitation]</span>
+      <h1 class="govuk-heading-l">
+        Supporting evidence
+      </h1>
+
+<p class="govuk-body govuk-!-margin-bottom-7">You have completed X of XX sections.</p>
+
+
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{{ govukInsetText({
+  text: "Supporting evidence must be valid at the time of requesting your certificate of competency"
+}) }}
+
+<h2 class="govuk-heading-m">Training and education</h2>
+
+      {{ govukTaskList({
+        idPrefix: "id-medical",
+        items: [
+        {
+            title: {
+              text: "College education and training completion letter"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "MCA written examinations"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Medical First Aid"
+            },
+            hint: {
+              text: "STCW A-VI/4-1"
+            }
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Advanced Fire Fighting"
+            },
+                        hint: {
+              text: "STCW A-V1/3"
+            }
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Proficiency in Survival Craft and Rescue Boats"
+            },
+                                    hint: {
+              text: "STCW A-VI/2-1"
+            }
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          }
+
+        ]
+      }) }}
+
+
+<h2 class="govuk-heading-m">Ancillary certificates</h2>
+
+      {{ govukTaskList({
+        idPrefix: "training",
+        items: [
+          {
+            title: {
+              text: "Signals"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "NARAS/ NAEST Operational"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Efficient Deck Hand"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "HELM Operational"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "NARAS/ NAEST Management"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "HELM Management"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "*CANNOT BE OPTIONAL* ECDIS if NAEST completed before June 2005"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Magnetic compass and navigational aids"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Ship construction and stability"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Shipboard operations"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          }
+        ]
+      }) }}
+
+
+      <h2 class="govuk-heading-m">Additional requirements</h2>
+      
+{{ govukTaskList({
+        idPrefix: "id-medical",
+        items: [
+                 {
+            title: {
+              text: "UK GMDSS"
+            },
+            href: "coc/gmdss/tell-us-about-your-gmdss-certificate",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+        {
+            title: {
+              text: "Signature"
+            },
+            href: "coc/provide-signature",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+                    {
+            title: {
+              text: "*DUPLICATE??* In Date Medical Fitness Certificate"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          }
+        ]
+      }) }}
+
+      <h2 class="govuk-heading-m">Submission</h2>
+
+      {{ govukTaskList({
+        idPrefix: "submission",
+        items: [
+          {
+            title: {
+              text: "Declaration"
+            },
+            href: "noe-declaration",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          }
+        
+        ]
+      }) }}
+
+
+<p class="govuk-body"><a href="/applications-v2/supporting-evidence/application-overview.html">Back to application overview</a></p>
+
+
+    </div>
+  </div>
+
+{% endblock %}
