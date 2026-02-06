@@ -1,0 +1,126 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+Send your Training Record Book (TRB) to the Maritime and Coast Guard Agency (MCA) – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v2/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Oral exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <span class="govuk-caption-l">Identity and medical</span>
+      <h1 class="govuk-heading-l">
+Send your Training Record Book (TRB) to the Maritime and Coastguard Agency (MCA)
+      </h1>
+
+<p class="govuk">
+Your training record book should list all performed activities, signed off by officers whilst at sea. All recorded training acts as evidence that will support your application.                                                        
+</p>
+<p class="govuk">Ensure your training book is complete. An incomplete training book can delay the procesing of your application or mean that it's not approved.
+</p>
+
+      <h2 class="govuk-heading-m">
+Sending in your Training Record Book      
+</h2>
+
+<p class="govuk">
+Write your Seafarer Reference Number (SRN) on a piece of paper and attach it to your TRB before posting it to us. We will pair it with the related application that you have submitted.
+<p class="govuk">
+Your original Training Record Book (TRB) must be sent to our office. You cannot upload this document and you must send us a hard copy.
+</p>
+
+<p class="govuk">
+Send your Training Record Book to:</p>
+
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{{ govukInsetText({
+  html: "Seafarer Operations (Training and Certification)<br> Maritime and Coastguard Agency<br> Spring Place<br> 105 
+Commercial Road<br> Southampton<br> SO15 1EG<br> United Kingdom"
+}) }}
+
+      {% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+        
+        {{ govukCheckboxes({
+          idPrefix: "privacy",
+          name: "privacy-notice",
+          errorMessage: data['privacy-error'] == 'true' and {
+            text: "You must confirm that you have authorisation from the payee to use this payment method"
+          },
+          fieldset: {
+            legend: {
+              text: "By selecting 'Save and continue', I confirm that:",
+              classes: "govuk-fieldset__legend"
+            }
+          },
+          items: [
+            {
+              value: "confirmed",
+              html: 'I will send my Training Record Book to the MCA.',
+              checked: data['privacy-notice'] == 'confirmed'
+            }
+          ]
+        }) }}
+
+<form action="/applications/apply-for-notice-of-eligibility" method="post" enctype="multipart/form-data">
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Save and continue
+      </button>
+    </form>
+
+    </div>
+  </div>
+
+
+{% endblock %}
