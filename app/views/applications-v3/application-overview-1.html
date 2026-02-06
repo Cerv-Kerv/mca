@@ -53,67 +53,57 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+            <span class="govuk-caption-l">[limitation]</span>
       <h1 class="govuk-heading-xl">
         Application overview
       </h1>
-
-      <h2 class="govuk-heading-m">Information</h2>
-
-      <table class="govuk-table">
-      <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Capacity</th>
-      <td class="govuk-table__cell">[Capacity]</td>
-    </tr>
-      <th scope="row" class="govuk-table__header">Limitation</th>
-      <td class="govuk-table__cell">[Limitation]</td>
-    </tr>
-    <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Training route</th>
-      <td class="govuk-table__cell">[Training route]</td>
-    </tr>
-            <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Amount paid</th>
-      <td class="govuk-table__cell">£[220.00]</td>
-    </tr>
-
-  </tbody>
-</table>
 
       <h2 class="govuk-heading-m">Progress</h2>
 
       <p class="govuk-body govuk-!-margin-bottom-7">You have completed 0 of 5 parts of this appplication.</p>
 
       {{ govukTaskList({
-        idPrefix: "coc-parts",
+        idPrefix: "NOE-parts",
         items: [
           {
             title: {
               text: "Apply for Notice of Eligibility (NoE)"
             },
-            status: {
+                        status: {
               tag: {
-                text: "In progress",
-                classes: "govuk-tag--yellow"
+                text: "Payment required",
+                classes: "govuk-tag--red"
               }
             }
           },
           {
             title: {
-              text: "[Pass Part A exam]"
-            }
-          },
-          {
-            title: {
-              text: "[Pass Part B exam]"
-            }
-          },
-          {
-            title: {
-              text: "Add supporting evidence"
+              text: "Make a payment"
             },
-            href: "supporting-evidence",
-                        status: {
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Pass Part A exam"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part B exam"
+            }
+          },
+          {
+            title: {
+              text: "Provide supporting evidence"
+            },
+            href: "#",
+            status: {
               tag: {
                 text: "Action required",
                 classes: "govuk-tag--blue"
@@ -128,8 +118,36 @@
         ]
       }) }}
       
-      <p class="govuk"><a href="cancel/cancel-application">Cancel application</a></p>
+<br>
+<br>
+      <h2 class="govuk-heading-m">Information</h2>
 
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row"></tr>
+        </thead>
+      <tbody class="govuk-table__body">
+                    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Amount to pay</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">£[XXX.XX]</td>
+    </tr>
+            <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Capacity</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">[capacity]</td>
+    </tr>
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Limitation</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">[limitation]</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Training route</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">[training route]</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
+      <p class="govuk"><a href="cancel/cancel-application">Cancel application</a></p>
 
     </div>
   </div>
