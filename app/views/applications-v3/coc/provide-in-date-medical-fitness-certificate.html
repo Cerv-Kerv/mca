@@ -2,7 +2,8 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-Provide evidence of your Global Maritime Distress and Safety System (GMDSS) certificate – {{ serviceName }} – GOV.UK Prototype Kit
+        Provide an in date medical fitness certificate
+ – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -61,13 +62,38 @@ Provide evidence of your Global Maritime Distress and Safety System (GMDSS) cert
 
           <span class="govuk-caption-l">Additional requirements</span>
       <h1 class="govuk-heading-l">
-Provide evidence of your UK Global Maritime Distress and Safety System (GMDSS) certificate</h1>
+        Provide an in date medical fitness certificate
+      </h1>
 
-<p class="govuk">We require evidence of your UK Global Maritime Distress and Safety System (GMDSS) certificate to support your application.</p>
+
+<p class="govuk">We require your ENG1 or equivalent medical fitness certificate to support your application.</p>
+<p class="govuk">You can view the list of countries whose seafarer medical fitness certificates are accepted as equivalent to the UK ENG1 in <a href="https://www.gov.uk/government/publications/msn-1815-amendment-6-equivalent-medical-certificates" target="_blank">MSN 1815 (opens in a new window)</a>.
+</p>
+
+{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{{ govukInsetText({
+  text: "If you have a DG Shipping India medical fitness certificate, include the ‘Annexure IV – Medical Certificate for Service at Sea’ page.
+"
+}) }}
+
+<details class="govuk-details" data-module="govuk-details">
+          <summary class="govuk-details__summary">
+            <span class="govuk-details__summary-text">
+Why we ask for the medical fitness certificate again           </span>
+          </summary>
+          <div class="govuk-details__text">
+            <p class="govuk-body">
+We need to have an in date medicual fitness certificate to support your application. The medicial fitness certificate you supplied previously is no loner valid or is out of date.            </p>
+          </div>
+        </details>
 
 
-<form action="check-gmdss" method="post" enctype="multipart/form-data">
-  <div class="govuk-form-group">
+
+<form action="check-medical-fitness-certificate" method="" enctype="multipart/form-data">
+
+
+<div class="govuk-form-group">
   {{ govukFileUpload({
     id: "file-upload-1",
     name: "file-upload-1",
@@ -75,17 +101,19 @@ Provide evidence of your UK Global Maritime Distress and Safety System (GMDSS) c
       text: "Upload your documents as scanned copies or photos of the original."
     },
     label: {
-      text: "Upload evidence of UK GMDSS certificate",
+      text: " Upload your in date ENG1 or equivalent medical fitness certificate ",
       classes: "govuk-label--m"
     },
     javascript: true
   }) }}
 </div>
+
+
+
       <button type="submit" class="govuk-button" data-module="govuk-button">
         Continue
       </button>
-    </form>
-        
+       </form> 
     </div>
   </div>
 
