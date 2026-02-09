@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-        Provide proof of your NARAS/NAEST Operational certificates
+        Provide proof of your Ship construction and stability certificate
  – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
@@ -62,17 +62,11 @@
 
       <span class="govuk-caption-l">Ancillary certificates</span>
       <h1 class="govuk-heading-l">
-        Provide proof of your NARAS/NAEST Operational certificates
+        Provide proof of your Ship construction and stability certificate
       </h1>
 
 <p class="govuk">These certificates need to be MCA Approved.</p>
 
-{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
-
-{{ govukInsetText({
-  text: "If your NARAS/NAEST Operational was completed before June 2005, you must provide proof of your ECDIS.
-"
-}) }}
 
 <form action="" method="" enctype="multipart/form-data">
 
@@ -85,7 +79,7 @@
       text: "Upload your documents as scanned copies or photos of the original."
     },
     label: {
-      text: " Upload your valid NARAS/NAEST (or ECDIS) certificates",
+      text: "Upload your valid Ship construction and stability certificate",
       classes: "govuk-label--m"
     },
     javascript: true

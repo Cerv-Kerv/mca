@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-        Provide your signature
+        Provide proof of your HELM Management certificate
  – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
@@ -46,41 +46,54 @@
     },
     html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
   }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
 {% endblock %}
 
 {% block content %}
 
+
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <span class="govuk-caption-l">Identity and medical</span>
+      <span class="govuk-caption-l">Ancillary certificates</span>
       <h1 class="govuk-heading-l">
-        Provide your signature
+        Provide proof of your HELM Management certificate
       </h1>
 
-<p class="govuk">We require your signature to use for your Notice of Eligibility application. This signature will be used on documents issued to you.</p>
-<p class="govuk">Your signature should be written using a black ballpoint pen on plain white paper.</p>
+<p class="govuk">These certificates need to be MCA Approved.</p>
+
+
+<form action="" method="" enctype="multipart/form-data">
+
 
 <div class="govuk-form-group">
-  <label class="govuk-label" for="file-upload-1">
-    <strong>Upload a clear image of your signature</strong>
-  </label>
-  <div
-    class="govuk-drop-zone"
-    data-module="govuk-file-upload">
-    <input class="govuk-file-upload" id="file-upload-1" name="fileUpload1" type="file">
-  </div>
+  {{ govukFileUpload({
+    id: "file-upload-1",
+    name: "file-upload-1",
+    hint: {
+      text: "Upload your documents as scanned copies or photos of the original."
+    },
+    label: {
+      text: "Upload your valid HELM Management certificate",
+      classes: "govuk-label--m"
+    },
+    javascript: true
+  }) }}
 </div>
 
 
-          <form class="form" action="check-signature" method="post" novalidate>
-        <button type="submit" class="govuk-button" data-module="govuk-button">
-          Continue
-        </button>
 
-      </form>
-        
+      <button type="submit" class="govuk-button" data-module="govuk-button">
+        Continue
+      </button>
+       </form> 
     </div>
   </div>
+
 
 {% endblock %}
