@@ -66,8 +66,24 @@ Request for a UK Global Maritime Distress and Safety System (GMDSS) certificate 
 <p class="govuk">
 As part of your Certificate of Competency (COC) request, the Maritime and Coastguard Agency (MCA) will provide you with a UK GMDSS certificate. </p>
 
+<p class="govuk">We require evidence of your Global Maritime Distress and Safety System (GMDSS) training to support your application.</p>
+
 
 <form action="check-gmdss" method="post" enctype="multipart/form-data">
+  <div class="govuk-form-group">
+  {{ govukFileUpload({
+    id: "file-upload-1",
+    name: "file-upload-1",
+    hint: {
+      text: "Upload your documents as scanned copies or photos of the original."
+    },
+    label: {
+      text: "Upload evidence of GMDSS training",
+      classes: "govuk-label--m"
+    },
+    javascript: true
+  }) }}
+</div>
       <button type="submit" class="govuk-button" data-module="govuk-button">
         Continue
       </button>
