@@ -60,7 +60,7 @@
 
       <h2 class="govuk-heading-m">Progress</h2>
 
-      <p class="govuk-body govuk-!-margin-bottom-7">You have completed 0 of 5 parts of this appplication.</p>
+      <p class="govuk-body govuk-!-margin-bottom-7">You have completed x of x parts of this appplication.</p>
 
       {{ govukTaskList({
         idPrefix: "NOE-parts",
@@ -70,6 +70,18 @@
               text: "Apply for Notice of Eligibility (NoE)"
             },
                        href: "apply-for-notice-of-eligibility",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+                   {
+            title: {
+              text: "Return-delivery address"
+            },
+            href: "provide-your-return-delivery-address",
             status: {
               tag: {
                 text: "Action required",
@@ -98,21 +110,14 @@
               text: "Pass Part B exam"
             }
           },
-          {
-            title: {
-              text: "Provide supporting evidence"
-            },
-            href: "supporting-evidence",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
-            }
-          },
-          {
+                    {
             title: {
               text: "Request Certificate of Competency"
+            }
+          },
+                    {
+            title: {
+              text: "Provide supporting evidence"
             }
           }
         ]
