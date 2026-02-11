@@ -58,6 +58,12 @@
         Application overview
       </h1>
 
+      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+{{ govukInsetText({
+  text: "You will need to hold a [limitation] certificate of competency (CoC) to be able to complete this application"
+}) }}
+
       <h2 class="govuk-heading-m">Progress</h2>
 
       <p class="govuk-body govuk-!-margin-bottom-7">You have completed x of x parts of this appplication.</p>
@@ -67,9 +73,9 @@
         items: [
           {
             title: {
-              text: "Apply for Notice of Eligibility (NoE)"
+              text: "Provide supporting evidence"
             },
-                       href: "apply-for-notice-of-eligibility",
+                       href: "supporting-evidence",
             status: {
               tag: {
                 text: "Action required",
@@ -79,7 +85,7 @@
           },
                    {
             title: {
-              text: "Provide return-delivery address"
+              text: "Return-delivery address"
             },
             href: "provide-your-return-delivery-address",
             status: {
@@ -96,30 +102,7 @@
             status: {
                 text: ""
             }
-          },
-          {
-            title: {
-              text: "Pass Part A exam"
-            },
-            status: {
-                text: ""
-            }
-          },
-          {
-            title: {
-              text: "Pass Part B exam"
-            }
-          },
-                    {
-            title: {
-              text: "Request Certificate of Competency"
-            }
-          },
-                    {
-            title: {
-              text: "Provide supporting evidence"
-            }
-          }
+          }           
         ]
       }) }}
       
