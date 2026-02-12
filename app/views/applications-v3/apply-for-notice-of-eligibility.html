@@ -200,17 +200,7 @@ Apply for a Notification of Eligibility (NoE)
             status: {
                 text: "Complete"
             }
-          },
-                    {
-            title: {
-              text: "Specified Area"
-            },
-            href: "noe/confirmation-of-specificed-area.html",
-            status: {
-                text: "Complete"
-            }
           }
-          
 
         ]
       }) }}
@@ -220,6 +210,15 @@ Apply for a Notification of Eligibility (NoE)
       {{ govukTaskList({
         idPrefix: "submission",
         items: [
+                 {
+            title: {
+              text: "Specified Area"
+            },
+            href: "noe/confirmation-of-specificed-area.html",
+            status: {
+                text: "Complete"
+            }
+          },
           {
             title: {
               text: "SMarT funded status"
