@@ -69,6 +69,9 @@ Provide your college education and training completion letter
 
 <p class="govuk">[We require your college education and training completion letter to support your application.]</p>
 
+<p class="govuk">[We require your college education and training completion letter to support your application. Include a letter from the college confirming you have met the OOW Unlimited level]</p>
+
+
 <form action="check-your-college-education-and-training-enrolment-letter" method="post" enctype="multipart/form-data">
   <div class="govuk-form-group">
   {{ govukFileUpload({
@@ -78,7 +81,7 @@ Provide your college education and training completion letter
       text: "Upload your documents as scanned copies or photos of the original."
     },
     label: {
-      text: "[Upload your college education and training completion letter][Upload your college education, training completion letter and any exemptions]",
+      text: "[Upload your college education and training completion letter][Upload your college education, training completion letter and any exemptions][Upload your college education, training completion letter and confirmation of OOW unlimited level]",
       classes: "govuk-label--m"
     },
     javascript: true
