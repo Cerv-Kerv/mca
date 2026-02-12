@@ -2,7 +2,8 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-Provide your college education, training completion letter, and exemptions – {{ serviceName }} – GOV.UK Prototype Kit
+Provide your college education and training completion letter
+ – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -61,9 +62,12 @@ Provide your college education, training completion letter, and exemptions – {
 
       <span class="govuk-caption-l">Training and education</span>
       <h1 class="govuk-heading-l">
-Provide your college education and training completion letter</h1>
+Provide your college education and training completion letter
+</h1>
 
-<p class="govuk">We require your college education and training completion letter and any exemptions to support your application.</p>
+<p class="govuk">[We require your college education and training completion letter and any exemptions to support your application.]</p>
+
+<p class="govuk">[We require your college education and training completion letter to support your application.]</p>
 
 <form action="check-your-college-education-and-training-enrolment-letter" method="post" enctype="multipart/form-data">
   <div class="govuk-form-group">
@@ -74,7 +78,7 @@ Provide your college education and training completion letter</h1>
       text: "Upload your documents as scanned copies or photos of the original."
     },
     label: {
-      text: "Upload your college education, training completion letter and any exemptions",
+      text: "[Upload your college education and training completion letter][Upload your college education, training completion letter and any exemptions]",
       classes: "govuk-label--m"
     },
     javascript: true
