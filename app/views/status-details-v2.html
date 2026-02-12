@@ -148,7 +148,8 @@
         ]
       }) }}
 
-           <p><strong>2. STATE:</strong> Applicant is reapplying (3rd attempt +)</p>
+           <p><strong>2. STATE:</strong> Applicant is reapplying (3rd attempt +)<br>
+            (COC is created at the time applicant starts attempt 3)</p>
 
    {{ govukTaskList({
         idPrefix: "NOE-parts",
@@ -207,8 +208,68 @@
         ]
       }) }}
 
-                 <p><strong>3. STATE:</strong> Applicant needs to pay & submit NOE (3rd attempt +)<br>
-                (COC is created at the time applicant starts attempt 3)</p>
+
+      <p><strong>3. STATE:</strong> Applicant needs to pay & submit NOE</p>
+
+   {{ govukTaskList({
+        idPrefix: "NOE-parts",
+        items: [
+          {
+            title: {
+              text: "Apply for Notice of Eligibility (NoE)"
+            },
+                        status: {
+              tag: {
+                text: "Payment required",
+                classes: "govuk-tag--red"
+              }
+            }
+          },
+                                       {
+            title: {
+              text: "Provide return-delivery address"
+            },
+                       href: "#",
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Make a payment"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Pass Part A exam"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part B exam"
+            }
+          },
+          {
+            title: {
+              text: "Request Certificate of Competency"
+            }
+          },
+          {
+            title: {
+              text: "Provide supporting evidence"
+            }
+          }
+        ]
+      }) }}
+
+                       <p><strong>4. STATE:</strong> Applicant needs to pay & submit NOE (3rd attempt +)</p>
 
    {{ govukTaskList({
         idPrefix: "NOE-parts",
@@ -272,66 +333,6 @@
         ]
       }) }}
 
-
-      <p><strong>4. STATE:</strong> Applicant needs to pay & submit NOE</p>
-
-   {{ govukTaskList({
-        idPrefix: "NOE-parts",
-        items: [
-          {
-            title: {
-              text: "Apply for Notice of Eligibility (NoE)"
-            },
-                        status: {
-              tag: {
-                text: "Payment required",
-                classes: "govuk-tag--red"
-              }
-            }
-          },
-                                       {
-            title: {
-              text: "Provide return-delivery address"
-            },
-                       href: "#",
-            status: {
-                text: "Complete"
-            }
-          },
-          {
-            title: {
-              text: "Make a payment"
-            },
-            href: "#",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag"
-              }
-            }
-          },
-          {
-            title: {
-              text: "Pass Part A exam"
-            }
-          },
-          {
-            title: {
-              text: "Pass Part B exam"
-            }
-          },
-          {
-            title: {
-              text: "Request Certificate of Competency"
-            }
-          },
-          {
-            title: {
-              text: "Provide supporting evidence"
-            }
-          }
-        ]
-      }) }}
 
       <p><strong>5. STATE:</strong> MCA processing the submitted NOE</p>
 
