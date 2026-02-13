@@ -13,25 +13,11 @@
 
 {{ hmrcHeader({
   serviceUrl : "/",
-  signOutHref : "?sign-out",
   useTudorCrown: "true"
 }) }}
 {{ govukServiceNavigation({
     serviceName: serviceName,
-      navigation: [   
-      {
-      href: "/dashboard/v2/dashboard.html",
-      text: "Dashboard"
-    },
-    {
-      href: "/applications/applications",
-      text: "Applications"
-    },
-    {
-      href: "#",
-      text: "Oral exams"
-    }
-],
+
     slots: {
     },
     classes: "govuk-header--full-width-border"
@@ -43,12 +29,12 @@
     tag: {
       text: "Beta"
     },
-    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>. '
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
   }) }}
 
-      {{ govukBackLink({
+    {{ govukBackLink({
     text: "Back",
-    href: "javascript:window. history. back()"
+    href: "javascript:window.history.back()"
   }) }}
   
 
