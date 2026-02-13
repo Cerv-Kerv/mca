@@ -13,25 +13,11 @@
 
 {{ hmrcHeader({
   serviceUrl : "/",
-  signOutHref : "?sign-out",
   useTudorCrown: "true"
 }) }}
 {{ govukServiceNavigation({
     serviceName: serviceName,
-      navigation: [   
-      {
-      href: "/dashboard/v2/dashboard.html",
-      text: "Dashboard"
-    },
-    {
-      href: "/applications/applications",
-      text: "Applications"
-    },
-    {
-      href: "#",
-      text: "Oral exams"
-    }
-],
+
     slots: {
     },
     classes: "govuk-header--full-width-border"
