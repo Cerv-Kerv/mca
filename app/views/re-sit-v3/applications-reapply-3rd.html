@@ -74,7 +74,7 @@
         History
       </h2>
 
-      {{ govukTaskList({
+       {{ govukTaskList({
         idPrefix: "applications",
         items: [
           {
@@ -85,25 +85,22 @@
         text: "Attempt 2: 24 July 2024"
       },
             status: {
-              tag: {
-                text: "Closed",
-                classes: "govuk-tag--grey"
-              }
+                text: "Closed"
             }
+          
     },
-          {
+             {
             title: {
               text: "OOW unlimited II/1"
             },
-            hint: {
-        text: "Attempt 1: 23 May 2024"
+      hint: {
+        text: "Attempt 1: 24 August 2023"
       },
             status: {
-              tag: {
-                text: "Closed",
-                classes: "govuk-tag--grey"
-              }
-          }
+                text: "Closed"
+            }
+          
+    }
         ]
       }) }}
 
