@@ -71,6 +71,27 @@
                 classes: "govuk-tag--blue"
               }
             }
+          },
+          {
+            title: {
+              text: "Some other application"
+            },
+                        href: "#",
+          status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Some other application"
+            },
+                        href: "#",
+          status: {
+              tag: {
+                text: "Cancelled",
+                classes: "govuk-tag--grey"
+              }
+            }
           }
         ]
       }) }}
@@ -83,73 +104,6 @@
         }) }}
 
       </form>
-<br><br>
-                  <h2 class="govuk-heading-s">
-        History
-      </h2>
-
-      {{ govukTaskList({
-        idPrefix: "applications",
-        items: [
-          {
-            title: {
-              text: "OOW unlimited II/1"
-            },
-      hint: {
-        text: "Attempt 1: 24 July 2024"
-      },
-            status: {
-              tag: {
-                text: "Closed",
-                classes: "govuk-tag--grey"
-              }
-            }
-    },
-          {
-            title: {
-              text: "OOW unlimited II/1"
-            },
-            hint: {
-        text: "23 May 2024"
-      },
-            status: {
-              tag: {
-                text: "Cancelled",
-                classes: "govuk-tag--grey"
-              }
-            }
-          },
-          {
-            title: {
-              text: "Some other application"
-            },
-            hint: {
-        text: "31 January 2019"
-      },
-      href: "noe-declaration",
-            status: {
-                text: "Complete"
-            }
-          },
-          {
-            title: {
-              text: "Some other application"
-            },
-            hint: {
-        text: "Attempt 1: 23 December 2018"
-      },
-          status: {
-              tag: {
-                text: "Closed",
-                classes: "govuk-tag--grey"
-              }
-            }
-          }
-        ]
-      }) }}
-
-
-
 
     </div>
   </div>

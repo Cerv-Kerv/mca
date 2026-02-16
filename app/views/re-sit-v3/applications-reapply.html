@@ -60,7 +60,7 @@
 
       <p>This is your 2nd attempt.</p>
       <p>You must apply for a new Notice of Eligibility (NOE) to resit your exam.</p>
-            <p>The cost to reapply is £159.00</p>
+      <p>The cost to reapply is £159.00</p>
 
 
 
@@ -73,6 +73,30 @@
       </form>
       <p class="govuk"><a href="#">Return to applications</a></p>
 
+      <br><br>
+                  <h2 class="govuk-heading-s">
+        History
+      </h2>
+
+      {{ govukTaskList({
+        idPrefix: "applications",
+        items: [
+          {
+            title: {
+              text: "OOW unlimited II/1"
+            },
+      hint: {
+        text: "Attempt 1: 24 July 2024"
+      },
+            status: {
+              tag: {
+                text: "Closed",
+                classes: "govuk-tag--grey"
+              }
+            }
+    }
+        ]
+      }) }}
 
 
     </div>

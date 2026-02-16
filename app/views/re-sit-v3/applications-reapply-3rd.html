@@ -69,6 +69,43 @@
       </form>
       <p class="govuk"><a href="#">Return to applications</a></p>
 
+      <br><br>
+                  <h2 class="govuk-heading-s">
+        History
+      </h2>
+
+      {{ govukTaskList({
+        idPrefix: "applications",
+        items: [
+          {
+            title: {
+              text: "OOW unlimited II/1"
+            },
+      hint: {
+        text: "Attempt 2: 24 July 2024"
+      },
+            status: {
+              tag: {
+                text: "Closed",
+                classes: "govuk-tag--grey"
+              }
+            }
+    },
+          {
+            title: {
+              text: "OOW unlimited II/1"
+            },
+            hint: {
+        text: "Attempt 1: 23 May 2024"
+      },
+            status: {
+              tag: {
+                text: "Closed",
+                classes: "govuk-tag--grey"
+              }
+          }
+        ]
+      }) }}
 
 
     </div>
