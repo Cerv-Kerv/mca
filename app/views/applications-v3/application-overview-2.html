@@ -61,28 +61,38 @@
 
       <h2 class="govuk-heading-m">Progress</h2>
 
-      <p class="govuk-body govuk-!-margin-bottom-7">You have completed 1 of 5 parts of this appplication.</p>
+<p class="govuk-body govuk-!-margin-bottom-7">You have completed x of x parts of this appplication.</p>
 
       {{ govukTaskList({
-        idPrefix: "coc-parts",
+        idPrefix: "NOE-parts",
         items: [
           {
             title: {
               text: "Apply for Notice of Eligibility (NoE)"
             },
+            ref: "apply-for-notice-of-eligibility",
             status: {
               tag: {
-                text: "Complete",
-                classes: "govuk-tag--green"
+                text: "Payment required",
+                classes: "govuk-tag--red"
               }
             }
           },
           {
             title: {
-              text: "[Pass Part A exam]"
+              text: "Provide return-delivery address"
             },
-            href: "#",
-                        status: {
+            href: "",
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Make a payment"
+            },
+            href: "application-overview-3",
+            status: {
               tag: {
                 text: "Action required",
                 classes: "govuk-tag--blue"
@@ -91,24 +101,25 @@
           },
           {
             title: {
-              text: "[Pass Part B exam]"
+              text: "Pass Part A exam"
+            },
+            status: {
+                text: ""
             }
           },
           {
             title: {
-              text: "Add supporting evidence"
-            },
-            href: "supporting-evidence",
-                        status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
+              text: "Pass Part B exam"
             }
           },
-          {
+                    {
             title: {
               text: "Request Certificate of Competency"
+            }
+          },
+                    {
+            title: {
+              text: "Provide supporting evidence"
             }
           }
         ]

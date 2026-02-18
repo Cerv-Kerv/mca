@@ -65,22 +65,20 @@ Send us your supporting workbooks
 </h1>
 
 <p class="govuk">
-Your workbook is the book you use to note the detail of the tasks in your Training Record Book.
-</p>
+Your workbook is the book you use to note the detail of the tasks in your Training Record Book (TRB).</p>
 
       <h2 class="govuk-heading-m">
 Sending in your workbooks      
 </h2>
 
 <p class="govuk">
-Write your Seafarer Reference Number (SRN) to a piece of paper and attach it to your workbooks before posting them to us. We will pair them with the related application you have submitted.
+Write your Seafarer Reference Number (SRN) on a piece of paper and attach it to your workbooks before posting them to us. We will pair them with the related application you have submitted.
 </p>
 <p class="govuk">
-Your original workbooks must be sent to our office. You cannot upload this document and you must send us a hard copy.
-</p>
+Your original workbooks must be posted to our office as a hard copy. Workbooks cannot be uploaded.</p>
 
 <p class="govuk">
-Send your workbooks to:</p>
+Post your workbooks to:</p>
 
 {{ govukInsetText({
   html: "Seafarer Operations (Training and Certification)<br> Maritime and Coastguard Agency<br> Spring Place<br> 105 
@@ -97,14 +95,14 @@ Commercial Road<br> Southampton<br> SO15 1EG<br> United Kingdom"
           },
           fieldset: {
             legend: {
-              text: "By selecting 'Save and continue', I confirm that:",
+              text: "",
               classes: "govuk-fieldset__legend"
             }
           },
           items: [
             {
               value: "confirmed",
-              html: 'I will send my workbooks to the MCA.',
+              html: 'By checking the box, you confirm that you will send your workbooks to the Maritime and Coastguard Agency (MCA).',
               checked: data['privacy-notice'] == 'confirmed'
             }
           ]
