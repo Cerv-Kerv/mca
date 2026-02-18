@@ -60,51 +60,53 @@ Pass Part A exam
     <div class="govuk-grid-column-two-thirds">
       <span class="govuk-caption-l">[Limitation]</span>
       <h1 class="govuk-heading-l">
-Your exam (Part A)
-</h1>
+      Pass Part A exam
+      </h1>
 
-<p class="govuk" >
-You must pass the online exam (Part A) before you can take Part B.
-</p>
-<p class="govuk" >
-As long as your Notice of Eligibility (NoE) is and remains valid, you can take your exam (Part A) at any time.
-</p>
-<p class="govuk" >
-Your exam (Part B) must be taken within 12 months of passing Part A. We'll send you information about booking Part B of your exam when you pass Part A.
-</p>
+          <p class="govuk" >
+You must pass the Part A online computer-based exam before you can take the Part B oral exam.      </p>
 
-<h2 class="govuk-heading-m">
-Preparing for your exam
-</h2>
+                <p class="govuk" >
+You can take the exam at any time while your NOE is still valid.</p> 
 
-<p>Before you take your exam, read the <a href="https://www.gov.uk/government/publications/min-690-guidance-on-the-mca-oral-examination-booking-the-issue-of-notices-of-eligibility-noes-and-the-online-oral-examination-processes/min-690-guidance-on-the-mca-oral-examination-booking-the-issue-of-notices-of-eligibility-noes-and-the-online-oral-examination-processes#codeofconduct" target="_blank">Candidate's code of conduct</a> (opens in a new window).</p>
+                <p>After you pass Part A, you have 12 months to take your Part B oral exam. We'll send you information about booking Part B when you pass Part A.</p>
 
-<p>The code of conduct tells you what: </p>
+      <h2 class="govuk-heading-m">
+Before you take the exam</h2>
+
+<p>You will need a username and password to access the exam. Check your email for this information.</p>
+
+<p>Read the <a href="https://www.gov.uk/government/publications/min-690-guidance-on-the-mca-oral-examination-booking-the-issue-of-notices-of-eligibility-noes-and-the-online-oral-examination-processes/min-690-guidance-on-the-mca-oral-examination-booking-the-issue-of-notices-of-eligibility-noes-and-the-online-oral-examination-processes#codeofconduct" target="_blank">Candidate's code of conduct</a> (opens in a new window). It tells you:</p>
 <ul class="govuk-list govuk-list--bullet">
-<li>stationary you will required</li>  
-<li>computer equipment you will need</li>
+<li>stationary required</li>  
+<li>what computer equipment you need</li>
 <li>exam rules you must follow</li>
 </ul>
 
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
 {{ govukWarningText({
-  text: "You may fail your exam if you do not follow the exam-related rules.",
+  text: "You may fail the exam if you do not follow the rules.",
   iconFallbackText: "Warning"
 }) }}
 
-<p>You will need a username and password to access the exam. Check the exam-booking email we sent you for this information. If you cannot find your email, contact us at: [insert email address]</p>
 
-<form action="">
+      <form class="form" action="https://oral-parta.mcga.gov.uk/Run/Assessment/ModuleWidgetWithSignIn/25a127b1-c65e-4eff-810e-77b10565ca39" method="post" novalidate>
+
+{% from "govuk/components/button/macro.njk" import govukButton %}
+
 <div class="govuk-button-group">
-  <a href="https://oral-parta.mcga.gov.uk/Run/Assessment/ModuleWidgetWithSignIn/25a127b1-c65e-4eff-810e-77b10565ca39" class="govuk-button" target="_blank">
-    Take Exam (Part A) now
-  </a>
-  <a class="govuk-button govuk-button--secondary" data-module="govuk-button" href="/applications-v3/application-overview-3">
-    Complete exam later
-</a>
+  {{ govukButton({
+    text: "Take Part A exam now"
+  }) }}
+
+  {{ govukButton({
+    text: "Do exam later",
+    classes: "govuk-button--secondary"
+  }) }}
 </div>
-</form>
+<p><a href="">Already taken exam</a></p>
+        </form>
     </div>
   </div>
 

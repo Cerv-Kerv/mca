@@ -57,98 +57,93 @@
         Application overview
       </h1>
 
-      <h2 class="govuk-heading-m">Information</h2>
 
-      <table class="govuk-table">
-      <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Capacity</th>
-      <td class="govuk-table__cell">[Capacity]</td>
-    </tr>
-      <th scope="row" class="govuk-table__header">Limitation</th>
-      <td class="govuk-table__cell">[Limitation]</td>
-    </tr>
-    <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Training route</th>
-      <td class="govuk-table__cell">[Training route]</td>
-    </tr>
-            <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Amount paid</th>
-      <td class="govuk-table__cell">£[220.00]</td>
-    </tr>
-
-
-  </tbody>
-</table>
 
       <h2 class="govuk-heading-m">Progress</h2>
 
-      <p class="govuk-body govuk-!-margin-bottom-7">You have completed 4 of 5 parts of this appplication.</p>
+<p class="govuk-body govuk-!-margin-bottom-7">You have completed x of x parts of this appplication.</p>
 
       {{ govukTaskList({
-        idPrefix: "coc-parts",
+        idPrefix: "NOE-parts",
         items: [
           {
             title: {
               text: "Apply for Notice of Eligibility (NoE)"
             },
+                        status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Provide return-delivery address"
+            },
+            href: "",
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Make a payment"
+            },
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part A exam"
+            },           
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part B exam"
+            },
+            href: "application-overview-6",
             status: {
               tag: {
-                text: "Complete",
+                text: "Booked",
                 classes: "govuk-tag--green"
               }
             }
           },
-          {
-            title: {
-              text: "[Pass Part A exam]"
-            },
-                        status: {
-              tag: {
-                text: "Complete",
-                classes: "govuk-tag--green"
-              }
-            }
-          },
-          {
-            title: {
-              text: "[Pass Part B exam]"
-            },
-                        status: {
-              tag: {
-                text: "Complete",
-                classes: "govuk-tag--green"
-              }
-            }
-          },
-          {
-            title: {
-              text: "Add supporting evidence"
-            },
-                        status: {
-              tag: {
-                text: "Complete",
-                classes: "govuk-tag--green"
-              }
-            }
-          },
-          {
+                    {
             title: {
               text: "Request Certificate of Competency"
-            },
-            href: "#",
-                        status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
+            }
+          },
+                    {
+            title: {
+              text: "Provide supporting evidence"
             }
           }
         ]
       }) }}
-      
-            <p class="govuk"><a href="cancel/cancel-application">Cancel application</a></p>
 
+            <h2 class="govuk-heading-m">Information</h2>
+
+      <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row"></tr>
+        </thead>
+      <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Application</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">[limitation]</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Amount paid</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">£[XXX.XX]</td>
+    </tr>
+  </tbody>
+</table>
+      
+
+            <p class="govuk"><a href="cancel/cancel-application">Cancel application</a></p>
 
     </div>
   </div>
