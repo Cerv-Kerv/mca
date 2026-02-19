@@ -1,0 +1,86 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+Request a Certificate of Competency (CoC)
+ – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v2/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Oral exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <span class="govuk-caption-l">[Limitation]</span>
+      <h1 class="govuk-heading-l">
+Request a Certificate of Competency (CoC)
+      </h1>
+
+          <p class="govuk" >
+Making your COC rquest means you still need to provide additional information in order for the MCA to process your request for a COC.</p>
+
+                <p class="govuk" >
+You need to request your COC before we tell you what else you need to provide</p> 
+
+                <p>By requesting a COC, you will need supply all the supporting evidence (which we can't show you 'til you make the request) within the time left of the validaty of the documents you need to supply as evidence to be issued with your COC</p>
+
+      
+<div class="govuk-button-group">
+  <a href="" class="govuk-button" target="_blank">
+    Lets roll the dice
+  </a>
+  <a class="govuk-button govuk-button--secondary" data-module="govuk-button" href="">
+    I'll make the request later
+</a>
+</div>
+    </div>
+  </div>
+
+{% endblock %}
