@@ -62,8 +62,12 @@
         Supporting evidence
       </h1>
 
-<p class="govuk-body govuk-!-margin-bottom-7">You have completed X of XX sections.</p>
-
+<div class="govuk-warning-text">
+  <span class="govuk-warning-text__icon" aria-hidden="true">i</span>
+  <strong class="govuk-warning-text__text">
+    <span class="govuk-visually-hidden">Warning</span>
+You need to <a href="#additonal_doc">provide additional documentation</a>  </strong>
+</div>
 
 {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
@@ -82,10 +86,7 @@
             },
             href: "coc/provide-your-college-education-and-training-completion-letter",
             status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
+                text: "Complete"
             }
           },
           {
@@ -94,10 +95,7 @@
             },
             href: "coc/provide-mca-written-exams",
             status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
+                text: "Complete"
             }
           },
           {
@@ -109,10 +107,7 @@
             },
             href: "coc/provide-evidence-of-your-stcw-a-vi-4-1-medical-first-aid",
             status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
+                text: "Complete"
             }
           },
           {
@@ -124,10 +119,7 @@
             },
             href: "coc/provide-evidence-of-your-stcw-a-v1-3-advanced-fire-fighting",
             status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
+                text: "Complete"
             }
           },
           {
@@ -139,10 +131,7 @@
             },
             href: "coc/provide-evidence-of-your-stcw-a-vi-2-1-proficiency-in-survival-craft-and-rescue-boats",
             status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
+                text: "Complete"
             }
           },
           {
@@ -154,10 +143,7 @@
             },
             href: "coc/provide-evidence-of-your-stcw-a-vi-4-2-medical-care-certificate",
             status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
+                text: "Complete"
             }
           }
 
@@ -176,10 +162,7 @@
             },
             href: "coc/provide-signals-certificate",
             status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
+                text: "Complete"
             }
           },
           {
@@ -188,10 +171,7 @@
             },
             href: "coc/provide-efficient-deck-hand-certificate",
             status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
+                text: "Complete"
             }
           },
           {
@@ -203,10 +183,7 @@
             },
             href: "coc/provide-naras-naest-ecdis-operational-certificates",
             status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
+                text: "Complete"
             }
           },
           {
@@ -215,10 +192,7 @@
             },
             href: "coc/provide-naras-naest-management-certificate",
             status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
+                text: "Complete"
             }
           },
           {
@@ -227,10 +201,7 @@
             },
             href: "coc/provide-helm-operational-certificate",
             status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
+                text: "Complete"
             }
           },
           {
@@ -239,10 +210,7 @@
             },
             href: "coc/provide-helm-management-certificate",
             status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
+                text: "Complete"
             }
           }
         ]
@@ -260,10 +228,7 @@
             },
             href: "coc/gmdss/tell-us-about-your-gmdss-certificate",
             status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
+                text: "Complete"
             }
           },
         {
@@ -271,6 +236,15 @@
               text: "Signature"
             },
             href: "coc/provide-your-signature",
+            status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Additional documentation"
+            },
+            href: "provide-additional-documents",
             status: {
               tag: {
                 text: "Action required",
@@ -292,10 +266,7 @@
             },
             href: "provide-your-return-delivery-address",
             status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
+                text: "Complete"
             }
           },
           {
@@ -304,10 +275,7 @@
             },
             href: "coc/coc-declaration",
             status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
+                text: "Complete"
             }
           }
         
