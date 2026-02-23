@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-Provide evidence of your non-UK Global Maritime Distress and Safety System (GMDSS) certificate – {{ serviceName }} – GOV.UK Prototype Kit
+Provide additional documents – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -59,15 +59,28 @@ Provide evidence of your non-UK Global Maritime Distress and Safety System (GMDS
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-          <span class="govuk-caption-l">Additional requirements</span>
+          <span class="govuk-caption-l">Additional details</span>
       <h1 class="govuk-heading-l">
-Provide evidence of your non-UK Global Maritime Distress and Safety System (GMDSS) certificate</h1>
+Provide additional documents</h1>
 
-<p class="govuk">We require evidence of your accepted non-UK Global Maritime Distress and Safety System (GMDSS) certificate and, if appropriate, your GMDSS STCW Endorsement to support your application.</p>
+<p class="govuk">We require additional documents for your application.</p>
 
-<p>The Maritime and Coastguard Agency (MCA) accept GMDSS certificates issued by the listed <a href="https://www.gov.uk/guidance/list-of-countries-accepted-towards-issuing-a-uk-FSE" target="_blank">flag states (opens in a new window)</a>.</p>
+<p class="govuk">Upload evidence for the following:</p>
 
-<form action="check-gmdss" method="post" enctype="multipart/form-data">
+<ul class="govuk-list govuk-list--bullet">
+    <li>Document A</li>
+    <li>Document B</li>
+    <li>Document C</li>
+    <li>Document D</li>
+    <li>Document EF</li>
+    <li>Document JK</li>
+    <li>Document LMNOP</li>
+
+</ul>
+
+
+
+<form action="check-additional-documents" method="post" enctype="multipart/form-data">
   <div class="govuk-form-group">
   {{ govukFileUpload({
     id: "file-upload-1",
@@ -76,7 +89,7 @@ Provide evidence of your non-UK Global Maritime Distress and Safety System (GMDS
       text: "Upload your documents as scanned copies or photos of the original."
     },
     label: {
-      text: "Upload evidence of your non-UK GMDSS certificate",
+      text: "Upload your additional documents",
       classes: "govuk-label--m"
     },
     javascript: true

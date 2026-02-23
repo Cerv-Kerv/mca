@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-Provide evidence of your non-UK Global Maritime Distress and Safety System (GMDSS) certificate – {{ serviceName }} – GOV.UK Prototype Kit
+          Check your Global Maritime Distress and Safety System (GMDSS) status– {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -54,41 +54,46 @@ Provide evidence of your non-UK Global Maritime Distress and Safety System (GMDS
 {% endblock %}
 
 {% block content %}
-
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
           <span class="govuk-caption-l">Additional requirements</span>
       <h1 class="govuk-heading-l">
-Provide evidence of your non-UK Global Maritime Distress and Safety System (GMDSS) certificate</h1>
+Check your signature
+      </h1>
 
-<p class="govuk">We require evidence of your accepted non-UK Global Maritime Distress and Safety System (GMDSS) certificate and, if appropriate, your GMDSS STCW Endorsement to support your application.</p>
+          {{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-9",
+        rows: [
+          {
+            key: {
+              text: "Signature upload"
+            },
+            value: {
+              html: "Filename1.ext"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
 
-<p>The Maritime and Coastguard Agency (MCA) accept GMDSS certificates issued by the listed <a href="https://www.gov.uk/guidance/list-of-countries-accepted-towards-issuing-a-uk-FSE" target="_blank">flag states (opens in a new window)</a>.</p>
+      <form action="/applications-v3/supporting-evidence" method="post" novalidate>
 
-<form action="check-gmdss" method="post" enctype="multipart/form-data">
-  <div class="govuk-form-group">
-  {{ govukFileUpload({
-    id: "file-upload-1",
-    name: "file-upload-1",
-    hint: {
-      text: "Upload your documents as scanned copies or photos of the original."
-    },
-    label: {
-      text: "Upload evidence of your non-UK GMDSS certificate",
-      classes: "govuk-label--m"
-    },
-    javascript: true
-  }) }}
-</div>
-      <button type="submit" class="govuk-button" data-module="govuk-button">
-        Continue
-      </button>
-    </form>
-        
+        <input type="hidden" name="answers-checked" value="true">
+
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
+
+      </form>
+
     </div>
   </div>
-
-
 {% endblock %}

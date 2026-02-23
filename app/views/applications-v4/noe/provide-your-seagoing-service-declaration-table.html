@@ -2,7 +2,8 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-Provide evidence of your non-UK Global Maritime Distress and Safety System (GMDSS) certificate – {{ serviceName }} – GOV.UK Prototype Kit
+        Provide your seagoing service declaration table
+ – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -59,16 +60,30 @@ Provide evidence of your non-UK Global Maritime Distress and Safety System (GMDS
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-          <span class="govuk-caption-l">Additional requirements</span>
+      <span class="govuk-caption-l">Seagoing service</span>
       <h1 class="govuk-heading-l">
-Provide evidence of your non-UK Global Maritime Distress and Safety System (GMDSS) certificate</h1>
+Provide evidence of your seagoing service using the declaration table
+      </h1>
 
-<p class="govuk">We require evidence of your accepted non-UK Global Maritime Distress and Safety System (GMDSS) certificate and, if appropriate, your GMDSS STCW Endorsement to support your application.</p>
+<p class="govuk">Download and use the following templates to record your seagoing service: </p>
+<ul class="govuk-list govuk-list--bullet">
+  <li><a href="#">General seagoing service</a></li>
+  <li><a href="#">Yacht seagoing service</a></li>
+</ul>
 
-<p>The Maritime and Coastguard Agency (MCA) accept GMDSS certificates issued by the listed <a href="https://www.gov.uk/guidance/list-of-countries-accepted-towards-issuing-a-uk-FSE" target="_blank">flag states (opens in a new window)</a>.</p>
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
-<form action="check-gmdss" method="post" enctype="multipart/form-data">
-  <div class="govuk-form-group">
+{{ govukWarningText({
+  text: "Your total seagoing service time must be no less than [application specific time frame]",
+  iconFallbackText: "Warning"
+}) }}
+
+
+
+<form action="check-your-seagoing-service-declaration-table" method="" enctype="multipart/form-data">
+
+
+<div class="govuk-form-group">
   {{ govukFileUpload({
     id: "file-upload-1",
     name: "file-upload-1",
@@ -76,17 +91,19 @@ Provide evidence of your non-UK Global Maritime Distress and Safety System (GMDS
       text: "Upload your documents as scanned copies or photos of the original."
     },
     label: {
-      text: "Upload evidence of your non-UK GMDSS certificate",
+      text: "Upload your completed seagoing service declaration table",
       classes: "govuk-label--m"
     },
     javascript: true
   }) }}
 </div>
+
+
+
       <button type="submit" class="govuk-button" data-module="govuk-button">
         Continue
       </button>
-    </form>
-        
+       </form> 
     </div>
   </div>
 

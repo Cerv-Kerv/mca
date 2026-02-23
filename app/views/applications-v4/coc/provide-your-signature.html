@@ -2,7 +2,8 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-Provide evidence of your non-UK Global Maritime Distress and Safety System (GMDSS) certificate – {{ serviceName }} – GOV.UK Prototype Kit
+        Provide your signature
+ – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -45,8 +46,8 @@ Provide evidence of your non-UK Global Maritime Distress and Safety System (GMDS
     },
     html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
   }) }}
-  
-  {{ govukBackLink({
+
+    {{ govukBackLink({
     text: "Back",
     href: "javascript:window.history.back()"
   }) }}
@@ -55,40 +56,44 @@ Provide evidence of your non-UK Global Maritime Distress and Safety System (GMDS
 
 {% block content %}
 
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-          <span class="govuk-caption-l">Additional requirements</span>
+      <span class="govuk-caption-l">Additional requirements</span>
       <h1 class="govuk-heading-l">
-Provide evidence of your non-UK Global Maritime Distress and Safety System (GMDSS) certificate</h1>
+        Provide your signature
+      </h1>
 
-<p class="govuk">We require evidence of your accepted non-UK Global Maritime Distress and Safety System (GMDSS) certificate and, if appropriate, your GMDSS STCW Endorsement to support your application.</p>
+<p class="govuk">We need your signature to use within your application. The signature you provide will be used on documents issued to you.</p>
+<p class="govuk">Your signature should be written using a black ballpoint pen on plain white paper. </p>
+<p class="govuk">The signature upload that you provide must match the signature on your passport.</p>
 
-<p>The Maritime and Coastguard Agency (MCA) accept GMDSS certificates issued by the listed <a href="https://www.gov.uk/guidance/list-of-countries-accepted-towards-issuing-a-uk-FSE" target="_blank">flag states (opens in a new window)</a>.</p>
+<form action="" method="" enctype="multipart/form-data">
 
-<form action="check-gmdss" method="post" enctype="multipart/form-data">
-  <div class="govuk-form-group">
+
+<div class="govuk-form-group">
   {{ govukFileUpload({
     id: "file-upload-1",
     name: "file-upload-1",
     hint: {
-      text: "Upload your documents as scanned copies or photos of the original."
+      text: "Upload your signature as a scanned copy or a photo of the original."
     },
     label: {
-      text: "Upload evidence of your non-UK GMDSS certificate",
+      text: "Upload a clear image of your signature",
       classes: "govuk-label--m"
     },
     javascript: true
   }) }}
 </div>
+
+
+
       <button type="submit" class="govuk-button" data-module="govuk-button">
         Continue
       </button>
-    </form>
+       </form> 
         
     </div>
   </div>
-
 
 {% endblock %}

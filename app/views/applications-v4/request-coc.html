@@ -2,7 +2,8 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-Provide evidence of your non-UK Global Maritime Distress and Safety System (GMDSS) certificate – {{ serviceName }} – GOV.UK Prototype Kit
+Request a Certificate of Competency (CoC)
+ – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -55,40 +56,31 @@ Provide evidence of your non-UK Global Maritime Distress and Safety System (GMDS
 
 {% block content %}
 
-
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-          <span class="govuk-caption-l">Additional requirements</span>
+      <span class="govuk-caption-l">[Limitation]</span>
       <h1 class="govuk-heading-l">
-Provide evidence of your non-UK Global Maritime Distress and Safety System (GMDSS) certificate</h1>
+Request a Certificate of Competency (CoC)
+      </h1>
 
-<p class="govuk">We require evidence of your accepted non-UK Global Maritime Distress and Safety System (GMDSS) certificate and, if appropriate, your GMDSS STCW Endorsement to support your application.</p>
+          <p class="govuk" >
+Making your COC rquest means you still need to provide additional information in order for the MCA to process your request for a COC.</p>
 
-<p>The Maritime and Coastguard Agency (MCA) accept GMDSS certificates issued by the listed <a href="https://www.gov.uk/guidance/list-of-countries-accepted-towards-issuing-a-uk-FSE" target="_blank">flag states (opens in a new window)</a>.</p>
+                <p class="govuk" >
+You need to request your COC before we tell you what else you need to provide</p> 
 
-<form action="check-gmdss" method="post" enctype="multipart/form-data">
-  <div class="govuk-form-group">
-  {{ govukFileUpload({
-    id: "file-upload-1",
-    name: "file-upload-1",
-    hint: {
-      text: "Upload your documents as scanned copies or photos of the original."
-    },
-    label: {
-      text: "Upload evidence of your non-UK GMDSS certificate",
-      classes: "govuk-label--m"
-    },
-    javascript: true
-  }) }}
+                <p>By requesting a COC, you will need supply all the supporting evidence (which we can't show you 'til you make the request) within the time left of the validaty of the documents you need to supply as evidence to be issued with your COC</p>
+
+      
+<div class="govuk-button-group">
+  <a href="" class="govuk-button" target="_blank">
+    Lets roll the dice
+  </a>
+  <a class="govuk-button govuk-button--secondary" data-module="govuk-button" href="">
+    I'll make the request later
+</a>
 </div>
-      <button type="submit" class="govuk-button" data-module="govuk-button">
-        Continue
-      </button>
-    </form>
-        
     </div>
   </div>
-
 
 {% endblock %}

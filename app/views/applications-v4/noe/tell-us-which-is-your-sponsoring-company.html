@@ -1,0 +1,156 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+          Check your medicial certificate– {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v2/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Oral exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+          <span class="govuk-caption-l">Additional details</span>
+      <h1 class="govuk-heading-l">Tell us which company is your sponsor</h1>
+
+      {% from "govuk/components/error-summary/macro.njk" import govukErrorSummary %}
+      {% from "govuk/components/radios/macro.njk" import govukRadios %}
+      {% from "govuk/components/input/macro.njk" import govukInput %}
+      {% from "govuk/components/button/macro.njk" import govukButton %}
+
+
+<form>
+  {{ govukRadios({
+  idPrefix: "SmarT",
+  name: "redirect",
+  
+  items: [
+    {
+      value: "~check-smart-funded-status-yes.html",
+      text: "Anglo-Eastern (UK) Limited"
+    },
+        {
+      value: "~check-smart-funded-status-yes.html",
+      text: "AW Crewing Services Ltd (Isle of Man)"
+    },
+     {
+      value: "~check-smart-funded-status-yes.html",
+      text: "AW Ship Management Ltd (PNTL)"
+    },
+    {
+      value: "~check-smart-funded-status-yes.html",
+      text: "Carnival UK"
+    },
+    {
+      value: "~check-smart-funded-status-yes.html",
+      text: "Carisbrooke Shipping Ltd"
+    },
+    {
+      value: "~check-smart-funded-status-yes.html",
+      text: "Clyde Marine Training Ltd"
+    },
+    {
+      value: "~check-smart-funded-status-yes.html",
+      text: "James Fisher (Crewing Services) Ltd"
+    },
+        {
+      value: "~check-smart-funded-status-yes.html",
+      text: "Just Be Maritime Ltd"
+    },
+        {
+      value: "~check-smart-funded-status-yes.html",
+      text: "MSC Cruise Management (UK) Ltd"
+    },
+        {
+      value: "~check-smart-funded-status-yes.html",
+      text: "North Atlantic Fishing Company Ltd"
+    },
+        {
+      value: "~check-smart-funded-status-yes.html",
+      text: "O.S. Energy (UK) Ltd"
+    },
+        {
+      value: "~check-smart-funded-status-yes.html",
+      text: "Princess Cruises / P&O Australia"
+    },
+    {
+      value: "~check-smart-funded-status-yes.html",
+      text: "Pritchard-Gordon Tankers Ltd"
+    },
+        {
+      value: "~check-smart-funded-status-yes.html",
+      text: "Shell Ship Management Ltd"
+    },
+        {
+      value: "~check-smart-funded-status-yes.html",
+      text: "Ship Safe Training Group Ltd"
+    },
+        {
+      value: "~check-smart-funded-status-yes.html",
+      text: "Stena Line Manning Services Ltd"
+    },
+    {
+      value: "~check-smart-funded-status-yes.html",
+      text: "Stream Marine Careers"
+    },
+    {
+      value: "~check-smart-funded-status-yes.html",
+      text: "Watermark"
+    }
+
+  ]
+}) }}
+
+{{ govukButton({
+  text: "Continue"
+}) }}
+</form>
+
+{% endblock %}
+
