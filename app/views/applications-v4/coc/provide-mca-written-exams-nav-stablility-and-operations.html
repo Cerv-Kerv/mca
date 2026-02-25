@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-        Provide an in date medical fitness certificate
+        Provide proof of your MCA written exams
  – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
@@ -60,37 +60,15 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-          <span class="govuk-caption-l">Additional requirements</span>
+      <span class="govuk-caption-l">Training and education</span>
       <h1 class="govuk-heading-l">
-        Provide an in date medical fitness certificate
+        Provide proof of your MCA written exams
       </h1>
 
-
-<p class="govuk">We require your ENG1 or equivalent medical fitness certificate to support your application.</p>
-<p class="govuk">You can view the list of countries whose seafarer medical fitness certificates are accepted as equivalent to the UK ENG1 in <a href="https://www.gov.uk/government/publications/msn-1815-amendment-6-equivalent-medical-certificates" target="_blank">MSN 1815 (opens in a new window)</a>.
-</p>
-
-{% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
-
-{{ govukInsetText({
-  text: "If you have a DG Shipping India medical fitness certificate, include the ‘Annexure IV – Medical Certificate for Service at Sea’ page.
-"
-}) }}
-
-<details class="govuk-details" data-module="govuk-details">
-          <summary class="govuk-details__summary">
-            <span class="govuk-details__summary-text">
-Why we ask for the medical fitness certificate again           </span>
-          </summary>
-          <div class="govuk-details__text">
-            <p class="govuk-body">
-We need to have an in date medicual fitness certificate to support your application. The medicial fitness certificate you supplied previously is no loner valid or is out of date.            </p>
-          </div>
-        </details>
+<p class="govuk">Include your examination pass certificate for 'Navigation' and 'Stability and Operations'. </p>
 
 
-
-<form action="check-medical-fitness-certificate" method="" enctype="multipart/form-data">
+<form action="" method="" enctype="multipart/form-data">
 
 
 <div class="govuk-form-group">
@@ -101,7 +79,7 @@ We need to have an in date medicual fitness certificate to support your applicat
       text: "Upload your documents as scanned copies or photos of the original."
     },
     label: {
-      text: " Upload your in date ENG1 or equivalent medical fitness certificate ",
+      text: "Upload proof of your MCA written exams including pass certificate for 'Navigation' and 'Stability and Operations' ",
       classes: "govuk-label--m"
     },
     javascript: true
