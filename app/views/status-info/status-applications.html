@@ -1,0 +1,183 @@
+{% extends "layouts/pattern.html" %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+
+{% endblock %}
+
+
+
+{% block content %}
+
+  <div class="govuk-grid-row" style="margin-bottom: 50px">
+        <h1 class="govuk-heading-xl" style="margin-top: 30px;">
+        Applications screen
+      </h1>
+      </div>
+        <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+<p><a href="status" class="govuk-back-link">Back to status navigation</a></p>
+
+<!--<ul class="govuk-list govuk-list--bullet">
+  <li><a href="#1">1. New or reappyly (upto 2nd attempt)</a></li>
+  <li><a href="#2">2. Reapply (3+ attempts)</a></li>
+  <li><a href="#3">3. Non NOE</a></li>
+
+</ul>-->
+
+     <p><strong>1</strong> Single application - requires applicant input</p>
+     <div class="govuk-hint">"Action required" only if there is an action for the applicant</div>
+
+ {{ govukTaskList({
+        idPrefix: "NOE-parts",
+        items: [
+          {
+            title: {
+              text: "OOW Unlimited II/1"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          }
+        ]
+      }) }}
+<br><br><br>
+           <p><strong>2</strong> Single application - requires applicant input</p>
+     <div class="govuk-hint">"Pending payment" only if there is NO action for the applicant</div>
+
+ {{ govukTaskList({
+        idPrefix: "NOE-parts",
+        items: [
+          {
+            title: {
+              text: "OOW Unlimited II/1"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Pending payment",
+                classes: "govuk-tag--red"
+              }
+            }
+          }
+        ]
+      }) }}
+<br><br><br>
+                 <p><strong>3</strong> Single application - requires no input</p>
+     <div class="govuk-hint">"Processing" only if there is NO action for the applicant</div>
+
+ {{ govukTaskList({
+        idPrefix: "NOE-parts",
+        items: [
+          {
+            title: {
+              text: "OOW Unlimited II/1"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Processing",
+                classes: "govuk-tag--yellow"
+              }
+            }
+          }
+        ]
+      }) }}
+<br><br><br>
+                 <p><strong>4</strong> Single application - completed</p>
+     <div class="govuk-hint">Nothing left to do, application process completed</div>
+
+ {{ govukTaskList({
+        idPrefix: "NOE-parts",
+        items: [
+          {
+            title: {
+              text: "OOW Unlimited II/1"
+            },
+            href: "#",
+            status: {
+                text: "Complete"
+            }
+          }
+        ]
+      }) }}
+<br><br><br>
+
+<p><strong>5</strong> Reapply state - requires applicant input</p>
+     <div class="govuk-hint">"Action required" is default status - as application not 'active'</div>
+
+ {{ govukTaskList({
+        idPrefix: "NOE-parts",
+        items: [
+          {
+            title: {
+              text: "OOW Unlimited II/1"
+            },
+            hint: {
+              text: "Reapply to resit your oral exam"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          }
+        ]
+      }) }}
+<br><br><br>
+           <p><strong>X</strong> Multiple applications - 1 active, with others in different inactive states</p>
+     <div class="govuk-hint">Applicant can view "Complete" applications but NOT cancelled.</div>
+ {{ govukTaskList({
+        idPrefix: "NOE-parts",
+        items: [
+          {
+            title: {
+              text: "OOW Unlimited II/1"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "OOW Less than 500gt limited to Category D waters II/3"
+            },
+                        href: "#",
+          status: {
+                text: "Complete"
+            }
+          },
+          {
+            title: {
+              text: "Chief Mate, unlimited tonnage, near coastal"
+            },
+          status: {
+              tag: {
+                text: "Cancelled",
+                classes: "govuk-tag--grey"
+              }
+            }
+          }
+        ]
+      }) }}
+      
+
+      </div>
+      </div>
+
+
+
+{% endblock %}
