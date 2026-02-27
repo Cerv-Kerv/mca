@@ -1,0 +1,137 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+          Accessibility statement
+ – {{ serviceName }} – GOV. UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+
+    {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+  
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-l">
+          Accessibility statement
+      </h1>
+
+      <p class="govuk-body">This statement applies to content published on the  Maritime and Coastguard Agency. This website is run by Maritime and Coastguard Agency. It is designed to be used by seafarers. The text should be clear and simple to understand. You should be able to:</p>
+<ul class="govuk-list govuk-list--bullet">
+    <li class="govuk-body">change colours, contrast levels and fonts using browser or device settings</li>
+    <li class="govuk-body">zoom in up to 400% without the text spilling off the screen</li>
+    <li class="govuk-body">navigate most of the website using a keyboard or speech recognition software</li>
+    <li class="govuk-body">Interact with some of the website using a screen reader (including the most recent versions of JAWS, NVDA and VoiceOver)</li>
+  </ul>
+<p class="govuk-body">We’ve also made the website text as simple as possible to understand. </p>
+<p class="govuk-body"><a href="https://mcmw. abilitynet. org. uk/" class="govuk-link">AbilityNet</a> has advice on making your device easier to use if you have a disability. </p>
+ <h2 class="govuk-heading-m">How accessible is this website?</h2>
+<p class="govuk-body">Whilst we have endeavored to ensure the accessibility of our site, we know that parts of this website are not fully accessible. For example:</p>
+<ul class="govuk-list govuk-list--bullet">
+    <li class="govuk-body">The voice-over functionality in the application is currently unable to correctly interpret and read abbreviations</li>
+  </ul>
+<p class="govuk-body">We are actively working to address these limitations and we will update the statement when issues are fixed or when we expect them to be fixed. </p>
+ <h2 class="govuk-heading-m">Accessible Formats</h2>
+<p class="govuk-body">If you require information on this website in a different format, please contact us via:</p>
+<p class="govuk-body">
+    Phone number: [insert phone number]<br>
+    Email: [insert email address]</a>
+  </p>
+<p class="govuk-body">In your message, include:</p>
+<ul class="govuk-list govuk-list--bullet">
+    <li class="govuk-body">the web address (URL) of the content</li>
+    <li class="govuk-body">your email address and name</li>
+  </ul>
+ <h2 class="govuk-heading-m">Feedback or reporting accessibility problems</h2>
+<p class="govuk-body">We are always looking to improve the accessibility of this website. If you have any accessibility query including:</p>
+<ul class="govuk-list govuk-list--bullet">
+    <li class="govuk-body">Issues with accessing information or using this website</li>
+    <li class="govuk-body">An accessibility problem not listed on this statement</li>
+    <li class="govuk-body">Any positive feedback about this website’s accessibility</li>
+  </ul>
+<p class="govuk-body">please contact us via:</p>
+<p class="govuk-body">
+    Phone number: [insert phone number]<br>
+    Email: [insert email address]</a>
+  </p>
+<p class="govuk-body">Your information will help us improve the website for all users. </p>
+ <h2 class="govuk-heading-m">Enforcement procedure</h2>
+<p class="govuk-body">The Equality and Human Rights Commission (EHRC) is responsible for enforcing the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018 (the ‘accessibility regulations’). If you contact us with a complaint and you’re not happy with our response <a href="https://www. equalityadvisoryservice. com/" class="govuk-link">contact the Equality Advisory and Support Service (EASS)</a></p>
+ <h2 class="govuk-heading-m">Technical information about this website’s accessibility</h2>
+<p class="govuk-body">Maritime and Coastguard Agency is committed to making this website accessible, in accordance with the Public Sector Bodies (Websites and Mobile Applications) (No. 2) Accessibility Regulations 2018. </p>
+ <h2 class="govuk-heading-m">Compliance status</h2>
+<p class="govuk-body">Delete as appropriate</p>
+<p class="govuk-body">This website is fully compliant with the <a href="https://www. w3. org/TR/WCAG22/" class="govuk-link">Web Content Accessibility Guidelines (WCAG) 2. 2</a> AA standard. </p>
+<p class="govuk-body">This website is partially compliant with the <a href="https://www. w3. org/TR/WCAG22/" class="govuk-link">Web Content Accessibility Guidelines (WCAG) 2. 2</a> AA standard, due to [insert one of the following: ‘the non-compliances’, ‘the exemptions’ or ‘the non-compliances and exemptions’] listed below. </p>
+<p class="govuk-body">This website is not compliant with the <a href="https://www. w3. org/TR/WCAG22/" class="govuk-link">Web Content Accessibility Guidelines (WCAG) 2. 2</a> AA standard. The [insert one of the following: ‘non-compliances’, ‘exemptions’ or ‘non-compliances and exemptions’] are listed below. </p>
+<p class="govuk-body">This website is fully compliant with the Web Content Accessibility Guidelines version 2. 2 AA standard. </p>
+ <h2 class="govuk-heading-m">Non-accessible content</h2>
+<p class="govuk-body">The content listed below is non-accessible for the following reasons. </p>
+<h1 class="govuk-heading-s">Non-compliance with the accessibility regulations</h2>
+<p></p>
+<p class="govuk-body"></p>
+<ol class="govuk-list govuk-list--number">
+    <li class="govuk-body">Field-set elements are not labeled with legend elements. This fails WCAG 2. 1 success criterion 1. 3. 1 (Info and Relationships)</li>
+    <li class="govuk-body">Content inserted with CSS is not read by some screen readers, and not available to people who turn off style sheets. This fails WCAG 2. 1 success criterion 1. 3. 1 (Info and Relationships)</li>
+    <li class="govuk-body">Some elements do not contain text or an image with an alternative attribute. This means screen readers have nothing to read if there is no link text or the text is blank and so would read out the URL instead. This fails WCAG 2. 1 success criterion 2. 4. 4, 2. 4. 9 and 4. 1. 2 (Link Purpose (In Context), Link Purpose (Link Only) and Name, Role, Value)</li>
+    <li class="govuk-body">HTML form control has no accessible name. This fails WCAG 2. 1 success criterion 4. 1. 2 (Name, Role, Value)</li>
+    <li class="govuk-body">Some links are not visually evident without color vision. Removing the underline from links makes it hard for color-blind users to see them. This fails WCAG 2. 1 success criterion 1. 4. 1 (Use of Color) ]</li>
+    <li class="govuk-body">Voice-over fails to pronounce abbreviations as intended; hence users will hear it as sound rather than abbreviations itself. This fails WCAG 2. 2 AA success criterion. </li>
+  </ol>
+<h2 class="govuk-heading-m">Content that’s not within the scope of the accessibility regulations</h2>
+<p class="govuk-body">Non-HTML documents published before September 2018 do not need to be accessible - unless users need them to use a service. </p>
+ <h2 class="govuk-heading-m">How we tested this website</h2>
+<p class="govuk-body">We use the Web Content Accessibility Guidelines V2. 2 level A and level AA to test how accessible this site is.   We used the Website Accessibility Conformance Evaluation Methodology (WCAG-EM) and technical evaluation tool to test all of the pages for [Insert link to website]</p>
+<h2 class="govuk-heading-m">Disproportionate burden</h2>
+ <h3 class="govuk-heading-s">Navigation and accessing information</h3>
+<p class="govuk-body">There’s no way to skip the repeated content in the page header (for example, a ‘skip to main content’ option). </p>
+<p class="govuk-body">Non-HTML documents published before September 2018 do not need to be accessible - unless users need them to use a service. </p>
+<p class="govuk-body">It’s not always possible to change the device orientation from horizontal to vertical without making it more difficult to view the content. </p>
+<p class="govuk-body">It’s not possible for users to change text size without some of the content overlapping. </p>
+<p class="govuk-body">We’ve assessed the cost of fixing the issues with navigation and accessing information. We believe that doing so now would be a disproportionate burden within the meaning of the accessibility regulations. We will make another assessment when the supplier contract is up for renewal, likely to be in [rough timing]. </p>
+<h2 class="govuk-heading-m">What we’re doing to improve accessibility</h2>
+<p class="govuk-body">Our accessibility roadmap [add link to roadmap] shows how and when we plan to improve accessibility on this website. </p>
+ <h2 class="govuk-heading-m">Preparation of this accessibility statement </h2>
+<p class="govuk-body">This statement was prepared on [insert date in format 00 Month 0000]. It was last reviewed on [insert date in format 00 Month 0000]. </p>
+<p class="govuk-body">This website was last tested on [insert date in format 00 Month 0000]. The test was carried out by Kerv Digital. </p>
+<p class="govuk-body">This test of a representative sample of pages was carried out using integrated accessibility tools with supported browsers. 
+We also used findings from our own testing when preparing this accessibility statement. </p>
+<p class="govuk-body">Last updated [insert date in format 00 Month 0000]. </p>
+
+    </div>
+  </div>
+
+{% endblock %}
