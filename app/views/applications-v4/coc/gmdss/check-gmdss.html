@@ -64,9 +64,26 @@ Check your Global Maritime Distress and Safety System (GMDSS) status
           {{ govukSummaryList({
         classes: "govuk-!-margin-bottom-9",
         rows: [
+        {
+            key: {
+              text: "GMDSS statues"
+            },
+            value: {
+              html: "UK GMDSS | Non-UK GMDSS | UK GMDSS request"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: "address"
+                }
+              ]
+            }
+          },
           {
             key: {
-              text: "UK GMDSS evidence uploads"
+              text: "UK GMDSS evidence"
             },
             value: {
               html: "Filename1.ext"
@@ -83,7 +100,7 @@ Check your Global Maritime Distress and Safety System (GMDSS) status
           },
           {
             key: {
-              text: "Non-UK GMDSS evidence uploads"
+              text: "Non-UK GMDSS evidence"
             },
             value: {
               html: "Filename1.ext"
@@ -100,23 +117,7 @@ Check your Global Maritime Distress and Safety System (GMDSS) status
           },
           {
             key: {
-              text: "UK GMDSS requested"
-            },
-            value: {
-              html: "Yes"
-            },
-            actions: {
-              items: [
-                {
-                  href: "#",
-                  text: "Change",
-                  visuallyHiddenText: "address"
-                }
-              ]
-            }
-          },{
-            key: {
-              text: "UK GMDSS requested evidence uploads"
+              text: "UK GMDSS requested evidence"
             },
             value: {
               html: "Filename1.ext"
