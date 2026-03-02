@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-  Applications – {{ serviceName }} – GOV.UK Prototype Kit
+  Application overview – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -19,11 +19,11 @@
     serviceName: serviceName,
       navigation: [   
       {
-      href: "/dashboard/v2/dashboard.html",
+      href: "#",
       text: "Dashboard"
     },
     {
-      href: "/applications/applications",
+      href: "#",
       text: "Applications",
       active: true
     },
@@ -53,19 +53,23 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
+            <span class="govuk-caption-l">[limitation]</span>
       <h1 class="govuk-heading-xl">
-        Applications
+        Application overview
       </h1>
-   
 
- {{ govukTaskList({
+      <h2 class="govuk-heading-m">Progress</h2>
+
+      <p class="govuk-body govuk-!-margin-bottom-7">You have completed x of x parts of this appplication.</p>
+
+      {{ govukTaskList({
         idPrefix: "NOE-parts",
         items: [
           {
             title: {
-              text: "[limitation]"
+              text: "Apply for Notice of Eligibility (NoE)"
             },
-            href: "#",
+                       href: "#",
             status: {
               tag: {
                 text: "Action required",
@@ -75,36 +79,53 @@
           },
           {
             title: {
-              text: "Some other application"
+              text: "Make a payment"
             },
-                        href: "#",
-          status: {
-                text: "Complete"
+            status: {
+                text: ""
             }
           },
           {
             title: {
-              text: "Some other application"
-            },
-                        href: "#",
-          status: {
-              tag: {
-                text: "Cancelled",
-                classes: "govuk-tag--grey"
-              }
+              text: "Pass Part A exam"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part B exam"
+            }
+          },
+                    {
+            title: {
+              text: "Provide supporting evidence"
             }
           }
         ]
       }) }}
+      
+<br>
+<br>
+      <h2 class="govuk-heading-m">Information</h2>
 
-<form action="/application-selection/v3/capacity" method="" novalidate>
-
-        {{ govukButton({
-          text: "Start a new application"
-        }) }}
-
-      </form>
-
+       <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row"></tr>
+        </thead>
+      <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Application</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">[limitation]</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Amount to pay</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">£[XXX.XX]</td>
+    </tr>
+  </tbody>
+</table>
+<br>
+<br>
+<br>
+      <p class="govuk"><a href="cancel/cancel-application">Cancel application</a></p>
 
     </div>
   </div>

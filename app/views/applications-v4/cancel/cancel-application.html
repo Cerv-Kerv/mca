@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-   Cancel application – {{ serviceName }} – GOV.UK Prototype Kit
+   Cancel your application – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -54,92 +54,54 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-Cancel application</h1>
+Cancel your [limitation] application</h1>
 
- <h2 class="govuk-heading-m">Information</h2>
 
       <table class="govuk-table">
       <tbody class="govuk-table__body">
-            <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Capacity</th>
-      <td class="govuk-table__cell">[Capacity]</td>
-    </tr>
       <th scope="row" class="govuk-table__header">Limitation</th>
       <td class="govuk-table__cell">[Limitation]</td>
-    </tr>
-    <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Training route</th>
-      <td class="govuk-table__cell">[Training route]</td>
     </tr>
             <tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header">Application cost</th>
       <td class="govuk-table__cell">£[220.00]</td>
     </tr>
-        <tr class="govuk-table__row">
-          <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header">Application reference</th>
-      <td class="govuk-table__cell">APP123456789</td>
-    </tr>
-
-
   </tbody>
 </table>
 
+
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+
+
+<form method="" novalidate>
+<h3 class="govuk-heading-m">Do you want to cancel your application?</h3>
+    {{ govukRadios({
+  idPrefix: "Pay online",
+  name: "redirect",
+  
+  items: [
+    {
+      value: "~application-cancel-confirmation",
+      text: "Yes"
+    },
+    {
+      value: "~/applications-v4/application-overview",
+      text: "No"
+    }
+  ]
+}) }}
 
 {{ govukWarningText({
   text: "You will need to start a new application if you cancel.",
   iconFallbackText: "Warning"
 }) }}
 
-{% from "govuk/components/radios/macro.njk" import govukRadios %}
-{% from "govuk/components/input/macro.njk" import govukInput %}
-
-{% set emailHtml %}
-<form action="application-cancel-confirmation" method="" novalidate>
-<br>
         {{ govukButton({
           text: "Cancel application"
         }) }}
 
       </form>
-{% endset -%}
-
-{% set phoneHtml %}
-<form action="/applications/application-overview" method="" novalidate>
-<br>
-        {{ govukButton({
-          text: "Back to application"
-        }) }}
-
-      </form>
-{% endset -%}
-
-{{ govukRadios({
-  name: "cancel",
-  fieldset: {
-    legend: {
-      text: "Do you want to cancel this application?",
-      classes: "govuk-fieldset__legend--m"
-    }
-  },
-  items: [
-    {
-      value: "yes-cancel",
-      text: "Yes",
-      conditional: {
-        html: emailHtml
-      }
-    },
-    {
-      value: "no-do-not-cancel",
-      text: "No",
-      conditional: {
-        html: phoneHtml
-      }
-    }
-  ]
-}) }}
         
     </div>
   </div>

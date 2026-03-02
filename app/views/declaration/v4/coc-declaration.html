@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-  Applications – {{ serviceName }} – GOV.UK Prototype Kit
+  Request Certificate of Competency declaration – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -12,7 +12,6 @@
 
 {{ hmrcHeader({
   serviceUrl : "/",
-  signOutHref : "?sign-out",
   useTudorCrown: "true"
 }) }}
 {{ govukServiceNavigation({
@@ -46,6 +45,10 @@
     html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
   }) }}
   
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
 
 {% endblock %}
 
@@ -53,21 +56,35 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-      <h1 class="govuk-heading-xl">
-        Applications
+
+            <span class="govuk-caption-l">Request Certificate of Competency</span>
+      <h1 class="govuk-heading-l">
+        Declaration
       </h1>
-   
 
-<p>You do not have any active applications.</p>
+      <form class="form" action="coc-confirmation" method="post">
 
-<form action="#" method="" novalidate>
+<p class="govuk-body">
+I declare that the data contained in this application is, to the best of my knowledge, true and complete.  </p>
+
+<p class="govuk-body">
+  I also declare that the documents are: 
+</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>genuine</li>
+  <li>given and signed by the persons whose names appear on them </li>
+</ul>
+
+<p class="govuk-body">
+  I consent to any processing of the data contained in this application by the MCA (including any processing necessary to establish the authenticity and validity of the issued certificate). 
+</p>
 
         {{ govukButton({
-          text: "Start a new application"
+          text: "Agree and submit supporting evidence"
         }) }}
 
       </form>
-
 
     </div>
   </div>
