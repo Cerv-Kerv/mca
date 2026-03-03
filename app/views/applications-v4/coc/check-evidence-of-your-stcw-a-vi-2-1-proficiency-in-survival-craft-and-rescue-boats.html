@@ -2,8 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-Provide evidence of passing your Maritime and Coastguard Agency (MCA) written exams       </h1>
- – {{ serviceName }} – GOV.UK Prototype Kit
+Check evidence of your STCW A-VI/2-1 Proficiency in Survival Craft and Rescue Boats – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -62,33 +61,42 @@ Provide evidence of passing your Maritime and Coastguard Agency (MCA) written ex
 
       <span class="govuk-caption-l">Training and education</span>
       <h1 class="govuk-heading-l">
-Provide evidence of passing your Maritime and Coastguard Agency (MCA) written exams       </h1>
-      </h1>
+Check evidence of your STCW A-VI/2-1 Proficiency in Survival Craft and Rescue Boats</h1>
 
-<form action="check-mca-written-exams" method="" enctype="multipart/form-data">
+{{ govukSummaryList({
+        classes: "govuk-!-margin-bottom-9",
+        rows: [
+          {
+            key: {
+              text: "STCW A-VI/2-1 Proficiency in Survival Craft and Rescue Boats uploads"
+            },
+            value: {
+              html: "Filename1.ext<br>
+              FilenameX.ext"
+            },
+            actions: {
+              items: [
+                {
+                  href: "#",
+                  text: "Change",
+                  visuallyHiddenText: ""
+                }
+              ]
+            }
+          }
+        ]
+      }) }}
 
+      <form action="/applications-v4/supporting-evidence" method="post" novalidate>
 
-<div class="govuk-form-group">
-  {{ govukFileUpload({
-    id: "file-upload-1",
-    name: "file-upload-1",
-    hint: {
-      text: "Upload your documents as scanned copies or photos of the original."
-    },
-    label: {
-      text: "Upload certificates showing that you have passed your exams for ‘Navigation' and 'Stability and Structure'",
-      classes: "govuk-label--m"
-    },
-    javascript: true
-  }) }}
-</div>
+        <input type="hidden" name="answers-checked" value="true">
 
+        {{ govukButton({
+          text: "Save and continue"
+        }) }}
 
-
-      <button type="submit" class="govuk-button" data-module="govuk-button">
-        Continue
-      </button>
-       </form> 
+      </form>
+        
     </div>
   </div>
 
