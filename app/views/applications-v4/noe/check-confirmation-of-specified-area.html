@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-Provide confirmation of Specified Area{% endblock %}
+Check confirmation of Specified Area{% endblock %}
 
 {% block header %}
   <!-- Blank header with no service name for the start page -->
@@ -60,15 +60,15 @@ Provide confirmation of Specified Area{% endblock %}
 
       <span class="govuk-caption-l">Other requirements</span>
       <h1 class="govuk-heading-l">
-Provide confirmation of the Specified Area
+Check confirmation of the Specified Area
 </h1>
 
 <p class="govuk">You must provide confirmation of the Specified Area you want to become certified for.</p>
-<p>If this is a pre-agreed area, include a cover letter from you or your company confirming this area, for example, The Solent, or the Orkney or /Shetland Islands.</p>
+<p>If this is a pre-agreed area, include a cover letter from you or your company confirming this area, for example, The Solent, Orkney or Shetland Islands.</p>
 <p>For a new Specified Area, you must include confirmation that the new area has been agreed with your local Marine Office.</p>
 
 
-<form action="check-confirmation-of-specificed-area" method="post" enctype="multipart/form-data">
+<form action="check-specificed-area" method="post" enctype="multipart/form-data">
   <div class="govuk-form-group">
   {{ govukFileUpload({
     id: "file-upload-1",
