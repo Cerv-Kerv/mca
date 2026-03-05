@@ -58,7 +58,7 @@
         Application overview
       </h1>
 
-      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+            {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
 {{ govukInsetText({
   text: "You will need to hold the relevant [limitation] UK Certificate of Competency (CoC) or accepted non-UK CoC to be able to complete this application."
@@ -75,22 +75,25 @@
             title: {
               text: "Provide supporting evidence"
             },
-                       href: "supporting-evidence-declaration",
+            status: {
+              tag: {
+                text: "Pending payment",
+                classes: "govuk-tag--red"
+              }
+            }
+          },
+                   {
+            title: {
+              text: "Make a payment"
+            },
+            href: "/payments/v4/make-a-payment",
             status: {
               tag: {
                 text: "Action required",
                 classes: "govuk-tag--blue"
               }
             }
-          },
-          {
-            title: {
-              text: "Make a payment"
-            },
-            status: {
-                text: ""
-            }
-          }           
+          }
         ]
       }) }}
       
@@ -98,7 +101,7 @@
 <br>
       <h2 class="govuk-heading-m">Information</h2>
 
-       <table class="govuk-table">
+      <table class="govuk-table">
         <thead class="govuk-table__head">
           <tr class="govuk-table__row"></tr>
         </thead>
@@ -116,7 +119,7 @@
 <br>
 <br>
 <br>
-      <p class="govuk"><a href="#">Cancel application</a></p>
+      <p class="govuk"><a href="cancel/cancel-application">Cancel application</a></p>
 
     </div>
   </div>
