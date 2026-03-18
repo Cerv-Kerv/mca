@@ -85,10 +85,10 @@ Post your workbooks to:</p>
 Commercial Road<br> Southampton<br> SO15 1EG<br> United Kingdom"
 }) }}
 
-{% from "govuk/components/checkboxes/macro.njk" import govukCheckboxes %}
+{% from "govuk/components/radios/macro.njk" import govukRadios %}
 
-{{ govukCheckboxes({
-  name: "nationality",
+{{ govukRadios({
+  name: "whereDoYouLive",
   fieldset: {
     legend: {
       text: "Select to tell us if you:",
@@ -96,21 +96,15 @@ Commercial Road<br> Southampton<br> SO15 1EG<br> United Kingdom"
       classes: "govuk-fieldset__legend--m"
     }
   },
-  hint: {
-    text: "Check all that apply"
-  },
   items: [
     {
-      value: "workbookpost",
-      text: "will post your workbooks to the Maritime and Coastguard Agency (MCA) "
+      value: "workbook",
+      text: "will post your workbooks to the Maritime and Coastguard Agency (MCA)."
     },
     {
       value: "etrb",
-      text: "also have an Electronic Training Record Book (eTRB) ",
-            hint: {
-        text: "If you have an eTRB, the MCA will contact you."
-      }
-    }
+      text: "have an Electronic Training Record Book (eTRB)"
+        }
   ]
 }) }}
 
