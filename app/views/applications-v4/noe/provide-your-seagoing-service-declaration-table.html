@@ -65,22 +65,48 @@ Provide evidence of your seagoing service
 Provide evidence of your seagoing service
       </h1>
 
-<p class="govuk">Download and use the following templates to record your seagoing service:</p>
+<p class="govuk">Download and use the following templates to record your seagoing service.</p>
+
+<h2 class="govuk-heading-m">General seagoing service</h1>
+
+<table class="govuk-table">
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell" width="100px" style="border-bottom: none  !important;"><a href=""><img src="/public/images/file-pdf.svg" width="100px" /></a></td>
+      <td class="govuk-table__cell" style="border-bottom: none  !important;"><a href="">Seatime declaration template</a><br>
+      <p class="govuk-body-s">PDF, 194kb</p></td>
+    </tr>
+        <tr class="govuk-table__row">
+      <td class="govuk-table__cell" width="100px" style="border-bottom: none  !important;"><a href=""><img src="/public/images/file-odt.svg" width="100px" /></a></td>
+      <td class="govuk-table__cell" style="border-bottom: none  !important;"><a href="">Seatime declaration template</a><br>
+      <p class="govuk-body-s">PDF, 194kb</p></td>
+    </tr>
+  </tbody>
+</table>
+
+<h2 class="govuk-heading-m">Yacht seagoing service</h1>
+
+  <table class="govuk-table">
+  <tbody class="govuk-table__body">
+    <tr class="govuk-table__row">
+      <td class="govuk-table__cell" width="100px" style="border-bottom: none  !important;"><a href=""><img src="/public/images/file-pdf.svg" width="100px" /></a></td>
+      <td class="govuk-table__cell" style="border-bottom: none  !important;"><a href=""><a href="">Yacht seatime declaration template</a></a><br>
+      <p class="govuk-body-s">PDF, 194kb</p></td>
+    </tr>
+        <tr class="govuk-table__row">
+      <td class="govuk-table__cell" width="100px" style="border-bottom: none  !important;"><a href=""><img src="/public/images/file-odt.svg" width="100px" /></a></td>
+      <td class="govuk-table__cell" style="border-bottom: none  !important;"><a href="">Yacht seatime declaration template</a><br>
+      <p class="govuk-body-s">PDF, 194kb</p></td>
+    </tr>
+  </tbody>
+</table>
 
 
-</a></div>
-<ul class="govuk-list govuk-list--bullet">
-  <li><a href="#">General seagoing service</a></li>
-  <li><a href="#">Yacht seagoing service</a></li>
-</ul>
+<h2 class="govuk-heading-m">Provide sufficent qualifying seagoing service for your application</h2>
 
-{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
-
-{{ govukWarningText({
-  text: "Your total seagoing service time must be no less than [application specific time frame]",
-  iconFallbackText: "Warning"
-}) }}
-
+<p>At least 6 months of qualifying seagoing service must have been performed within the 5 years immediately preceding the date your application is received by the Maritime and Coastguard Agency (MCA).</p> 
+ 
+<p>Certification for Chief Mate Unlimited, STCW Convention Regulation ll/2, requires you to have completed 12 months watchkeeping service as OOW Unlimited, II/1. </p>
 
 
 <form action="check-your-seagoing-service-declaration-table" method="" enctype="multipart/form-data">
@@ -94,7 +120,7 @@ Provide evidence of your seagoing service
       text: "Upload your documents as scanned copies or photos of the original."
     },
     label: {
-      text: "Upload your completed seagoing service declaration table",
+      text: "Upload your completed seagoing service declaration template",
       classes: "govuk-label--m"
     },
     javascript: true
