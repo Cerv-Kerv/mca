@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-Check your seagoing service declaration table – {{ serviceName }} – GOV.UK Prototype Kit
+Check evidence of your seagoing service – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -61,14 +61,14 @@ Check your seagoing service declaration table – {{ serviceName }} – GOV.UK P
 
       <span class="govuk-caption-l">Seagoing service</span>
       <h1 class="govuk-heading-l">
-Check your seagoing service declaration table</h1>
+Check evidence of your seagoing service</h1>
 
 {{ govukSummaryList({
         classes: "govuk-!-margin-bottom-9",
         rows: [
           {
             key: {
-              text: "Seagoing service declaration table uploads"
+              text: "Evidence of your seagoing service uploads"
             },
             value: {
               html: "Filename1.ext<br>
