@@ -1,0 +1,112 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Online payment – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v2/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Oral exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+  {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+      <h1 class="govuk-heading-l">Pay online</h1>
+      
+      {% from "govuk/components/summary-list/macro.njk" import govukSummaryList %}
+       {% from "govuk/components/radios/macro.njk" import govukRadios %}
+      
+      {{ govukSummaryList({
+        rows: [
+          {
+            key: {
+              text: "Application"
+            },
+            value: {
+              text: "Reapply [Limitation]"
+            }
+          },
+          {
+            key: {
+              text: "Amount to pay"
+            },
+            value: {
+              text: "£XXX.XX"
+            }
+          }
+        ]
+      }) }}
+
+      <!--p class="govuk">You can use the following credit or debit cards to make a online payment:</p>
+      
+<ul class="govuk-list govuk-list--bullet">
+  <li>Visa</li>
+  <li>Mastercard</li>
+  <li>American Express</li>
+<li>Diners Club</li>
+</ul>
+
+      <p class="govuk">You can also make an online payment using:</p>
+
+<ul class="govuk-list govuk-list--bullet">
+  <li>Apply Pay</li>
+  <li>Google Pay</li>
+</ul-->
+
+      <form action="govpay-holding">
+
+        {{ govukButton({
+          text: "Make payment and submit application",
+          classes: "govuk-button"
+        }) }}
+      </form>
+      
+      
+    </div>
+  </div>
+{% endblock %}

@@ -1,0 +1,105 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Applications – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v2/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications",
+      active: true
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+    {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+      <h1 class="govuk-heading-xl">
+        Reapply for ['limitation']
+      </h1>
+
+      <p>To be able to resit your oral exam, you must:</p>
+      <ul class="govuk-list govuk-list--bullet">
+<li>pay a fee of £XXX.XX</li>
+<li>if required, provide updated and additional documents</li>
+      </ul>
+
+            <p>This is attempt X.</p>
+
+      <form action="/payments/v4-reapply/make-a-payment" method="" novalidate>
+
+        {{ govukButton({
+          text: "Continue to payment"
+        }) }}
+
+      </form>
+      <p class="govuk"><a href="#">Return to applications</a></p>
+
+      <br><br>
+                  <h2 class="govuk-heading-s">
+        History
+      </h2>
+
+      {{ govukTaskList({
+        idPrefix: "applications",
+        items: [
+          {
+            title: {
+              text: "OOW unlimited II/1"
+            },
+      hint: {
+        text: "Attempt 1: 24 July 2024"
+      },
+            status: {
+                text: "Closed"
+            }
+          
+    }
+        ]
+      }) }}
+
+
+    </div>
+  </div>
+
+{% endblock %}

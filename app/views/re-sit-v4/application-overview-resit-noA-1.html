@@ -1,0 +1,142 @@
+{% extends "layouts/main.html" %}
+
+{% block pageTitle %}
+  {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
+  Application overview – {{ serviceName }} – GOV.UK Prototype Kit
+{% endblock %}
+
+{% block header %}
+  <!-- Blank header with no service name for the start page -->
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  signOutHref : "?sign-out",
+  useTudorCrown: "true"
+}) }}
+{{ govukServiceNavigation({
+    serviceName: serviceName,
+      navigation: [   
+      {
+      href: "/dashboard/v2/dashboard.html",
+      text: "Dashboard"
+    },
+    {
+      href: "/applications/applications",
+      text: "Applications",
+      active: true
+    },
+    {
+      href: "#",
+      text: "Oral exams"
+    }
+],
+    slots: {
+    },
+    classes: "govuk-header--full-width-border"
+  }) }}
+{% endblock %}
+
+{% block beforeContent %}
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
+  
+    {{ govukBackLink({
+    text: "Back",
+    href: "javascript:window.history.back()"
+  }) }}
+
+{% endblock %}
+
+{% block content %}
+
+  <div class="govuk-grid-row">
+    <div class="govuk-grid-column-two-thirds">
+
+            <span class="govuk-caption-l">
+[application name 'limitation']</span>      <h1 class="govuk-heading-xl">
+        Application overview
+      </h1>
+
+      {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
+
+      <h2 class="govuk-heading-m">Progress</h2>
+
+      {{ govukTaskList({
+        idPrefix: "NOE-parts",
+        items: [
+          {
+            title: {
+              text: "Apply for Notice of Eligibility (NoE)"
+            },
+            href: "#",
+            status: {
+              tag: {
+                text: "Action required",
+                classes: "govuk-tag--blue"
+              }
+            }
+          },
+          {
+            title: {
+              text: "Make a payment"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part A exam"
+            }
+          },
+          {
+            title: {
+              text: "Pass Part B exam"
+            }
+          },
+          {
+            title: {
+              text: "Provide supporting evidence"
+            }
+          }
+        ]
+      }) }}
+
+      <br>
+<br>
+      <h2 class="govuk-heading-m">Information</h2>
+
+       <table class="govuk-table">
+        <thead class="govuk-table__head">
+          <tr class="govuk-table__row"></tr>
+        </thead>
+      <tbody class="govuk-table__body">
+                        <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Attempt</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">2</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Application</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">[limitation]</td>
+    </tr>
+    <tr class="govuk-table__row">
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Amount to pay</th>
+      <td class="govuk-table__cell govuk-!-width-one-half">£[XXX.XX]</td>
+    </tr>
+  </tbody>
+</table>
+    
+      
+<br>
+<br>
+<br>
+
+      <p class="govuk"><a href="#">Cancel application</a></p>
+
+    </div>
+  </div>
+
+{% endblock %}
