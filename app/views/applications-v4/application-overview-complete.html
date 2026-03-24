@@ -46,10 +46,6 @@
     html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
   }) }}
   
-    {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
 
 {% endblock %}
 
@@ -57,15 +53,21 @@
 
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
-
-            <span class="govuk-caption-l">
-[application name 'limitation']</span>      <h1 class="govuk-heading-xl">
+            <span class="govuk-caption-l">[limitation]</span>
+      <h1 class="govuk-heading-xl">
         Application overview
       </h1>
 
       {% from "govuk/components/inset-text/macro.njk" import govukInsetText %}
 
+{{ govukInsetText({
+  text: "This certificate of competency was issued on 23 December 2023"
+}) }}
+
+      
       <h2 class="govuk-heading-m">Progress</h2>
+
+      <p class="govuk-body govuk-!-margin-bottom-7">You have completed x of x parts of this appplication.</p>
 
       {{ govukTaskList({
         idPrefix: "NOE-parts",
@@ -74,33 +76,46 @@
             title: {
               text: "Apply for Notice of Eligibility (NoE)"
             },
-            href: "#",
             status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
+                text: "Complete"
             }
           },
           {
             title: {
               text: "Make a payment"
+            },
+            status: {
+                text: "Complete"
             }
           },
           {
             title: {
-              text: "Pass oral exam"
+              text: "Pass Part A exam"
+            },
+                        status: {
+                text: "Complete"
             }
           },
           {
+            title: {
+              text: "Pass Part B exam"
+            },
+                                    status: {
+                text: "Complete"
+            }
+          },
+                    {
             title: {
               text: "Provide supporting evidence"
+            },
+                        status: {
+                text: "Complete"
             }
           }
         ]
       }) }}
-
-      <br>
+      
+<br>
 <br>
       <h2 class="govuk-heading-m">Information</h2>
 
@@ -109,27 +124,19 @@
           <tr class="govuk-table__row"></tr>
         </thead>
       <tbody class="govuk-table__body">
-                        <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Attempt</th>
-      <td class="govuk-table__cell govuk-!-width-one-half">2</td>
-    </tr>
     <tr class="govuk-table__row">
       <th scope="row" class="govuk-table__header govuk-!-width-one-half">Application</th>
       <td class="govuk-table__cell govuk-!-width-one-half">[limitation]</td>
     </tr>
     <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Amount to pay</th>
+      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Amount paid</th>
       <td class="govuk-table__cell govuk-!-width-one-half">£[XXX.XX]</td>
     </tr>
   </tbody>
 </table>
-    
-      
 <br>
 <br>
 <br>
-
-      <p class="govuk"><a href="#">Cancel application</a></p>
 
     </div>
   </div>
