@@ -54,27 +54,11 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-Request to cancel your application 
+Cancel your application for [limitation] 
 </h1>
 
-
-<h2 class="govuk-heading-m">Information</h2>
-
-       <table class="govuk-table">
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row"></tr>
-        </thead>
-      <tbody class="govuk-table__body">
-    <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Application</th>
-      <td class="govuk-table__cell govuk-!-width-one-half">[limitation]</td>
-    </tr>
-    <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Amount to pay/paid</th>
-      <td class="govuk-table__cell govuk-!-width-one-half">£[XXX.XX]</td>
-    </tr>
-  </tbody>
-</table>
+<p>To cancel your application with the MCA, you must email the relevant seafarer training and certification branch directly.</p>
+<p>Contact them at deck@mcga.gov.uk, engineering@mcga.gov.uk, or revalidation@mcga.gov.uk with your application details, citing the need to withdraw or cancel your request. </p>
 
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
@@ -83,13 +67,6 @@ Request to cancel your application
   iconFallbackText: "Warning"
 }) }}
 
-<form method="" novalidate>
-
-        {{ govukButton({
-          text: "Request cancellation"
-        }) }}
-
-      </form>
         <p><a href="">Return to application overview</a></p>
     </div>
   </div>
