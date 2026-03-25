@@ -76,7 +76,12 @@ Request to cancel your application for [limitation]
   </tbody>
 </table>
 
-<p></p>
+{% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
+
+{{ govukWarningText({
+  text: "You will need to start a new application if you cancel.",
+  iconFallbackText: "Warning"
+}) }}
 
 <form method="" novalidate>
 
@@ -85,7 +90,7 @@ Request to cancel your application for [limitation]
         }) }}
 
       </form>
-        
+        <p><a href="">Return to application overview</a></p>
     </div>
   </div>
 
