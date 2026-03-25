@@ -54,27 +54,17 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-l">
-Request to cancel your application 
+Cancel your application for [limitation] 
 </h1>
 
+<p>To cancel your application with the Maritime and Coastguard Agency (MCA), email the relevant seafarer training and certification branch listed under ‘Certification queries’ in the <a href="/footer/v3/contact">Contact page</a>. </p>
+<h2 class="govuk-heading-m">What you should include within your email</h2>
+<p>Email to tell us:</p>
+<ul class="govuk-list govuk-list--bullet">
+<li>your application refence number</li>
+<li>that you would like to cancel your application</li>
+</ul>
 
-<h2 class="govuk-heading-m">Information</h2>
-
-       <table class="govuk-table">
-        <thead class="govuk-table__head">
-          <tr class="govuk-table__row"></tr>
-        </thead>
-      <tbody class="govuk-table__body">
-    <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Application</th>
-      <td class="govuk-table__cell govuk-!-width-one-half">[limitation]</td>
-    </tr>
-    <tr class="govuk-table__row">
-      <th scope="row" class="govuk-table__header govuk-!-width-one-half">Amount to pay/paid</th>
-      <td class="govuk-table__cell govuk-!-width-one-half">£[XXX.XX]</td>
-    </tr>
-  </tbody>
-</table>
 
 {% from "govuk/components/warning-text/macro.njk" import govukWarningText %}
 
@@ -83,13 +73,6 @@ Request to cancel your application
   iconFallbackText: "Warning"
 }) }}
 
-<form method="" novalidate>
-
-        {{ govukButton({
-          text: "Request cancellation"
-        }) }}
-
-      </form>
         <p><a href="">Return to application overview</a></p>
     </div>
   </div>
