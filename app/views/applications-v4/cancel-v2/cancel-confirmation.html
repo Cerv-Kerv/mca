@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-   Cancel your application – {{ serviceName }} – GOV.UK Prototype Kit
+  Request to cancel application confirmation – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -45,6 +45,7 @@
     },
     html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
   }) }}
+  
 
 {% endblock %}
 
@@ -53,27 +54,25 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">
-Request to cancel your application 
-</h1>
+      {{ govukPanel({
+        titleText: "Cancellation request submitted"      }) }}
 
-<p>To cancel your application, you must request a cancellation. Once the request has been submitted, The Maritime and Coastguard Agency (MCA) will contact you.  </p>
+      <p>
+        We have sent you a confirmation email.
+      </p>
 
-<div class="govuk-form-group">
-  <h1 class="govuk-label-wrapper">
-<label class="govuk-label govuk-label--s" for="more-detail">
-      Tell us why you want to cancel your application. (optional) </label>
-  <textarea class="govuk-textarea" id="more-detail" name="moreDetail" rows="8" aria-describedby="more-detail-hint"></textarea>
-</div>
+      <h2 class="govuk-heading-m">
+        What happens next
+      </h2>
 
-<form action="cancel-confirmation" novalidate>
+      <p>
+We have sent your cancellation request to The Maritime and Coastguard Agency (MCA).</p>
+      <p>
+        The MCA will contact you.
+      </p>
+              <p><a href="">Return to applications</a></p>
 
-        {{ govukButton({
-          text: "Request cancellation"
-        }) }}
 
-      </form>
-        <p><a href="">Return to application overview</a></p>
     </div>
   </div>
 
