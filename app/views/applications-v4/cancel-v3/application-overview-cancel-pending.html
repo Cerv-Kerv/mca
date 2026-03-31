@@ -56,6 +56,9 @@
     <div class="govuk-grid-column-two-thirds">
           {% from "govuk/components/notification-banner/macro.njk" import govukNotificationBanner %}
 
+{{ govukNotificationBanner({
+  text: "You requested to cancel this application. Cancellation is currently pending."
+}) }}
             <span class="govuk-caption-l">[limitation]</span>
       <h1 class="govuk-heading-xl">
         Application overview
@@ -71,14 +74,8 @@
           {
             title: {
               text: "Apply for Notice of Eligibility (NoE)"
-            },
-                       href: "#",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
             }
+                  
           },
           {
             title: {
