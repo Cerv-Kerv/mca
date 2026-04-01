@@ -2,8 +2,8 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-           Provide proof of your valid passport
- – {{ serviceName }} – GOV.UK Prototype Kit
+          Tell us which country issued the passport that you are using for your application
+– {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -45,31 +45,26 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <span class="govuk-caption-l">Personal details</span>
       <h1 class="govuk-heading-l">
-        Provide proof of your valid passport
+       Tell us which country issued the passport that you are using for your application
       </h1>
 
-<p class="govuk">We require an image of your valid passport to verify your identity.</p>
+          
 
-<p class="govuk">The Maritime and Coastguard Agency (MCA) may request additional documentation if required.</p>
+<form class="form" action="/accessing-the-service/v5/provide-proof-of-your-valid-passport" method="post" novalidate>
 
-
-<p class="govuk"><strong>
-You have uploaded this image</strong></p>
-
-<img src="/public/images/passport.png" />
-
-
-<div class="govuk-button-group">
-  <a href="check-the-personal-details-you-provided"><button class="govuk-button" data-module="govuk-button">
-    Continue
-  </button></a>
-  <a href="provide-proof-of-your-valid-passport.html">
-  <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
-    Upload a new image
-  </button>
-  </a>
+<div class="govuk-form-group">
+  <label class="govuk-label" for="passport-country">
+    Which country issued your passport?
+  </label>
+  <input class="govuk-input govuk-!-width-two-thirds" id="passport-country" name="passport-country" type="text" spellcheck="false" autocomplete="country">
 </div>
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
         
     </div>
   </div>

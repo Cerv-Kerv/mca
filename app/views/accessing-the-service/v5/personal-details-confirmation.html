@@ -2,8 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-           Provide proof of your valid passport
- – {{ serviceName }} – GOV.UK Prototype Kit
+ Success – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -45,32 +44,24 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
-      <h1 class="govuk-heading-l">
-        Provide proof of your valid passport
-      </h1>
+      {{ govukPanel({
+        titleText: "Submitted",
+        html: "You have submitted your personal details"
+      }) }}
 
-<p class="govuk">We require an image of your valid passport to verify your identity.</p>
+      <p>
+        We have sent you a confirmation email. If you do not receive your confirmation email by [insert timeframe], contact the Maritime and Coastguard Agency (MCA) by emailing <a href="">seafareroperations@mcga.gov.uk</a>.
+      </p>
 
-<p class="govuk">The Maritime and Coastguard Agency (MCA) may request additional documentation if required.</p>
+      <h2 class="govuk-heading-m">
+        What happens next
+      </h2>
+
+      <p>Use your credentials we sent you in your confirmation email to <a href="provide-your-seafarer-reference-number">access the service</a></p>
 
 
-<p class="govuk"><strong>
-You have uploaded this image</strong></p>
-
-<img src="/public/images/passport.png" />
 
 
-<div class="govuk-button-group">
-  <a href="check-the-personal-details-you-provided"><button class="govuk-button" data-module="govuk-button">
-    Continue
-  </button></a>
-  <a href="provide-proof-of-your-valid-passport.html">
-  <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
-    Upload a new image
-  </button>
-  </a>
-</div>
-        
     </div>
   </div>
 

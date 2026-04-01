@@ -2,8 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-           Provide proof of your valid passport
- – {{ serviceName }} – GOV.UK Prototype Kit
+  Your email address – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
 {% block header %}
@@ -45,31 +44,28 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <span class="govuk-caption-l">Personal details</span>
       <h1 class="govuk-heading-l">
-        Provide proof of your valid passport
+        Your email address
       </h1>
 
-<p class="govuk">We require an image of your valid passport to verify your identity.</p>
+          <p class="govuk">
+We may use this email address to contact you about your application.
+</p>
+      <form class="form" action="check-the-personal-details-you-provided" method="post" novalidate>
 
-<p class="govuk">The Maritime and Coastguard Agency (MCA) may request additional documentation if required.</p>
-
-
-<p class="govuk"><strong>
-You have uploaded this image</strong></p>
-
-<img src="/public/images/passport.png" />
-
-
-<div class="govuk-button-group">
-  <a href="check-the-personal-details-you-provided"><button class="govuk-button" data-module="govuk-button">
-    Continue
-  </button></a>
-  <a href="provide-proof-of-your-valid-passport.html">
-  <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
-    Upload a new image
-  </button>
-  </a>
+        <div class="govuk-form-group">
+  <label class="govuk-label" for="email">
+    Email address
+  </label>
+  <input class="govuk-input" value="sarah.phillips@example.com" id="email" name="email" type="email" spellcheck="false" aria-describedby="email-hint" autocomplete="email">
 </div>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
         
     </div>
   </div>

@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-           Provide proof of your valid passport
+           Provide your contact telephone number
  – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
@@ -45,31 +45,30 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <span class="govuk-caption-l">Personal details</span>
       <h1 class="govuk-heading-l">
-        Provide proof of your valid passport
+        Provide your contact telephone number
       </h1>
 
-<p class="govuk">We require an image of your valid passport to verify your identity.</p>
+          <p class="govuk">
+We may use this telephone number to contact you about your application.
+</p>
+      <form class="form" action="provide-your-home-address" method="post" novalidate>
 
-<p class="govuk">The Maritime and Coastguard Agency (MCA) may request additional documentation if required.</p>
-
-
-<p class="govuk"><strong>
-You have uploaded this image</strong></p>
-
-<img src="/public/images/passport.png" />
-
-
-<div class="govuk-button-group">
-  <a href="check-the-personal-details-you-provided"><button class="govuk-button" data-module="govuk-button">
-    Continue
-  </button></a>
-  <a href="provide-proof-of-your-valid-passport.html">
-  <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
-    Upload a new image
-  </button>
-  </a>
+        <div class="govuk-form-group">
+  <label class="govuk-label" for="phone-number">
+    Telephone number
+  </label>
+  <div id="phone-number-hint" class="govuk-hint">
+Your telephone number must include the country code, for example '+44' or '+1'. You should remove the first '0' in your telephone number, for example, +44 7421 344900 or +1 7421 344900.</div>
+  <input class="govuk-input govuk-input--width-20" id="phone-number" name="phoneNumber" type="tel" aria-describedby="phone-number-hint" autocomplete="tel">
 </div>
+
+        <button type="submit" class="govuk-button" data-module="govuk-button">
+          Continue
+        </button>
+
+      </form>
         
     </div>
   </div>

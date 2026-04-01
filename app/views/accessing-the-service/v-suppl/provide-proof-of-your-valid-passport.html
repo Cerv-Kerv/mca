@@ -2,7 +2,7 @@
 
 {% block pageTitle %}
   {% if data['confirm-error'] == 'true' or data['other-reason-error'] == 'true' %}Error: {% endif %}
-           Provide proof of your valid passport
+         Provide proof of your valid passport
  – {{ serviceName }} – GOV.UK Prototype Kit
 {% endblock %}
 
@@ -45,6 +45,7 @@
   <div class="govuk-grid-row">
     <div class="govuk-grid-column-two-thirds">
 
+      <span class="govuk-caption-l">Personal details</span>
       <h1 class="govuk-heading-l">
         Provide proof of your valid passport
       </h1>
@@ -53,23 +54,33 @@
 
 <p class="govuk">The Maritime and Coastguard Agency (MCA) may request additional documentation if required.</p>
 
+{% from "govuk/components/button/macro.njk" import govukButton %}
+{% from "govuk/components/file-upload/macro.njk" import govukFileUpload %}
 
-<p class="govuk"><strong>
-You have uploaded this image</strong></p>
-
-<img src="/public/images/passport.png" />
-
-
-<div class="govuk-button-group">
-  <a href="check-the-personal-details-you-provided"><button class="govuk-button" data-module="govuk-button">
-    Continue
-  </button></a>
-  <a href="provide-proof-of-your-valid-passport.html">
-  <button class="govuk-button govuk-button--secondary" data-module="govuk-button">
-    Upload a new image
-  </button>
-  </a>
+<div class="govuk-form-group">
+  {{ govukFileUpload({
+    id: "file-upload-1",
+    name: "file-upload-1",
+    hint: {
+      text: "A valid passport is one that is not expired and is recognised by the issuing country. Ensure all passport details are clearly visible in the image before uploading it. The selected file must be smaller than 25MB."
+    },
+    label: {
+      text: "Upload an image of your valid passport",
+      classes: "govuk-label--m"
+    },
+    javascript: true
+  }) }}
 </div>
+
+
+
+
+          <form class="form" action="check-the-personal-details-you-provided" method="post" novalidate>
+        {{ govukButton({
+  text: "Continue"
+}) }}
+
+      </form>
         
     </div>
   </div>
