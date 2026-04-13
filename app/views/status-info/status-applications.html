@@ -28,8 +28,8 @@
 
 </ul>-->
 
-     <p><strong>1</strong> Single application - requires applicant input</p>
-     <div class="govuk-hint">"Action required" only if there is an action for the applicant</div>
+     <p><strong>1</strong> Single application - active</p>
+     <div class="govuk-hint">No status, just a linked item</div>
 
  {{ govukTaskList({
         idPrefix: "NOE-parts",
@@ -38,60 +38,12 @@
             title: {
               text: "OOW Unlimited II/1"
             },
-            href: "#",
-            status: {
-              tag: {
-                text: "Action required",
-                classes: "govuk-tag--blue"
-              }
-            }
+            href: "#"
           }
         ]
       }) }}
 <br><br><br>
-           <p><strong>2</strong> Single application - requires applicant input</p>
-     <div class="govuk-hint">"Pending payment" only if there is NO action for the applicant</div>
-
- {{ govukTaskList({
-        idPrefix: "NOE-parts",
-        items: [
-          {
-            title: {
-              text: "OOW Unlimited II/1"
-            },
-            href: "#",
-            status: {
-              tag: {
-                text: "Pending payment",
-                classes: "govuk-tag--red"
-              }
-            }
-          }
-        ]
-      }) }}
-<br><br><br>
-                 <p><strong>3</strong> Single application - requires no input</p>
-     <div class="govuk-hint">"Processing" only if there is NO action for the applicant</div>
-
- {{ govukTaskList({
-        idPrefix: "NOE-parts",
-        items: [
-          {
-            title: {
-              text: "OOW Unlimited II/1"
-            },
-            href: "#",
-            status: {
-              tag: {
-                text: "Processing",
-                classes: "govuk-tag--yellow"
-              }
-            }
-          }
-        ]
-      }) }}
-<br><br><br>
-                 <p><strong>4</strong> Single application - completed</p>
+           <p><strong>2</strong> Single application - completed</p>
      <div class="govuk-hint">Nothing left to do, application process completed</div>
 
  {{ govukTaskList({
@@ -101,7 +53,6 @@
             title: {
               text: "OOW Unlimited II/1"
             },
-            href: "#",
             status: {
                 text: "Complete"
             }
@@ -109,9 +60,29 @@
         ]
       }) }}
 <br><br><br>
+                 <p><strong>3</strong> Single application - cancelled</p>
+     <div class="govuk-hint">Nothing left to do, application cancelled</div>
 
-<p><strong>5</strong> Reapply state - requires applicant input</p>
-     <div class="govuk-hint">"Action required" is default status - as application not 'active'</div>
+ {{ govukTaskList({
+        idPrefix: "NOE-parts",
+        items: [
+          {
+            title: {
+              text: "OOW Unlimited II/1"
+            },
+                    status: {
+              tag: {
+                text: "Cancelled",
+                classes: "govuk-tag--grey"
+              }
+            }
+          }
+        ]
+      }) }}
+<br><br><br>
+
+<p><strong>4</strong> Reapply state - requires applicant input</p>
+     <div class="govuk-hint">Application is available for the user to reapply</div>
 
  {{ govukTaskList({
         idPrefix: "NOE-parts",
@@ -126,7 +97,7 @@
             href: "#",
             status: {
               tag: {
-                text: "Action required",
+                text: "Reapply",
                 classes: "govuk-tag--blue"
               }
             }
@@ -134,35 +105,40 @@
         ]
       }) }}
 <br><br><br>
-           <p><strong>X</strong> Multiple applications - 1 active, with others in different inactive states</p>
-     <div class="govuk-hint">Applicant can view "Complete" applications but NOT cancelled.</div>
- {{ govukTaskList({
+           <p><strong>5</strong> Multiple applications in different states</p>
+     <div class="govuk-hint">
+     </div>
+ 
+           {{ govukTaskList({
         idPrefix: "NOE-parts",
         items: [
           {
             title: {
-              text: "OOW Unlimited II/1"
+              text: "[limitation]"
             },
-            href: "#",
+            hint: {
+              text: "Reapply to resit your oral exam"
+            },
+            href: "reapply",
             status: {
               tag: {
-                text: "Action required",
+                text: "Reapply",
                 classes: "govuk-tag--blue"
               }
             }
           },
           {
             title: {
-              text: "OOW Less than 500gt limited to Category D waters II/3"
+              text: "OOW Unlimited II/1"
             },
-                        href: "#",
           status: {
                 text: "Complete"
             }
+            
           },
           {
             title: {
-              text: "Chief Mate, unlimited tonnage, near coastal"
+              text: "OOW Less than 500gt Near Coastal II/3"
             },
           status: {
               tag: {
