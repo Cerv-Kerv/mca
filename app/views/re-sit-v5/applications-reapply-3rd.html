@@ -42,10 +42,6 @@
     html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
   }) }}
   
-    {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
 
 {% endblock %}
 
@@ -55,22 +51,19 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        Reapply for [limitation]
+        Reapply for ['limitation']
       </h1>
 
-      <p>To be able to resit your oral exam, you must:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>have a minimum of 6 months seagoing service within the last five years</li>
-<li>provide updated and additional documents (if required)</li>
-<li>pay a fee of £XXX.XX</li>
-      </ul>
 
-            <p>This is your reapply attempt [X].</p>
+      <p>This is your 3rd attempt. </p>
+      <p>You must apply for a new Notice of Eligibility (NOE) and supply all supporting evidence to resit your exam.</p>
+      <p>The cost to reapply is £XXX.XX</p>
 
-      <form action="application-overview" method="" novalidate>
+
+      <form action="#" method="" novalidate>
 
         {{ govukButton({
-          text: "Reapply"
+          text: "Continue"
         }) }}
 
       </form>
@@ -81,14 +74,30 @@
         History
       </h2>
 
-      {{ govukTaskList({
+       {{ govukTaskList({
         idPrefix: "applications",
         items: [
           {
             title: {
-              text: "Chief Mate Unlimited All Routes"
+              text: "OOW unlimited II/1"
             },
+      hint: {
+        text: "Attempt 2: 24 July 2024"
+      },
             status: {
+                text: "Closed"
+            }
+          
+    },
+             {
+            title: {
+              text: "OOW unlimited II/1"
+            },
+      hint: {
+        text: "Attempt 1: 24 August 2023"
+      },
+            status: {
+                text: "Closed"
             }
           
     }

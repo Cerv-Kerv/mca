@@ -42,10 +42,6 @@
     html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
   }) }}
   
-    {{ govukBackLink({
-    text: "Back",
-    href: "javascript:window.history.back()"
-  }) }}
 
 {% endblock %}
 
@@ -55,46 +51,64 @@
     <div class="govuk-grid-column-two-thirds">
 
       <h1 class="govuk-heading-xl">
-        Reapply for [limitation]
+        Applications
       </h1>
 
-      <p>To be able to resit your oral exam, you must:</p>
-      <ul class="govuk-list govuk-list--bullet">
-        <li>have a minimum of 6 months seagoing service within the last five years</li>
-<li>provide updated and additional documents (if required)</li>
-<li>pay a fee of £XXX.XX</li>
-      </ul>
-
-            <p>This is your reapply attempt [X].</p>
-
-      <form action="application-overview" method="" novalidate>
-
-        {{ govukButton({
-          text: "Reapply"
-        }) }}
-
-      </form>
-      <p class="govuk"><a href="#">Return to applications</a></p>
-
-      <br><br>
-                  <h2 class="govuk-heading-s">
-        History
-      </h2>
-
       {{ govukTaskList({
-        idPrefix: "applications",
+        idPrefix: "NOE-parts",
         items: [
           {
             title: {
-              text: "Chief Mate Unlimited All Routes"
+              text: "[limitation]"
             },
+            hint: {
+              text: "Reapply to resit your oral exam"
+            },
+            href: "reapply",
             status: {
+              tag: {
+                text: "Reapply",
+                classes: "govuk-tag--blue"
+              }
             }
-          
-    }
+          },
+          {
+            title: {
+              text: "OOW Unlimited II/1"
+            },
+                  hint: {
+        text: "Issued 23 December 2022"
+      },
+          status: {
+                text: "Complete"
+            }
+            
+          },
+          {
+            title: {
+              text: "OOW Less than 500gt Near Coastal II/3"
+            },
+                              hint: {
+        text: "Cancelled 11 July 2022"
+      },
+          status: {
+              tag: {
+                text: "Cancelled",
+                classes: "govuk-tag--grey"
+              }
+            }
+          }
         ]
       }) }}
 
+
+      <form action="#" method="">
+
+        {{ govukButton({
+          text: "Select an application"
+        }) }}
+
+      </form>
 
     </div>
   </div>
