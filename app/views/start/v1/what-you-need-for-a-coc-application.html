@@ -6,11 +6,23 @@
 
 {% block header %}
   <!-- Blank header with no service name for the start page -->
-  {{ govukHeader() }}
+  {% from "govuk/components/header/macro.njk" import govukHeader %}
+{% from "govuk/components/service-navigation/macro.njk" import govukServiceNavigation %}
+
+{{ hmrcHeader({
+  serviceUrl : "/",
+  useTudorCrown: "true"
+}) }}
+
 {% endblock %}
 
 {% block beforeContent %}
-
+  {{ govukPhaseBanner({
+    tag: {
+      text: "Beta"
+    },
+    html: 'This is a new service. Help us improve it and <a class="govuk-link" target="_blank" href="#">give your feedback (opens in new tab)</a>.'
+  }) }}
   {{ govukBreadcrumbs({
     items: [
       {
